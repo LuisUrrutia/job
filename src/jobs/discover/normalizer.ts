@@ -1,19 +1,26 @@
-import { canonicalUrl, contentHash, stableJobId } from "../domain.js";
+import { canonicalUrl, contentHash, stableJobId } from "../domain.ts";
+import type { JobCandidate, RawJobCandidate } from "../types.ts";
 
-export function normalizeDiscoveryOutput(stdout) {
-  const parsed = parseJson(stdout);
-  const unwrapped = unwrapAgentResult(parsed);
-  const rawCandidates = Array.isArray(unwrapped) ? unwrapped : unwrapped.candidates || unwrapped.jobs || [];
-  if (!Array.isArray(rawCandidates)) {
-    throw new Error("Discovery output JSON must contain a candidates array.");
-  }
+export function normalizeDiscoveryOutput(stdout: string): JobCandidate[] {
+  const rawCandidates = rawDiscoveryCandidates(stdout);
 
   return rawCandidates
     .map(normalizeCandidate)
     .filter((candidate) => candidate.title && candidate.company && candidate.url);
 }
 
-function normalizeCandidate(raw) {
+export function rawDiscoveryCandidates(stdout: string): RawJobCandidate[] {
+  const parsed = parseJson(stdout);
+  const unwrapped = unwrapAgentResult(parsed);
+  if (Array.isArray(unwrapped)) return unwrapped.filter(isRecord);
+  if (!isRecord(unwrapped)) throw new Error("Discovery output JSON must contain a candidates array.");
+
+  const candidates = unwrapped.candidates ?? unwrapped.jobs ?? [];
+  if (!Array.isArray(candidates)) throw new Error("Discovery output JSON must contain a candidates array.");
+  return candidates.filter(isRecord);
+}
+
+function normalizeCandidate(raw: RawJobCandidate): JobCandidate {
   const candidate = {
     title: text(raw.title),
     company: text(raw.company || raw.hiringCompany),
@@ -40,6 +47,7 @@ function normalizeCandidate(raw) {
     publisherCompany: candidate.publisherCompany,
     url: candidate.url,
     source: candidate.source,
+    sourceJobId: candidate.sourceJobId,
     location: candidate.location,
     remoteScope: candidate.remoteScope,
     employmentType: candidate.employmentType,
@@ -51,7 +59,7 @@ function normalizeCandidate(raw) {
   };
 }
 
-function parseJson(stdout) {
+function parseJson(stdout: string): unknown {
   try {
     return JSON.parse(stdout);
   } catch {
@@ -61,8 +69,10 @@ function parseJson(stdout) {
   }
 }
 
-function unwrapAgentResult(parsed) {
-  if (Array.isArray(parsed) || parsed.candidates || parsed.jobs) return parsed;
+function unwrapAgentResult(parsed: unknown): unknown {
+  if (Array.isArray(parsed)) return parsed;
+  if (!isRecord(parsed)) return parsed;
+  if (parsed.candidates || parsed.jobs) return parsed;
 
   for (const key of ["result", "response", "output", "text", "content", "message"]) {
     const value = parsed[key];
@@ -72,6 +82,10 @@ function unwrapAgentResult(parsed) {
   return parsed;
 }
 
-function text(value) {
+function text(value: unknown): string {
   return String(value || "").trim();
+}
+
+function isRecord(value: unknown): value is RawJobCandidate {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
 }

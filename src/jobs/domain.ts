@@ -1,10 +1,11 @@
 import { createHash } from "node:crypto";
+import type { JobIdentityInput } from "./types.ts";
 
-export function canonicalUrl(value) {
+export function canonicalUrl(value: unknown): string {
   if (!value) return "";
 
   try {
-    const url = new URL(value);
+    const url = new URL(String(value));
     url.hash = "";
     for (const key of [...url.searchParams.keys()]) {
       if (key.startsWith("trk") || key === "refId" || key === "trackingId") {
@@ -17,7 +18,7 @@ export function canonicalUrl(value) {
   }
 }
 
-export function stableJobId(candidate) {
+export function stableJobId(candidate: JobIdentityInput): string {
   const numericLinkedInId = extractLinkedInJobId(candidate.linkedinJobId || candidate.sourceJobId || candidate.url);
   if (numericLinkedInId) return `linkedin:${numericLinkedInId}`;
 
@@ -28,7 +29,7 @@ export function stableJobId(candidate) {
   return `hash:${sha256(fallback).slice(0, 24)}`;
 }
 
-export function contentHash(candidate) {
+export function contentHash(candidate: JobIdentityInput): string {
   return sha256(JSON.stringify({
     title: clean(candidate.title),
     company: clean(candidate.company),
@@ -41,7 +42,7 @@ export function contentHash(candidate) {
   }));
 }
 
-export function extractLinkedInJobId(value) {
+export function extractLinkedInJobId(value: unknown): string {
   const text = String(value || "");
   const urlMatch = text.match(/linkedin\.com\/jobs\/view\/(\d+)/i);
   if (urlMatch) return urlMatch[1];
@@ -50,10 +51,10 @@ export function extractLinkedInJobId(value) {
   return numeric ? numeric[0] : "";
 }
 
-export function sha256(value) {
+export function sha256(value: unknown): string {
   return createHash("sha256").update(String(value)).digest("hex");
 }
 
-function clean(value) {
+function clean(value: unknown): string {
   return String(value || "").trim();
 }

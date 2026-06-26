@@ -13,8 +13,8 @@
       "employmentType": "Full-time",
       "salaryRange": "GBP 90,000 - GBP 110,000",
       "postedAt": "Sample posted 2 hours ago",
-      "description": "Fake fixture posting for a senior React and TypeScript engineer building patient workflow tools. This is sample data only.",
-      "verificationNote": "Fixture data; not a real job posting."
+      "description": "Senior React and TypeScript engineer role building patient workflow tools for healthcare operations teams. The role focuses on accessible interfaces, reliable state management, and product collaboration.",
+      "verificationNote": "Pipeline test candidate with a verified-style company website field."
     },
     {
       "title": "Sample Full Stack Product Engineer",
@@ -28,8 +28,8 @@
       "employmentType": "Full-time",
       "salaryRange": "",
       "postedAt": "Sample posted yesterday",
-      "description": "Fake fixture posting for a full-stack product engineer using React, TypeScript, and Python. This is sample data only.",
-      "verificationNote": "Fixture data; not a real job posting."
+      "description": "Full-stack product engineer role using React, TypeScript, and Python to build climate reporting workflows for distributed teams. The role focuses on product delivery, APIs, and frontend performance.",
+      "verificationNote": "Pipeline test candidate with publisher-company coverage."
     }
   ]
 }

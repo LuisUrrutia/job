@@ -1,15 +1,17 @@
 import { mkdirSync } from "node:fs";
+import { writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
+import type { JobStore, StoredJobCandidate } from "./types.ts";
 
-export async function writeJobsReport(store, outputPath = "Jobs.md") {
+export async function writeJobsReport(store: JobStore, outputPath = "Jobs.md"): Promise<{ outputPath: string; count: number }> {
   const candidates = store.listCandidates();
   const markdown = renderJobsMarkdown(candidates);
   mkdirSync(dirname(outputPath), { recursive: true });
-  await Bun.write(outputPath, markdown);
+  await writeFile(outputPath, markdown, "utf8");
   return { outputPath, count: candidates.length };
 }
 
-export function renderJobsMarkdown(candidates) {
+export function renderJobsMarkdown(candidates: StoredJobCandidate[]): string {
   const lines = [
     "# Jobs",
     "",
@@ -46,6 +48,6 @@ export function renderJobsMarkdown(candidates) {
   return lines.join("\n");
 }
 
-function addOptional(lines, label, value) {
+function addOptional(lines: string[], label: string, value: string): void {
   if (value) lines.push(`**${label}:** ${value}  `);
 }
