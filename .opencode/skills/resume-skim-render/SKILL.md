@@ -10,11 +10,11 @@ The generator derives `{candidate-slug}` from `info.json` `personalInfo.name`.
 
 ## Steps
 
-1. Run `python3 scripts/generate_resume_from_json.py --input ai/{company}/{slug}-application.json --tex-only`. Completion criterion: `latex/{candidate-slug}-{slug}-Resume.tex` exists.
+1. Run `npm run resume -- --input ai/{company}/{slug}-application.json --tex-only`. Completion criterion: `latex/{candidate-slug}-{slug}-Resume.tex` exists.
 2. Edit `latex/{candidate-slug}-{slug}-Resume.tex` before compiling the PDF. Completion criterion: bold phrases, section headers, and first visible skills tell the same fit story as `resume_focus_priority`.
 3. Use `\textbf{...}` for emphasis in the TeX edit pass. Completion criterion: emphasis follows [skim-rules.md](reference/skim-rules.md).
 4. If you materially rewrite, tighten, or remove a bullet in TeX, mirror that wording change back into `ai/{company}/{slug}-application.json`. Completion criterion: TeX and JSON do not disagree on material bullet wording.
-5. Run `python3 scripts/generate_resume_from_json.py --compile-tex latex/{candidate-slug}-{slug}-Resume.tex`. Completion criterion: `applications/{candidate-slug}-{slug}-Resume.pdf` exists.
+5. Run `npm run resume -- --compile-tex latex/{candidate-slug}-{slug}-Resume.tex`. Completion criterion: `applications/{candidate-slug}-{slug}-Resume.pdf` exists.
 6. Apply the page-count fallback only if needed. Completion criterion: PDFs over 2 pages either receive the compact spacing fallback and are recompiled, or the user is told clearly that the PDF still exceeds 2 pages.
 
 ## Page-Count Fallback Rule
