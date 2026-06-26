@@ -3,7 +3,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "jobs": "bun src/jobs/cli.js",
-    "test": "bun test"
-  }
+    "jobs": "node src/jobs/cli.ts",
+    "resume": "node src/resume/cli.ts",
+    "test": "node --test tests/jobs.test.ts tests/resume.test.ts",
+    "test:jobs": "node --test tests/jobs.test.ts",
+    "test:resume": "node --test tests/resume.test.ts"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.0.0",
+    "@stackone/defender": "^0.7.1",
+    "fasttext.wasm": "^1.0.0",
+    "onnxruntime-node": ">=1.16.0"
+  },
+  "trustedDependencies": [
+    "onnxruntime-node",
+    "protobufjs"
+  ]
 }
