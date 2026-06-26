@@ -1,0 +1,9 @@
+{
+  "name": "resume",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "jobs": "bun src/jobs/cli.js",
+    "test": "bun test"
+  }
+}

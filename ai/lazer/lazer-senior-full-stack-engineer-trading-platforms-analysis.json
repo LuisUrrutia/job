@@ -1,0 +1,232 @@
+{
+  "job": {
+    "position": "Senior Full-Stack Engineer, Trading Platforms",
+    "company": "Lazer"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false,
+    "current_location": "Spain"
+  },
+  "fit_analysis": {
+    "must_have_pass": "8/11",
+    "weighted_match_score": 68,
+    "strengths": [
+      "12+ years of full-stack experience across frontend-heavy and backend systems work",
+      "Strong React and TypeScript record across remote product teams",
+      "Relevant state management experience with Zustand and Redux",
+      "Backend depth in Go and Rust-adjacent systems work, including real-time event processing and RPC reliability",
+      "Web3 and EVM experience through OpenZeppelin Defender and OSS Relayer",
+      "Client-facing agency experience at Resit SPA and cross-functional stakeholder work at OpenZeppelin, Premise, and Vitamina",
+      "Cloud experience across AWS, GCP, Azure, Kubernetes, Docker, and Terraform",
+      "Component and design-system-adjacent work through Material UI, Storybook, shared standards, and frontend architecture decisions"
+    ],
+    "gaps": [
+      {
+        "item": "Significant experience building trading platforms such as DEX, CEX, HFT, or similar high-performance trading systems is not documented in info.json",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Order management systems, order books, matching engines, risk systems, market microstructure, or algorithmic trading experience is not documented",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "High-performance data visualization or charting-library experience is not explicitly documented, although live data and dense client-facing interfaces are adjacent",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "TanStack ecosystem is not documented",
+        "severity": "minor",
+        "type": "preferred"
+      },
+      {
+        "item": "Solana experience is not documented",
+        "severity": "minor",
+        "type": "preferred"
+      },
+      {
+        "item": "Open source trading tools or trading infrastructure contributions are not documented",
+        "severity": "minor",
+        "type": "preferred"
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      "React, TypeScript, Zustand, Redux, and frontend architecture evidence",
+      "Real-time systems evidence from Go, Kafka, Redis, RPC failover, and WebSockets skills",
+      "Web3 and EVM systems work as the closest domain bridge to DEX and crypto clients",
+      "Client-facing consulting, agency, mentorship, and autonomous delivery",
+      "Cloud and infrastructure experience across AWS, GCP, Azure, Kubernetes, Docker, and Terraform"
+    ],
+    "recommendation": "pause_for_clarification"
+  },
+  "must_have_evidence_map": [
+    {
+      "requirement": "6+ years backend and frontend software development",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Summary",
+          "bullet": "Senior Full-Stack Engineer with 12+ years of professional experience building and operating production systems across B2B SaaS, enterprise platforms, marketplaces, and Web3 security."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers. Built a full-stack module with a frontend focus in TypeScript and React."
+        }
+      ]
+    },
+    {
+      "requirement": "Significant experience building trading platforms or similar high-performance trading systems",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": []
+    },
+    {
+      "requirement": "Expert React and modern frontend state management",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions around SSR vs SPA, state management, i18n, and infrastructure direction."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Tech stack includes React, Next.js, TypeScript, and Zustand."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native across the company."
+        }
+      ]
+    },
+    {
+      "requirement": "High-performance data visualization and real-time UI components",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature in MyPremise with React and TypeScript that surfaced up-to-date, often live data through a single shareable URL."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Applied frontend skills in Angular for operational interfaces and managed business metrics, performance monitoring, and deployment workflows."
+        }
+      ]
+    },
+    {
+      "requirement": "Backend engineering with Go or similar systems languages",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing, retry/failover, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition."
+        }
+      ]
+    },
+    {
+      "requirement": "WebSocket architectures and backend-for-frontend patterns",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Skills",
+          "bullet": "Backend & APIs section includes WebSockets, REST APIs, GraphQL, Apollo GraphQL, Node.js, and Express.js."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Contributed to the migration from REST to GraphQL with Apollo across key entities, including updates to Express.js services, improving API response times by 35%."
+        }
+      ]
+    },
+    {
+      "requirement": "Real-time data streaming, order management systems, and trading UI/UX patterns",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Implemented real-time catalog and pricing updates with Go and Kafka, and migrated core business logic from a previous Python ETL flow."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Engineered a Redis-based conflict resolution layer that prioritized real-time event processing over scheduled tasks, handling duplicate and out-of-order updates."
+        }
+      ]
+    },
+    {
+      "requirement": "Component library development within established design systems",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Helped standardize the UI with Material UI and introduced Storybook for shared component documentation and design handoff, reducing prototyping time from one week to one day."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native across the company."
+        }
+      ]
+    },
+    {
+      "requirement": "Consulting, contracting, startup, or agency background with client management",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products for clients across medical, industrial, government, legal, and cultural sectors, working end to end from discovery and requirements to planning and implementation."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        }
+      ]
+    },
+    {
+      "requirement": "Deep expertise with GCP, AWS, or Azure",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Tech stack includes AWS, Kubernetes, Terraform, Docker, CloudWatch, AWS Lambda, DynamoDB, and Amazon SQS."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Tech stack includes GCP, Kubernetes, Docker, PostgreSQL, and BigQuery."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Introduced DevOps practices and led a staged migration from on-prem to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+        }
+      ]
+    },
+    {
+      "requirement": "Excellent technical and non-technical communication",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Worked with product, engineering, and infrastructure teams to simplify the release flow and reduce delivery cycles from months to about two weeks."
+        }
+      ]
+    }
+  ]
+}

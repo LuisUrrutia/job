@@ -1,0 +1,277 @@
+{
+  "job": {
+    "position": "Senior dApp Engineer",
+    "company": "Golem Factory"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false,
+    "current_location": "Spain",
+    "timezone_fit": "matched: Spain is within CET +/- 3 timezones"
+  },
+  "fit_analysis": {
+    "must_have_pass": "7/15",
+    "weighted_match_score": 68,
+    "strengths": [
+      "12+ years production software engineering experience with strong TypeScript, JavaScript, React, Next.js, and Node.js evidence",
+      "Recent Web3 security product work at OpenZeppelin across Defender, Secure Audit, OSS Relayer, EVM transaction handling, RPC retry and failover, and SDK capabilities",
+      "Solidity appears in OpenZeppelin role tech and the user clarified OpenZeppelin work included Solidity test-network contracts for audit-support workflows, integrations, monitoring, source-code validation, and AI-assisted audit checks",
+      "Relevant reliability and observability evidence from RPC and gas-spike alert tuning, Slack and PagerDuty noise reduction, and EVM nonce race-condition work",
+      "Frontend testing and release-confidence evidence through Playwright, Jest, Cypress, and CI improvements",
+      "Location appears eligible because the source profile lists Spain"
+    ],
+    "gaps": [
+      {
+        "item": "Bridge UI or cross-chain dApp ownership",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Direct wallet integration evidence with MetaMask, WalletConnect, hardware wallets, network switching, signing, and wallet quirks",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "wagmi, viem, ethers.js, or equivalent Web3 frontend library evidence",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Foundry-specific contract workflow evidence with forge, cast, or anvil",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Explicit ABI integration, calldata decoding, Tenderly, EIP-712, EIP-1559, ERC-4626, and ERC-4337 evidence",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Contract testing evidence",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Blockscout operations and docs-platform experience",
+        "severity": "minor",
+        "type": "preferred"
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      "OpenZeppelin Solidity, EVM, Secure Audit, OSS Relayer, and smart-contract integration evidence",
+      "User-confirmed Solidity test-network contracts for audit-support workflows, OpenZeppelin Monitor, source-code validation, and AI-assisted audit checks, phrased carefully as OpenZeppelin work rather than invented production protocol ownership",
+      "TypeScript, React, Next.js, Node.js, SDK, testing, and observability evidence",
+      "Reliability evidence around RPC failures, gas spikes, nonce race conditions, retry and failover",
+      "Cross-functional work with auditors, clients, enterprise users, and technical teams"
+    ],
+    "recommendation": "apply_with_risks"
+  },
+  "source_notes": [
+    "The base profile is info.json and lists Luis in Spain, which appears to satisfy the CET +/- 3 timezone restriction.",
+    "User clarification on 2026-06-04: for OpenZeppelin, emphasize that the recruiter cares about Solidity and that Luis learned audit-related material, created contracts for testing networks, created different integrations, worked with monitoring such as OpenZeppelin Monitor to monitor specific function executions or parameters, validated source code, and wrote AI skills for basic audit checks.",
+    "Do not claim wagmi, viem, ethers.js, MetaMask, WalletConnect, hardware wallets, Foundry, Tenderly, Blockscout, bridge UI, or account abstraction unless the user confirms them or they appear in source data. They are not present in info.json."
+  ],
+  "must_have_evidence_map": [
+    {
+      "requirement": "Must be based within CET +/- 3 timezones",
+      "status": "matched",
+      "severity_if_missing": "blocker",
+      "evidence": [
+        {
+          "role": "Personal info",
+          "bullet": "info.json lists location as Spain, which is within CET +/- 3 timezones."
+        }
+      ]
+    },
+    {
+      "requirement": "5+ years production TypeScript or JavaScript",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Summary",
+          "bullet": "Senior Full-Stack Engineer with 12+ years of professional experience building and operating production systems."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built a full-stack module with a frontend focus in TypeScript and React."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature in MyPremise with React and TypeScript."
+        }
+      ]
+    },
+    {
+      "requirement": "Production frontend framework experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "OpenZeppelin role tech includes React, Next.js, Svelte, TypeScript, Zustand, Playwright, Cypress, and Jest."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native across the company."
+        }
+      ]
+    },
+    {
+      "requirement": "Production Node.js backend experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Implemented transaction-related API flows with Express.js, including integrations with Transbank for payment processing use cases."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Contributed to the migration from REST to GraphQL with Apollo across key entities, including updates to Express.js services."
+        }
+      ]
+    },
+    {
+      "requirement": "Own or ship resilient dApp surfaces such as a Bridge UI",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": []
+    },
+    {
+      "requirement": "Web3 frontend library experience with wagmi, viem, ethers.js, or equivalent",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": []
+    },
+    {
+      "requirement": "Multiple wallet integration experience",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": []
+    },
+    {
+      "requirement": "Solidity reading proficiency",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "OpenZeppelin role tech includes Solidity."
+        },
+        {
+          "role": "User clarification, OpenZeppelin",
+          "bullet": "User said OpenZeppelin work required learning audit-related Solidity material, creating contracts for testing networks, creating integrations, monitoring specific function executions or parameters with OpenZeppelin Monitor, validating source code, and writing AI skills for basic audit checks."
+        }
+      ]
+    },
+    {
+      "requirement": "Minor Solidity contract writing in Foundry",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "User clarification, OpenZeppelin",
+          "bullet": "User said OpenZeppelin work included creating contracts for testing networks. Foundry itself is not confirmed."
+        }
+      ]
+    },
+    {
+      "requirement": "ABI integration and failed transaction debugging",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate the products and build custom automation tooling."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing/retry/failover, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition."
+        },
+        {
+          "role": "User clarification, OpenZeppelin",
+          "bullet": "User said OpenZeppelin work included creating different integrations and validating source code. ABI integration, calldata decoding, and Tenderly are not confirmed."
+        }
+      ]
+    },
+    {
+      "requirement": "Gas, nonce, and replacement transaction understanding",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing/retry/failover, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Cut alert noise by about 60% across Slack and PagerDuty by tuning recoverable RPC and gas-spike alerts."
+        }
+      ]
+    },
+    {
+      "requirement": "Client-side observability for wallet errors, RPC failures, and transaction outcomes",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Cut alert noise by about 60% across Slack and PagerDuty by tuning recoverable RPC and gas-spike alerts."
+        },
+        {
+          "role": "User clarification, OpenZeppelin",
+          "bullet": "User said OpenZeppelin work included monitoring specific function executions or parameters with OpenZeppelin Monitor. Wallet-error tracking and transaction-success dashboards are not confirmed."
+        }
+      ]
+    },
+    {
+      "requirement": "Frontend component and integration testing",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Led end-to-end testing for Defender with Playwright, focusing on critical user flows to improve release confidence."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Improved release reliability by expanding test coverage with Jest and adding quality gates in GitHub Actions."
+        }
+      ]
+    },
+    {
+      "requirement": "Contract testing",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": []
+    },
+    {
+      "requirement": "Cross-functional collaboration with protocol, platform, SRE, and DevRel",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers, helping smart contract auditors work directly with clients, track findings, verify fixes, and deliver final PDF reports."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Supported the Defender sunset by helping close feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer."
+        }
+      ]
+    },
+    {
+      "requirement": "Web3 standards such as EIP-1559, EIP-712, ERC-20, ERC-721, ERC-4626, and ERC-4337 basics",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned EVM-side relayer work involving transaction cost handling, gas-spike alerts, and nonce race-condition fixes. Specific EIP and ERC standards are not confirmed in source data."
+        }
+      ]
+    }
+  ]
+}

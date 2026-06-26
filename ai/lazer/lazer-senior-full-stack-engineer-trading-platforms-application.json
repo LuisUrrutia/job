@@ -1,0 +1,462 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Full-Stack Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "summary": "Senior Full-Stack Engineer with 12+ years building production frontend, backend, and cloud systems across Web3 security, marketplaces, B2B SaaS, and agency delivery. Strong match for Lazer's client-embedded model, with hands-on React, TypeScript, Zustand, Redux, Go, Rust, WebSockets, Kafka, Redis, AWS, GCP, Azure, Kubernetes, and Terraform. Shipped complex user-facing systems, real-time data workflows, SDKs, and component standards while mentoring engineers and working directly with clients and stakeholders.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Zustand",
+        "Rust",
+        "Solidity",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "PostgreSQL",
+        "Redis",
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "Express.js",
+        "DynamoDB",
+        "Amazon SQS",
+        "AWS Lambda",
+        "Tailwind CSS",
+        "Svelte",
+        "Stripe",
+        "Claude",
+        "Cursor",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry"
+      ],
+      "description": [
+        "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a React and TypeScript module with Zustand so auditors could work with clients, track findings, verify fixes, and deliver final PDF reports.",
+        "Owned the EVM side of the Rust-based open-source Relayer, including RPC balancing and failover, cloud KMS signer integrations, chain-specific transaction cost handling, and a fix for a critical nonce race condition.",
+        "Built SDK capabilities for developers across Defender and the open-source Relayer so technical teams could integrate the products and create custom automation tooling.",
+        "Shaped frontend architecture decisions for OIF and Ascend across rendering strategy, state management, i18n, Kubernetes, and Okta.",
+        "Led critical user-flow testing for Defender with Playwright to improve release confidence.",
+        "Refactored the TypeScript monorepo build system, reducing local and CI build times from about 15 minutes to 3 minutes while reducing bundle size and speeding up PR cycles."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Storybook",
+        "Material-UI",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "PostgreSQL",
+        "Express.js",
+        "Jest",
+        "Python",
+        "BigQuery",
+        "Tailwind CSS",
+        "GitHub Actions",
+        "JavaScript"
+      ],
+      "description": [
+        "Built a live-data presentation feature in React and TypeScript so account managers and clients could use a single shareable URL instead of resending PDF or PPT exports.",
+        "Contributed to the REST to GraphQL migration with Apollo across key entities, improving API response times by 35% and lowering server usage.",
+        "Helped standardize the UI with Material UI and Storybook for shared component documentation and design handoff, reducing prototyping time from one week to one day.",
+        "Improved release reliability by expanding Jest coverage and adding quality gates, reducing release cycles from one week to less than 24 hours.",
+        "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Redux",
+        "Express.js",
+        "Python",
+        "Amazon Web Services (AWS)",
+        "Azure",
+        "Kubernetes",
+        "Docker",
+        "MSSQL",
+        "MySQL",
+        "C#",
+        "Node.js",
+        "Angular",
+        "Tailwind CSS",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Improved architecture and delivery for a legacy internal platform, working with product, engineering, and infrastructure teams to reduce delivery cycles from months to about two weeks.",
+        "Modernized key parts of the stack by moving from ASP.NET to Angular and from .NET Framework to .NET Core, removing Internet Explorer-only constraints and enabling Chrome compatibility.",
+        "Implemented transaction-related API flows with Express.js, including integrations with Transbank for payment processing use cases.",
+        "Led a staged Azure hybrid migration across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "Go",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "TypeScript",
+        "Python",
+        "Amazon Web Services (AWS)",
+        "Kubernetes",
+        "Docker",
+        "Angular",
+        "Node.js",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Implemented real-time catalog and pricing updates with Go and Kafka, moving core logic from a Python ETL flow and contributing to a 21% CSAT increase.",
+        "Engineered a Redis conflict-resolution layer that prioritized real-time event processing over scheduled tasks and improved product data reliability by 40%.",
+        "Led an internal onboarding platform with Go, Node.js, and Angular, saving $75,000 annually and enabling faster customer-service onboarding.",
+        "Built merchant ingestion pipelines from FTP, APIs, SOAP XML feeds, and web scraping for pricing, stock, availability, bundles, and product attributes.",
+        "Drove unit testing for critical pricing, offers, and bundles logic with an 80% coverage target, reducing critical rollout defects by 33%."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "React",
+        "TypeScript",
+        "React Native",
+        "Redux",
+        "GraphQL",
+        "Express.js",
+        "Python",
+        "Django",
+        "Amazon Web Services (AWS)",
+        "Kubernetes",
+        "Docker",
+        "MongoDB",
+        "MySQL",
+        "Tailwind CSS",
+        "Angular",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Delivered five-plus client products across medical, industrial, government, legal, and cultural sectors, working from discovery and requirements through planning and implementation.",
+        "Led architecture and engineering standards for TypeScript, React, React Native, and Redux across the company.",
+        "Built React Native mobile applications for client products, aligning app architecture and delivery practices with shared web platform standards.",
+        "Mentored five developers through pairing sessions, code reviews, and workshops focused on architecture, testing, and code quality.",
+        "Worked directly with clients through discovery calls, demos, and status updates, including a short-deadline government project that helped open agency opportunities."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "Go",
+        "Python",
+        "Redis",
+        "PostgreSQL",
+        "Google Cloud Platform (GCP)",
+        "Flask",
+        "Angular",
+        "Tile38",
+        "TypeScript",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Contributed to building Dxpress from idea to launch as one of Chile's first Uber Eats-style delivery services inside a small product and engineering team.",
+        "Built backend capabilities across Python and Go for geolocation and real-time operations, advanced search, and product ETL workflows.",
+        "Developed ETL pipelines that ingested and normalized product data from manual uploads, APIs, web scraping, and FTP CSV files, supporting catalogs with more than 5,000 products."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "AngularJS",
+        "JavaScript",
+        "Node.js",
+        "Python",
+        "Django",
+        "PHP",
+        "Laravel",
+        "Vagrant"
+      ],
+      "description": [
+        "Started as a junior developer and took on growing frontend ownership, helping introduce Node.js and AngularJS into the agency stack."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": [
+        "React",
+        "Next.js",
+        "Zustand",
+        "Redux",
+        "React Native",
+        "Storybook",
+        "Material-UI",
+        "Tailwind CSS",
+        "Svelte",
+        "Angular",
+        "AngularJS",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "category": "Languages",
+      "items": [
+        "TypeScript",
+        "Go",
+        "Rust",
+        "Python",
+        "Solidity",
+        "JavaScript",
+        "C#",
+        "PHP"
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "items": [
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "React Testing Library",
+        "Pytest"
+      ]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": [
+        "WebSockets",
+        "REST APIs",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Node.js",
+        "Express.js",
+        "Django",
+        "Flask",
+        "Laravel"
+      ]
+    },
+    {
+      "category": "Databases & Messaging",
+      "items": [
+        "Redis",
+        "Kafka",
+        "PostgreSQL",
+        "DynamoDB",
+        "MSSQL",
+        "MySQL",
+        "MongoDB",
+        "BigQuery",
+        "Amazon SQS",
+        "Tile38"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "AWS",
+        "Amazon Web Services (AWS)",
+        "GCP",
+        "Google Cloud Platform (GCP)",
+        "Azure",
+        "Kubernetes",
+        "Docker",
+        "Terraform",
+        "AWS Lambda",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "Serverless"
+      ]
+    },
+    {
+      "category": "Platforms & Practices",
+      "items": [
+        "Claude",
+        "Cursor",
+        "CI/CD",
+        "Agile",
+        "Scrum",
+        "Microservices",
+        "Stripe",
+        "Git",
+        "Vagrant"
+      ]
+    }
+  ],
+  "additional": {
+    "technicalSkills": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Zustand",
+      "Redux",
+      "Go",
+      "WebSockets",
+      "GraphQL",
+      "RESTful APIs",
+      "PostgreSQL",
+      "Redis",
+      "Kafka",
+      "AWS",
+      "GCP",
+      "Azure",
+      "Kubernetes",
+      "Docker",
+      "Terraform",
+      "React Native",
+      "Storybook",
+      "Material-UI",
+      "Playwright",
+      "Jest",
+      "Cypress",
+      "Python",
+      "Solidity",
+      "JavaScript",
+      "Express.js",
+      "Svelte",
+      "Angular",
+      "Django",
+      "Flask",
+      "shadcn/ui",
+      "Tailwind CSS",
+      "CSS",
+      "HTML5",
+      "Node.js",
+      "MSSQL",
+      "MySQL",
+      "MongoDB",
+      "RabbitMQ",
+      "GitHub Actions",
+      "Serverless",
+      "Mocha",
+      "Pytest",
+      "Claude",
+      "Cursor",
+      "Agile",
+      "Scrum",
+      "Git",
+      "Microservices",
+      "SOLID Principles"
+    ],
+    "languages": [
+      "Spanish (Native)",
+      "English (Advanced - C1)"
+    ],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "targetCompany": "Lazer",
+  "targetPosition": "Senior Full-Stack Engineer, Trading Platforms",
+  "jobSlug": "lazer-senior-full-stack-engineer-trading-platforms",
+  "company_profile": {
+    "description": "Lazer is a digital product studio that designs, engineers, and grows products for startups, venture-backed companies, and enterprises.",
+    "mission": "Lazer says it started to help create some of the world's most important and impactful products.",
+    "vision": "Inferred from official pages: keep building high-impact digital products across startup and enterprise environments with senior product, design, and engineering teams.",
+    "values": [
+      "Founder and doer mindset",
+      "Security",
+      "Reliability",
+      "Measurable outcomes",
+      "On-time and on-budget delivery",
+      "Autonomy",
+      "Fast product iteration"
+    ],
+    "products": [
+      "Agentic Commerce Accelerator",
+      "POS Implementation Suite",
+      "Subscriptions Accelerator",
+      "CommerceBench",
+      "Migration frameworks"
+    ],
+    "services": [
+      "Frontend and backend engineering",
+      "Full-stack web and mobile app development",
+      "Web3 infrastructure, DeFi, and trading interfaces",
+      "Component libraries and design systems",
+      "AI product development",
+      "Embedded senior engineering pods",
+      "Product strategy and delivery",
+      "Cloud infrastructure and data pipelines"
+    ],
+    "target_customers": [
+      "Early-stage startups",
+      "VC-backed startups",
+      "Venture studios",
+      "Fortune 500 companies",
+      "Commerce brands",
+      "AI companies",
+      "Crypto and Web3 companies",
+      "Fintech companies"
+    ],
+    "industry": "Digital product consulting, product engineering, AI, commerce, crypto, Web3, fintech, SaaS, healthcare, and mobile.",
+    "business_model": "B2B product design and engineering services with embedded senior teams, project delivery, and productized accelerators.",
+    "recent_signals": [
+      "Official site says Lazer has worked with 350+ clients, including early-stage startups and Fortune 100 or Fortune 500 enterprises.",
+      "The Web3 page says Lazer works with 70+ Web3 enterprises and startups and offers DeFi and trading interface development.",
+      "The clients page lists Polymarket, Uniswap, Coinbase, Goldfinch, Berachain, XMTP, Lightspark, Azura, Alchemy, and Cozy Finance among Web3 or fintech clients.",
+      "The AI page presents embedded senior pods, AI infrastructure, design, development, product strategy, and forward deployed engineering services.",
+      "Official insights list Agentic Commerce Accelerator and CommerceBench as 2026 commerce and AI initiatives."
+    ]
+  }
+}

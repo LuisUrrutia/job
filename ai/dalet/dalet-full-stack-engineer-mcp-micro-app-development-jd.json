@@ -1,0 +1,153 @@
+{
+  "position": "Full Stack Engineer - MCP & Micro App Development",
+  "company": "Dalet",
+  "department": "Dalia",
+  "work_model": "not specified",
+  "employment_type": "full-time",
+  "work_eligibility_requirements": [],
+  "geographic_restrictions": [],
+  "seniority_level": "senior",
+  "experience_years": 5,
+  "experience_requirements": [
+    "5+ years in software engineering, ideally in SaaS or media tech environments"
+  ],
+  "education_requirements": [],
+  "certification_requirements": [],
+  "required_skills": [
+    "JavaScript",
+    "TypeScript",
+    "React, Angular, or Vue",
+    "Micro frontend architecture",
+    "MCP servers and tools",
+    "Kubernetes",
+    "Terraform",
+    "Cloud-native architectures",
+    "AI orchestration",
+    "Schema mediation",
+    "LLM-based workflows",
+    "Communication",
+    "Cross-functional collaboration"
+  ],
+  "preferred_skills": [
+    "Media asset management systems",
+    "Metadata standards",
+    "Dynamic schema validation and transformation",
+    "Container orchestration",
+    "Hybrid cloud deployments",
+    "Modular design",
+    "Scalable frontend architecture"
+  ],
+  "soft_skills": [
+    "communication",
+    "cross-functional collaboration",
+    "responsiveness to UX and product feedback",
+    "maintainability",
+    "performance awareness"
+  ],
+  "domain_requirements": [
+    "SaaS",
+    "media tech",
+    "media workflows",
+    "metadata systems"
+  ],
+  "key_responsibilities": [
+    "Design and implement MCP connectors for media systems and metadata workflows",
+    "Develop dynamic schema mediation using AI-driven orchestration and feedback loops",
+    "Build micro frontends and modular UI components for Dalet media platforms",
+    "Integrate frontend layers with backend MCP servers and cloud infrastructure",
+    "Optimize performance, accessibility, and maintainability across micro apps",
+    "Work with SRE and DevOps teams on scalable microservices and CI/CD delivery",
+    "Contribute to infrastructure-as-code practices with Terraform, Helm, and Kubernetes"
+  ],
+  "success_outcomes": [
+    "Scalable modular applications that work across media platforms",
+    "Reliable API interactions for media file transfers and metadata transformation",
+    "Frontend experiences that are responsive, accessible, and maintainable",
+    "Cloud-native services that deploy smoothly through CI/CD pipelines",
+    "AI-assisted schema learning that improves adaptive system behavior"
+  ],
+  "keywords": [
+    {
+      "term": "MCP",
+      "priority": "high",
+      "count_in_jd": 5
+    },
+    {
+      "term": "frontend",
+      "priority": "high",
+      "count_in_jd": 4
+    },
+    {
+      "term": "micro app",
+      "priority": "high",
+      "count_in_jd": 4
+    },
+    {
+      "term": "metadata",
+      "priority": "high",
+      "count_in_jd": 4
+    },
+    {
+      "term": "schema",
+      "priority": "high",
+      "count_in_jd": 3
+    },
+    {
+      "term": "AI",
+      "priority": "high",
+      "count_in_jd": 3
+    },
+    {
+      "term": "Kubernetes",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "Terraform",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "cloud",
+      "priority": "medium",
+      "count_in_jd": 2
+    },
+    {
+      "term": "modular",
+      "priority": "medium",
+      "count_in_jd": 2
+    },
+    {
+      "term": "microservices",
+      "priority": "medium",
+      "count_in_jd": 1
+    },
+    {
+      "term": "CI/CD",
+      "priority": "medium",
+      "count_in_jd": 1
+    },
+    {
+      "term": "accessibility",
+      "priority": "medium",
+      "count_in_jd": 1
+    }
+  ],
+  "must_have_checklist": [
+    "5+ years in software engineering",
+    "Strong JavaScript and TypeScript proficiency",
+    "Strong proficiency with modern frontend frameworks",
+    "Experience with micro frontend architecture",
+    "Experience with MCP servers and tools",
+    "Hands-on Kubernetes, Terraform, and cloud-native architectures",
+    "Familiarity with AI orchestration, schema mediation, and LLM-based workflows",
+    "Excellent communication and cross-functional collaboration skills"
+  ],
+  "screening_weights": {
+    "required_experience": 25,
+    "required_skills": 45,
+    "education": 5,
+    "preferred_qualifications": 25
+  },
+  "red_flags": []
+}

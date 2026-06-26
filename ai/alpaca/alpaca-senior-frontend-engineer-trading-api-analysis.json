@@ -1,0 +1,221 @@
+{
+  "job": {
+    "position": "Senior Frontend Engineer - Trading API",
+    "company": "Alpaca"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false,
+    "eu_based": true,
+    "current_location": "Spain"
+  },
+  "fit_analysis": {
+    "must_have_pass": "10/11",
+    "weighted_match_score": 86,
+    "strengths": [
+      "12+ years of professional engineering experience across frontend-heavy and full-stack roles",
+      "Strong React and TypeScript record across multiple remote product teams",
+      "Clear evidence of frontend architecture work, mentoring, and shared standards",
+      "Direct mobile experience with React Native for iOS and Android products",
+      "Relevant backend depth in both Go and Rust for API-heavy systems",
+      "Solid API, SQL, and production delivery experience across PostgreSQL and MySQL-backed systems",
+      "Comfort working in distributed startups and cross-functional environments"
+    ],
+    "gaps": [
+      {
+        "item": "The resume shows mobile development for iOS and Android, but it does not clearly document the full 3+ years requested in the JD",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "No direct public-markets or algo-trading experience is documented",
+        "severity": "minor",
+        "type": "preferred"
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      "React and TypeScript frontend ownership",
+      "Mobile and cross-platform delivery with React Native",
+      "Go and Rust depth for backend systems behind product features",
+      "API, WebSocket, and SQL fluency",
+      "Mentoring, frontend standards, and cross-functional execution"
+    ],
+    "recommendation": "apply"
+  },
+  "must_have_evidence_map": [
+    {
+      "requirement": "5+ years of frontend development with TypeScript and React",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers, building a React and TypeScript frontend with Zustand so auditors could track findings, verify fixes, and deliver final PDF reports with clients."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a React and TypeScript presentation feature for Premise's client platform that surfaced up-to-date, often live data through a single shareable URL for account managers and clients."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions and set engineering standards for TypeScript, React, React Native, and Redux across the company."
+        }
+      ]
+    },
+    {
+      "requirement": "3+ years of mobile application development for Android and iOS",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Built React Native mobile applications for iOS and Android client products, aligning app architecture and delivery practices with shared web platform standards."
+        }
+      ]
+    },
+    {
+      "requirement": "2+ years using Go, C++, or Rust",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the Rust-based open-source Relayer work for Ethereum-compatible networks, including RPC balancing, retry and failover behavior, cloud KMS signer integrations, and a fix for a critical nonce race condition."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Implemented real-time catalog and pricing updates with Go and Kafka, moving core logic from a previous Python ETL flow so product and discount changes reached the app faster and contributed to a 21% increase in CSAT."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Helped build Dxpress from idea to launch inside a small product and engineering team, focusing on geolocation, real-time operational features, and product ETL workflows across Python and Go services."
+        }
+      ]
+    },
+    {
+      "requirement": "Excellent communication and collaboration skills",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates, translating requirements into shipped products under short deadlines."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Improved architecture and delivery for a legacy internal platform, working across product, engineering, and infrastructure to reduce delivery cycles from months to about two weeks."
+        }
+      ]
+    },
+    {
+      "requirement": "Ability to translate product mockups and designs into shipped user interfaces",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Standardized UI work with Material UI and Storybook, reducing prototyping time from one week to one day and improving consistency across shared components."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products end to end across medical, industrial, government, legal, and cultural sectors."
+        }
+      ]
+    },
+    {
+      "requirement": "Proficiency with HTML and CSS frameworks such as TailwindCSS",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Skills",
+          "bullet": "Frontend & UI section includes Tailwind CSS, HTML5, and CSS."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Tech stack includes Tailwind CSS in a React and TypeScript product environment."
+        }
+      ]
+    },
+    {
+      "requirement": "Focus on intuitive and performant user interfaces",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a React and TypeScript presentation feature for Premise's client platform that surfaced up-to-date, often live data through a single shareable URL for account managers and clients."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored the TypeScript monorepo build system, cutting build times from about 15 minutes to 3 minutes in local and CI runs while reducing bundle size and speeding up pull request cycles."
+        }
+      ]
+    },
+    {
+      "requirement": "Experience with REST APIs and WebSockets best practices",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Summary",
+          "bullet": "Senior Frontend Engineer with 12+ years building production web and mobile products across remote teams, with deep React, TypeScript, React Native, Tailwind CSS, REST API, WebSocket, and SQL experience."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Helped migrate key entities from REST to GraphQL with Apollo, including Express.js service updates, improving API response times by 35% and lowering server usage."
+        }
+      ]
+    },
+    {
+      "requirement": "Experience with relational databases and SQL",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Tech stack includes PostgreSQL."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Tech stack includes MySQL."
+        },
+        {
+          "role": "Skills",
+          "bullet": "Databases & Messaging section includes PostgreSQL and MySQL."
+        }
+      ]
+    },
+    {
+      "requirement": "Track record of setting or influencing frontend best practices",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions and set engineering standards for TypeScript, React, React Native, and Redux across the company."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to internal React and Next.js initiatives, helping shape frontend architecture decisions across rendering strategy, state management, and localization."
+        }
+      ]
+    },
+    {
+      "requirement": "Attention to detail and design aesthetics",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Standardized UI work with Material UI and Storybook, reducing prototyping time from one week to one day and improving consistency across shared components."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Led end-to-end testing for Defender with Playwright on critical user flows, improving release confidence for a complex production frontend."
+        }
+      ]
+    }
+  ]
+}

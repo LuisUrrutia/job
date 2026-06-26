@@ -1,0 +1,270 @@
+{
+  "job": {
+    "position": "Tech Lead, Product Integrations",
+    "company": "Zama"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false
+  },
+  "fit_analysis": {
+    "must_have_pass": "5/11 matched, 5/11 partial, 1/11 missing",
+    "weighted_match_score": 70,
+    "strengths": [
+      "12+ years of professional engineering experience",
+      "Recent OpenZeppelin experience in Web3 security, EVM infrastructure, smart contract audit delivery workflows, and OSS Relayer work",
+      "TypeScript-heavy product engineering with React, Next.js, monorepo refactoring, SDK capabilities, and external-facing automation surfaces",
+      "Signer-adjacent production work through AWS KMS and GCP KMS integrations, RPC retry/failover, transaction cost handling, and nonce reliability",
+      "Direct work with enterprise users, clients, product teams, infrastructure teams, and auditors",
+      "Practical agentic coding tool signal through Claude, Cursor, OpenCode, AI Skills, and OpenAI API proof-of-concept work"
+    ],
+    "gaps": [
+      {
+        "item": "Deep wallet and custody plumbing across account abstraction, smart contract wallets, MPC custody, or embedded wallet flows",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Clear ownership of a TypeScript-heavy SDK or developer-facing framework used by external engineers",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Explicit API design decisions for external integrators that can be explained and defended",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Daily agentic coding tool use and a stated opinion on agent-facing SDK design",
+        "severity": "minor",
+        "type": "required"
+      },
+      {
+        "item": "Confidential or privacy-preserving blockchain technology such as FHE, ZK, or MPC",
+        "severity": "minor",
+        "type": "preferred"
+      },
+      {
+        "item": "Solana or non-EVM multi-chain production integration",
+        "severity": "minor",
+        "type": "preferred"
+      }
+    ],
+    "eligibility_risks": [
+      {
+        "item": "Location fit for Spain-based full remote",
+        "severity": "minor",
+        "evidence": "JD lists Paris, Berlin, London, Lisbon, New York and says possible full remote, but does not explicitly say Spain is accepted. Zama's official About page says its processes are remote-friendly and people can join from anywhere in the world."
+      },
+      {
+        "item": "US work authorization",
+        "severity": "minor",
+        "evidence": "The candidate is non-US based and lacks US work authorization by default. The JD does not require US work authorization; New York is one listed location among European locations and possible full remote."
+      }
+    ],
+    "resume_focus_priority": [
+      "OpenZeppelin EVM Relayer OSS ownership, signer integrations, transaction reliability, and nonce race fix",
+      "TypeScript SDK and developer-tooling evidence, including Defender SDK capabilities and monorepo architecture improvements",
+      "Smart contract audit delivery workflows with auditors, clients, enterprise users, and migration support",
+      "Technical leadership through co-leading modules, architecture decisions, mentoring, code review, and cross-functional execution",
+      "Agentic coding tools and AI-facing developer experience, carefully stated only where supported",
+      "Company-specific alignment with Zama SDK, ERC-7984, confidential tokens, and institutional on-chain finance"
+    ],
+    "recommendation": "apply_with_risks"
+  },
+  "must_have_evidence_map": [
+    {
+      "requirement": "10+ years professional engineering experience",
+      "status": "matched",
+      "severity_if_missing": "blocker",
+      "evidence": [
+        {
+          "role": "Profile summary",
+          "bullet": "Senior Full-Stack Engineer with 12+ years of professional experience building and operating production systems across B2B SaaS, enterprise platforms, marketplaces, and Web3 security."
+        },
+        {
+          "role": "Work history",
+          "bullet": "Professional roles span 2015 to 2026 across Laboratorio de Ideas, Dxpress, Resit SPA, Vitamina Holding, Rappi, Premise, and OpenZeppelin."
+        }
+      ]
+    },
+    {
+      "requirement": "Clear track record of technical leadership in recent roles",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Improved architecture and delivery process for a legacy internal platform and worked with product, engineering, and infrastructure teams to reduce delivery cycles from months to about two weeks."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions for each project and mentored five developers through pairing, code reviews, and workshops."
+        }
+      ]
+    },
+    {
+      "requirement": "Track record leading a TypeScript-heavy SDK or developer-facing framework that other engineers integrated against",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate the products and build custom automation tooling."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored the TypeScript monorepo build system with ESM migration, package exports, bundler and tsconfig updates, reducing build times from about 15 minutes to 3 minutes."
+        }
+      ]
+    },
+    {
+      "requirement": "Defensible API design decisions for external engineer integrators",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer for Web3 developers and technical teams."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates while leading architecture decisions for client products."
+        }
+      ]
+    },
+    {
+      "requirement": "Deep wallet and custody plumbing experience",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing/retry/failover, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition."
+        }
+      ]
+    },
+    {
+      "requirement": "Production code handling key management, transaction signing, account abstraction, smart contract wallets, MPC custody, or embedded wallet flows",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "AWS KMS and GCP KMS signer integrations, transaction cost handling, RPC balancing/retry/failover, and critical nonce race condition fix are production signer-adjacent evidence. Account abstraction, smart contract wallets, MPC custody, and embedded wallet flows are not visible in the source profile."
+        }
+      ]
+    },
+    {
+      "requirement": "Strong fluency in EVM and Solidity",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the EVM side of OpenZeppelin Relayer OSS work."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit workflows for smart contract auditors and clients."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Role tech array includes Solidity."
+        }
+      ]
+    },
+    {
+      "requirement": "Ability to reason about smart contracts, ERC standards, gas, audit posture, and off-chain tooling",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit workflows for findings, fix verification, and final PDF reports."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned EVM transaction cost handling, RPC balancing/retry/failover, signer integrations, and nonce reliability in OSS Relayer."
+        }
+      ]
+    },
+    {
+      "requirement": "Daily use of agentic coding tools with an opinion on SDK and developer tool design",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Profile summary",
+          "bullet": "Active builder of practical AI tooling side projects."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Role tech array includes Claude and Cursor."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+        }
+      ]
+    },
+    {
+      "requirement": "Comfort working directly with partner engineers debugging integrations live and unblocking external teams",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Supported the Defender sunset by closing feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        }
+      ]
+    },
+    {
+      "requirement": "Exceptional communication skills across cryptographers, product engineers, and partner stakeholders",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked with smart contract auditors, clients, enterprise users, and technical teams across Secure Audit, SDK capabilities, and OSS Relayer migration."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Worked with product, engineering, and infrastructure teams to simplify release flow."
+        },
+        {
+          "role": "Profile summary",
+          "bullet": "Speaker on Angular, Ionic, Cucumber, and Redux in Chile."
+        }
+      ]
+    }
+  ],
+  "company_research_used_for_fit": [
+    {
+      "claim": "Zama positions the protocol as confidential onchain finance using FHE to issue, trade, and manage confidential assets on public blockchains.",
+      "source_type": "official_site",
+      "source_url": "https://www.zama.org/",
+      "confidence": "direct"
+    },
+    {
+      "claim": "Zama's SDK documentation describes @zama-fhe/sdk and @zama-fhe/react-sdk as packages for shielding, unshielding, confidential transfers, React hooks, signer adapters, and getting to a confidential transfer quickly.",
+      "source_type": "official_docs",
+      "source_url": "https://docs.zama.org/protocol/sdk",
+      "confidence": "direct"
+    },
+    {
+      "claim": "ERC-7984 is Zama's confidential token standard for encrypted balances, confidential transfers, public verifiability, and programmable compliance.",
+      "source_type": "official_site",
+      "source_url": "https://www.zama.org/erc-7984",
+      "confidence": "direct"
+    }
+  ]
+}

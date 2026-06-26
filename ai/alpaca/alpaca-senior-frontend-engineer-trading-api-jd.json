@@ -1,0 +1,112 @@
+{
+  "position": "Senior Frontend Engineer - Trading API",
+  "company": "Alpaca",
+  "department": "Trading API",
+  "work_model": "remote",
+  "employment_type": "full-time",
+  "work_eligibility_requirements": [],
+  "geographic_restrictions": [
+    "North America or Europe"
+  ],
+  "seniority_level": "senior",
+  "experience_years": 5,
+  "experience_requirements": [
+    "5+ years of frontend development with TypeScript and React",
+    "3+ years of mobile application development for Android and iOS",
+    "2+ years of experience using a modern systems programming language such as Golang, C++, or Rust",
+    "Experience with REST APIs and WebSockets best practices",
+    "Experience with relational databases and SQL",
+    "Ability to translate product mockups and designs into fully realized user interfaces"
+  ],
+  "education_requirements": [],
+  "certification_requirements": [],
+  "required_skills": [
+    "TypeScript",
+    "React",
+    "Mobile application development",
+    "Android",
+    "iOS",
+    "Go",
+    "C++",
+    "Rust",
+    "HTML",
+    "CSS",
+    "TailwindCSS",
+    "REST APIs",
+    "WebSockets",
+    "SQL",
+    "Relational databases",
+    "Frontend best practices"
+  ],
+  "preferred_skills": [
+    "Algo trading",
+    "GCP",
+    "Financial markets",
+    "Startup experience",
+    "Remote work experience"
+  ],
+  "soft_skills": [
+    "communication",
+    "collaboration",
+    "mentorship",
+    "attention to detail",
+    "design aesthetics",
+    "curiosity",
+    "empathy",
+    "accountability"
+  ],
+  "domain_requirements": [
+    "Trading API",
+    "Brokerage infrastructure",
+    "Financial services",
+    "Stocks, ETFs, options, and cryptocurrencies"
+  ],
+  "key_responsibilities": [
+    "Design, implement, and maintain frontend applications that shape the Trading API user experience",
+    "Build frontend dashboards and backend systems for Trading API features such as Elite, high-yield cash, and paper accounts",
+    "Architect and develop responsive web and mobile applications",
+    "Work closely with cross-functional teams to ship performant, intuitive user interfaces",
+    "Own high-visibility features from design to deployment",
+    "Mentor peers and influence frontend technical strategy"
+  ],
+  "success_outcomes": [
+    "Ship polished and responsive frontend experiences for Trading API customers",
+    "Deliver end-to-end features across frontend and backend systems",
+    "Improve product quality through frontend standards, performance, and careful implementation",
+    "Support a globally distributed team with clear communication and technical leadership"
+  ],
+  "keywords": [
+    { "term": "frontend", "priority": "high", "count_in_jd": 6 },
+    { "term": "React", "priority": "high", "count_in_jd": 1 },
+    { "term": "TypeScript", "priority": "high", "count_in_jd": 1 },
+    { "term": "mobile", "priority": "high", "count_in_jd": 2 },
+    { "term": "Go", "priority": "high", "count_in_jd": 1 },
+    { "term": "Rust", "priority": "high", "count_in_jd": 1 },
+    { "term": "TailwindCSS", "priority": "medium", "count_in_jd": 1 },
+    { "term": "REST APIs", "priority": "high", "count_in_jd": 1 },
+    { "term": "WebSockets", "priority": "high", "count_in_jd": 1 },
+    { "term": "SQL", "priority": "high", "count_in_jd": 1 },
+    { "term": "mentor", "priority": "medium", "count_in_jd": 1 },
+    { "term": "performance", "priority": "medium", "count_in_jd": 2 }
+  ],
+  "must_have_checklist": [
+    "5+ years of frontend development with TypeScript and React",
+    "3+ years of mobile application development for Android and iOS",
+    "2+ years using Go, C++, or Rust",
+    "Excellent communication and collaboration skills",
+    "Ability to translate product mockups and designs into shipped user interfaces",
+    "Proficiency with HTML and CSS frameworks such as TailwindCSS",
+    "Focus on intuitive and performant user interfaces",
+    "Experience with REST APIs and WebSockets best practices",
+    "Experience with relational databases and SQL",
+    "Track record of setting or influencing frontend best practices",
+    "Attention to detail and design aesthetics"
+  ],
+  "screening_weights": {
+    "required_experience": 40,
+    "required_skills": 35,
+    "education": 5,
+    "preferred_qualifications": 20
+  },
+  "red_flags": []
+}

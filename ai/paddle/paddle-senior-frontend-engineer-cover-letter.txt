@@ -1,0 +1,7 @@
+Paddle's Experience Group sits where sellers need a reliable dashboard and developers need clear docs, SDKs, and integration paths for a complex Merchant of Record product.
+
+I have been doing that kind of work recently at OpenZeppelin: co-leading the Defender Secure Audit frontend in TypeScript and React, building SDK capabilities for Defender and the open-source Relayer, and refactoring a TypeScript monorepo that cut build times from about 15 minutes to 3.
+
+The design-system side is also a real fit. At Premise and Resit I integrated Storybook to make designer/developer handoff cleaner and shared UI easier to review and reuse. My accessibility evidence is adjacent rather than deep WCAG ownership, but the product-quality habit is there.
+
+I would welcome a conversation about where I could help Paddle's dashboard and developer experience teams ship faster with fewer integration sharp edges.

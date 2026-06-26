@@ -1,0 +1,7 @@
+Tether's GPU-accelerated cloud services role stood out because it combines backend-heavy fullstack work, developer platforms, distributed systems, and production reliability.
+
+Luis brings 12+ years of fullstack engineering experience, with recent work at OpenZeppelin on developer infrastructure, SDKs, RPC retry and failover paths, and a Rust-based open-source relayer. He also has hands-on React, TypeScript, Docker, Kubernetes, PostgreSQL, Redis, and Kafka experience across production systems.
+
+The AI and GPU pieces would be a stretch area, but the adjacent platform work is strong: event-driven catalog updates at Rappi, an OpenAI API proof of concept at Premise, and production alert tuning that cut noise by about 60% at OpenZeppelin.
+
+Tether's focus on reserve-backed tokens, transparency, and peer-to-peer AI infrastructure is a practical match for his Web3 security and platform background. He would welcome a conversation about the role.

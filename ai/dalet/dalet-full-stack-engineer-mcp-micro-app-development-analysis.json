@@ -1,0 +1,191 @@
+{
+  "job": {
+    "position": "Full Stack Engineer - MCP & Micro App Development",
+    "company": "Dalet"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false,
+    "eu_based": true,
+    "current_location": "Spain"
+  },
+  "fit_analysis": {
+    "must_have_pass": "6/8",
+    "weighted_match_score": 80,
+    "strengths": [
+      "12+ years of professional engineering experience across frontend-heavy and full-stack roles",
+      "Strong TypeScript, JavaScript, React, and Angular record across remote product teams",
+      "Clear connector and data-normalization experience across APIs, FTP, SOAP XML feeds, and ETL workflows",
+      "Hands-on Kubernetes, Terraform, Docker, and multi-cloud delivery exposure",
+      "Hybrid cloud and DevOps collaboration experience across Azure, AWS, and GCP environments",
+      "Cross-functional delivery with product, infrastructure, and client-facing collaboration",
+      "Relevant AI adjacency through an OpenAI-based proof of concept and practical AI tooling side projects"
+    ],
+    "gaps": [
+      {
+        "item": "No direct MCP server or MCP tooling experience is documented",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Micro frontend architecture is not explicitly named in the resume, even though there is strong modular frontend and shared-component work",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "AI orchestration evidence is adjacent rather than deep production ownership",
+        "severity": "minor",
+        "type": "required"
+      },
+      {
+        "item": "No direct media asset management systems or metadata standards background is documented",
+        "severity": "minor",
+        "type": "preferred"
+      },
+      {
+        "item": "No Helm experience is documented",
+        "severity": "minor",
+        "type": "preferred"
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      "TypeScript, React, and Angular frontend ownership",
+      "Integration and data-transformation work across complex source systems",
+      "Kubernetes, Terraform, cloud-native, and CI/CD delivery evidence",
+      "AI-adjacent work that stays grounded in the resume",
+      "Cross-functional execution across product, UX, engineering, and infrastructure"
+    ],
+    "recommendation": "apply"
+  },
+  "must_have_evidence_map": [
+    {
+      "requirement": "5+ years in software engineering",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Summary",
+          "bullet": "Senior Full Stack Engineer with 12+ years of professional experience building production web applications, backend integrations, and cloud-native systems across B2B SaaS, enterprise platforms, marketplaces, and Web3 security."
+        }
+      ]
+    },
+    {
+      "requirement": "Strong JavaScript and TypeScript proficiency",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a React and TypeScript frontend with Zustand so auditors could track findings, verify fixes, and deliver final PDF reports with clients."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored the TypeScript monorepo build system, cutting build times from about 15 minutes to 3 minutes in local and CI runs while reducing bundle size and speeding up pull request cycles."
+        }
+      ]
+    },
+    {
+      "requirement": "Strong proficiency with modern frontend frameworks",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a React and TypeScript frontend with Zustand so auditors could track findings, verify fixes, and deliver final PDF reports with clients."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a React and TypeScript presentation feature in MyPremise that surfaced up-to-date, often live data through a single shareable URL for account managers and clients."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Modernized core parts of the stack by moving from ASP.NET to Angular and from .NET Framework to .NET Core, removing Internet Explorer-only constraints and enabling modern browser support."
+        }
+      ]
+    },
+    {
+      "requirement": "Experience with micro frontend architecture",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Standardized UI work with Material UI and Storybook, reducing prototyping time from one week to one day and making shared components easier to reuse."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions and set engineering standards for TypeScript, React, and React Native across the company."
+        }
+      ]
+    },
+    {
+      "requirement": "Experience with MCP servers and tools",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer so technical teams could integrate the products and build custom automation tooling."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, removing dependency on external engineering support and saving $75,000 annually."
+        }
+      ]
+    },
+    {
+      "requirement": "Hands-on Kubernetes, Terraform, and cloud-native architectures",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Tech stack includes Kubernetes, Terraform, AWS, and Docker in a production product environment."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Introduced DevOps practices and led a staged migration from on-prem systems to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+        },
+        {
+          "role": "Skills",
+          "bullet": "Cloud & DevOps section includes Kubernetes, Terraform, Docker, AWS, GCP, and Azure."
+        }
+      ]
+    },
+    {
+      "requirement": "Familiarity with AI orchestration, schema mediation, and LLM-based workflows",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built an internal hackathon proof of concept with the OpenAI API for natural-language report generation."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Built backend integrations for merchant ingestion pipelines, normalizing data from FTP, APIs, SOAP XML feeds, and web scraping to support pricing, stock, availability, bundles, and product attributes."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Developed ETL pipelines that ingested and normalized product data from manual uploads, APIs, web scraping, and FTP CSV files, supporting catalogs with more than 5,000 products."
+        }
+      ]
+    },
+    {
+      "requirement": "Excellent communication and cross-functional collaboration skills",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates, translating requirements into shipped products under short deadlines."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Improved architecture and delivery for a legacy internal platform, working across product, engineering, and infrastructure teams to reduce delivery cycles from months to about two weeks."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,491 @@
+{
+  "job": {
+    "position": "Product Engineer",
+    "company": "Spotted Zebra"
+  },
+  "candidate_constraints": {
+    "location": "Spain",
+    "timezone": "+01:00",
+    "work_authorization": "not_provided_in_info_json",
+    "visa_or_sponsorship_needed": "not_provided_in_info_json",
+    "other_constraints": [
+      "JD says remote-first but does not state eligible countries, visa sponsorship, or work authorization requirements."
+    ]
+  },
+  "fit_analysis": {
+    "requirement_pass": "12 matched / 5 partial / 1 missing",
+    "strengths": [
+      {
+        "text": "Strong full-stack TypeScript and React match, with recent production work across OpenZeppelin and Premise plus backend/API evidence in Express.js, GraphQL, PostgreSQL, Redis, and cloud tooling.",
+        "requirement_ids": ["req-001", "req-011", "req-012"]
+      },
+      {
+        "text": "Product-engineering fit is credible: discovery-to-delivery work at Resit, client-facing product delivery, migration support for enterprise users, and product/engineering collaboration at Vitamina.",
+        "requirement_ids": ["req-002", "req-009", "req-015", "req-016"]
+      },
+      {
+        "text": "Lean-team and startup evidence is strong through Dxpress from idea to launch, Resit agency delivery, remote roles across multiple countries, and release-cycle improvements that cut bureaucracy.",
+        "requirement_ids": ["req-005", "req-006", "req-014"]
+      },
+      {
+        "text": "B2B SaaS and enterprise-platform evidence is directly supported by OpenZeppelin Defender, Premise, enterprise-user migration work, and the profile summary.",
+        "requirement_ids": ["req-007", "req-015"]
+      },
+      {
+        "text": "AI tooling is present in the source profile through Claude, Cursor, active AI tooling side projects, and an OpenAI API proof of concept, but stronger workflow details would improve the match.",
+        "requirement_ids": ["req-004", "req-008", "req-018"]
+      }
+    ],
+    "gaps": [
+      {
+        "requirement_id": "req-003",
+        "status": "partial",
+        "severity": "major",
+        "reason": "The resume has end-to-end ownership evidence, including co-led and led work, but does not yet clearly state a largely solo concept-to-production feature owned independently."
+      },
+      {
+        "requirement_id": "req-004",
+        "status": "partial",
+        "severity": "major",
+        "reason": "Claude and Cursor are listed and AI side-project/POC evidence exists, but the source profile does not explain how AI tools are integrated into day-to-day engineering workflow."
+      },
+      {
+        "requirement_id": "req-008",
+        "status": "partial",
+        "severity": "major",
+        "reason": "The profile supports AI tooling interest, but not explicit experience shaping AI-augmented delivery-team practices."
+      },
+      {
+        "requirement_id": "req-009",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "Product and customer collaboration are present, but the source profile does not explicitly name direct PM partnership in recent roles."
+      },
+      {
+        "requirement_id": "req-011",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "React, TypeScript, Express.js, GraphQL, and Apollo evidence is strong, but NestJS is not recorded in info.json."
+      },
+      {
+        "requirement_id": "req-012",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "PostgreSQL, Redis, GraphQL, Apollo, and RabbitMQ are present, but NestJS is absent and RabbitMQ appears only in skills rather than role evidence."
+      },
+      {
+        "requirement_id": "req-017",
+        "status": "missing",
+        "severity": "minor",
+        "reason": "No HR tech, talent acquisition, recruiting platform, interview intelligence, or assessment-domain work is recorded in info.json."
+      },
+      {
+        "requirement_id": "req-018",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "AI product and tooling evidence exists, but no direct hiring, assessment, or HR-tech domain signal is recorded."
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      {
+        "rank": 1,
+        "focus": "Lead with TypeScript, React, full-stack production feature ownership, and API/GraphQL work.",
+        "requirement_ids": ["req-001", "req-010", "req-011"],
+        "screening_priority_id": "screen-001",
+        "screening_priority_rank": 1
+      },
+      {
+        "rank": 2,
+        "focus": "Show product-engineering judgment: discovery, end-user focus, architecture trade-offs, production ownership, and direct customer context.",
+        "requirement_ids": ["req-002", "req-003", "req-009", "req-016"],
+        "screening_priority_id": "screen-002",
+        "screening_priority_rank": 2
+      },
+      {
+        "rank": 3,
+        "focus": "Add grounded AI-workflow language around Claude, Cursor, OpenAI API experiments, and practical use of AI tools without overstating formal AAD leadership.",
+        "requirement_ids": ["req-004", "req-008", "req-014"],
+        "screening_priority_id": "screen-003",
+        "screening_priority_rank": 3
+      },
+      {
+        "rank": 4,
+        "focus": "Highlight startup, early-stage, B2B SaaS, enterprise-user, and high-trust remote collaboration evidence.",
+        "requirement_ids": ["req-005", "req-006", "req-007", "req-009"],
+        "screening_priority_id": "screen-004",
+        "screening_priority_rank": 4
+      },
+      {
+        "rank": 5,
+        "focus": "Use stack keywords naturally where grounded: GraphQL, Apollo, PostgreSQL, Redis, RabbitMQ, Express.js as NestJS-adjacent Node backend evidence.",
+        "requirement_ids": ["req-012", "req-017", "req-018"],
+        "screening_priority_id": "screen-005",
+        "screening_priority_rank": 5
+      }
+    ],
+    "keyword_usage": [
+      {
+        "term": "TypeScript",
+        "action": "repeat in summary, OpenZeppelin, Premise, and skills because it is strongly backed.",
+        "requirement_ids": ["req-001", "req-011"]
+      },
+      {
+        "term": "React",
+        "action": "repeat in summary and recent role bullets because it is strongly backed.",
+        "requirement_ids": ["req-001", "req-011"]
+      },
+      {
+        "term": "full stack",
+        "action": "use prominently in title/summary and selected bullets where frontend plus backend ownership is supported.",
+        "requirement_ids": ["req-001", "req-010"]
+      },
+      {
+        "term": "product engineer",
+        "action": "use in summary/cover letter as positioning, backed by discovery, client, PM/product-team, and end-user examples.",
+        "requirement_ids": ["req-002", "req-009", "req-016"]
+      },
+      {
+        "term": "AI tooling",
+        "action": "use cautiously around Claude, Cursor, OpenAI API, and AI tooling side projects unless the user adds stronger workflow examples.",
+        "requirement_ids": ["req-004", "req-008"]
+      },
+      {
+        "term": "GraphQL",
+        "action": "repeat in Premise and skills with Apollo evidence.",
+        "requirement_ids": ["req-011", "req-012"]
+      },
+      {
+        "term": "NestJS",
+        "action": "do not claim experience; mention Express.js/Node.js as similar backend evidence only.",
+        "requirement_ids": ["req-011", "req-012"]
+      },
+      {
+        "term": "B2B SaaS",
+        "action": "use in summary and cover letter, backed by source summary and OpenZeppelin/Premise evidence.",
+        "requirement_ids": ["req-007"]
+      },
+      {
+        "term": "HR tech",
+        "action": "do not claim unless the user supplies new evidence; can express mission interest in cover letter.",
+        "requirement_ids": ["req-017", "req-018"]
+      }
+    ],
+    "recommendation": "apply_with_risks"
+  },
+  "requirement_evidence_map": [
+    {
+      "requirement_id": "req-001",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Profile summary",
+          "bullet": "Senior Full-Stack Engineer with 12+ years of professional experience building and operating production systems across B2B SaaS, enterprise platforms, marketplaces, and Web3 security."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built a full-stack module with a frontend focus in TypeScript and React that helped smart contract auditors work directly with clients, track findings, verify fixes, and deliver final PDF reports."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature in MyPremise with React and TypeScript that surfaced up-to-date, often live data."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-002",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products for clients across medical, industrial, government, legal, and cultural sectors, working end to end from discovery and requirements to planning and implementation."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Supported the Defender sunset by helping close feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature so account managers and clients could use a single shareable URL instead of resending PDF or PPT exports after each update."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-003",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers, building a full-stack TypeScript and React module."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products from discovery and requirements to planning and implementation."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-004",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Profile summary",
+          "bullet": "Active builder of practical AI tooling side projects."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin tech stack",
+          "bullet": "Claude and Cursor are listed in the role tech stack."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-005",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Personal info and work history",
+          "bullet": "Current location Spain with remote roles in the UK, US, Colombia, and Chile, plus English Advanced - C1."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-006",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile, working with a small product and engineering team."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products for clients, working end to end from discovery and requirements to planning and implementation."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-007",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Profile summary",
+          "bullet": "12+ years of professional experience building and operating production systems across B2B SaaS, enterprise platforms, marketplaces, and Web3 security."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built Defender 2.0 features, Stripe billing for self-serve Pro subscriptions and enterprise-tier plans, and supported enterprise users during migration."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built MyPremise functionality used by account managers and clients."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-008",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Profile summary",
+          "bullet": "Active builder of practical AI tooling side projects."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-009",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Worked with product, engineering, and infrastructure teams to simplify the release flow and reduce delivery cycles from months to about two weeks."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions and infrastructure direction."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-010",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers and built a full-stack module with frontend focus in TypeScript and React."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-011",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built a full-stack module with a frontend focus in TypeScript and React; OpenZeppelin tech stack includes Express.js, PostgreSQL, Redis, and TypeScript."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Contributed to the migration from REST to GraphQL with Apollo across key entities, including updates to Express.js services."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-012",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Tech stack includes GraphQL, Apollo GraphQL, PostgreSQL, Docker, Kubernetes, and Express.js."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Tech stack includes PostgreSQL, Redis, Amazon SQS, DynamoDB, Express.js, Docker, Kubernetes, AWS, and TypeScript."
+        },
+        {
+          "role": "Additional technical skills",
+          "bullet": "RabbitMQ is listed in additional technical skills."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-013",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Worked with product, engineering, and infrastructure teams to simplify release flow."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Introduced Storybook for shared component documentation and design handoff."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to frontend architecture decisions and infrastructure direction with Kubernetes and Okta."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-014",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored the TypeScript monorepo build system, reducing platform build times from about 15 minutes to 3 minutes in local and CI runs."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Improved release reliability with Jest and GitHub Actions, reducing release cycles from one week to less than 24 hours."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Reduced delivery cycles from months to about two weeks."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-015",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered products from discovery and requirements to planning and implementation."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-016",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built tooling that helped smart contract auditors work directly with clients, track findings, verify fixes, and deliver final PDF reports."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a single shareable URL experience so account managers and clients no longer needed repeated PDF/PPT exports."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Supported continuous process improvements with business metrics, performance monitoring, and deployment workflows."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-017",
+      "status": "missing",
+      "severity_if_missing": "minor",
+      "evidence": []
+    },
+    {
+      "requirement_id": "req-018",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Profile summary",
+          "bullet": "Active builder of practical AI tooling side projects."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+        }
+      ]
+    }
+  ]
+}

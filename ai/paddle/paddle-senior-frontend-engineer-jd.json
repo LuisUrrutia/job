@@ -1,0 +1,382 @@
+{
+  "position": "Senior Frontend Engineer",
+  "company": "Paddle",
+  "department": "Experience Group",
+  "employment_type": "not_stated",
+  "seniority_level": "senior",
+  "work_model": {
+    "id": "constraint-work-model",
+    "state": "digital-first remote or hybrid",
+    "source_quote": "you can work remotely, from one of our stylish hubs, or even a bit of both"
+  },
+  "location": {
+    "id": "constraint-location",
+    "state": "UK, Portugal, Ireland",
+    "source_quote": "Engineering Senior Frontend Engineer UK, Portugal, Ireland"
+  },
+  "compensation": {
+    "id": "constraint-compensation",
+    "state": "not_stated",
+    "source_quote": null
+  },
+  "eligibility": {
+    "id": "constraint-eligibility",
+    "visa": "not_stated",
+    "sponsorship": "not_stated",
+    "work_authorization": "not_stated",
+    "source_quote": null
+  },
+  "requirements": [
+    {
+      "id": "req-001",
+      "text": "Deep proficiency in TypeScript, React, and CSS",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Deep proficiency in TypeScript, React, and CSS"
+    },
+    {
+      "id": "req-002",
+      "text": "Track record leading medium-to-large frontend initiatives end-to-end at scale",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "a track record of leading medium-to-large frontend initiatives end-to-end at scale"
+    },
+    {
+      "id": "req-003",
+      "text": "Hands-on design-system experience as both consumer and contributor, ideally driving adoption across multiple products",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Hands-on experience with design systems as both a consumer and a contributor, ideally driving adoption across multiple products"
+    },
+    {
+      "id": "req-004",
+      "text": "Ability to shape and enhance a design system with product designers and drive consistency across products",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "repeated",
+      "source_quote": "Shape and enhance our design system in collaboration with product designers, driving adoption across multiple products"
+    },
+    {
+      "id": "req-005",
+      "text": "Strong user-experience craft and attention to high-fidelity, accessible UI at scale",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "ensure that our UI surfaces remain consistent, accessible, and high-fidelity at scale"
+    },
+    {
+      "id": "req-006",
+      "text": "Mentoring experience and ability to level up engineering practices",
+      "category": "leadership",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience mentoring other engineers"
+    },
+    {
+      "id": "req-007",
+      "text": "Strong written and verbal communication with product managers, designers, technical writers, engineers, and non-technical colleagues",
+      "category": "leadership",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "strong written and verbal communication that works well with non-technical colleagues"
+    },
+    {
+      "id": "req-008",
+      "text": "Proactive improvement of code, team processes, and the development lifecycle from design through deployment and maintenance",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "A proactive attitude towards finding ways to improve the code and team processes"
+    },
+    {
+      "id": "req-009",
+      "text": "Product mindset with pride in user outcomes, detail, and edge cases for sellers and developers",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "A product mindset and pride in what you build"
+    },
+    {
+      "id": "req-010",
+      "text": "DevOps ownership for shipping code to production and supporting and monitoring performance",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Practise DevOps: you're responsible for getting your code to production, supporting and monitoring its performance"
+    },
+    {
+      "id": "req-011",
+      "text": "Experience contributing high-quality TypeScript and React code in a large codebase used by several teams",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Contribute high-quality TypeScript and React code in a large codebase used by several teams"
+    },
+    {
+      "id": "req-012",
+      "text": "Frontend platform familiarity with React Router 7 for dashboard work and Astro for docs work",
+      "category": "technical_skill",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "alongside React Router 7 on the dashboard side and Astro on the docs side"
+    },
+    {
+      "id": "req-013",
+      "text": "Experience with developer-facing surfaces, documentation platforms, SDKs, public libraries, or integration tooling",
+      "category": "technical_skill",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "owning our docs platform at developer.paddle.com, our SDKs and public libraries, and the tooling that makes integrating with Paddle simple and enjoyable"
+    },
+    {
+      "id": "req-014",
+      "text": "Ability to own technical direction and lifecycle of products and tooling, including public libraries such as Paddle.js and Node SDKs",
+      "category": "leadership",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Own the technical direction and lifecycle of products and tooling in your remit, including public libraries like Paddle.js and our Node SDK"
+    },
+    {
+      "id": "req-015",
+      "text": "Active curiosity about AI with hands-on use in day-to-day software development",
+      "category": "technical_skill",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "An active curiosity about AI and how it's reshaping software development, with hands-on use already part of your day-to-day"
+    },
+    {
+      "id": "req-016",
+      "text": "Interest in payment infrastructure, merchant-of-record products, seller dashboards, and developer experience for integrations",
+      "category": "domain",
+      "priority": "medium",
+      "confidence": "medium",
+      "evidence_type": "inferred_from_responsibilities",
+      "source_quote": "Paddle offers digital product companies a completely different approach to their payment infrastructure"
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Lead frontend work across the seller dashboard, docs platform, app marketplace, and developer-experience initiatives.",
+      "requirement_ids": ["req-001", "req-002", "req-011", "req-012", "req-013"]
+    },
+    {
+      "text": "Own technical direction, rollout, maintenance, and lifecycle of products and integration tooling such as Paddle.js and the Node SDK.",
+      "requirement_ids": ["req-014", "req-010", "req-013"]
+    },
+    {
+      "text": "Collaborate with designers to shape the design system and drive consistent, accessible UI across multiple products.",
+      "requirement_ids": ["req-003", "req-004", "req-005", "req-007"]
+    },
+    {
+      "text": "Mentor engineers, lead technical planning, and improve quality with attention to edge cases.",
+      "requirement_ids": ["req-006", "req-008", "req-009"]
+    },
+    {
+      "text": "Collaborate end-to-end with product managers, designers, technical writers, and engineers from concept through rollout.",
+      "requirement_ids": ["req-007", "req-009", "req-010"]
+    }
+  ],
+  "success_outcomes": [
+    {
+      "text": "Paddle sellers get richer, seamless dashboard experiences that help them run and grow their businesses.",
+      "requirement_ids": ["req-001", "req-002", "req-005", "req-009"]
+    },
+    {
+      "text": "Developers can integrate Paddle more easily through better docs, SDKs, public libraries, and tooling.",
+      "requirement_ids": ["req-013", "req-014", "req-016"]
+    },
+    {
+      "text": "Frontend teams adopt a consistent design system and ship accessible, high-fidelity UI at scale.",
+      "requirement_ids": ["req-003", "req-004", "req-005", "req-006"]
+    },
+    {
+      "text": "Frontend delivery improves through better code quality, process improvements, production ownership, and guild-level practices.",
+      "requirement_ids": ["req-006", "req-008", "req-010", "req-011"]
+    }
+  ],
+  "keyword_signals": [
+    {
+      "term": "TypeScript",
+      "reason": "Core must-have technology repeated in role requirements and responsibilities.",
+      "priority": "high"
+    },
+    {
+      "term": "React",
+      "reason": "Core frontend framework and ATS term for the role.",
+      "priority": "high"
+    },
+    {
+      "term": "CSS",
+      "reason": "Explicit must-have skill and signal for frontend craft.",
+      "priority": "high"
+    },
+    {
+      "term": "design system",
+      "reason": "Repeated across role scope, requirements, and success outcomes.",
+      "priority": "high"
+    },
+    {
+      "term": "accessibility",
+      "reason": "Important UI quality signal in the Experience Group scope.",
+      "priority": "high"
+    },
+    {
+      "term": "developer experience",
+      "reason": "One of the hiring teams owns docs, SDKs, libraries, and integration tooling.",
+      "priority": "high"
+    },
+    {
+      "term": "SDKs",
+      "reason": "Developer Experience team owns SDKs and public libraries.",
+      "priority": "medium"
+    },
+    {
+      "term": "public libraries",
+      "reason": "Explicit role responsibility for Paddle.js and Node SDK lifecycle.",
+      "priority": "medium"
+    },
+    {
+      "term": "React Router 7",
+      "reason": "Specific dashboard technology called out by the JD.",
+      "priority": "medium"
+    },
+    {
+      "term": "Astro",
+      "reason": "Specific docs platform technology called out by the JD.",
+      "priority": "medium"
+    },
+    {
+      "term": "DevOps",
+      "reason": "The role explicitly expects production shipping, support, and monitoring ownership.",
+      "priority": "medium"
+    },
+    {
+      "term": "AI",
+      "reason": "Paddle calls for hands-on AI curiosity in day-to-day development.",
+      "priority": "medium"
+    },
+    {
+      "term": "Merchant of Record",
+      "reason": "Company-specific domain term that can support targeted motivation if grounded.",
+      "priority": "medium"
+    }
+  ],
+  "screening_priorities": [
+    {
+      "id": "screen-001",
+      "rank": 1,
+      "reason": "Core screening will likely start with senior frontend depth in TypeScript, React, CSS, and large shared codebases.",
+      "requirement_ids": ["req-001", "req-002", "req-011"],
+      "evidence": "Deep proficiency in TypeScript, React, and CSS"
+    },
+    {
+      "id": "screen-002",
+      "rank": 2,
+      "reason": "Design-system contribution and adoption are central to the Dashboard team and Experience Group scope.",
+      "requirement_ids": ["req-003", "req-004", "req-005"],
+      "evidence": "shapes our design system to drive consistency and adoption across multiple products"
+    },
+    {
+      "id": "screen-003",
+      "rank": 3,
+      "reason": "This senior role requires technical planning, mentoring, communication, and engineering-practice improvement.",
+      "requirement_ids": ["req-006", "req-007", "req-008"],
+      "evidence": "mentoring other engineers, leading the technical planning of team initiatives"
+    },
+    {
+      "id": "screen-004",
+      "rank": 4,
+      "reason": "Developer Experience signals matter because one hiring team owns docs, SDKs, public libraries, and integration tooling.",
+      "requirement_ids": ["req-013", "req-014"],
+      "evidence": "owning our docs platform at developer.paddle.com, our SDKs and public libraries"
+    },
+    {
+      "id": "screen-005",
+      "rank": 5,
+      "reason": "Product mindset, production ownership, and AI curiosity are differentiators for seniority and day-to-day fit.",
+      "requirement_ids": ["req-009", "req-010", "req-015", "req-016"],
+      "evidence": "you think about the people using what you ship, whether sellers or developers"
+    }
+  ],
+  "employer_constraints": [
+    {
+      "id": "constraint-001",
+      "type": "geography",
+      "state": "UK, Portugal, Ireland",
+      "source_quote": "Engineering Senior Frontend Engineer UK, Portugal, Ireland"
+    },
+    {
+      "id": "constraint-002",
+      "type": "work_model",
+      "state": "digital-first remote or hybrid",
+      "source_quote": "you can work remotely, from one of our stylish hubs, or even a bit of both"
+    },
+    {
+      "id": "constraint-003",
+      "type": "work_authorization",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-004",
+      "type": "sponsorship",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-005",
+      "type": "compensation",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-006",
+      "type": "travel",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-007",
+      "type": "schedule",
+      "state": "not_stated",
+      "source_quote": null
+    }
+  ],
+  "candidate_risk_notes": [
+    {
+      "id": "risk-001",
+      "text": "The official Paddle careers listing for this role shows UK, Portugal, Ireland, while the JD describes Paddle as digital-first and the user clarified the role is remote; country eligibility for Spain remains unconfirmed.",
+      "severity": "major",
+      "requirement_ids": [],
+      "constraint_ids": ["constraint-001", "constraint-003", "constraint-004"],
+      "source_quote": "Engineering Senior Frontend Engineer UK, Portugal, Ireland"
+    }
+  ],
+  "red_flags": [
+    {
+      "id": "risk-002",
+      "text": "No compensation range is disclosed in the provided JD.",
+      "severity": "minor",
+      "constraint_ids": ["constraint-compensation", "constraint-005"],
+      "source_quote": null
+    }
+  ]
+}

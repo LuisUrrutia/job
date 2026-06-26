@@ -1,0 +1,178 @@
+% !TEX program = lualatex
+% chktex-file 26
+
+\documentclass{article}
+\usepackage[letterpaper,left=1.5cm,right=1.5cm,top=1.4cm,bottom=1.4cm]{geometry}
+\usepackage[fontsize=9pt]{fontsize}
+\usepackage{lmodern}
+
+\pagestyle{empty} % remove page number
+\linespread{1.25}
+\hyphenpenalty=900
+\righthyphenmin=3
+\emergencystretch=1.5em
+
+%====== LIST ======
+\usepackage{enumitem}
+\setlist[itemize]{left=1.2em}
+% \setlist{noitemsep,nosep}
+
+%====== LINKS AND METADATA ======
+\usepackage[bookmarks=false]{hyperref}
+\hypersetup{
+  hidelinks,
+  pdfpagemode=UseNone,
+  pdftitle={Luis Urrutia Resume},
+  pdfauthor={Luis Urrutia},
+  pdfsubject={Curriculum Vitae},
+  pdfkeywords={Software Engineer, React, React.js, TypeScript, JavaScript, Go, Next.js, Node.js}
+}
+
+\usepackage{microtype} % With hyphenation disabled, provide better spacing
+
+%====== FONTS ======
+\usepackage{fontspec}
+\setmainfont{SourceSans3}[
+   Path           = ./fonts/SourceSans3/,
+   Ligatures      = TeX,
+   Extension      = .ttf,
+   UprightFont    = SourceSans3-Light.ttf,
+   BoldItalicFont = SourceSans3-Italic.ttf,
+   BoldFont       = SourceSans3-Regular.ttf,
+   ItalicFont     = SourceSans3-ExtraLightItalic.ttf
+]
+\newfontfamily\Title{SourceSans3Title}[
+   Path          = ./fonts/SourceSans3/,
+   Extension     = .ttf,
+   Ligatures     = TeX,
+   UprightFont   = SourceSans3-Light.ttf,
+   BoldFont      = SourceSans3-Medium.ttf,
+]
+\newfontfamily\SubSection{SourceSans3Title}[
+   Path          = ./fonts/SourceSans3/,
+   Extension     = .ttf,
+   Ligatures     = TeX,
+   UprightFont   = SourceSans3-Medium.ttf,
+]
+
+%====== TITLE FORMATTING ======
+\usepackage{titlesec}
+\titleformat{\section}{\Title\fontsize{10}{12}}{\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}{\SubSection\fontsize{12}{10}}{\thesubsection}{1em}{}[]
+
+%====== CUSTOM COMMANDS ======
+\newcommand{\SubHeading}[1]{
+   \subsection*{#1}\vspace{-0.5em}
+}
+\newcommand{\WorkExperience}[2]{
+   \subsection*{#1}
+   \vspace{-1em}
+   \uppercase{#2}
+}
+\newcommand{\Skills}[1]{
+   \textit{\textbf{Core skills:} #1}
+}
+
+\input{content/shared-data.tex}
+
+\begin{document}
+\begin{center}
+	\begin{minipage}{0.5\textwidth}
+		{\fontsize{24}{28}\Title\addfontfeature{LetterSpace=5}{{\bfseries \ResumeNameFirst} \ResumeNameLast}} \\
+		\bigskip
+		{\normalsize \MakeUppercase{Senior dApp Engineer}}
+	\end{minipage} \hfill
+	\begin{minipage}{0.4\textwidth}
+		\raggedleft{}
+		Email: \href{mailto:\ResumeEmail}{\ResumeEmail} \\
+		Mobile: \href{tel:+34644402855}{+34 644 402 855}  \\
+		Location: Madrid, Spain (EU) \\
+		LinkedIn: \href{\ResumeLinkedInUrl}{\ResumeLinkedInLabel} \\
+		GitHub: \href{\ResumeGitHubUrl}{\ResumeGitHubLabel}
+	\end{minipage}
+\end{center}
+
+\vspace{-3em}
+
+\phantom{Amazon, Microsoft, Facebook} % A/B Test
+
+\section*{EXPERIENCE}
+\WorkExperience{SOFTWARE ENGINEER \hfill UK, Remote}{OpenZeppelin \hfill 2023 {-} 2026} \\
+\Skills{TypeScript, React, Next.js, Solidity, Rust, Playwright, Jest, Cypress, Sentry, CloudWatch, Docker, Kubernetes, AWS}
+\begin{itemize}
+	\item Co-led \textbf{Defender Secure Audit} as one of two engineers, building a TypeScript and React module where smart contract auditors could work with clients, track findings, verify fixes, and deliver final PDF reports.
+	\item Built \textbf{Defender and OSS Relayer SDK} capabilities so Web3 developers and technical teams could integrate OpenZeppelin products and create custom automation tooling.
+	\item Owned \textbf{EVM-side Relayer work} for the Rust-based OpenZeppelin Relayer OSS project, including chain-specific transaction cost handling, RPC balancing, retry and failover, signer integrations, and a critical nonce race-condition fix.
+	\item Cut Slack and PagerDuty alert noise by about 60\% by tuning \textbf{RPC and gas-spike alerts}, making on-call incidents easier to triage.
+	\item Applied \textbf{Solidity reading for audit workflows} in OpenZeppelin work, including test-network contracts, integrations, source-code validation, OpenZeppelin Monitor checks for specific function calls or parameters, and AI-assisted checks for basic audit review.
+	\item Led \textbf{Defender end-to-end testing} with Playwright across critical user flows to improve release confidence.
+\end{itemize}
+
+\WorkExperience{SOFTWARE ENGINEER \hfill US, Remote}{Premise \hfill 2021 {-} 2022} \\
+\Skills{TypeScript, JavaScript, React, Next.js, Express.js, Jest, GraphQL, Apollo GraphQL, Docker, Kubernetes, GCP}
+\begin{itemize}
+	\item Built a \textbf{live-data React feature} in MyPremise so account managers and clients could use one shareable URL instead of repeated PDF or PPT exports.
+	\item Updated \textbf{Express.js API services} during a REST-to-GraphQL migration with Apollo, improving API response times by 35\% and lowering server usage.
+	\item Expanded \textbf{Jest coverage and CI gates}, reducing release cycles from one week to less than 24 hours.
+\end{itemize}
+
+\WorkExperience{SOFTWARE ENGINEER \hfill Colombia, Remote}{Rappi \hfill 2020 {-} 2021} \\
+\Skills{TypeScript, JavaScript, Node.js, Docker, Kubernetes, PostgreSQL, Redis, Kafka, Go, Python}
+\begin{itemize}
+	\item Built backend integrations for merchant ingestion pipelines, normalizing FTP, API, SOAP XML, and scraping data for pricing, stock, availability, bundles, and product attributes.
+	\item Led an \textbf{integration and onboarding platform} with Go, Node.js, and Angular, saving \$75,000 annually and speeding up customer-service onboarding.
+	\item Drove unit testing for pricing, offers, and bundles logic with an 80\% coverage target, reducing critical rollout defects by 33\%.
+\end{itemize}
+
+\WorkExperience{SYSTEM ARCHITECT \hfill Santiago, Chile}{Vitamina Holding \hfill 2019 {-} 2022} \\
+\Skills{TypeScript, JavaScript, React, Node.js, Express.js, Docker, Kubernetes, Azure}
+\begin{itemize}
+	\item Improved \textbf{architecture and delivery flow} for a legacy internal platform, reducing release cycles from months to about two weeks.
+	\item Implemented \textbf{transaction-related API flows} with Express.js, including Transbank payment-processing integrations.
+	\item Led a staged migration from on-prem to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking.
+\end{itemize}
+
+\WorkExperience{FULL STACK DEVELOPER \hfill Santiago, Chile}{Resit SPA \hfill 2017 {-} 2019} \\
+\Skills{TypeScript, JavaScript, React, Express.js, GraphQL, Docker, Kubernetes, React Native}
+\begin{itemize}
+	\item Delivered more than five web and mobile products for clients, working from discovery and requirements through planning and implementation.
+	\item Led \textbf{TypeScript and React standards} across the company, covering architecture decisions, code review, and delivery practices.
+	\item Mentored five developers through pairing, code reviews, and workshops on architecture, testing, and code quality.
+\end{itemize}
+
+\WorkExperience{FULLSTACK DEVELOPER \hfill Santiago, Chile}{Dxpress \hfill 2015 {-} 2017} \\
+\Skills{TypeScript, JavaScript, PostgreSQL, Redis, Python, Go, Angular, Flask}
+\begin{itemize}
+	\item Focused on backend development across Python and Go services for search, geolocation, real-time operational features, and product ETL workflows.
+	\item Managed business metrics, performance monitoring, and deployment workflows to support continuous process improvements.
+\end{itemize}
+
+\WorkExperience{JUNIOR SOFTWARE DEVELOPER \hfill Santiago, Chile}{Laboratorio de Ideas Ltda. \hfill 2015 {-} 2015} \\
+\Skills{JavaScript, Node.js, AngularJS, Django, Python}
+\begin{itemize}
+	\item Started as a junior developer and took on frontend ownership, helping introduce Node.js and AngularJS into the agency stack.
+\end{itemize}
+
+\section*{EDUCATION}
+\SubHeading{Bachelor of Engineering in Computer Science \hfill Santiago, Chile}
+Universidad Tecnologica de Chile \\[0.1em]
+2012 {-} 2015
+
+\section*{SKILLS}
+\begin{itemize}
+	\item \textbf{Frontend \& UI:} React, Next.js, Zustand, Svelte, React Native
+	\item \textbf{Programming languages:} TypeScript, JavaScript, Solidity, Rust, Go, Python
+	\item \textbf{Testing \& QA:} Playwright, Jest, Cypress, React Testing Library
+	\item \textbf{Backend \& APIs:} Node.js, Express.js, GraphQL, REST APIs, WebSockets
+	\item \textbf{Databases \& Messaging:} PostgreSQL, Redis, DynamoDB, Kafka, Amazon SQS
+	\item \textbf{Cloud \& DevOps:} AWS, GCP, Azure, Docker, Kubernetes, Terraform, Sentry, CloudWatch
+	\item \textbf{Platforms \& Practices:} CI/CD, SDK development, observability, code review
+\end{itemize}
+
+\section*{LANGUAGES}
+\begin{itemize}[left=0pt]
+	\item \textbf{Spanish language}: Native
+	\item \textbf{English language}: Advanced {-} C1
+\end{itemize}
+
+\end{document}

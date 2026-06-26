@@ -1,0 +1,482 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior dApp Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "summary": "Senior dApp Engineer and full-stack engineer with 12+ years building production TypeScript, React, Next.js, Node.js, and Web3 security products. Recent OpenZeppelin work spans Defender Secure Audit, OSS Relayer, SDK integrations, Solidity test-network contract work for audit-support workflows, EVM transaction handling, RPC retry and failover, gas alerting, and nonce race-condition fixes. Strong fit for teams that need resilient user-facing dApp surfaces, reliable Web3 UX, and cross-functional delivery with protocol, platform, SRE, audit, and customer-facing teams.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Solidity",
+        "Rust",
+        "Express.js",
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "Zustand",
+        "Svelte",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "AWS",
+        "PostgreSQL",
+        "Redis",
+        "DynamoDB",
+        "Amazon SQS",
+        "GitHub Actions",
+        "Sentry",
+        "CloudWatch",
+        "Claude",
+        "Cursor",
+        "Tailwind CSS",
+        "Stripe",
+        "AWS Lambda"
+      ],
+      "description": [
+        "Co-led Defender 2.0 Secure Audit as one of two engineers, building a TypeScript and React module for smart contract audit delivery workflows, covering client collaboration, finding tracking, fix verification, and final PDF reports.",
+        "Built Defender and OSS Relayer SDK capabilities for Web3 developer integration workflows, helping technical teams integrate OpenZeppelin products and create custom automation tooling.",
+        "Owned EVM-side work for the Rust-based OpenZeppelin Relayer OSS project, improving RPC failover, signer integrations, and nonce reliability across chain-specific transaction handling, including a critical nonce race-condition fix.",
+        "Cut RPC and gas-spike alert noise by about 60%, making Slack and PagerDuty incidents easier to triage.",
+          "Wrote Solidity test-network contracts for audit workflows at OpenZeppelin, including integrations, source-code validation, Monitor checks for specific function calls or parameters, and AI-assisted checks for basic audit review.",
+        "Led Defender Playwright testing across critical user flows to protect release confidence on key paths."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Next.js",
+        "Express.js",
+        "Jest",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Docker",
+        "Kubernetes",
+        "GCP",
+        "PostgreSQL",
+        "GitHub Actions",
+        "Material-UI",
+        "Tailwind CSS",
+        "Storybook",
+        "Python",
+        "BigQuery"
+      ],
+      "description": [
+        "Built a live-data React feature in MyPremise so account managers and clients could use shareable live data instead of static exports.",
+        "Updated Express.js API services during a REST-to-GraphQL migration with Apollo, improving API response times by 35% and lowering server usage.",
+        "Expanded Jest coverage and CI gates, reducing release cycles below 24 hours."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "Docker",
+        "Kubernetes",
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "Go",
+        "Python",
+        "Git",
+        "Amazon Web Services (AWS)",
+        "Angular"
+      ],
+      "description": [
+        "Built backend integrations for merchant ingestion pipelines, normalizing FTP, API, SOAP XML, and scraping data for pricing, stock, availability, bundles, and product attributes.",
+        "Led an integration and onboarding platform with Go, Node.js, and Angular, saving $75,000 annually and speeding up customer-service onboarding.",
+        "Drove unit testing for pricing, offers, and bundles logic with an 80% coverage target, reducing critical rollout defects by 33%."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Express.js",
+        "Docker",
+        "Kubernetes",
+        "Azure",
+        "Redux",
+        "Tailwind CSS",
+        "Python",
+        "C#",
+        "Git",
+        "MSSQL",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "Angular"
+      ],
+      "description": [
+        "Improved architecture and delivery flow for a legacy internal platform, cutting release cycles from months to about two weeks.",
+        "Implemented transaction-related API flows with Express.js, including Transbank payment-processing API integrations.",
+        "Led a staged migration from on-prem to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Express.js",
+        "GraphQL",
+        "Docker",
+        "Kubernetes",
+        "Redux",
+        "Tailwind CSS",
+        "React Native",
+        "Angular",
+        "Django",
+        "Python",
+        "MongoDB",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "Git"
+      ],
+      "description": [
+        "Delivered more than five web and mobile products for clients, working from discovery and requirements through planning and implementation.",
+        "Led TypeScript and React standards across the company, covering architecture, code review, and delivery practices.",
+        "Mentored five developers through pairing, code reviews, and workshops on architecture, testing, and code quality."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "PostgreSQL",
+        "Redis",
+        "Python",
+        "Go",
+        "Angular",
+        "Flask",
+        "Tile38",
+        "Google Cloud Platform (GCP)",
+        "Git"
+      ],
+      "description": [
+        "Focused on backend development across Python and Go services for search, geolocation, real-time operational features, and product ETL workflows.",
+        "Managed business metrics, performance monitoring, and deployment workflows to support continuous process improvements."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "JavaScript",
+        "Node.js",
+        "AngularJS",
+        "PHP",
+        "Django",
+        "Python",
+        "Vagrant",
+        "Laravel"
+      ],
+      "description": [
+        "Started as a junior developer and took on frontend ownership, helping introduce Node.js and AngularJS into the agency stack."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": [
+        "React",
+        "Next.js",
+        "Zustand",
+        "Svelte",
+        "Redux",
+        "React Native",
+        "Tailwind CSS",
+        "Storybook",
+        "Material-UI",
+        "Angular",
+        "AngularJS",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "category": "Languages",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "Solidity",
+        "Rust",
+        "C#",
+        "Python",
+        "Go",
+        "PHP"
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "items": [
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "React Testing Library",
+        "Pytest"
+      ]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": [
+        "Node.js",
+        "Express.js",
+        "GraphQL",
+        "Apollo GraphQL",
+        "WebSockets",
+        "REST APIs",
+        "Django",
+        "Flask",
+        "Laravel"
+      ]
+    },
+    {
+      "category": "Databases & Messaging",
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "DynamoDB",
+        "Kafka",
+        "Amazon SQS",
+        "MSSQL",
+        "MongoDB",
+        "MySQL",
+        "BigQuery",
+        "Tile38"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "AWS",
+        "GCP",
+        "Azure",
+        "GitHub Actions",
+        "Sentry",
+        "CloudWatch",
+        "Amazon Web Services (AWS)",
+        "AWS Lambda",
+        "Google Cloud Platform (GCP)",
+        "Serverless"
+      ]
+    },
+    {
+      "category": "Platforms & Practices",
+      "items": [
+        "Claude",
+        "Cursor",
+        "Stripe",
+        "Agile",
+        "Scrum",
+        "Git",
+        "CI/CD",
+        "Microservices",
+        "Vagrant"
+      ]
+    }
+  ],
+  "additional": {
+    "technicalSkills": [
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Solidity",
+      "Express.js",
+      "Playwright",
+      "Jest",
+      "Cypress",
+      "Zustand",
+      "Svelte",
+      "RESTful APIs",
+      "GraphQL",
+      "WebSockets",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "AWS",
+      "GCP",
+      "Azure",
+      "PostgreSQL",
+      "Redis",
+      "Kafka",
+      "GitHub Actions",
+      "Claude",
+      "Cursor",
+      "Go",
+      "Python",
+      "Redux",
+      "Angular",
+      "Django",
+      "Flask",
+      "React Native",
+      "Storybook",
+      "Material-UI",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "CSS",
+      "HTML5",
+      "MSSQL",
+      "MySQL",
+      "MongoDB",
+      "RabbitMQ",
+      "Serverless",
+      "Mocha",
+      "Pytest",
+      "Agile",
+      "Scrum",
+      "Git",
+      "Microservices",
+      "SOLID Principles"
+    ],
+    "languages": [
+      "Spanish (Native)",
+      "English (Advanced - C1)"
+    ],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "company_profile": {
+    "description": "Golem Factory, based in Zug, Switzerland, builds Golem Network, an open-source decentralized computing platform where providers share computing power and requestors use distributed resources without relying on a centralized cloud provider. Arkiv, from the Golem ecosystem, is an Ethereum-aligned universal data layer for queryable, time-scoped, verifiable data.",
+    "mission": "Inferred from official Golem and Arkiv pages: make computing and data infrastructure more open, accessible, and user-controlled through decentralized networks.",
+    "vision": "Inferred from official sources: support a future where computation and data are open, shared, trustless by default, and useful to Web3 builders.",
+    "values": [
+      "open source",
+      "decentralization",
+      "accessibility",
+      "trustless infrastructure",
+      "user control",
+      "technical ownership"
+    ],
+    "products": [
+      "Golem Network",
+      "GLM token",
+      "Golem JavaScript SDK",
+      "Golem Python SDK",
+      "Ray on Golem",
+      "Golem dApp tooling",
+      "Arkiv",
+      "Arkiv TypeScript/JavaScript SDK",
+      "Arkiv Chain",
+      "DB-Chains"
+    ],
+    "services": [
+      "Decentralized computing marketplace",
+      "Provider and requestor tooling",
+      "Developer SDKs and documentation",
+      "React and browser tooling for dApps",
+      "Ethereum-aligned data infrastructure"
+    ],
+    "target_customers": [
+      "Web3 developers",
+      "Providers of compute resources",
+      "Requestors of compute resources",
+      "Developers building browser and wallet-based dApps",
+      "DePIN builders",
+      "Web2 teams exploring Web3 data infrastructure",
+      "AI and ML workload builders"
+    ],
+    "industry": "Web3 infrastructure, decentralized computing, Ethereum data infrastructure",
+    "business_model": "Open-source decentralized network ecosystem using GLM, an ERC-20 token on Ethereum and Polygon. Arkiv uses GLM and ETH gas logic across its L2 and L3 architecture.",
+    "recent_signals": [
+      "Golem 2024 goals include GPU power for AI/ML, protocol optimization for higher traffic, and more project development on Golem technology.",
+      "Arkiv evolved from Golem DB into an Ethereum-native data availability and management layer with query language support and expiry-based fees.",
+      "Arkiv positions DB-Chains as L3 database-like chains coordinated by an L2 Arkiv Chain built on OP Stack.",
+      "Official Arkiv docs show TypeScript/JavaScript SDK, React integration, public and wallet clients, and browser tutorials using MetaMask."
+    ],
+    "source_notes": [
+      {
+        "claim": "Golem Network is an open-source decentralized computing platform where users can share and access computing power without relying on centralized cloud providers.",
+        "source_type": "official_site",
+        "source_url": "https://www.golem.network/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Golem developer resources include JavaScript and Python docs plus creator, provider, Ray, and dApp documentation.",
+        "source_type": "official_docs",
+        "source_url": "https://docs.golem.network/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Arkiv is a universal data layer for Ethereum with queryable, time-scoped, verifiable data and DB-Chains coordinated by Arkiv Chain.",
+        "source_type": "official_site",
+        "source_url": "https://arkiv.network/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Arkiv documentation provides a JavaScript/TypeScript SDK, JSON-RPC API, network details, bridge contract, and wallet-related setup.",
+        "source_type": "official_docs",
+        "source_url": "https://docs.arkiv.network/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "The mission and vision statements are inferred from official Golem and Arkiv positioning rather than quoted directly.",
+        "source_type": "official_site",
+        "source_url": "https://www.golem.network/",
+        "confidence": "inferred"
+      }
+    ]
+  }
+}

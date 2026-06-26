@@ -1,0 +1,42 @@
+# Final Validation Checklist
+
+Before finishing, confirm all of the following:
+
+- No role-specific bullet introduces technology absent from that role's `tech` array, another source-backed inventory field, or user clarification persisted in `info.json`.
+- Role `tech` arrays and `additional.technicalSkills` are sorted for JD relevance and contain no accidental duplicates.
+- Bullets keep timeline and causality clear and do not mix unrelated initiatives.
+- Internal product names and acronyms are understandable on first mention.
+- No fabricated metrics or outcomes appear unless user-confirmed.
+- Any user-confirmed career fact is persisted in `info.json` before being used in generated application artifacts.
+- No dates or timeline fields were altered.
+- All original skills, certifications, languages, and awards remain in `application.json`.
+- The TeX and PDF tech and skills lists are filtered and reordered for JD relevance rather than mirroring the full source inventory.
+- The must-have evidence map is complete and every requirement is matched, partially matched, or marked missing.
+- The fit recommendation uses one of `strong_apply`, `apply_with_risks`, `weak_apply`, or `do_not_apply_but_can_tailor`.
+- Omitted JD location, timezone, work model, visa, sponsorship, work authorization, or geography fields were not treated as risks.
+- The strongest JD keywords appear naturally across Summary, Skills, and Experience.
+- Generic sentences that could fit any employer were rewritten or removed.
+- Matching saved local records under `ai/{company}/` were checked before browsing or scraping company/application pages, and reusable sourced data was preserved.
+- Company research uses official sources where available, labels `direct`, `jd_only`, and `inferred` signals, and does not store open roles or apply links inside `company_profile`.
+- User-facing fit and company-summary messaging is in Spanish.
+- Resume/CV narrative, cover letter, and visible application-page answer suggestions are in English.
+- The cover letter references at least one specific JD or company detail.
+- The cover letter includes 1 to 2 resume-backed evidence points tied to JD requirements.
+- The cover letter uses a hook, proof, fit or gap, and close structure without sounding templated.
+- Any cover-letter gap language is confident and does not downgrade the candidate unnecessarily.
+- The cover letter stays within 100 to 150 words.
+- `latex/{candidate-slug}-{slug}-Resume.tex` was generated successfully.
+- The TeX edit pass happened before PDF compilation.
+- Bolded phrases are sparse, meaningful, and role-relevant.
+- There are no single-word bolds and no whole-sentence bolds.
+- Bolded phrases are not just technology labels, product names, or project names unless that is the strongest fit signal.
+- The bold phrases read together as a coherent fit story, not as decorative keywords.
+- The bold phrases make the candidate look valuable to both a recruiter and a technical reviewer in a 5 to 10 second skim.
+- `applications/{candidate-slug}-{slug}-Resume.pdf` was generated successfully.
+- `ai/{company}/{slug}-apply.json` exists after the final application-discovery stage.
+- The recommended apply URL is official or company-linked, and any alternate URLs explain why they were not chosen.
+- Visible application questions have English suggested answers only when grounded sources support them; inaccessible questions are not invented.
+- Application answers were humanized and still preserve source-backed facts.
+- If the first PDF exceeded 2 pages, the generated TeX was recompiled with compact itemize spacing.
+- If the PDF still exceeds 2 pages after that fallback, the user was told clearly.
+- No em dash characters remain.

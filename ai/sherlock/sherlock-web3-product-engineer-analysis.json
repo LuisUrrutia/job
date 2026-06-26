@@ -1,0 +1,256 @@
+{
+  "job": {
+    "position": "Web3 Product Engineer",
+    "company": "Sherlock"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false
+  },
+  "fit_analysis": {
+    "must_have_pass": "8/10",
+    "weighted_match_score": 82,
+    "strengths": [
+      "Web3 security and smart contract audit workflows from OpenZeppelin Defender 2.0 Secure Audit",
+      "Recent React, Next.js, and TypeScript product engineering in Web3 and B2B SaaS",
+      "Direct client and enterprise-user communication across OpenZeppelin, Premise, and Resit SPA",
+      "Product-facing metrics and customer outcomes, including CSAT, NPS, release speed, and API latency",
+      "High-agency end-to-end delivery across startup, agency, marketplace, enterprise, and open source contexts",
+      "Python experience across backend, ETL, product, and data workflows"
+    ],
+    "gaps": [
+      {
+        "item": "Production or customer-used LLM feature whose value depends on prompting, judging, retrieval, evals, or benchmarks",
+        "severity": "major",
+        "type": "required"
+      },
+      {
+        "item": "Hands-on LLM judging, deduplication, false-positive reduction, and benchmark ownership",
+        "severity": "major",
+        "type": "required_responsibility"
+      },
+      {
+        "item": "Recent senior Python work in the current Web3 role",
+        "severity": "minor",
+        "type": "screening_risk"
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      "OpenZeppelin Secure Audit workflows for smart contract auditors, clients, findings, fix verification, and final reports",
+      "Customer-facing product engineering and product judgment under ambiguity",
+      "Next.js, TypeScript, React, Python, Solidity, EVM, Claude, Cursor, and OpenAI API evidence where factually supported",
+      "Client communication, enterprise-user migration support, CSAT/NPS, and metrics-backed product outcomes",
+      "Honest framing of LLM experience as daily AI tooling and an OpenAI proof of concept unless user confirms stronger evidence"
+    ],
+    "recommendation": "apply_with_caveat"
+  },
+  "must_have_evidence_map": [
+    {
+      "requirement": "Senior-level Python experience",
+      "status": "matched",
+      "severity_if_missing": "blocker",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Python appears in the role tech stack alongside React, Next.js, TypeScript, GraphQL, PostgreSQL, BigQuery, GCP, Kubernetes, and Docker."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Migrated core business logic from a previous Python ETL flow while implementing real-time catalog and pricing updates with Go and Kafka, contributing to a 21% CSAT increase and improved NPS."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Focused on backend development across Python and Go services for search, geolocation, real-time operations, and product ETL workflows."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Python and Django appear in the role tech stack for client products delivered from discovery through implementation."
+        }
+      ]
+    },
+    {
+      "requirement": "Production SaaS or product engineering experience",
+      "status": "matched",
+      "severity_if_missing": "blocker",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built production Defender 2.0 modules, SDK capabilities, billing flows, testing, and OSS Relayer capabilities for Web3 developers and enterprise users."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built MyPremise presentation workflows used by account managers and clients through a single shareable URL instead of repeated PDF or PPT exports."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile."
+        }
+      ]
+    },
+    {
+      "requirement": "Modern frontend ownership with Next.js and TypeScript",
+      "status": "matched",
+      "severity_if_missing": "blocker",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers, working closely with smart contract auditors and clients to plan, prioritize, and ship TypeScript and React workflows. OpenZeppelin tech stack includes Next.js."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions around SSR vs SPA, state management, and i18n."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a MyPremise presentation feature with React and TypeScript; Premise tech stack includes Next.js."
+        }
+      ]
+    },
+    {
+      "requirement": "Ability to turn UX flows and states into working product UI",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built Secure Audit workflows for findings, fix verification, and final PDF reports while working closely with smart contract auditors and clients."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Standardized UI with Material UI and Storybook, reducing prototyping time from one week to one day while improving consistency and reducing UI bugs."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products for clients end to end from discovery and requirements to planning and implementation."
+        }
+      ]
+    },
+    {
+      "requirement": "Daily LLM use",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Claude and Cursor appear in the role tech stack."
+        },
+        {
+          "role": "Summary",
+          "bullet": "The source profile says Luis is an active builder of practical AI tooling side projects."
+        }
+      ],
+      "missing_evidence": "The source profile does not explicitly say daily LLM use. Ask the user before making that claim."
+    },
+    {
+      "requirement": "Shipped feature whose value depends on LLM output quality such as prompting, judging, retrieval, or evals",
+      "status": "partial",
+      "severity_if_missing": "blocker",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation, showing a faster way for teams to request and assemble data-driven reports."
+        },
+        {
+          "role": "Summary",
+          "bullet": "The source profile references practical AI tooling side projects, but gives no shipped product detail, prompt/eval ownership, or customer usage."
+        }
+      ],
+      "missing_evidence": "No production or customer-used LLM feature, evals, judging, retrieval, benchmark, or false-positive reduction work is recorded in info.json."
+    },
+    {
+      "requirement": "Technical customer-call experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built client-facing presentation workflows used by account managers and clients."
+        }
+      ]
+    },
+    {
+      "requirement": "Evidence of turning customer conversations into product changes",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered client products from discovery and requirements through planning and implementation."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked closely with smart contract auditors and clients to plan, prioritize, and ship Secure Audit workflows for findings, fix verification, and final reports."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Helped close feature gaps and improve documentation while working directly with enterprise users during migration to OSS Relayer."
+        }
+      ]
+    },
+    {
+      "requirement": "High-agency execution in underdefined product areas",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Secure Audit as one of two engineers and owned EVM-side OSS Relayer work, including critical nonce race-condition fixes and signer integrations."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Contributed to building Dxpress from idea to launch inside a small product and engineering team."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Brought in as System Architect to revamp Vitamina's legacy technology stack and delivery process, then continued supporting the company in a consulting capacity with product, engineering, and infrastructure teams while cutting release cycles from months to about two weeks."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions across client projects and mentored five developers."
+        }
+      ]
+    },
+    {
+      "requirement": "Working-hours overlap with US or EU timezones",
+      "status": "matched",
+      "severity_if_missing": "blocker",
+      "evidence": [
+        {
+          "role": "Personal info",
+          "bullet": "Candidate location is Spain, which provides EU timezone overlap and partial US overlap."
+        }
+      ]
+    },
+    {
+      "requirement": "Web3, Solidity, EVM, smart contract security, or audit workflow familiarity",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built Defender 2.0 Secure Audit workflows with smart contract auditors and clients, including planning, prioritization, findings, fix verification, and final PDF reports."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned EVM side of the Rust-based OpenZeppelin Relayer OSS work. OpenZeppelin role tech stack includes Solidity."
+        }
+      ]
+    },
+    {
+      "requirement": "LLM evals, judging, benchmarking, false-positive reduction, or retrieval experience",
+      "status": "missing",
+      "severity_if_missing": "major",
+      "evidence": [],
+      "missing_evidence": "No evals, judging, retrieval, benchmark, or false-positive-reduction work for LLM outputs appears in info.json."
+    }
+  ]
+}

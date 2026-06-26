@@ -1,0 +1,138 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Full-Stack Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "targetCompany": "Spotted Zebra",
+  "targetRole": "Product Engineer",
+  "summary": "Senior Full-Stack Engineer with 12+ years building production platforms across B2B SaaS, enterprise software, marketplaces, and Web3 security. Strong fit for product-engineering roles that need TypeScript, React, GraphQL, API design, customer context, and end-to-end delivery in small teams. Recent work includes OpenZeppelin audit tooling, developer SDKs, enterprise migration support, production reliability improvements, and practical AI tooling exposure through Claude, Cursor, and an OpenAI API proof of concept.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": ["TypeScript", "React", "Next.js", "Express.js", "GraphQL", "PostgreSQL", "Redis", "Claude", "Cursor", "AWS", "Kubernetes", "Terraform", "Docker", "Playwright", "Jest", "Cypress", "Rust", "Solidity", "Zustand", "Tailwind CSS", "Svelte", "Stripe", "GitHub Actions", "CloudWatch", "Sentry", "Amazon SQS", "AWS Lambda", "DynamoDB"],
+      "description": [
+        "Co-led Defender 2.0 Secure Audit as one of two engineers, building TypeScript and React audit workflows that helped auditors work with clients, track findings, verify fixes, and deliver final PDF reports.",
+        "Built developer SDK capabilities for Defender and OpenZeppelin Relayer OSS so Web3 developers and technical teams could integrate products and build custom automation tooling.",
+        "Supported the Defender sunset by closing feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer, which covered most enterprise Defender users.",
+        "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including RPC failover, signer integrations, and nonce reliability.",
+        "Refactored the TypeScript monorepo build system through ESM migration, package exports, bundler and tsconfig updates, reducing builds from 15 to 3 minutes."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": ["TypeScript", "React", "Next.js", "GraphQL", "Apollo GraphQL", "Express.js", "PostgreSQL", "Jest", "GitHub Actions", "Docker", "Kubernetes", "GCP", "Python", "JavaScript", "Material-UI", "Tailwind CSS", "Storybook", "BigQuery"],
+      "description": [
+        "Built a client-facing React and TypeScript feature that surfaced live data through one shareable URL instead of repeated PDF or PPT exports.",
+        "Contributed to the REST to GraphQL migration with Apollo across key entities, including Express.js service updates, improving API response times by 35%.",
+        "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": ["TypeScript", "Node.js", "Go", "Python", "Redis", "PostgreSQL", "Kafka", "Docker", "Kubernetes", "Amazon Web Services (AWS)", "Angular", "JavaScript", "Git"],
+      "description": [
+        "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, saving $75,000 annually.",
+        "Implemented real-time catalog and pricing updates with Go and Kafka, migrating core business logic from a Python ETL flow.",
+        "Engineered a Redis-based conflict resolution layer for duplicate and out-of-order updates, improving product data accuracy by 40%."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": ["TypeScript", "React", "Express.js", "Node.js", "Python", "Azure", "Kubernetes", "Docker", "C#", "Angular", "Redux", "Tailwind CSS", "MSSQL", "MySQL", "Amazon Web Services (AWS)", "JavaScript", "Git"],
+      "description": [
+        "Worked with product, engineering, and infrastructure teams to simplify release flow and reduce delivery cycles from months to two weeks.",
+        "Introduced DevOps practices and led a staged migration from on-prem infrastructure to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": ["TypeScript", "React", "GraphQL", "Express.js", "React Native", "Python", "Django", "MongoDB", "MySQL", "Docker", "Kubernetes", "Amazon Web Services (AWS)", "Redux", "Angular", "Tailwind CSS", "JavaScript", "Git"],
+      "description": [
+        "Delivered more than five web and mobile products across regulated and service sectors, working end to end from discovery to implementation.",
+        "Led architecture decisions and set engineering standards for TypeScript, React, and React Native across the company.",
+        "Worked directly with clients through discovery calls, demos, and status updates, including a short-deadline government project."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": ["TypeScript", "Python", "Go", "PostgreSQL", "Redis", "Flask", "Google Cloud Platform (GCP)", "Angular", "JavaScript", "Tile38", "Git"],
+      "description": [
+        "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile."
+      ]
+    }
+  ],
+  "education": [{"id": 1, "institution": "Universidad Tecnologica de Chile", "degree": "Bachelor of Engineering in Computer Science", "years": "2012 - 2015", "description": ""}],
+  "personalProjects": [],
+  "skills": [
+    {"category": "Frontend & UI", "items": ["React", "Next.js", "Redux", "Zustand", "React Native", "Tailwind CSS", "Storybook", "Material-UI", "Svelte", "Angular", "AngularJS", "HTML5", "CSS"]},
+    {"category": "Languages", "items": ["TypeScript", "JavaScript", "Python", "Go", "Rust", "C#", "Solidity", "PHP"]},
+    {"category": "Testing & QA", "items": ["Playwright", "React Testing Library", "Jest", "Cypress", "Pytest"]},
+    {"category": "Backend & APIs", "items": ["GraphQL", "Apollo GraphQL", "Node.js", "Express.js", "REST APIs", "WebSockets", "Django", "Flask", "Laravel"]},
+    {"category": "Databases & Messaging", "items": ["PostgreSQL", "Redis", "RabbitMQ", "Kafka", "Amazon SQS", "DynamoDB", "BigQuery", "MSSQL", "MongoDB", "MySQL", "Tile38"]},
+    {"category": "Cloud & DevOps", "items": ["AWS", "Amazon Web Services (AWS)", "Docker", "Kubernetes", "Terraform", "GitHub Actions", "CloudWatch", "Sentry", "AWS Lambda", "GCP", "Google Cloud Platform (GCP)", "Azure", "Serverless"]},
+    {"category": "Platforms & Practices", "items": ["Claude", "Cursor", "CI/CD", "Microservices", "Stripe", "Agile", "Scrum", "Git", "Vagrant"]}
+  ],
+  "additional": {
+    "technicalSkills": ["TypeScript", "JavaScript", "React", "Next.js", "GraphQL", "Apollo GraphQL", "Node.js", "Express.js", "RESTful APIs", "PostgreSQL", "Redis", "RabbitMQ", "Claude", "Cursor", "Docker", "Kubernetes", "AWS", "GitHub Actions", "Playwright", "Jest", "Cypress", "Python", "Go", "Rust", "Redux", "Zustand", "Solidity", "Svelte", "Angular", "Django", "Flask", "React Native", "Storybook", "Material-UI", "Tailwind CSS", "shadcn/ui", "CSS", "HTML5", "C#", "MSSQL", "WebSockets", "MySQL", "MongoDB", "Kafka", "Terraform", "GCP", "Azure", "Serverless", "Mocha", "Pytest", "Agile", "Scrum", "Git", "Microservices", "SOLID Principles", "PHP"],
+    "languages": ["Spanish (Native)", "English (Advanced - C1)"],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "company_profile": {
+    "description": "Spotted Zebra builds an end-to-end hiring platform for enterprise talent teams, combining Interview Intelligence, assessments, skills science, and AI to support faster and fairer hiring decisions.",
+    "mission": "Direct from the about page: unite 10 million people with opportunities based purely on their skills by 2030, creating more equitable pathways to employment.",
+    "vision": "Inferred from official site and JD: make skills-based hiring human-centred, data-backed, scalable, and ethical for enterprise organisations.",
+    "values": ["Skills-based hiring", "Human-centred AI", "Data-informed decisions", "Fairer hiring", "Compact high-trust teams", "Customer impact"],
+    "products": ["Interview Intelligence", "Assessment", "AI Interview Agent", "Spot AI Notetaker and Meeting Assistant", "Role Skills Profiles", "Interview Evaluation", "Skills Assessment"],
+    "services": ["AI-supported interviewing", "skills assessments", "role skills profiling", "candidate evaluation", "hiring decision support", "enterprise hiring workflow automation"],
+    "target_customers": ["enterprise talent teams", "talent acquisition leaders", "recruiters", "hiring managers", "enterprise organisations"],
+    "industry": "HR technology, talent acquisition, skills-based hiring, interview intelligence, assessment technology",
+    "business_model": "B2B SaaS platform for enterprise hiring teams.",
+    "recent_signals": [
+      "Official site announces a new AI Interview Agent for skills-based interviews 24/7 at scale.",
+      "Homepage says the platform is trusted by enterprise talent teams globally and highlights customers including Merlin Entertainments, AWE, Paramount, Frasers Group, and Virgin Media O2.",
+      "Official site claims its AI and skills science can reduce time to hire by 25%, save 3,000+ hours per month, improve speed to competence by 20%, and support an 8x return on investment.",
+      "About page says founders Ian Monk and Nick Shaw created Spotted Zebra to put skills at the centre of hiring decisions.",
+      "Official careers page was checked and showed a Job Openings section, but no visible openings were available in the fetched page content."
+    ],
+    "open_roles": [],
+    "source_notes": [
+      {"claim": "Spotted Zebra offers an end-to-end hiring platform for enterprise teams with Interview Intelligence, Assessment, skills science, and AI.", "source_type": "official_site", "source_url": "https://www.spottedzebra.co.uk/", "confidence": "direct"},
+      {"claim": "The company aims to unite 10 million people with opportunities based purely on their skills by 2030.", "source_type": "official_site", "source_url": "https://www.spottedzebra.co.uk/about-us", "confidence": "direct"},
+      {"claim": "The product set includes AI Interview Agent, Interview Intelligence, Assessment, Spot AI Notetaker and Meeting Assistant, role skills profiles, interview evaluation, and skills assessment.", "source_type": "official_site", "source_url": "https://www.spottedzebra.co.uk/", "confidence": "direct"},
+      {"claim": "The careers surface checked was /careers-job; it displayed Job Openings but no visible role links in fetched content.", "source_type": "official_site", "source_url": "https://www.spottedzebra.co.uk/careers-job", "confidence": "direct"},
+      {"claim": "The target Product Engineer role and AAD crew context come from the user-provided job description.", "source_type": "job_description", "source_url": "user-provided job description", "confidence": "jd_only"}
+    ]
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "position": "Senior dApp Engineer",
+  "company": "Golem Factory",
+  "department": "Engineering",
+  "work_model": "remote first",
+  "employment_type": "full-time",
+  "work_eligibility_requirements": [],
+  "geographic_restrictions": [
+    "Must be based within CET +/- 3 timezones"
+  ],
+  "seniority_level": "senior",
+  "experience_years": 5,
+  "experience_requirements": [
+    "5+ years production TypeScript or JavaScript experience",
+    "Production experience with a major frontend framework such as React, Vue, Svelte, or similar",
+    "Production Node.js backend experience",
+    "Hands-on Web3 frontend experience with wagmi, viem, ethers.js, or equivalents",
+    "Experience integrating multiple wallets such as MetaMask, WalletConnect, or hardware wallets",
+    "Solidity reading proficiency and ability to write minor contracts when needed",
+    "Frontend component and integration testing experience",
+    "Contract testing experience"
+  ],
+  "education_requirements": [],
+  "certification_requirements": [],
+  "required_skills": [
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Web3 frontend",
+    "wagmi",
+    "viem",
+    "ethers.js",
+    "MetaMask",
+    "WalletConnect",
+    "hardware wallets",
+    "Solidity",
+    "EVM",
+    "ABI integration",
+    "calldata debugging",
+    "gas",
+    "nonces",
+    "replacement transactions",
+    "Foundry",
+    "forge",
+    "cast",
+    "anvil",
+    "EIP-1559",
+    "EIP-712",
+    "ERC-20",
+    "ERC-721",
+    "ERC-4626",
+    "ERC-4337",
+    "frontend testing",
+    "integration testing",
+    "contract testing",
+    "client-side observability",
+    "wallet-error tracking",
+    "RPC failure handling",
+    "transaction-success dashboards",
+    "accessibility",
+    "code review"
+  ],
+  "preferred_skills": [
+    "Bridge UI experience",
+    "cross-chain dApp experience",
+    "account abstraction integration",
+    "sponsored transactions",
+    "open-source contributions to wagmi, viem, ethers, Foundry, or similar",
+    "Solidity production beyond integration",
+    "audit preparation",
+    "gas optimization",
+    "security-conscious Solidity patterns",
+    "Blockscout operations",
+    "Docusaurus",
+    "Mintlify",
+    "docs platforms"
+  ],
+  "soft_skills": [
+    "ownership",
+    "direct feedback",
+    "cross-functional collaboration",
+    "pair programming",
+    "technical curiosity",
+    "user empathy",
+    "fast iteration",
+    "quality standards",
+    "incident-minded escalation"
+  ],
+  "domain_requirements": [
+    "Web3 infrastructure",
+    "Ethereum",
+    "L2 to L3 token transfers",
+    "smart-contract integration",
+    "dApp UX",
+    "developer-facing blockchain products",
+    "queryable on-chain data",
+    "mainnet launch readiness"
+  ],
+  "key_responsibilities": [
+    "Own Arkiv's flagship Bridge UI for L2 to L3 token transfers",
+    "Implement wallet connect, network switching, signing, status tracking, and edge-case handling",
+    "Integrate ABIs across user-facing surfaces",
+    "Debug failed transactions with calldata inspection and tools such as Tenderly",
+    "Write minor Solidity contracts in Foundry for faucets and helpers when needed",
+    "Pair with Senior Solidity Engineer on bridge and account abstraction flows",
+    "Set quality standards for Web3 UX, accessibility, resilience, and user-facing code review",
+    "Build client-side telemetry for wallet errors, RPC failures, and transaction success rates",
+    "Back up developer onboarding, docs, faucet, sample apps, homepage, and L3 explorer operations",
+    "Collaborate with Platform, Protocol, SRE, and DevRel teams"
+  ],
+  "success_outcomes": [
+    "Ship a production-grade Bridge UI resilient to wallet quirks, RPC failures, and stuck transactions",
+    "Improve smart-contract integration quality across Arkiv user-facing surfaces",
+    "Make Web3 UX clearer, more accessible, and less brittle",
+    "Expose client-side observability that reflects real user transaction outcomes",
+    "Reduce single points of failure across user-facing Arkiv surfaces",
+    "Support mainnet launch readiness for Arkiv"
+  ],
+  "keywords": [
+    {
+      "term": "Bridge UI",
+      "priority": "high",
+      "count_in_jd": 5
+    },
+    {
+      "term": "TypeScript",
+      "priority": "high",
+      "count_in_jd": 3
+    },
+    {
+      "term": "JavaScript",
+      "priority": "high",
+      "count_in_jd": 3
+    },
+    {
+      "term": "Solidity",
+      "priority": "high",
+      "count_in_jd": 8
+    },
+    {
+      "term": "Web3 UX",
+      "priority": "high",
+      "count_in_jd": 5
+    },
+    {
+      "term": "wallet",
+      "priority": "high",
+      "count_in_jd": 7
+    },
+    {
+      "term": "RPC failures",
+      "priority": "high",
+      "count_in_jd": 4
+    },
+    {
+      "term": "EVM",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "ABI integration",
+      "priority": "high",
+      "count_in_jd": 1
+    },
+    {
+      "term": "Foundry",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "client-side observability",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "transaction success",
+      "priority": "high",
+      "count_in_jd": 1
+    },
+    {
+      "term": "account abstraction",
+      "priority": "medium",
+      "count_in_jd": 3
+    },
+    {
+      "term": "Blockscout",
+      "priority": "medium",
+      "count_in_jd": 2
+    },
+    {
+      "term": "docs",
+      "priority": "medium",
+      "count_in_jd": 3
+    }
+  ],
+  "must_have_checklist": [
+    "Must be based within CET +/- 3 timezones",
+    "5+ years production TypeScript or JavaScript",
+    "Production frontend framework experience",
+    "Production Node.js backend experience",
+    "Own or ship resilient dApp surfaces such as a Bridge UI",
+    "Web3 frontend library experience with wagmi, viem, ethers.js, or equivalent",
+    "Multiple wallet integration experience",
+    "Solidity reading proficiency",
+    "Minor Solidity contract writing in Foundry",
+    "ABI integration and failed transaction debugging",
+    "Gas, nonce, and replacement transaction understanding",
+    "Client-side observability for wallet errors, RPC failures, and transaction outcomes",
+    "Frontend component and integration testing",
+    "Contract testing",
+    "Cross-functional collaboration with protocol, platform, SRE, and DevRel"
+  ],
+  "screening_weights": {
+    "required_experience": 35,
+    "required_skills": 45,
+    "education": 0,
+    "preferred_qualifications": 20
+  },
+  "red_flags": [
+    "Solidity reading proficiency is described as non-negotiable",
+    "The role centers on Bridge UI and wallet edge cases, so missing wallet-integration evidence is high risk",
+    "Location is limited to CET +/- 3 timezones",
+    "Foundry and minor Solidity contract writing are explicit requirements",
+    "Prior bridge UI or cross-chain dApp experience is a strong plus and likely a high-signal differentiator"
+  ]
+}

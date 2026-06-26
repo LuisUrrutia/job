@@ -1,0 +1,35 @@
+{
+  "candidates": [
+    {
+      "title": "Sample Senior React Engineer",
+      "company": "Example Health Tools",
+      "companyWebsite": "https://example.invalid/health-tools",
+      "publisherCompany": "",
+      "url": "https://www.linkedin.com/jobs/view/1234567890/?trackingId=fake",
+      "source": "linkedin",
+      "sourceJobId": "1234567890",
+      "location": "United Kingdom",
+      "remoteScope": "United Kingdom; Remote",
+      "employmentType": "Full-time",
+      "salaryRange": "GBP 90,000 - GBP 110,000",
+      "postedAt": "Sample posted 2 hours ago",
+      "description": "Fake fixture posting for a senior React and TypeScript engineer building patient workflow tools. This is sample data only.",
+      "verificationNote": "Fixture data; not a real job posting."
+    },
+    {
+      "title": "Sample Full Stack Product Engineer",
+      "company": "Example Climate Apps",
+      "companyWebsite": "https://example.invalid/climate-apps",
+      "publisherCompany": "Sample Recruiting Partner",
+      "url": "https://example.invalid/jobs/full-stack-product-engineer",
+      "source": "sample-board",
+      "location": "Europe",
+      "remoteScope": "Europe; Remote",
+      "employmentType": "Full-time",
+      "salaryRange": "",
+      "postedAt": "Sample posted yesterday",
+      "description": "Fake fixture posting for a full-stack product engineer using React, TypeScript, and Python. This is sample data only.",
+      "verificationNote": "Fixture data; not a real job posting."
+    }
+  ]
+}

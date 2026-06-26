@@ -1,0 +1,7 @@
+The focus on real-time interfaces that make AI agent behavior clear to developers and enterprise users is what drew me to x4-tech-1.
+
+At OpenZeppelin, I co-led Defender 2.0 Secure Audit, building a React and TypeScript frontend with Zustand so auditors could track findings, verify fixes, and deliver reports with clients. At Premise, I built a live data presentation feature in React and TypeScript and helped improve API response times by 35% through frontend and service integration work.
+
+That mix of developer-facing tooling, fast-moving product work, and complex backend-connected UI is why this role feels like a strong fit. x4-tech-1's focus on the AI agent ecosystem is especially compelling because it pairs clear product design with technically demanding systems.
+
+If the team is looking for someone who can own frontend execution and work closely across the stack, I would welcome a conversation.

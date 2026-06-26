@@ -1,0 +1,5 @@
+Spotted Zebra is hiring for a product engineer who can move from customer context to TypeScript, React, GraphQL, and production ownership inside a small AI-augmented crew. That maps closely to the way I have built software: close to users, practical about tradeoffs, and accountable for shipped outcomes.
+
+At OpenZeppelin, I co-led Secure Audit workflows as one of two engineers, helping auditors work with clients, track findings, verify fixes, and deliver reports. I also worked directly with enterprise users during the Defender sunset and migration to OSS Relayer. At Premise, I built client-facing React and TypeScript workflows, contributed to a REST to GraphQL migration with Apollo, and built an OpenAI API proof of concept.
+
+My background is stronger in B2B SaaS and product engineering than direct HR tech or NestJS. The bridge is strong: customer-facing workflows, GraphQL, AI tooling, and enterprise delivery. I would welcome a conversation.

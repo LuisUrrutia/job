@@ -1,0 +1,449 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Full-Stack Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "summary": "Senior Full-Stack Engineer with 12+ years of experience building production platforms across Web3 security, B2B SaaS, marketplaces, and enterprise systems. Strong fit for backend-heavy fullstack roles that need React, TypeScript, API design, Docker, Kubernetes, databases, and event-driven systems. Recent work includes OpenZeppelin developer infrastructure, SDKs, RPC retry and failover paths, Rust-based relayer work, and production reliability improvements that cut alert noise by about 60% and reduced TypeScript monorepo build times from about 15 minutes to 3 minutes.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Express.js",
+        "Rust",
+        "Kubernetes",
+        "Docker",
+        "PostgreSQL",
+        "Redis",
+        "DynamoDB",
+        "AWS",
+        "Terraform",
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "Sentry",
+        "CloudWatch",
+        "Amazon SQS",
+        "AWS Lambda",
+        "GitHub Actions",
+        "Zustand",
+        "Svelte",
+        "Solidity",
+        "Stripe",
+        "Claude",
+        "Cursor",
+        "Tailwind CSS"
+      ],
+      "description": [
+        "Co-led Defender 2.0 Secure Audit as one of two engineers, building a full-stack TypeScript and React module for smart contract auditors to work with clients, track findings, verify fixes, and deliver final PDF reports.",
+        "Built SDK capabilities for Defender and OpenZeppelin Relayer OSS so Web3 developers and technical teams could integrate the products and build custom automation tooling.",
+        "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing, retry and failover paths, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition.",
+        "Cut alert noise by about 60% across Slack and PagerDuty by tuning recoverable RPC and gas-spike alerts, reducing wake-ups and making production incidents easier to triage.",
+        "Refactored the TypeScript monorepo build system through ESM migration, package exports, bundler and tsconfig updates, and lint and typecheck changes, reducing local and CI build times from about 15 minutes to 3 minutes.",
+        "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions around SSR versus SPA, state management, internationalization, Kubernetes, and Okta."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Express.js",
+        "GraphQL",
+        "Apollo GraphQL",
+        "PostgreSQL",
+        "Kubernetes",
+        "Docker",
+        "Python",
+        "GCP",
+        "Jest",
+        "GitHub Actions",
+        "BigQuery",
+        "JavaScript",
+        "Material-UI",
+        "Storybook",
+        "Tailwind CSS"
+      ],
+      "description": [
+        "Built a React and TypeScript presentation feature in MyPremise that gave account managers and clients a single URL with up-to-date, often live data instead of repeated PDF or PPT exports.",
+        "Contributed to the REST to GraphQL migration with Apollo across key entities, including Express.js service updates, reducing endpoint churn and improving API response times by 35%.",
+        "Improved release reliability by expanding Jest coverage and adding GitHub Actions quality gates, moving releases to less than 24 hours from a one-week cadence by cutting manual testing effort.",
+        "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation, giving teams a faster way to request and assemble data-driven reports."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Express.js",
+        "Node.js",
+        "Python",
+        "Kubernetes",
+        "Docker",
+        "Azure",
+        "Amazon Web Services (AWS)",
+        "MSSQL",
+        "MySQL",
+        "C#",
+        "Angular",
+        "Redux",
+        "JavaScript",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "description": [
+        "Improved architecture and delivery process for a legacy internal platform built on .NET Framework and Microsoft tooling, replacing slow manual release steps with a simpler engineering flow.",
+        "Worked with product, engineering, and infrastructure teams to reduce delivery cycles from months to about two weeks.",
+        "Modernized key stack areas by moving from ASP.NET to Angular and from .NET Framework to .NET Core, removing Internet Explorer-only constraints and enabling Chrome compatibility.",
+        "Introduced DevOps practices and led a staged migration from on-prem infrastructure to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "Go",
+        "Node.js",
+        "TypeScript",
+        "Python",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "Docker",
+        "Kubernetes",
+        "Amazon Web Services (AWS)",
+        "Angular",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Built backend integrations for merchant ingestion pipelines, normalizing data from FTP, APIs, SOAP XML feeds, and web scraping to support pricing, stock, availability, bundles, and product attributes.",
+        "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, saving $75,000 annually and giving customer service teams a faster onboarding path.",
+        "Implemented real-time catalog and pricing updates with Go and Kafka, migrating core business logic from a Python ETL flow so product and discount changes reached the app faster.",
+        "Engineered a Redis-based conflict resolution layer that prioritized real-time event processing over scheduled tasks, handling duplicate and out-of-order updates while improving product data accuracy and reliability by 40%.",
+        "Drove unit testing for critical pricing, offers, and bundles logic with an 80% coverage target, reducing critical rollout defects by 33%."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Express.js",
+        "GraphQL",
+        "Python",
+        "Django",
+        "MongoDB",
+        "MySQL",
+        "Docker",
+        "Kubernetes",
+        "Amazon Web Services (AWS)",
+        "React Native",
+        "Redux",
+        "Angular",
+        "JavaScript",
+        "Tailwind CSS",
+        "Git"
+      ],
+      "description": [
+        "Delivered more than five web and mobile products for clients in medical, industrial, government, legal, and cultural sectors, working from discovery and requirements through planning and implementation.",
+        "Led architecture decisions and set engineering standards for TypeScript, React, and React Native across the company.",
+        "Mentored five developers through pairing, code reviews, and workshops focused on architecture, testing, and code quality."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "Python",
+        "Go",
+        "TypeScript",
+        "Redis",
+        "PostgreSQL",
+        "Flask",
+        "Google Cloud Platform (GCP)",
+        "Angular",
+        "JavaScript",
+        "Tile38",
+        "Git"
+      ],
+      "description": [
+        "Contributed to building Dxpress from idea to launch as one of Chile's first Uber Eats-style delivery services, working with a small product and engineering team inside an investment firm.",
+        "Focused on Python and Go backend services for advanced search, geolocation, real-time operations, and product ETL workflows supporting catalogs with more than 5,000 products."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "Node.js",
+        "JavaScript",
+        "Python",
+        "Django",
+        "AngularJS",
+        "PHP",
+        "Laravel",
+        "Vagrant"
+      ],
+      "description": [
+        "Started as a junior developer and took on growing frontend ownership, helping introduce Node.js and AngularJS into the agency stack."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": [
+        "React",
+        "Next.js",
+        "React Native",
+        "Redux",
+        "Zustand",
+        "Svelte",
+        "Angular",
+        "Storybook",
+        "Material-UI",
+        "Tailwind CSS",
+        "AngularJS",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "category": "Languages",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "Rust",
+        "Go",
+        "Python",
+        "C#",
+        "Solidity",
+        "PHP"
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "items": [
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "React Testing Library",
+        "Pytest"
+      ]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": [
+        "Node.js",
+        "Express.js",
+        "REST APIs",
+        "WebSockets",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Django",
+        "Flask",
+        "Laravel"
+      ]
+    },
+    {
+      "category": "Databases & Messaging",
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "DynamoDB",
+        "Amazon SQS",
+        "MongoDB",
+        "MySQL",
+        "MSSQL",
+        "BigQuery",
+        "Tile38"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Amazon Web Services (AWS)",
+        "Terraform",
+        "GCP",
+        "Google Cloud Platform (GCP)",
+        "Azure",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "AWS Lambda",
+        "Serverless"
+      ]
+    },
+    {
+      "category": "Platforms & Practices",
+      "items": [
+        "CI/CD",
+        "Microservices",
+        "Claude",
+        "Cursor",
+        "Stripe",
+        "Agile",
+        "Scrum",
+        "Git",
+        "Vagrant"
+      ]
+    }
+  ],
+  "additional": {
+    "technicalSkills": [
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "RESTful APIs",
+      "WebSockets",
+      "React",
+      "Next.js",
+      "Go",
+      "Python",
+      "Docker",
+      "Kubernetes",
+      "PostgreSQL",
+      "Redis",
+      "Kafka",
+      "RabbitMQ",
+      "GraphQL",
+      "AWS",
+      "Terraform",
+      "GCP",
+      "Azure",
+      "Jest",
+      "Playwright",
+      "Cypress",
+      "Microservices",
+      "SOLID Principles",
+      "MongoDB",
+      "MySQL",
+      "MSSQL",
+      "React Native",
+      "Redux",
+      "Zustand",
+      "Svelte",
+      "Angular",
+      "Django",
+      "Flask",
+      "GitHub Actions",
+      "Serverless",
+      "Claude",
+      "Cursor",
+      "Git",
+      "Agile",
+      "Scrum",
+      "Solidity",
+      "Storybook",
+      "Material-UI",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "CSS",
+      "HTML5",
+      "Mocha",
+      "Pytest"
+    ],
+    "languages": [
+      "Spanish (Native)",
+      "English (Advanced - C1)"
+    ],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "targetCompany": "Tether",
+  "targetPosition": "Senior Fullstack Software Engineer",
+  "company_profile": {
+    "description": "Tether is a blockchain-enabled platform founded in 2014 to support the digital use of traditional currencies. Its tokens are used across multiple blockchains and by exchanges, wallets, merchants, and other digital asset businesses.",
+    "mission": "Inferred from official site: disrupt the conventional financial system with a modern approach to money and democratize cross-border transactions on blockchain rails.",
+    "vision": "Inferred from official site and JD: drive the future of money while expanding into stablecoins, tokenization, energy, AI, peer-to-peer data, and education.",
+    "values": [
+      "transparency",
+      "global access",
+      "blockchain adoption",
+      "lean execution",
+      "remote collaboration"
+    ],
+    "products": [
+      "USDt",
+      "Tether Gold token XAUt",
+      "MXNt",
+      "Alloy by Tether",
+      "KEET"
+    ],
+    "services": [
+      "reserve-backed digital tokens",
+      "digital asset tokenization",
+      "merchant and exchange integrations",
+      "AI and peer-to-peer data infrastructure",
+      "education programs"
+    ],
+    "target_customers": [
+      "exchanges",
+      "wallets",
+      "payment processors",
+      "ATMs",
+      "merchants",
+      "individual token users",
+      "developers and data scientists for the AI cloud platform"
+    ],
+    "industry": "Digital assets, fintech, blockchain infrastructure, AI infrastructure",
+    "business_model": "Token and digital asset infrastructure with products and services for individuals, merchants, exchanges, and platform users.",
+    "recent_signals": [
+      "Official site states Tether tokens are backed 100% by reserves and transparency metrics are typically refreshed daily.",
+      "The JD describes a GPU-accelerated cloud services platform for decentralized AI infrastructure.",
+      "Official site describes Tether Data as focused on AI and peer-to-peer technology, including KEET for private data sharing."
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+Payward's Payments & Blockchain role needs someone who can make fund movement feel fast, safe, and reliable while working inside Kraken's security-first culture.
+
+At OpenZeppelin, I co-led Defender Secure Audit, building TypeScript and React workflows for smart contract auditors. I also built Stripe billing across user-facing screens and backend APIs, and owned EVM Relayer reliability work covering RPC retry and failover, KMS signers, transaction cost handling, and a critical nonce race fix.
+
+The role's React Native, REST API, WebSockets, testing, and build-tooling needs line up with my earlier work: shipped iOS/Android React Native apps, used WebSockets for live courier tracking, led Playwright critical-flow testing, and cut a TypeScript monorepo build from about 15 minutes to 3 minutes.
+
+Kraken's focus on client funds, Proof of Reserves, and global financial access is exactly the kind of product surface where my Web3 security and payments work fits. I would welcome a conversation.

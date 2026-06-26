@@ -1,0 +1,7 @@
+Lazer's work with Polymarket, Uniswap, Coinbase, and other Web3 clients is the part of this role that stands out: the job needs someone who can drop into client teams and ship complex real-time product surfaces without much hand-holding.
+
+I bring 12+ years across full-stack product engineering, including React, TypeScript, Zustand, Go, Rust, Kafka, Redis, WebSockets, and cloud infrastructure across AWS, GCP, Azure, Kubernetes, and Terraform. At OpenZeppelin, I co-led a client-facing Secure Audit module and owned EVM Relayer work around RPC balancing, failover, cloud KMS signing, and nonce reliability.
+
+I have not led a trading platform build directly, but my Web3 systems, real-time data, SDK, and agency/client delivery experience map closely to the problems Lazer describes.
+
+I would welcome a conversation about where that background fits your trading platform work.

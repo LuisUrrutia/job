@@ -1,0 +1,444 @@
+{
+  "job": {
+    "position": "Product-Focused Full Stack Engineer",
+    "company": "Teleport"
+  },
+  "candidate_constraints": {
+    "location": "Spain",
+    "timezone": "+01:00",
+    "work_authorization": "not_recorded",
+    "visa_or_sponsorship_needed": "unknown",
+    "other_constraints": []
+  },
+  "fit_analysis": {
+    "requirement_pass": "8/16 matched, 7/16 partial, 1/16 missing",
+    "strengths": [
+      {
+        "text": "Strong product full-stack match: TypeScript, React, backend API work, testing, documentation, and customer-facing delivery are repeatedly grounded in OpenZeppelin, Premise, Rappi, and Resit evidence.",
+        "requirement_ids": ["req-002", "req-003", "req-005", "req-006", "req-010"]
+      },
+      {
+        "text": "Go is real production experience rather than a skills-list-only claim, with Rappi Go/Kafka catalog updates and Dxpress Go/Python backend services.",
+        "requirement_ids": ["req-001", "req-009"]
+      },
+      {
+        "text": "Security-heavy systems evidence is strong through OpenZeppelin Secure Audit, Rust-based OSS Relayer work, RPC retry/failover, KMS signer integrations, and a critical nonce race condition fix.",
+        "requirement_ids": ["req-004", "req-008", "req-009", "req-015"]
+      },
+      {
+        "text": "Open source and autonomy signals are unusually good: approximately 14 open source projects, OSS Relayer ownership, and co-leading Defender 2.0 Secure Audit as one of two engineers.",
+        "requirement_ids": ["req-008", "req-016"]
+      }
+    ],
+    "gaps": [
+      {
+        "requirement_id": "req-004",
+        "status": "partial",
+        "severity": "major",
+        "reason": "Security evidence is strong, but the recorded facts skew Web3/infrastructure security. The JD says web security specifically; stronger supported wording needs concrete auth/session/browser security evidence such as OAuth/OIDC/SAML, RBAC, XSS/CSRF, secure cookies, passwordless, or access-control reviews. Closest evidence: OpenZeppelin Secure Audit workflows, critical nonce race fix, KMS signer integrations, Okta architecture direction."
+      },
+      {
+        "requirement_id": "req-006",
+        "status": "partial",
+        "severity": "major",
+        "reason": "Customer work, implementation, testing, and documentation are grounded, but RFD/design-proposal authorship is not explicitly recorded. Closest evidence: worked directly with enterprise users during Defender sunset, Resit discovery calls/demos/status updates, Playwright critical-flow testing, documentation improvements."
+      },
+      {
+        "requirement_id": "req-007",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "Architecture decision evidence exists, but no explicit RFD/design-doc artifact is recorded. The resume should avoid saying RFD unless the user confirms comparable design-doc work."
+      },
+      {
+        "requirement_id": "req-011",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "Backend data retrieval and efficiency evidence is strong, but server-side pagination/filtering is not explicitly recorded. Closest evidence: REST-to-GraphQL migration at Premise improved API response times by 35%; Rappi real-time catalog/pricing updates and data-normalization pipelines."
+      },
+      {
+        "requirement_id": "req-012",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "Guided onboarding experience evidence exists, but not for infrastructure setup specifically. Closest evidence: Rappi internal integration and onboarding platform; Resit discovery-to-delivery client products; OpenZeppelin enterprise migration support."
+      },
+      {
+        "requirement_id": "req-013",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "Passwordless UI evidence is not recorded. Closest evidence: security-sensitive React product work at OpenZeppelin and Okta-related architecture direction, but no passwordless flow should be claimed without clarification."
+      },
+      {
+        "requirement_id": "req-014",
+        "status": "missing",
+        "severity": "minor",
+        "reason": "No desktop app or Electron/Tauri-style app evidence is recorded. This is low priority because the JD lists Teleport Connect as one possible work area rather than a must-have requirement."
+      },
+      {
+        "requirement_id": "req-015",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "The candidate has adjacent security, KMS signer, Okta, Web3, and AI tooling evidence, but not direct infrastructure identity for humans, machines, workloads, and AI agents. Use company-mission language only in the cover letter or summary where backed by adjacent evidence."
+      }
+    ],
+    "eligibility_risks": [
+      {
+        "requirement_id": null,
+        "constraint_id": "constraint-location",
+        "severity": "major",
+        "constraint": "Role is remote-first, but eligible countries or hiring locations are not stated.",
+        "candidate_state": "Candidate is based in Spain with timezone +01:00.",
+        "source_quote": "Remote-first and globally distributed"
+      },
+      {
+        "requirement_id": null,
+        "constraint_id": "constraint-eligibility",
+        "severity": "major",
+        "constraint": "Visa sponsorship and work authorization requirements are not stated.",
+        "candidate_state": "Candidate work authorization and sponsorship needs are not recorded in info.json.",
+        "source_quote": null
+      }
+    ],
+    "resume_focus_priority": [
+      {
+        "rank": 1,
+        "focus": "Lead with Go plus TypeScript/React full-stack product delivery for security-sensitive systems, not generic frontend breadth.",
+        "requirement_ids": ["req-001", "req-002", "req-003", "req-005", "req-009"],
+        "screening_priority_id": "screen-001",
+        "screening_priority_rank": 1
+      },
+      {
+        "rank": 2,
+        "focus": "Make web/security-adjacent evidence concrete through OpenZeppelin Secure Audit, OSS Relayer, KMS signers, nonce-safety, Okta, and reliability work without overclaiming passwordless or web-auth ownership.",
+        "requirement_ids": ["req-004", "req-013", "req-015"],
+        "screening_priority_id": "screen-003",
+        "screening_priority_rank": 3
+      },
+      {
+        "rank": 3,
+        "focus": "Show full product lifecycle evidence: customer conversations, architecture choices, implementation, Playwright/Jest/Cypress testing, documentation, and enterprise-user migration support.",
+        "requirement_ids": ["req-006", "req-007", "req-010"],
+        "screening_priority_id": "screen-002",
+        "screening_priority_rank": 2
+      },
+      {
+        "rank": 4,
+        "focus": "Use efficiency and onboarding examples as Teleport-work mirrors: Rappi onboarding platform, Premise API response-time improvement, monorepo build-time reduction, and alert-noise reduction.",
+        "requirement_ids": ["req-011", "req-012", "req-016"],
+        "screening_priority_id": "screen-004",
+        "screening_priority_rank": 4
+      }
+    ],
+    "keyword_usage": [
+      {
+        "term": "Go",
+        "action": "Use in summary, skills, and Rappi/Dxpress backend bullets where Go is explicitly supported.",
+        "requirement_ids": ["req-001", "req-009"]
+      },
+      {
+        "term": "TypeScript",
+        "action": "Repeat in summary, skills, and OpenZeppelin/Premise/Resit bullets.",
+        "requirement_ids": ["req-002", "req-005"]
+      },
+      {
+        "term": "React",
+        "action": "Repeat in summary and product UI bullets, especially OpenZeppelin Defender and Premise MyPremise.",
+        "requirement_ids": ["req-003", "req-005"]
+      },
+      {
+        "term": "web security",
+        "action": "Use cautiously as adjacent security-sensitive web product experience unless the user confirms direct web security practices.",
+        "requirement_ids": ["req-004"]
+      },
+      {
+        "term": "backend APIs",
+        "action": "Use around Express.js, GraphQL, Go services, Rappi integrations, and transaction-related API flows.",
+        "requirement_ids": ["req-005", "req-011"]
+      },
+      {
+        "term": "Rust",
+        "action": "Use only for OpenZeppelin Relayer evidence; do not present Rust as broader than recorded.",
+        "requirement_ids": ["req-009"]
+      },
+      {
+        "term": "open source",
+        "action": "Use in summary or OpenZeppelin bullet backed by 14 OSS projects and OSS Relayer work.",
+        "requirement_ids": ["req-008"]
+      },
+      {
+        "term": "server-side pagination",
+        "action": "Do not claim directly unless user confirms; otherwise use adjacent API performance and data retrieval language.",
+        "requirement_ids": ["req-011"]
+      },
+      {
+        "term": "onboarding",
+        "action": "Use around Rappi internal integration/onboarding platform and enterprise migration support.",
+        "requirement_ids": ["req-012"]
+      },
+      {
+        "term": "passwordless",
+        "action": "Do not claim implementation unless user confirms; keep as Teleport motivation in cover letter if needed.",
+        "requirement_ids": ["req-013"]
+      },
+      {
+        "term": "RFD",
+        "action": "Avoid unless the user confirms RFD or comparable design-doc authorship.",
+        "requirement_ids": ["req-007"]
+      },
+      {
+        "term": "infrastructure identity",
+        "action": "Use in company-mission bridge, tied to OpenZeppelin security and signer/access-control-adjacent work.",
+        "requirement_ids": ["req-015"]
+      }
+    ],
+    "recommendation": "apply_with_risks"
+  },
+  "requirement_evidence_map": [
+    {
+      "requirement_id": "req-001",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Implemented real-time catalog and pricing updates with Go and Kafka, and migrated core business logic from a previous Python ETL flow."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Focused on backend development across Python and Go services, building platform capabilities for advanced search, geolocation, real-time operational features, and product ETL workflows."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-002",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers, building a full-stack module with a frontend focus in TypeScript and React."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature in MyPremise with React and TypeScript that surfaced up-to-date, often live data."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-003",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers, building a full-stack module with a frontend focus in TypeScript and React."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature in MyPremise with React and TypeScript that surfaced up-to-date, often live data."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-004",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built Secure Audit workflows for smart contract auditors to track findings, verify fixes, and deliver final PDF reports."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned EVM-side Rust-based OSS Relayer work including AWS KMS and GCP KMS signer integrations and a critical nonce race condition fix."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to infrastructure direction with Kubernetes and Okta."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-005",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built a full-stack Secure Audit module with a frontend focus in TypeScript and React."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Contributed to the migration from REST to GraphQL with Apollo across key entities, including updates to Express.js services, improving API response times by 35%."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-006",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Supported the Defender sunset by closing feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Led end-to-end testing for Defender with Playwright, focusing on critical user flows to improve release confidence."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-007",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Shaped frontend architecture decisions for React and Next.js initiatives, including SSR vs SPA, state management, and i18n."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-008",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Summary",
+          "bullet": "Contributor to approximately 14 open source projects."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned EVM-side work for the Rust-based OpenZeppelin Relayer OSS work."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-009",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Tech stack includes TypeScript, React, Next.js, Rust, AWS, Kubernetes, Terraform, Docker, PostgreSQL, Redis, and DynamoDB."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Tech stack includes Go, TypeScript, Node.js, Redis, AWS, Docker, Kubernetes, and Kafka."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-010",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-011",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Contributed to REST-to-GraphQL migration with Apollo and Express.js updates, improving API response times by 35% and lowering server usage."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Built backend integrations for merchant ingestion pipelines, normalizing data from FTP, APIs, SOAP XML feeds, and web scraping."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-012",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, saving $75,000 annually and enabling faster onboarding for customer service teams."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Supported enterprise users during Defender migration to OSS Relayer by closing feature gaps and improving documentation."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-013",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built security-sensitive auditor/client workflows in TypeScript and React for Secure Audit."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to architecture direction involving Okta."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-014",
+      "status": "missing",
+      "severity_if_missing": "minor",
+      "evidence": []
+    },
+    {
+      "requirement_id": "req-015",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned signer and transaction-safety work in OSS Relayer, including AWS KMS and GCP KMS integrations."
+        },
+        {
+          "role": "Summary",
+          "bullet": "Senior Full-Stack Engineer with production systems experience across Web3 security and practical AI tooling side projects."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-016",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers."
+        },
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile, working with a small product and engineering team."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Zama is trying to make confidential assets usable on public chains without asking wallet, custody, exchange, or dApp teams to become cryptography experts. That makes Product Integrations a leverage point: the SDK has to be technically correct, easy to adopt, and resilient around real EVM failure modes.
+
+At OpenZeppelin, I owned the EVM side of Relayer OSS, including transaction cost handling, RPC retry/failover, AWS KMS and GCP KMS signer integrations, and a critical nonce race fix. I also built SDK capabilities across Defender and OSS Relayer so technical teams could integrate products and automate workflows.
+
+My background is stronger in EVM infrastructure and TypeScript SDK work than in FHE or Solana. That is the honest tradeoff, but it maps closely to Zama's immediate need: reduce partner integration friction and move the SDK from beta toward production.
+
+I would welcome a conversation about where I can help.

@@ -1,0 +1,131 @@
+{
+  "position": "Senior Full-Stack Engineer, Trading Platforms",
+  "company": "Lazer",
+  "department": "Engineering",
+  "work_model": "remote",
+  "employment_type": "full-time",
+  "work_eligibility_requirements": [],
+  "geographic_restrictions": [],
+  "seniority_level": "senior",
+  "experience_years": 6,
+  "experience_requirements": [
+    "6+ years of experience in both backend and frontend software development",
+    "Significant experience building trading platforms such as DEX, CEX, HFT, or similar high-performance trading systems",
+    "Proven consulting, contracting, startup, or agency background"
+  ],
+  "education_requirements": [],
+  "certification_requirements": [],
+  "required_skills": [
+    "React",
+    "Modern frontend state management",
+    "High-performance data visualization",
+    "Real-time UI components",
+    "Trading interfaces",
+    "Go or similar systems languages",
+    "WebSocket architectures",
+    "Backend-for-frontend patterns",
+    "Real-time data streaming",
+    "Order management systems",
+    "Trading UI/UX patterns",
+    "Component library development",
+    "Design systems",
+    "Client management",
+    "Major cloud providers",
+    "Technical communication"
+  ],
+  "preferred_skills": [
+    "TanStack ecosystem",
+    "Blockchain protocols",
+    "Web3 development",
+    "EVM",
+    "Solana",
+    "Quantitative finance",
+    "Algorithmic trading",
+    "Market microstructure",
+    "Trading-specific standards",
+    "Order book management",
+    "Matching engines",
+    "Risk management systems",
+    "Rust",
+    "Charting libraries",
+    "Mobile development",
+    "Open source trading tools"
+  ],
+  "soft_skills": [
+    "client management",
+    "communication",
+    "autonomy",
+    "technical tradeoff communication",
+    "mentorship",
+    "attention to detail",
+    "adaptability",
+    "high quality standards"
+  ],
+  "domain_requirements": [
+    "Trading platforms",
+    "DEX",
+    "CEX",
+    "HFT",
+    "High-performance trading systems",
+    "Order management systems",
+    "Real-time trading interfaces"
+  ],
+  "key_responsibilities": [
+    "Embed with client teams to advise founders on trading platforms, order management systems, and real-time trading interfaces",
+    "Architect and develop high-performance trading UIs handling real-time data updates and complex user interactions at scale",
+    "Build and maintain backend proxy layers and APIs for demanding trading application requirements",
+    "Design and implement component libraries on top of internal design systems",
+    "Integrate existing APIs, data distribution layers, and trading infrastructure while maintaining low-latency performance",
+    "Mentor client engineering teams and improve architecture and engineering processes",
+    "Lead technical strategy discussions with clients and manage timelines and expectations",
+    "Experiment with cutting-edge tools and contribute back to open source"
+  ],
+  "success_outcomes": [
+    "Ship sophisticated trading interfaces with low-latency real-time data handling",
+    "Create reusable dense-interface component patterns",
+    "Improve client architecture and engineering execution",
+    "Maintain high product quality with lean, autonomous delivery",
+    "Translate technical tradeoffs clearly for founders and stakeholders"
+  ],
+  "keywords": [
+    { "term": "trading platforms", "priority": "high", "count_in_jd": 5 },
+    { "term": "real-time", "priority": "high", "count_in_jd": 6 },
+    { "term": "React", "priority": "high", "count_in_jd": 1 },
+    { "term": "frontend state management", "priority": "high", "count_in_jd": 1 },
+    { "term": "data visualization", "priority": "high", "count_in_jd": 2 },
+    { "term": "Go", "priority": "high", "count_in_jd": 1 },
+    { "term": "WebSocket", "priority": "high", "count_in_jd": 1 },
+    { "term": "backend-for-frontend", "priority": "high", "count_in_jd": 1 },
+    { "term": "order management systems", "priority": "high", "count_in_jd": 2 },
+    { "term": "component libraries", "priority": "high", "count_in_jd": 2 },
+    { "term": "design systems", "priority": "high", "count_in_jd": 2 },
+    { "term": "client management", "priority": "high", "count_in_jd": 1 },
+    { "term": "cloud providers", "priority": "medium", "count_in_jd": 1 },
+    { "term": "Web3", "priority": "medium", "count_in_jd": 1 },
+    { "term": "Rust", "priority": "medium", "count_in_jd": 1 },
+    { "term": "mobile development", "priority": "low", "count_in_jd": 1 }
+  ],
+  "must_have_checklist": [
+    "6+ years backend and frontend software development",
+    "Significant experience building trading platforms or similar high-performance trading systems",
+    "Expert React and modern frontend state management",
+    "High-performance data visualization and real-time UI components",
+    "Backend engineering with Go or similar systems languages",
+    "WebSocket architectures and backend-for-frontend patterns",
+    "Real-time data streaming, order management systems, and trading UI/UX patterns",
+    "Component library development within established design systems",
+    "Consulting, contracting, startup, or agency background with client management",
+    "Deep expertise with GCP, AWS, or Azure",
+    "Excellent technical and non-technical communication"
+  ],
+  "screening_weights": {
+    "required_experience": 40,
+    "required_skills": 35,
+    "education": 0,
+    "preferred_qualifications": 25
+  },
+  "red_flags": [
+    "No explicit work authorization restriction appears in the provided JD",
+    "AI-based resume screening makes direct evidence for trading systems and real-time trading UI keywords important"
+  ]
+}

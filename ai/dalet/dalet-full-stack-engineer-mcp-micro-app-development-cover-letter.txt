@@ -1,0 +1,7 @@
+Dalia's mix of conversational UX, multi-agent orchestration, and media workflow tooling is the kind of product surface I like working on.
+
+At OpenZeppelin, I co-led a React and TypeScript product area as one of two engineers, built SDK capabilities for integration-heavy workflows, and owned Rust backend work on an open-source relayer. Earlier at Rappi and Dxpress, I built ingestion and normalization pipelines across APIs, FTP, SOAP XML feeds, and ETL flows, then paired that backend work with internal operational interfaces.
+
+What stands out about Dalet is the chance to apply that mix of frontend, integration, and cloud-native experience to Dalia as it becomes commercially available across media operations.
+
+I'd welcome the chance to discuss how I could contribute to the team.

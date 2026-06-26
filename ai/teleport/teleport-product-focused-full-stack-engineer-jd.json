@@ -1,0 +1,385 @@
+{
+  "position": "Product-Focused Full Stack Engineer",
+  "company": "Teleport",
+  "department": "Engineering / Product Engineering",
+  "employment_type": "not_stated",
+  "seniority_level": "not_stated",
+  "work_model": {
+    "id": "constraint-work-model",
+    "state": "remote-first",
+    "source_quote": "Remote-first and globally distributed"
+  },
+  "location": {
+    "id": "constraint-location",
+    "state": "not_stated",
+    "source_quote": null
+  },
+  "compensation": {
+    "id": "constraint-compensation",
+    "state": "$189,040 - $278,000",
+    "source_quote": "Compensation Range: $189,040 - $278,000"
+  },
+  "eligibility": {
+    "id": "constraint-eligibility",
+    "visa": "not_stated",
+    "sponsorship": "not_stated",
+    "work_authorization": "not_stated",
+    "source_quote": null
+  },
+  "requirements": [
+    {
+      "id": "req-001",
+      "text": "Production Go experience",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Go experience"
+    },
+    {
+      "id": "req-002",
+      "text": "TypeScript experience",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "TypeScript and React experience"
+    },
+    {
+      "id": "req-003",
+      "text": "React experience for product user interfaces",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "TypeScript and React experience"
+    },
+    {
+      "id": "req-004",
+      "text": "Strong understanding of web security",
+      "category": "domain",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Strong understanding of web security"
+    },
+    {
+      "id": "req-005",
+      "text": "Product-focused full-stack engineering across user interfaces and backend APIs",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "You will build the user interfaces and backend APIs to implement them for all parts of Teleport."
+    },
+    {
+      "id": "req-006",
+      "text": "Ability to work across the full product lifecycle from customer understanding through design, implementation, testing, and documentation",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "You will work on the full product lifecycle from working with customers to understand their problems, writing RFDs for your proposed design, implementation, testing, and documentation."
+    },
+    {
+      "id": "req-007",
+      "text": "Experience writing design proposals or RFD-style technical design documents",
+      "category": "experience",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "writing RFDs for your proposed design"
+    },
+    {
+      "id": "req-008",
+      "text": "Comfort contributing to open source codebases",
+      "category": "experience",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Teleport is an open source project and most of the code you will write will be open source"
+    },
+    {
+      "id": "req-009",
+      "text": "Ability to implement backend work in Go or Rust alongside TypeScript and React",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "written in Go (or Rust), TypeScript, React"
+    },
+    {
+      "id": "req-010",
+      "text": "Customer empathy and ability to understand user problems before building",
+      "category": "experience",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "working with customers to understand their problems"
+    },
+    {
+      "id": "req-011",
+      "text": "Ability to improve product efficiency through server-side pagination and filtering",
+      "category": "technical_skill",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Making Teleport more efficient by adding server-side pagination and filtering capabilities"
+    },
+    {
+      "id": "req-012",
+      "text": "Ability to design onboarding and setup experiences that guide users through complex infrastructure workflows",
+      "category": "domain",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "designing experiences that guide the user through the setup and onboarding process"
+    },
+    {
+      "id": "req-013",
+      "text": "Ability to build interfaces that support passwordless security experiences",
+      "category": "domain",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Building user interfaces that support our passwordless vision."
+    },
+    {
+      "id": "req-014",
+      "text": "Ability to contribute to a desktop app that provides access to Teleport resources",
+      "category": "technical_skill",
+      "priority": "low",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Teleport Connect, a desktop app providing quick access to Teleport resources"
+    },
+    {
+      "id": "req-015",
+      "text": "Interest in infrastructure identity for humans, machines, workloads, and AI agents",
+      "category": "domain",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "giving every human, machine, workload, and AI agent a cryptographically secured identity"
+    },
+    {
+      "id": "req-016",
+      "text": "Ability to work in a small, autonomous, collaborative team where product impact is visible",
+      "category": "other",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "the team is small, and your work shows up directly in the product"
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Build product user interfaces and matching backend APIs across Teleport.",
+      "requirement_ids": ["req-001", "req-002", "req-003", "req-005", "req-009"]
+    },
+    {
+      "text": "Improve data-heavy Teleport surfaces with server-side pagination and filtering.",
+      "requirement_ids": ["req-001", "req-005", "req-011"]
+    },
+    {
+      "text": "Design guided setup, onboarding, and passwordless interfaces for complex infrastructure identity workflows.",
+      "requirement_ids": ["req-003", "req-004", "req-012", "req-013", "req-015"]
+    },
+    {
+      "text": "Own product lifecycle work from customer problem discovery and RFDs through implementation, testing, and documentation.",
+      "requirement_ids": ["req-006", "req-007", "req-010"]
+    },
+    {
+      "text": "Contribute mostly open source code in Go or Rust, TypeScript, and React.",
+      "requirement_ids": ["req-001", "req-002", "req-003", "req-008", "req-009"]
+    }
+  ],
+  "success_outcomes": [
+    {
+      "text": "Teleport users can reach infrastructure resources more quickly through efficient, guided product flows.",
+      "requirement_ids": ["req-005", "req-011", "req-012", "req-014"]
+    },
+    {
+      "text": "Security-sensitive identity experiences remain easy to use while supporting Teleport's passwordless direction.",
+      "requirement_ids": ["req-004", "req-013", "req-015"]
+    },
+    {
+      "text": "Design proposals, tests, documentation, and open source implementation make product changes maintainable and reviewable.",
+      "requirement_ids": ["req-006", "req-007", "req-008"]
+    }
+  ],
+  "keyword_signals": [
+    {
+      "term": "Go",
+      "reason": "Explicit must-have and challenge language.",
+      "priority": "high"
+    },
+    {
+      "term": "TypeScript",
+      "reason": "Explicit must-have and challenge language.",
+      "priority": "high"
+    },
+    {
+      "term": "React",
+      "reason": "Explicit must-have for UI implementation.",
+      "priority": "high"
+    },
+    {
+      "term": "web security",
+      "reason": "Explicit high-priority screening requirement.",
+      "priority": "high"
+    },
+    {
+      "term": "backend APIs",
+      "reason": "Core full-stack responsibility paired with UI work.",
+      "priority": "high"
+    },
+    {
+      "term": "product-focused full stack",
+      "reason": "Role framing emphasizes product-focused full-stack engineers.",
+      "priority": "high"
+    },
+    {
+      "term": "Rust",
+      "reason": "Allowed backend implementation language alongside Go.",
+      "priority": "medium"
+    },
+    {
+      "term": "open source",
+      "reason": "Most role code is expected to be open source.",
+      "priority": "medium"
+    },
+    {
+      "term": "server-side pagination",
+      "reason": "Specific near-term product efficiency work.",
+      "priority": "medium"
+    },
+    {
+      "term": "filtering",
+      "reason": "Specific near-term product efficiency work.",
+      "priority": "medium"
+    },
+    {
+      "term": "onboarding",
+      "reason": "Specific product area for guided setup experiences.",
+      "priority": "medium"
+    },
+    {
+      "term": "passwordless",
+      "reason": "Product vision signal tied to identity and security UX.",
+      "priority": "medium"
+    },
+    {
+      "term": "RFD",
+      "reason": "Design proposal artifact explicitly named in lifecycle expectations.",
+      "priority": "medium"
+    },
+    {
+      "term": "infrastructure identity",
+      "reason": "Company positioning and mission keyword.",
+      "priority": "medium"
+    }
+  ],
+  "screening_priorities": [
+    {
+      "id": "screen-001",
+      "rank": 1,
+      "reason": "The explicit must-haves combine Go, TypeScript, React, and web security.",
+      "requirement_ids": ["req-001", "req-002", "req-003", "req-004", "req-009"],
+      "evidence": "Go experience; TypeScript and React experience; Strong understanding of web security"
+    },
+    {
+      "id": "screen-002",
+      "rank": 2,
+      "reason": "The role is not just implementation; it expects product lifecycle ownership from customer problem to documentation.",
+      "requirement_ids": ["req-005", "req-006", "req-007", "req-010"],
+      "evidence": "full product lifecycle from working with customers... writing RFDs... implementation, testing, and documentation"
+    },
+    {
+      "id": "screen-003",
+      "rank": 3,
+      "reason": "Teleport's product work is security- and identity-heavy, with passwordless and cryptographic identity as central signals.",
+      "requirement_ids": ["req-004", "req-013", "req-015"],
+      "evidence": "Building user interfaces that support our passwordless vision"
+    },
+    {
+      "id": "screen-004",
+      "rank": 4,
+      "reason": "Open source collaboration and code review are likely important because most role code is open source.",
+      "requirement_ids": ["req-008", "req-016"],
+      "evidence": "most of the code you will write will be open source"
+    }
+  ],
+  "employer_constraints": [
+    {
+      "id": "constraint-001",
+      "type": "work_model",
+      "state": "remote-first",
+      "source_quote": "Remote-first and globally distributed"
+    },
+    {
+      "id": "constraint-002",
+      "type": "geography",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-003",
+      "type": "work_authorization",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-004",
+      "type": "compensation",
+      "state": "$189,040 - $278,000",
+      "source_quote": "Compensation Range: $189,040 - $278,000"
+    },
+    {
+      "id": "constraint-005",
+      "type": "travel",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-006",
+      "type": "schedule",
+      "state": "not_stated",
+      "source_quote": null
+    }
+  ],
+  "candidate_risk_notes": [
+    {
+      "id": "risk-001",
+      "text": "The JD is remote-first but does not state eligible countries, work authorization, visa, or sponsorship rules.",
+      "severity": "major",
+      "requirement_ids": [],
+      "constraint_ids": ["constraint-001", "constraint-002", "constraint-003"],
+      "source_quote": "Remote-first and globally distributed"
+    },
+    {
+      "id": "risk-002",
+      "text": "Role seniority is not explicitly stated even though compensation suggests a senior-level role.",
+      "severity": "minor",
+      "requirement_ids": [],
+      "constraint_ids": ["constraint-compensation"],
+      "source_quote": "Compensation Range: $189,040 - $278,000"
+    }
+  ],
+  "red_flags": [
+    {
+      "id": "risk-003",
+      "text": "No explicit country eligibility, work authorization, visa, or sponsorship terms are provided.",
+      "severity": "major",
+      "constraint_ids": ["constraint-002", "constraint-003"],
+      "source_quote": null
+    },
+    {
+      "id": "risk-004",
+      "text": "The JD does not state a formal job title beyond describing product-focused full-stack engineers.",
+      "severity": "minor",
+      "constraint_ids": [],
+      "source_quote": "We are looking for product focused full stack engineers"
+    }
+  ]
+}

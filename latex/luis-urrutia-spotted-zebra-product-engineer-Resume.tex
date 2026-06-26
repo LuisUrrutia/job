@@ -1,0 +1,167 @@
+% !TEX program = lualatex
+% chktex-file 26
+
+\documentclass{article}
+\usepackage[letterpaper,left=1.5cm,right=1.5cm,top=1.4cm,bottom=1.4cm]{geometry}
+\usepackage[fontsize=9pt]{fontsize}
+\usepackage{lmodern}
+
+\pagestyle{empty} % remove page number
+\linespread{1.25}
+\hyphenpenalty=900
+\righthyphenmin=3
+\emergencystretch=1.5em
+
+%====== LIST ======
+\usepackage{enumitem}
+\setlist[itemize]{left=1.2em, itemsep=0.2em, topsep=0.3em, parsep=0pt, partopsep=0pt}
+% \setlist{noitemsep,nosep}
+
+%====== LINKS AND METADATA ======
+\usepackage[bookmarks=false]{hyperref}
+\hypersetup{
+  hidelinks,
+  pdfpagemode=UseNone,
+  pdftitle={Luis Urrutia Resume},
+  pdfauthor={Luis Urrutia},
+  pdfsubject={Curriculum Vitae},
+  pdfkeywords={Software Engineer, React, React.js, TypeScript, JavaScript, Go, Next.js, Node.js}
+}
+
+\usepackage{microtype} % With hyphenation disabled, provide better spacing
+
+%====== FONTS ======
+\usepackage{fontspec}
+\setmainfont{SourceSans3}[
+   Path           = ./fonts/SourceSans3/,
+   Ligatures      = TeX,
+   Extension      = .ttf,
+   UprightFont    = SourceSans3-Light.ttf,
+   BoldItalicFont = SourceSans3-Italic.ttf,
+   BoldFont       = SourceSans3-Regular.ttf,
+   ItalicFont     = SourceSans3-ExtraLightItalic.ttf
+]
+\newfontfamily\Title{SourceSans3Title}[
+   Path          = ./fonts/SourceSans3/,
+   Extension     = .ttf,
+   Ligatures     = TeX,
+   UprightFont   = SourceSans3-Light.ttf,
+   BoldFont      = SourceSans3-Medium.ttf,
+]
+\newfontfamily\SubSection{SourceSans3Title}[
+   Path          = ./fonts/SourceSans3/,
+   Extension     = .ttf,
+   Ligatures     = TeX,
+   UprightFont   = SourceSans3-Medium.ttf,
+]
+
+%====== TITLE FORMATTING ======
+\usepackage{titlesec}
+\titleformat{\section}{\Title\fontsize{10}{12}}{\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}{\SubSection\fontsize{12}{10}}{\thesubsection}{1em}{}[]
+
+%====== CUSTOM COMMANDS ======
+\newcommand{\SubHeading}[1]{
+   \subsection*{#1}\vspace{-0.5em}
+}
+\newcommand{\WorkExperience}[2]{
+   \subsection*{#1}
+   \vspace{-1em}
+   \uppercase{#2}
+}
+\newcommand{\Skills}[1]{
+   \textit{\textbf{Skills:} #1}
+}
+
+\begin{document}
+\begin{center}
+	\begin{minipage}{0.5\textwidth}
+		{\fontsize{24}{28}\Title\addfontfeature{LetterSpace=5}{{\bfseries LUIS} URRUTIA}} \\
+		\bigskip
+		{\normalsize \MakeUppercase{Senior Full-Stack Engineer}}
+	\end{minipage} \hfill
+	\begin{minipage}{0.4\textwidth}
+		\raggedleft{}
+		Email: \href{mailto:luis@urrutia.me}luis@urrutia.me \\
+		Mobile: \href{tel:+56945380763}+56 9 45380763  \\
+		Location: Spain \\
+		LinkedIn: \href{https://linkedin.com/in/luisurrutiaf}{linkedin.com/in/luisurrutiaf} \\
+		GitHub: \href{https://github.com/LuisUrrutia}{github.com/LuisUrrutia}
+	\end{minipage}
+\end{center}
+
+\vspace{-3em}
+
+\phantom{Amazon, Microsoft, Facebook} % A/B Test
+
+\section*{EXPERIENCE}
+\WorkExperience{SOFTWARE ENGINEER \hfill UK, Remote}{OpenZeppelin \hfill 2023 {-} 2026} \\
+\Skills{TypeScript, React, Next.js, Express.js, GraphQL, PostgreSQL, Redis, Claude, Cursor, AWS, Kubernetes, Docker, Playwright, Jest, Rust}
+\begin{itemize}
+	\item Co-led Defender 2.0 Secure Audit as one of two engineers, building \textbf{TypeScript and React audit workflows} that helped auditors work with clients, track findings, verify fixes, and deliver final PDF reports.
+	\item Built \textbf{developer SDK capabilities} for Defender and OpenZeppelin Relayer OSS so Web3 developers and technical teams could integrate products and build custom automation tooling.
+	\item Supported the Defender sunset by closing feature gaps, improving documentation, and \textbf{working directly with enterprise users} during migration to OSS Relayer, which covered most enterprise Defender users.
+	\item Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including \textbf{RPC failover, signer integrations, and nonce reliability}.
+	\item Refactored the TypeScript monorepo build system through ESM migration, package exports, bundler and tsconfig updates, \textbf{reducing builds from 15 to 3 minutes}.
+\end{itemize}
+
+\WorkExperience{SOFTWARE ENGINEER \hfill US, Remote}{Premise \hfill 2021 {-} 2022} \\
+\Skills{TypeScript, React, Next.js, GraphQL, Apollo GraphQL, Express.js, PostgreSQL, Jest, GitHub Actions, Docker, Kubernetes, GCP}
+\begin{itemize}
+	\item Built a \textbf{client-facing React and TypeScript feature} that surfaced live data through one shareable URL instead of repeated PDF or PPT exports.
+	\item Contributed to the \textbf{REST to GraphQL migration with Apollo} across key entities, including Express.js service updates, improving API response times by 35\%.
+	\item Built an internal hackathon \textbf{OpenAI API proof of concept} for natural-language report generation.
+\end{itemize}
+
+\WorkExperience{SOFTWARE ENGINEER \hfill Colombia, Remote}{Rappi \hfill 2020 {-} 2021} \\
+\Skills{TypeScript, Node.js, Go, Redis, PostgreSQL, Kafka, Docker, Kubernetes, AWS, Angular}
+\begin{itemize}
+	\item Led development of an \textbf{internal integration and onboarding platform} with Go, Node.js, and Angular, saving \$75,000 annually.
+	\item Implemented \textbf{real-time catalog and pricing updates} with Go and Kafka, migrating core business logic from a Python ETL flow.
+	\item Engineered a \textbf{Redis-based conflict resolution layer} for duplicate and out-of-order updates, improving product data accuracy by 40\%.
+\end{itemize}
+
+\WorkExperience{SYSTEM ARCHITECT \hfill Santiago, Chile}{Vitamina Holding \hfill 2019 {-} 2022} \\
+\Skills{TypeScript, React, Express.js, Node.js, Azure, Kubernetes, Docker, C\#, Angular, MSSQL, MySQL, AWS}
+\begin{itemize}
+	\item Worked with product, engineering, and infrastructure teams to simplify release flow and \textbf{reduce delivery cycles from months to two weeks}.
+	\item Introduced DevOps practices and led a staged migration from on-prem infrastructure to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking.
+\end{itemize}
+
+\WorkExperience{FULL STACK DEVELOPER \hfill Santiago, Chile}{Resit SPA \hfill 2017 {-} 2019} \\
+\Skills{TypeScript, React, GraphQL, Express.js, React Native, Python, Django, MongoDB, MySQL, Docker, Kubernetes, AWS}
+\begin{itemize}
+	\item Delivered more than five web and mobile products across regulated and service sectors, working \textbf{end to end from discovery to implementation}.
+	\item Led architecture decisions and set engineering standards for \textbf{TypeScript, React, and React Native} across the company.
+	\item Worked directly with clients through \textbf{discovery calls, demos, and status updates}, including a short-deadline government project.
+\end{itemize}
+
+\WorkExperience{FULLSTACK DEVELOPER \hfill Santiago, Chile}{Dxpress \hfill 2015 {-} 2017} \\
+\Skills{TypeScript, Python, Go, PostgreSQL, Redis, Flask, GCP, Angular}
+\begin{itemize}
+	\item Contributed to building Dxpress \textbf{from idea to launch} as one of the first Uber Eats-style delivery services in Chile.
+\end{itemize}
+
+\section*{EDUCATION}
+\SubHeading{Bachelor of Engineering in Computer Science \hfill Santiago, Chile}
+Universidad Tecnologica de Chile \\[0.1em]
+2012 {-} 2015
+
+\section*{SKILLS}
+\begin{itemize}
+	\item \textbf{Frontend \& UI:} React, Next.js, React Native, Tailwind CSS, Storybook, Material-UI, Angular
+	\item \textbf{Languages:} TypeScript, JavaScript, Rust, Python, Go, C\#
+	\item \textbf{Testing \& QA:} Playwright, React Testing Library, Jest, Cypress, Pytest
+	\item \textbf{Backend \& APIs:} Node.js, Express.js, GraphQL, Apollo GraphQL, REST APIs
+	\item \textbf{Databases \& Messaging:} PostgreSQL, Redis, RabbitMQ, Kafka, MySQL, DynamoDB
+	\item \textbf{Cloud \& DevOps:} AWS, GCP, Azure, Docker, Kubernetes, Terraform, GitHub Actions
+	\item \textbf{AI \& Practices:} Claude, Cursor, OpenAI API POC, CI/CD, Agile, Scrum
+\end{itemize}
+
+\section*{LANGUAGES}
+\begin{itemize}[left=0pt]
+	\item \textbf{SPANISH}: Native
+	\item \textbf{ENGLISH}: Advanced {-} C1
+\end{itemize}
+
+\end{document}

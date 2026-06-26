@@ -1,0 +1,298 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Full-Stack Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "targetCompany": "Zama",
+  "targetRole": "Tech Lead, Product Integrations",
+  "summary": "Senior Full-Stack Engineer with 12+ years of experience building production systems and developer-facing platforms across Web3 security, B2B SaaS, marketplaces, and enterprise software. Recent OpenZeppelin work includes TypeScript-heavy product architecture, SDK capabilities for Web3 developers, EVM Relayer OSS ownership, KMS signer integrations, RPC failover, transaction cost handling, and a critical nonce race fix. Strongest fit for Zama is hands-on technical leadership where SDK ergonomics, partner integration friction, audit-aware blockchain tooling, and AI-assisted developer workflows all matter.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "TypeScript",
+        "Solidity",
+        "Rust",
+        "Claude",
+        "Cursor",
+        "React",
+        "Next.js",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "PostgreSQL",
+        "Redis",
+        "Playwright",
+        "Cypress",
+        "Jest",
+        "Express.js",
+        "Zustand",
+        "Tailwind CSS",
+        "Svelte",
+        "Stripe",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "Amazon SQS",
+        "AWS Lambda",
+        "DynamoDB"
+      ],
+      "description": [
+        "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including transaction cost handling, RPC failover, KMS signer integrations, and a fix for a critical nonce race condition.",
+        "Built SDK capabilities for Web3 developer integrations across Defender and OSS Relayer so technical teams could integrate products and build custom automation tooling.",
+        "Refactored the TypeScript monorepo and package architecture with ESM migration, package exports, bundler and tsconfig updates, reducing platform builds from about 15 minutes to 3 minutes.",
+        "Co-led Defender 2.0 Secure Audit as one of two engineers, building TypeScript and React workflows for smart contract audit delivery across findings, fix verification, client collaboration, and final PDF reports.",
+        "Supported the Defender sunset by closing feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer, which covered most enterprise Defender users.",
+        "Cut recoverable RPC and gas-spike alert noise by about 60% across Slack and PagerDuty, reducing wake-ups and making on-call incidents easier to triage."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Python",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Express.js",
+        "PostgreSQL",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "Jest",
+        "JavaScript",
+        "Material-UI",
+        "Tailwind CSS",
+        "Storybook",
+        "GitHub Actions",
+        "BigQuery"
+      ],
+      "description": [
+        "Built a client-facing MyPremise feature with React and TypeScript that surfaced live data through one shareable URL instead of repeated PDF or PPT exports.",
+        "Contributed to the REST to GraphQL migration with Apollo across key entities, improving API response times by 35% and lowering server usage.",
+        "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "TypeScript",
+        "Go",
+        "Python",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "Kubernetes",
+        "Docker",
+        "Node.js",
+        "Amazon Web Services (AWS)",
+        "Angular",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Led an internal integration and onboarding platform with Go, Node.js, and Angular, saving $75,000 annually and enabling faster onboarding for customer service teams.",
+        "Implemented real-time catalog and pricing updates with Go and Kafka, migrating Python ETL logic so product and discount changes reached the app faster and contributed to a 21% CSAT increase.",
+        "Engineered a Redis-based conflict resolution layer for duplicate and out-of-order updates, improving product data accuracy and reliability by 40%."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Python",
+        "C#",
+        "Azure",
+        "Kubernetes",
+        "Docker",
+        "Express.js",
+        "Node.js",
+        "Angular",
+        "Redux",
+        "Tailwind CSS",
+        "MSSQL",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Worked with product, engineering, and infrastructure teams to reduce release cycles from months to about two weeks.",
+        "Modernized key parts of the stack by moving from ASP.NET to Angular and from .NET Framework to .NET Core, removing Internet Explorer-only constraints and enabling Chrome compatibility.",
+        "Introduced DevOps practices and led a staged migration to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "TypeScript",
+        "React",
+        "React Native",
+        "GraphQL",
+        "Python",
+        "Django",
+        "Express.js",
+        "Kubernetes",
+        "Docker",
+        "Amazon Web Services (AWS)",
+        "Redux",
+        "Angular",
+        "MongoDB",
+        "MySQL",
+        "Tailwind CSS",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Delivered more than five web and mobile products for clients, working end to end from discovery to implementation across regulated and public-sector contexts.",
+        "Led architecture decisions for each project and set TypeScript, React, and React Native standards across the company.",
+        "Mentored five developers through pairing sessions, code reviews, and workshops focused on architecture, testing, and code quality.",
+        "Worked directly with clients through discovery calls, demos, and status updates."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "TypeScript",
+        "Python",
+        "Go",
+        "Flask",
+        "PostgreSQL",
+        "Redis",
+        "Google Cloud Platform (GCP)",
+        "Angular",
+        "JavaScript",
+        "Tile38",
+        "Git"
+      ],
+      "description": [
+        "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile.",
+        "Focused on Python and Go backend services for search, geolocation, real-time operations, and product ETL workflows."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "JavaScript",
+        "Python",
+        "Django",
+        "Node.js",
+        "AngularJS",
+        "PHP",
+        "Laravel",
+        "Vagrant"
+      ],
+      "description": [
+        "Started as a junior developer and took on growing frontend ownership, helping introduce Node.js and AngularJS into the agency stack."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": ["React", "Next.js", "Redux", "Zustand", "React Native", "Tailwind CSS", "Storybook", "Material-UI", "Svelte", "Angular", "AngularJS", "HTML5", "CSS"]
+    },
+    {
+      "category": "Languages",
+      "items": ["TypeScript", "Solidity", "Rust", "Go", "Python", "JavaScript", "C#", "PHP"]
+    },
+    {
+      "category": "Testing & QA",
+      "items": ["Playwright", "React Testing Library", "Jest", "Cypress", "Pytest"]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": ["REST APIs", "GraphQL", "Apollo GraphQL", "Node.js", "Express.js", "WebSockets", "Django", "Flask", "Laravel"]
+    },
+    {
+      "category": "Databases & Messaging",
+      "items": ["PostgreSQL", "Redis", "DynamoDB", "Kafka", "Amazon SQS", "MSSQL", "MongoDB", "MySQL", "BigQuery", "Tile38"]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": ["AWS", "Amazon Web Services (AWS)", "Kubernetes", "Docker", "Terraform", "GCP", "Google Cloud Platform (GCP)", "Azure", "AWS Lambda", "GitHub Actions", "CloudWatch", "Sentry", "Serverless"]
+    },
+    {
+      "category": "Platforms & Practices",
+      "items": ["Claude", "Cursor", "CI/CD", "Microservices", "Stripe", "Agile", "Scrum", "Git", "Vagrant"]
+    }
+  ],
+  "additional": {
+    "technicalSkills": ["TypeScript", "Solidity", "Rust", "React", "Next.js", "Claude", "Cursor", "Go", "Python", "GraphQL", "RESTful APIs", "PostgreSQL", "Redis", "Kafka", "Docker", "Kubernetes", "AWS", "Terraform", "GCP", "Azure", "Playwright", "Jest", "Cypress", "Express.js", "Node.js", "JavaScript", "Redux", "Zustand", "Svelte", "Angular", "Django", "Flask", "React Native", "Storybook", "Material-UI", "Tailwind CSS", "shadcn/ui", "CSS", "HTML5", "MSSQL", "WebSockets", "MySQL", "MongoDB", "RabbitMQ", "GitHub Actions", "Serverless", "Mocha", "Pytest", "Agile", "Scrum", "Git", "Microservices", "SOLID Principles"],
+    "languages": ["Spanish (Native)", "English (Advanced - C1)"],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "company_profile": {
+    "description": "Zama is an open source cryptography company building Fully Homomorphic Encryption solutions for blockchain and confidential on-chain finance.",
+    "mission": "Make privacy practical by making end-to-end encrypted computation mainstream, including on public blockchains.",
+    "vision": "Confidential assets can be issued, traded, and managed natively on public blockchains with verifiability and programmable compliance.",
+    "values": ["Privacy by default", "Open source cryptography", "Remote-friendly collaboration", "Fair and skills-based hiring"],
+    "products": ["Zama Protocol", "Zama SDK", "@zama-fhe/sdk", "@zama-fhe/react-sdk", "ERC-7984 confidential token standard", "Zama App", "Confidential token wrappers"],
+    "services": ["Confidential RWA tokenization", "Confidential corporate payments", "Confidential payroll", "Confidential DeFi", "Confidential token distribution"],
+    "target_customers": ["Wallets", "Custodians", "Exchanges", "dApps", "Financial institutions", "Institutional on-chain finance teams", "Developers building confidential applications"],
+    "industry": "Confidential blockchain infrastructure and cryptography",
+    "business_model": "Open source protocol, SDK, and ecosystem infrastructure for confidential on-chain finance.",
+    "recent_signals": [
+      "Zama positions the protocol as confidential on-chain finance for public blockchains using Fully Homomorphic Encryption.",
+      "The Zama SDK provides core TypeScript and React packages for shielding, unshielding, confidential transfers, signer adapters, and React hooks.",
+      "ERC-7984 offers encrypted balances, confidential transfers, public verifiability, and programmable compliance while preserving a familiar ERC-20-style developer workflow.",
+      "Zama highlights institutional deployments and ecosystem examples including T-REX, Bron, Raycash, Blockscout, and GSR."
+    ],
+    "source_notes": [
+      {"claim": "Zama is an open source cryptography company building state-of-the-art Fully Homomorphic Encryption solutions for blockchain.", "source_type": "official_site", "source_url": "https://www.zama.org/about", "confidence": "direct"},
+      {"claim": "The Zama Protocol enables confidential assets to be issued, traded, and managed natively on public blockchains with full verifiability and programmable compliance.", "source_type": "official_site", "source_url": "https://www.zama.org/", "confidence": "direct"},
+      {"claim": "The Zama SDK includes @zama-fhe/sdk and @zama-fhe/react-sdk for vanilla TypeScript, Node.js, React apps, signer adapters, confidential transfers, shielding, unshielding, React hooks, and cached decryption.", "source_type": "official_docs", "source_url": "https://docs.zama.org/protocol/sdk", "confidence": "direct"},
+      {"claim": "ERC-7984 provides encrypted balances, confidential transfers, public verifiability, and programmable compliance for financial institutions operating on-chain.", "source_type": "official_site", "source_url": "https://www.zama.org/erc-7984", "confidence": "direct"},
+      {"claim": "The role focuses on taking the Zama SDK from public beta to production-grade release for wallets, custodians, exchanges, and financial infrastructure.", "source_type": "job_description", "source_url": "user-provided job description", "confidence": "jd_only"}
+    ]
+  }
+}

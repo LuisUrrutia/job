@@ -1,0 +1,132 @@
+{
+  "position": "Senior Fullstack Software Engineer",
+  "company": "Tether",
+  "department": "Engineering",
+  "work_model": "remote",
+  "employment_type": "full-time",
+  "work_eligibility_requirements": [],
+  "geographic_restrictions": [],
+  "seniority_level": "senior",
+  "experience_years": 5,
+  "experience_requirements": [
+    "5+ years of experience in fullstack development with strong emphasis on backend systems",
+    "Proven experience building and scaling distributed systems or event-driven architectures"
+  ],
+  "education_requirements": [],
+  "certification_requirements": [],
+  "required_skills": [
+    "Node.js",
+    "JavaScript",
+    "React",
+    "Backend systems",
+    "Distributed systems",
+    "Event-driven architecture",
+    "API design",
+    "Authentication",
+    "Rate limiting",
+    "API versioning",
+    "Docker",
+    "Kubernetes",
+    "Databases",
+    "Data modeling",
+    "Data optimization",
+    "Networking",
+    "Security principles",
+    "Production systems",
+    "Real-time data streaming",
+    "RPC implementations",
+    "Remote communication"
+  ],
+  "preferred_skills": [
+    "Hyperswarm",
+    "libp2p",
+    "WebRTC",
+    "Peer-to-peer technologies",
+    "AI/ML inference APIs",
+    "OpenAI-compatible endpoints",
+    "AI SaaS",
+    "PaaS platforms",
+    "GPU resource management",
+    "ML framework infrastructure",
+    "Redis",
+    "RabbitMQ",
+    "Kafka",
+    "Prometheus",
+    "Grafana",
+    "ELK stack",
+    "WebAssembly",
+    "Edge computing",
+    "Open-source contributions"
+  ],
+  "soft_skills": [
+    "English communication",
+    "Independent remote work",
+    "Cross-functional collaboration",
+    "Code review",
+    "Testing",
+    "Documentation"
+  ],
+  "domain_requirements": [
+    "GPU-accelerated cloud services",
+    "AI/ML workloads",
+    "Decentralized AI infrastructure",
+    "Developer platforms",
+    "Fintech",
+    "Digital assets"
+  ],
+  "key_responsibilities": [
+    "Design and implement backend services and APIs for AI model inference, resource orchestration, and workload distribution across distributed GPU infrastructure",
+    "Build responsive web interfaces for training job management, model deployment workflows, and real-time monitoring dashboards",
+    "Contribute to distributed systems using peer-to-peer technologies, specifically the Holepunch stack",
+    "Develop APIs for synchronous and asynchronous inference patterns compatible with industry standards",
+    "Implement monitoring, logging, and telemetry for high availability and performance",
+    "Work with DevOps, AI/ML engineers, and product teams to deliver integrated solutions",
+    "Maintain code quality through peer reviews, testing, documentation, and security best practices"
+  ],
+  "success_outcomes": [
+    "Scale GPU-accelerated cloud services for AI/ML workloads",
+    "Make AI deployment workflows accessible to developers and data scientists",
+    "Improve production reliability, monitoring, and platform performance",
+    "Support decentralized AI infrastructure through distributed and peer-to-peer systems"
+  ],
+  "keywords": [
+    { "term": "backend", "priority": "high", "count_in_jd": 4 },
+    { "term": "distributed systems", "priority": "high", "count_in_jd": 3 },
+    { "term": "AI/ML", "priority": "high", "count_in_jd": 3 },
+    { "term": "API", "priority": "high", "count_in_jd": 5 },
+    { "term": "React", "priority": "high", "count_in_jd": 1 },
+    { "term": "Node.js", "priority": "high", "count_in_jd": 1 },
+    { "term": "JavaScript", "priority": "high", "count_in_jd": 2 },
+    { "term": "Kubernetes", "priority": "high", "count_in_jd": 2 },
+    { "term": "Docker", "priority": "high", "count_in_jd": 1 },
+    { "term": "real-time", "priority": "high", "count_in_jd": 2 },
+    { "term": "RPC", "priority": "high", "count_in_jd": 1 },
+    { "term": "peer-to-peer", "priority": "medium", "count_in_jd": 2 },
+    { "term": "Redis", "priority": "medium", "count_in_jd": 1 },
+    { "term": "Kafka", "priority": "medium", "count_in_jd": 1 },
+    { "term": "observability", "priority": "medium", "count_in_jd": 1 },
+    { "term": "OpenAI-compatible", "priority": "medium", "count_in_jd": 1 }
+  ],
+  "must_have_checklist": [
+    "5+ years fullstack development with strong backend emphasis",
+    "Expert-level Node.js/JavaScript backend development",
+    "React frontend framework experience",
+    "Distributed systems or event-driven architecture experience",
+    "API design and implementation, including authentication, rate limiting, and versioning",
+    "Docker and Kubernetes experience",
+    "Database proficiency with data modeling and optimization",
+    "Networking, security principles, and production systems experience",
+    "Real-time data streaming and RPC implementations",
+    "Independent remote work and cross-time-zone communication"
+  ],
+  "screening_weights": {
+    "required_experience": 25,
+    "required_skills": 40,
+    "education": 0,
+    "preferred_qualifications": 35
+  },
+  "red_flags": [
+    "Role emphasizes AI/ML inference, GPU infrastructure, and peer-to-peer protocols that are not listed as required but are central to the role context",
+    "JD asks for expert-level Node.js/JavaScript backend development, so recent backend ownership evidence should be explicit"
+  ]
+}

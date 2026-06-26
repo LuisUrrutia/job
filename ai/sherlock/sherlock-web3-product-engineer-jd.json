@@ -1,0 +1,177 @@
+{
+  "position": "Web3 Product Engineer",
+  "company": "Sherlock",
+  "department": "Product Engineering / Sherlock AI",
+  "work_model": "remote",
+  "employment_type": "full-time",
+  "work_eligibility_requirements": [],
+  "geographic_restrictions": [
+    "Working hours must meaningfully overlap with US or EU timezones"
+  ],
+  "seniority_level": "senior",
+  "experience_years": 5,
+  "experience_requirements": [
+    "Senior-level Python engineering experience",
+    "Experience shipping SaaS or software products to production",
+    "Experience owning user-facing product work from ambiguous problem to shipped feature",
+    "Experience with technical customer calls and translating customer needs into product changes",
+    "Hands-on experience using LLMs daily and shipping at least one feature where value depends on LLM output quality"
+  ],
+  "education_requirements": [],
+  "certification_requirements": [],
+  "required_skills": [
+    "Python",
+    "Product engineering",
+    "SaaS product development",
+    "Customer discovery",
+    "Technical customer calls",
+    "Next.js",
+    "TypeScript",
+    "Modern frontend development",
+    "UX implementation",
+    "LLMs",
+    "Prompting",
+    "Judging or evaluation of LLM outputs",
+    "High-agency execution",
+    "Product judgment",
+    "Remote collaboration across US or EU timezones"
+  ],
+  "preferred_skills": [
+    "LLM evals",
+    "LLM benchmarking",
+    "Retrieval",
+    "Vector databases",
+    "Prompt engineering",
+    "Smart contract security",
+    "Audits",
+    "Bug reports",
+    "Solidity",
+    "EVM",
+    "Foundry",
+    "Hardhat",
+    "Crypto",
+    "DeFi",
+    "Startup environment"
+  ],
+  "soft_skills": [
+    "customer-first thinking",
+    "clear communication",
+    "ownership",
+    "ambiguity management",
+    "product judgment",
+    "directness",
+    "collaboration with developers and security researchers",
+    "bias for shipping"
+  ],
+  "domain_requirements": [
+    "Web3 security",
+    "Smart contract audit workflows",
+    "Protocol team needs",
+    "Developer-facing security tooling",
+    "AI-assisted blockchain security"
+  ],
+  "key_responsibilities": [
+    "Talk directly with protocol teams and turn product needs into shipped product or UI changes",
+    "Own frontend and product surfaces in Next.js and TypeScript from UX flow to working implementation",
+    "Improve prompting, judging, deduplication, and false-positive reduction for an AI security product",
+    "Build and maintain benchmarks and evaluations for LLM-based security outputs",
+    "Make product calls in ambiguous areas without waiting for fully scoped tickets",
+    "Work closely with developers, security researchers, auditors, and customers",
+    "Stay current with AI and LLM workflows and apply them to product development"
+  ],
+  "success_outcomes": [
+    "Protocol customers can understand and act on security findings more easily",
+    "Sherlock AI produces clearer findings with fewer false positives and less duplicate noise",
+    "Customer conversations turn into fast, useful product improvements",
+    "Security workflows connect development, audit, remediation, and reporting",
+    "AI product quality improves through better prompts, judging, benchmarks, and evaluation loops"
+  ],
+  "keywords": [
+    {
+      "term": "Python",
+      "priority": "high",
+      "count_in_jd": 4
+    },
+    {
+      "term": "LLM",
+      "priority": "high",
+      "count_in_jd": 6
+    },
+    {
+      "term": "product engineer",
+      "priority": "high",
+      "count_in_jd": 4
+    },
+    {
+      "term": "customer calls",
+      "priority": "high",
+      "count_in_jd": 3
+    },
+    {
+      "term": "Next.js",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "TypeScript",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "prompting",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "judging",
+      "priority": "high",
+      "count_in_jd": 2
+    },
+    {
+      "term": "benchmarks",
+      "priority": "medium",
+      "count_in_jd": 2
+    },
+    {
+      "term": "audits",
+      "priority": "medium",
+      "count_in_jd": 2
+    },
+    {
+      "term": "Solidity",
+      "priority": "medium",
+      "count_in_jd": 1
+    },
+    {
+      "term": "EVM",
+      "priority": "medium",
+      "count_in_jd": 1
+    }
+  ],
+  "must_have_checklist": [
+    "Senior-level Python experience",
+    "Production SaaS or product engineering experience",
+    "Modern frontend ownership with Next.js and TypeScript",
+    "Ability to turn UX flows and states into working product UI",
+    "Daily LLM use",
+    "Shipped feature whose value depends on LLM output quality such as prompting, judging, retrieval, or evals",
+    "Technical customer-call experience",
+    "Evidence of turning customer conversations into product changes",
+    "High-agency execution in underdefined product areas",
+    "Working-hours overlap with US or EU timezones"
+  ],
+  "screening_weights": {
+    "required_experience": 35,
+    "required_skills": 35,
+    "education": 0,
+    "preferred_qualifications": 30
+  },
+  "red_flags": [
+    "Pure backend, prompt, or UI specialist without product ownership",
+    "No Python experience",
+    "No genuine interest in UI or UX implementation",
+    "No shipped LLM-output-quality feature",
+    "No comfort with technical customer calls",
+    "Needs fully scoped tickets before starting work"
+  ]
+}

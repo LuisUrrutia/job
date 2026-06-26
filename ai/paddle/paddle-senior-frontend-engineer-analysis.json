@@ -1,0 +1,497 @@
+{
+  "job": {
+    "position": "Senior Frontend Engineer",
+    "company": "Paddle"
+  },
+  "candidate_constraints": {
+    "location": "Spain",
+    "timezone": "+01:00",
+    "work_authorization": "not_stated_for_paddle",
+    "visa_or_sponsorship_needed": "unknown",
+    "other_constraints": []
+  },
+  "fit_analysis": {
+    "requirement_pass": "14/16 matched, 2/16 partial",
+    "strengths": [
+      {
+        "text": "Strong TypeScript and React frontend record across OpenZeppelin, Premise, Resit, Vitamina, and multiple production products.",
+        "requirement_ids": ["req-001", "req-011"]
+      },
+      {
+        "text": "Senior ownership evidence includes co-leading a frontend-focused Secure Audit module, frontend architecture decisions, monorepo improvements, and end-to-end product delivery.",
+        "requirement_ids": ["req-002", "req-008", "req-011"]
+      },
+      {
+        "text": "Developer-experience fit is unusually relevant: he built SDK capabilities for Defender and OSS Relayer, improved documentation during an enterprise migration, and refactored package exports and TypeScript monorepo tooling.",
+        "requirement_ids": ["req-013", "req-014"]
+      },
+      {
+        "text": "Production ownership is well supported through alert-noise reduction, CI quality gates, release reliability, CloudWatch/Sentry exposure, and on-call triage improvements.",
+        "requirement_ids": ["req-010", "req-008"]
+      },
+      {
+        "text": "Mentoring and cross-functional communication are supported by mentoring five developers, client-facing delivery, enterprise-user migration support, and speaking experience.",
+        "requirement_ids": ["req-006", "req-007"]
+      },
+      {
+        "text": "Design-system adjacency is now well supported by Storybook adoption at Premise and Resit to improve product-designer and developer collaboration.",
+        "requirement_ids": ["req-003", "req-004"]
+      },
+      {
+        "text": "Payment and seller/developer domain adjacency is supported by Stripe billing, Transbank payment integrations, merchant ingestion pipelines, and developer tooling work.",
+        "requirement_ids": ["req-016", "req-013"]
+      },
+      {
+        "text": "React Router and Astro fit is partially supported by user clarification: React Router was used in almost all projects, and his personal website is built with Astro.",
+        "requirement_ids": ["req-012"]
+      },
+      {
+        "text": "AI curiosity is grounded by Claude/Cursor in the OpenZeppelin tech stack, an OpenAI API proof of concept at Premise, and active AI tooling side projects in the profile summary.",
+        "requirement_ids": ["req-015"]
+      }
+    ],
+    "gaps": [
+      {
+        "requirement_id": "req-005",
+        "status": "partial",
+        "severity": "major",
+        "reason": "UX quality, consistency, Storybook, testing, and product outcomes are supported, but explicit accessibility/WCAG/ARIA ownership is not recorded."
+      },
+      {
+        "requirement_id": "req-012",
+        "status": "partial",
+        "severity": "minor",
+        "reason": "React Router is supported by user clarification and Astro is supported through the personal website, but React Router 7 specifically and professional Astro ownership are not recorded."
+      }
+    ],
+    "eligibility_risks": [
+      {
+        "requirement_id": null,
+        "constraint_id": "constraint-001",
+        "severity": "major",
+        "constraint": "The official careers listing for the matching role states UK, Portugal, Ireland.",
+        "candidate_state": "Candidate is based in Spain, timezone +01:00.",
+        "source_quote": "Engineering Senior Frontend Engineer UK, Portugal, Ireland"
+      },
+      {
+        "requirement_id": null,
+        "constraint_id": "constraint-003",
+        "severity": "major",
+        "constraint": "Work authorization and sponsorship requirements are not stated in the JD.",
+        "candidate_state": "Candidate's Paddle-specific work authorization or sponsorship need is not recorded in info.json.",
+        "source_quote": null
+      },
+      {
+        "requirement_id": null,
+        "constraint_id": "constraint-002",
+        "severity": "minor",
+        "constraint": "The role is described as digital-first remote or hybrid, and the user clarified it is remote, but official country eligibility still appears limited to UK, Portugal, Ireland.",
+        "candidate_state": "Spain and +01:00 are operationally compatible with a UK/Portugal/Ireland setup, but Spain eligibility is not confirmed.",
+        "source_quote": "you can work remotely, from one of our stylish hubs, or even a bit of both"
+      }
+    ],
+    "resume_focus_priority": [
+      {
+        "rank": 1,
+        "focus": "Lead with TypeScript, React, CSS, frontend architecture, large-codebase work, and senior ownership.",
+        "requirement_ids": ["req-001", "req-002", "req-011"],
+        "screening_priority_id": "screen-001",
+        "screening_priority_rank": 1
+      },
+      {
+        "rank": 2,
+        "focus": "Show design-system and designer/developer workflow evidence: Storybook adoption at Premise and Resit, Material UI, shared component documentation, UI consistency, design handoff, and frontend standards without overstating formal design-system ownership beyond the clarification.",
+        "requirement_ids": ["req-003", "req-004", "req-005"],
+        "screening_priority_id": "screen-002",
+        "screening_priority_rank": 2
+      },
+      {
+        "rank": 3,
+        "focus": "Emphasize mentoring, technical planning, communication with non-technical stakeholders, and proactive quality/process improvements.",
+        "requirement_ids": ["req-006", "req-007", "req-008"],
+        "screening_priority_id": "screen-003",
+        "screening_priority_rank": 3
+      },
+      {
+        "rank": 4,
+        "focus": "Position OpenZeppelin SDK capabilities, OSS Relayer integration work, package exports, documentation improvements, and enterprise migration support as developer-experience evidence.",
+        "requirement_ids": ["req-013", "req-014"],
+        "screening_priority_id": "screen-004",
+        "screening_priority_rank": 4
+      },
+      {
+        "rank": 5,
+        "focus": "Use product outcomes, production monitoring, payment-adjacent integrations, and AI tooling as differentiators after the core frontend/design-system proof.",
+        "requirement_ids": ["req-009", "req-010", "req-015", "req-016"],
+        "screening_priority_id": "screen-005",
+        "screening_priority_rank": 5
+      }
+    ],
+    "keyword_usage": [
+      {
+        "term": "TypeScript",
+        "action": "Repeat prominently in summary, skills, and OpenZeppelin/Premise/Resit bullets where directly supported.",
+        "requirement_ids": ["req-001", "req-011"]
+      },
+      {
+        "term": "React",
+        "action": "Repeat prominently across frontend ownership, dashboard-like product work, and shared UI examples.",
+        "requirement_ids": ["req-001", "req-011"]
+      },
+      {
+        "term": "CSS",
+        "action": "Use in skills and summary only where supported by frontend stack evidence; do not invent deep CSS architecture details.",
+        "requirement_ids": ["req-001"]
+      },
+      {
+        "term": "design system",
+        "action": "Use with grounded phrasing: Storybook integration at Premise and Resit improved designer/developer workflow, shared component documentation, design handoff, and UI consistency; avoid claiming ownership of Paddle-scale design-system governance.",
+        "requirement_ids": ["req-003", "req-004"]
+      },
+      {
+        "term": "accessibility",
+        "action": "Do not claim direct accessibility ownership unless the user confirms evidence; current source only supports UI quality/testing/consistency.",
+        "requirement_ids": ["req-005"]
+      },
+      {
+        "term": "developer experience",
+        "action": "Use strongly around SDK capabilities, OSS Relayer integrations, package exports, documentation improvements, and custom automation tooling.",
+        "requirement_ids": ["req-013", "req-014"]
+      },
+      {
+        "term": "SDKs",
+        "action": "Use with OpenZeppelin Defender and OSS Relayer evidence.",
+        "requirement_ids": ["req-013", "req-014"]
+      },
+      {
+        "term": "public libraries",
+        "action": "Use for OSS Relayer and package-export work where backed; do not claim Paddle.js or Node SDK experience.",
+        "requirement_ids": ["req-013", "req-014"]
+      },
+      {
+        "term": "React Router 7",
+        "action": "List React Router as supported by user clarification; avoid claiming React Router 7 specifically unless the user confirms version 7.",
+        "requirement_ids": ["req-012"]
+      },
+      {
+        "term": "Astro",
+        "action": "List Astro as supported by the user's personal website, not as professional production ownership.",
+        "requirement_ids": ["req-012"]
+      },
+      {
+        "term": "DevOps",
+        "action": "Use around CI gates, monitoring, alert tuning, deployment/release work, and production ownership.",
+        "requirement_ids": ["req-010", "req-008"]
+      },
+      {
+        "term": "AI",
+        "action": "Use in summary or skills through Claude, Cursor, AI tooling side projects, and OpenAI API proof of concept.",
+        "requirement_ids": ["req-015"]
+      },
+      {
+        "term": "Merchant of Record",
+        "action": "Use only in cover-letter motivation or company-alignment phrasing, not as candidate experience.",
+        "requirement_ids": ["req-016"]
+      }
+    ],
+    "recommendation": "apply_with_risks"
+  },
+  "requirement_evidence_map": [
+    {
+      "requirement_id": "req-001",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers, building a full-stack module with a frontend focus in TypeScript and React."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature in MyPremise with React and TypeScript that surfaced up-to-date, often live data through a single shareable URL."
+        },
+        {
+          "role": "Skills",
+          "bullet": "Frontend & UI and Languages include React, TypeScript, CSS, HTML5, Tailwind CSS, Material-UI, Storybook, Next.js, Redux, and Zustand."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-002",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers and led end-to-end testing for Defender with Playwright on critical user flows."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products end to end and led architecture decisions for each project."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Worked with product, engineering, and infrastructure teams to simplify release flow and reduce delivery cycles from months to about two weeks."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-003",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Helped standardize the UI with Material UI and introduced Storybook for shared component documentation and design handoff, reducing prototyping time from one week to one day while improving consistency and reducing UI bugs."
+        },
+        {
+          "role": "User clarification",
+          "bullet": "At Premise and Resit, integrated Storybook to improve the workflow between designers and developers."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions and set engineering standards for TypeScript, React, and React Native across the company."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-004",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Introduced Storybook for shared component documentation and design handoff, improving UI consistency and reducing bugs."
+        },
+        {
+          "role": "User clarification",
+          "bullet": "At Premise and Resit, integrated Storybook to improve collaboration and handoff between designers and developers."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions across SSR vs SPA, state management, and i18n."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-005",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Standardized UI with Material UI and Storybook, improving consistency and reducing UI bugs."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Led end-to-end testing for Defender with Playwright, focusing on critical user flows to improve release confidence."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a live-data presentation feature so account managers and clients could use a single shareable URL instead of resending PDF or PPT exports."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-006",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Mentored five developers through pairing sessions, code reviews, and workshops focused on architecture, testing, and code quality."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led Defender 2.0 Secure Audit as one of two engineers."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-007",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked directly with enterprise users during Defender migration to OSS Relayer while improving documentation and closing feature gaps."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Worked directly with clients through discovery calls, demos, and status updates."
+        },
+        {
+          "role": "Summary",
+          "bullet": "Speaker on Angular, Ionic, Cucumber, and Redux in Chile."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-008",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored the TypeScript monorepo build system, reducing platform build times from about 15 minutes to 3 minutes while reducing bundle size and speeding up PR cycles."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Expanded test coverage with Jest and added GitHub Actions quality gates, reducing release cycles from one week to less than 24 hours."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Introduced DevOps practices and led a staged migration from on-prem to Azure hybrid infrastructure."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-009",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built Secure Audit workflows that helped smart contract auditors work directly with clients, track findings, verify fixes, and deliver final PDF reports."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a live-data presentation feature so account managers and clients could use a single shareable URL instead of resending exports after each update."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Implemented real-time catalog and pricing updates that contributed to a 21% increase in CSAT and improved NPS."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-010",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Cut alert noise by about 60% across Slack and PagerDuty by tuning recoverable RPC and gas-spike alerts, reducing wake-ups and making on-call incidents easier to triage."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "OpenZeppelin tech stack includes AWS, Kubernetes, Terraform, GitHub Actions, CloudWatch, Sentry, Docker, AWS Lambda, DynamoDB, and Amazon SQS."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Introduced DevOps practices and led staged migration from on-prem to Azure hybrid infrastructure."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-011",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored the TypeScript monorepo build system with ESM migration, package exports, bundler and tsconfig updates, plus lint and typecheck flow."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Worked in React, Next.js, TypeScript, Apollo GraphQL, Material-UI, Tailwind CSS, Storybook, Jest, and GitHub Actions."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-012",
+      "status": "partial",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "User clarification",
+          "bullet": "Used React Router in almost all projects, recently moving toward TanStack Router."
+        },
+        {
+          "role": "User clarification",
+          "bullet": "Built personal website with Astro."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-013",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate the products and build custom automation tooling."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Supported Defender sunset by closing feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored monorepo package exports and build tooling, reducing build times from about 15 minutes to 3 minutes."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-014",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including transaction cost handling, RPC balancing/retry/failover, KMS signer integrations, and a critical nonce race condition fix."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer for external developer and technical-team integration."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native across the company."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-015",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Summary",
+          "bullet": "Active builder of practical AI tooling side projects."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "OpenZeppelin tech stack includes Claude and Cursor."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation."
+        }
+      ]
+    },
+    {
+      "requirement_id": "req-016",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built Stripe billing integration in Defender 2.0 for self-serve Pro subscriptions and enterprise-tier plans."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Implemented transaction-related API flows with Express.js, including integrations with Transbank for payment processing use cases."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Built backend integrations for merchant ingestion pipelines covering pricing, stock, availability, bundles, and product attributes."
+        }
+      ]
+    }
+  ]
+}

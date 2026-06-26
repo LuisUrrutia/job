@@ -1,0 +1,814 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Full-Stack Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "timezone": "+01:00",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "summary": "Senior Full-Stack Engineer with 12+ years building product-facing and web security-adjacent systems across SaaS, marketplaces, Web3 security, and enterprise platforms. Brings the Teleport stack overlap in Go, TypeScript, and React: Go/Kafka catalog and onboarding systems at Rappi, React/TypeScript auditor and client workflows at OpenZeppelin, and backend API/data work that improved Premise API response times by 35%. Open-source contributor with Rust-based OSS Relayer ownership, KMS signer integrations, nonce-safety work, Playwright/Jest/Cypress testing, documentation, and direct enterprise-user migration support.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Rust",
+        "Express.js",
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "PostgreSQL",
+        "Redis",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "GitHub Actions",
+        "Zustand",
+        "Tailwind CSS",
+        "Svelte",
+        "Solidity",
+        "Stripe",
+        "Claude",
+        "Cursor",
+        "CloudWatch",
+        "Sentry",
+        "Amazon SQS",
+        "AWS Lambda",
+        "DynamoDB"
+      ],
+      "description": [
+        "Co-led Defender 2.0 Secure Audit as one of two engineers, building TypeScript and React workflows that helped smart contract auditors work with clients, track findings, verify fixes, and deliver final PDF reports.",
+        "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including transaction cost handling, RPC retry and failover paths, AWS KMS and GCP KMS signer integrations, and a critical nonce race condition fix.",
+        "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate security tooling and build custom automation workflows.",
+        "Supported the Defender sunset by closing feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer, which covered most enterprise Defender users.",
+        "Led Playwright end-to-end testing for Defender critical user flows, improving release confidence for security-sensitive product workflows.",
+        "Refactored the TypeScript monorepo build system through ESM migration, package exports, bundler and tsconfig updates, reducing local and CI build times from about 15 minutes to 3 minutes."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Express.js",
+        "Jest",
+        "PostgreSQL",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "GitHub Actions",
+        "Storybook",
+        "Material-UI",
+        "Tailwind CSS",
+        "Python",
+        "BigQuery",
+        "JavaScript"
+      ],
+      "description": [
+        "Built a client-facing MyPremise feature with React and TypeScript that surfaced live data through one shareable URL instead of repeated PDF or PPT exports.",
+        "Contributed to the REST-to-GraphQL migration with Apollo across key entities, including Express.js service updates, reducing endpoint churn, enabling more flexible data retrieval, and improving API response times by 35%.",
+        "Improved release reliability by expanding Jest coverage and adding GitHub Actions quality gates, reducing release cycles from one week to less than 24 hours.",
+        "Helped standardize the UI with Material UI and Storybook for shared component documentation and design handoff, reducing prototyping time from one week to one day."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "Go",
+        "TypeScript",
+        "Node.js",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "Docker",
+        "Kubernetes",
+        "Amazon Web Services (AWS)",
+        "Python",
+        "Angular",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, removing dependency on external engineering support, saving $75,000 annually, and giving customer service teams a faster onboarding path.",
+        "Implemented real-time catalog and pricing updates with Go and Kafka, migrating core business logic from a Python ETL flow so product and discount changes reached the app faster and contributed to a 21% CSAT increase.",
+        "Built backend integrations for merchant ingestion pipelines, normalizing data from FTP, APIs, SOAP XML feeds, and web scraping to support pricing, stock, availability, bundles, and product attributes.",
+        "Engineered a Redis-based conflict resolution layer for duplicate and out-of-order updates, improving product data accuracy and reliability by 40%.",
+        "Drove unit testing for critical pricing, offers, and bundles logic with an 80% coverage target, reducing critical rollout defects by 33%."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Express.js",
+        "Node.js",
+        "Python",
+        "Azure",
+        "Kubernetes",
+        "Docker",
+        "C#",
+        "Angular",
+        "Redux",
+        "Tailwind CSS",
+        "MSSQL",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Worked with product, engineering, and infrastructure teams to simplify release flow and reduce delivery cycles from months to about two weeks.",
+        "Modernized key parts of the stack by moving from ASP.NET to Angular and from .NET Framework to .NET Core, removing Internet Explorer-only constraints and enabling Chrome compatibility.",
+        "Implemented transaction-related API flows with Express.js, including integrations with Transbank for payment processing use cases.",
+        "Introduced DevOps practices and led a staged migration from on-prem to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "TypeScript",
+        "React",
+        "React Native",
+        "GraphQL",
+        "Express.js",
+        "Python",
+        "Django",
+        "MongoDB",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "Docker",
+        "Kubernetes",
+        "Redux",
+        "Tailwind CSS",
+        "Angular",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Delivered more than five web and mobile products for clients across medical, industrial, government, legal, and cultural sectors, working end to end from discovery and requirements to planning and implementation.",
+        "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native across the company.",
+        "Worked directly with clients through discovery calls, demos, and status updates, including delivery of the PIIA project under a short deadline that helped open government opportunities for the agency.",
+        "Mentored five developers through pairing sessions, code reviews, and workshops focused on architecture, testing, and code quality."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "Go",
+        "Python",
+        "TypeScript",
+        "Flask",
+        "PostgreSQL",
+        "Redis",
+        "Google Cloud Platform (GCP)",
+        "Angular",
+        "JavaScript",
+        "Tile38",
+        "Git"
+      ],
+      "description": [
+        "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile, working with a small product and engineering team inside an investment firm.",
+        "Built Python and Go backend services for advanced search, geolocation, real-time operational features, and product ETL workflows supporting catalogs with more than 5,000 products."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "AngularJS",
+        "JavaScript",
+        "PHP",
+        "Django",
+        "Python",
+        "Vagrant",
+        "Node.js",
+        "Laravel"
+      ],
+      "description": [
+        "Started as a junior developer and took on growing frontend ownership, helping introduce Node.js and AngularJS into the agency stack."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": [
+        "React",
+        "Next.js",
+        "Zustand",
+        "Redux",
+        "Svelte",
+        "React Native",
+        "Storybook",
+        "Material-UI",
+        "Tailwind CSS",
+        "Angular",
+        "AngularJS",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "category": "Languages",
+      "items": [
+        "Go",
+        "TypeScript",
+        "Rust",
+        "JavaScript",
+        "Python",
+        "Solidity",
+        "C#",
+        "PHP"
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "items": [
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "React Testing Library",
+        "Pytest"
+      ]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": [
+        "REST APIs",
+        "Express.js",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Node.js",
+        "WebSockets",
+        "Django",
+        "Flask",
+        "Laravel"
+      ]
+    },
+    {
+      "category": "Databases & Messaging",
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "Amazon SQS",
+        "DynamoDB",
+        "MySQL",
+        "MSSQL",
+        "MongoDB",
+        "BigQuery",
+        "Tile38"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "Kubernetes",
+        "Docker",
+        "AWS",
+        "Amazon Web Services (AWS)",
+        "GCP",
+        "Google Cloud Platform (GCP)",
+        "Terraform",
+        "GitHub Actions",
+        "AWS Lambda",
+        "Azure",
+        "CloudWatch",
+        "Sentry",
+        "Serverless"
+      ]
+    },
+    {
+      "category": "Platforms & Practices",
+      "items": [
+        "CI/CD",
+        "Git",
+        "Claude",
+        "Cursor",
+        "Stripe",
+        "Agile",
+        "Scrum",
+        "Microservices",
+        "Vagrant"
+      ]
+    }
+  ],
+  "additional": {
+    "technicalSkills": [
+      "Go",
+      "TypeScript",
+      "React",
+      "Rust",
+      "Next.js",
+      "Express.js",
+      "Node.js",
+      "RESTful APIs",
+      "GraphQL",
+      "Playwright",
+      "Jest",
+      "Cypress",
+      "PostgreSQL",
+      "Redis",
+      "Kafka",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "GCP",
+      "Terraform",
+      "GitHub Actions",
+      "CI/CD",
+      "JavaScript",
+      "Python",
+      "Zustand",
+      "Solidity",
+      "Redux",
+      "Svelte",
+      "Angular",
+      "Django",
+      "Flask",
+      "React Native",
+      "Storybook",
+      "Material-UI",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "CSS",
+      "HTML5",
+      "MSSQL",
+      "WebSockets",
+      "MySQL",
+      "MongoDB",
+      "RabbitMQ",
+      "Azure",
+      "Serverless",
+      "Mocha",
+      "Pytest",
+      "Claude",
+      "Cursor",
+      "Agile",
+      "Scrum",
+      "Git",
+      "Microservices",
+      "SOLID Principles"
+    ],
+    "languages": [
+      "Spanish (Native)",
+      "English (Advanced - C1)"
+    ],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "targetCompany": "Teleport",
+  "targetRole": "Senior Full Stack Engineer - Teleport Connect",
+  "company_profile": {
+    "description": "Teleport is the AI Infrastructure Identity Company, modernizing identity, access, and policy for infrastructure so engineering teams can move faster while improving resiliency against identity-based compromise.",
+    "mission": "Make trusted computing simple by giving humans, machines, workloads, and AI agents cryptographically secured identities with no shared secrets or standing privilege.",
+    "vision": "Make infrastructure trustworthy through unified identity, zero trust access, identity governance, and machine, workload, and agent identity.",
+    "values": [
+      "Write things down",
+      "Be professionals",
+      "Start simple and iterate",
+      "Be drivers, not passengers",
+      "Be builders",
+      "Lift each other up",
+      "Assume the principle of charity",
+      "Value each other's time"
+    ],
+    "products": [
+      "Teleport Infrastructure Identity Platform",
+      "Unified Identity Layer",
+      "Teleport Zero Trust Access",
+      "Teleport Identity Governance",
+      "Teleport Machine & Workload Identity",
+      "Teleport Identity Security",
+      "Teleport Connect",
+      "Agentic Identity Framework",
+      "Teleport Beams"
+    ],
+    "services": [
+      "Passwordless authentication and ephemeral least-privileged access",
+      "Access governance and compliance",
+      "Machine and workload identity",
+      "Infrastructure identity for AI agents and MCP tools",
+      "Vault-free privileged access management",
+      "Secure infrastructure access for engineering teams"
+    ],
+    "target_customers": [
+      "Platform engineering teams",
+      "Security teams",
+      "Infrastructure teams",
+      "AI infrastructure teams",
+      "Enterprises operating critical infrastructure",
+      "Open source Teleport users"
+    ],
+    "industry": "Infrastructure identity, zero trust access, and identity-based security for cloud, infrastructure, and AI systems.",
+    "business_model": "Open source Teleport project with commercial cloud, self-hosted, enterprise, and sales-led infrastructure identity offerings.",
+    "recent_signals": [
+      "Teleport positions itself as the AI Infrastructure Identity Company for humans, machines, workloads, and AI agents.",
+      "The platform emphasizes cryptographic identity, ephemeral privileges, no shared secrets, and no standing privilege.",
+      "Teleport highlights 20k GitHub stars and 5000+ community members for its open source project.",
+      "The Agentic AI offering treats engineers, machines, LLM tools, AI agents, MCP servers, and digital twins as first-class identities.",
+      "Teleport launched Beams as trusted ephemeral runtimes for infrastructure agents.",
+      "Teleport states it contracts and publishes third-party security audits annually and maintains SOC 2 Type II, ISO 27001, and HIPAA Security Rule compliance for cloud and self-hosted products."
+    ],
+    "open_roles": [
+      {
+        "title": "Senior Backend Engineer",
+        "url": "https://jobs.ashbyhq.com/goteleport/0a448299-d1f6-4eab-ac8e-efdfda2efc04",
+        "department": "Engineering",
+        "location": "United States (Remote); United Kingdom (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering software role with overlapping backend/security scope, but not the target full-stack Teleport Connect opening.",
+        "source_quote": "Senior Backend Engineer; United States (Remote); United Kingdom (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Threat Hunter",
+        "url": "https://jobs.ashbyhq.com/goteleport/0acd4797-d5ae-48cf-b334-938e55505d62",
+        "department": "Engineering",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "Threat Hunter; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Account Development Representative- West Coast",
+        "url": "https://jobs.ashbyhq.com/goteleport/0c1d528c-e72b-4284-91d8-b33b5c75a667",
+        "department": "Revenue",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Senior Account Development Representative- West Coast; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Backend Engineer - Machine & Workload Identity",
+        "url": "https://jobs.ashbyhq.com/goteleport/0f9915b0-9794-4421-b05e-ea5f2b821f97",
+        "department": "Engineering",
+        "location": "United Kingdom (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering software role with overlapping backend/security scope, but not the target full-stack Teleport Connect opening.",
+        "source_quote": "Senior Backend Engineer - Machine & Workload Identity; United Kingdom (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Field Engineer",
+        "url": "https://jobs.ashbyhq.com/goteleport/317e01b3-fe64-4885-ba81-33ef988c21ab",
+        "department": "Revenue",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Senior Field Engineer; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Generative Engine Optimization (GEO) Manager",
+        "url": "https://jobs.ashbyhq.com/goteleport/33e4767b-6ad1-4a34-950a-4df4287d1287",
+        "department": "Marketing",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Generative Engine Optimization (GEO) Manager; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Offensive Security Engineer, Red Team",
+        "url": "https://jobs.ashbyhq.com/goteleport/3835d711-7511-473c-847f-a16e634de556",
+        "department": "Engineering",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering software role with overlapping backend/security scope, but not the target full-stack Teleport Connect opening.",
+        "source_quote": "Offensive Security Engineer, Red Team; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Backend Engineer - Platform Scalability - US",
+        "url": "https://jobs.ashbyhq.com/goteleport/543d88d2-7ca9-4762-9006-5ebd0d64ce05",
+        "department": "Engineering",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "Senior Backend Engineer - Platform Scalability - US; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Backend Engineer - Platform Security - US",
+        "url": "https://jobs.ashbyhq.com/goteleport/5a856324-6995-4c72-b67a-fc9cd04d7897",
+        "department": "Engineering",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "Senior Backend Engineer - Platform Security - US; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Web Design Engineer",
+        "url": "https://jobs.ashbyhq.com/goteleport/5d4b7ad5-88e3-443e-9829-1ab04bff3f29",
+        "department": "Marketing",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Senior Web Design Engineer; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Backend Engineer",
+        "url": "https://jobs.ashbyhq.com/goteleport/5fc09c78-7237-4135-9c53-783badeea0e7",
+        "department": "Engineering",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "Senior Backend Engineer; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "IT Security and Automation Engineer",
+        "url": "https://jobs.ashbyhq.com/goteleport/62176999-281a-4975-8464-e8217582caf4",
+        "department": "Engineering",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "IT Security and Automation Engineer; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Backend Engineer - Platform Scalability - Ireland",
+        "url": "https://jobs.ashbyhq.com/goteleport/6c57ad7d-f27b-43f9-9172-0197b7d1526e",
+        "department": "Engineering",
+        "location": "Ireland (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "Senior Backend Engineer - Platform Scalability - Ireland; Ireland (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Full Stack Engineer - Teleport Connect",
+        "url": "https://jobs.ashbyhq.com/goteleport/900deafc-cd79-42b4-bb10-30497b6f5500",
+        "department": "Engineering",
+        "location": "United States (Remote); United Kingdom (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "likely_match",
+        "match_reason": "Official Ashby role matches the user-provided product-focused full-stack JD and names Teleport Connect.",
+        "source_quote": "Senior Full Stack Engineer - Teleport Connect; United States (Remote); United Kingdom (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Channel Sales Manager -EMEA",
+        "url": "https://jobs.ashbyhq.com/goteleport/949cafc3-46b1-4679-86f9-f0130b4422cc",
+        "department": "Revenue",
+        "location": "London, England",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Senior Channel Sales Manager -EMEA; London, England; FullTime; Remote"
+      },
+      {
+        "title": "Senior Backend Engineer - Platform Scalability - UK",
+        "url": "https://jobs.ashbyhq.com/goteleport/98a1b0c7-5b52-4283-931f-6a874664d561",
+        "department": "Engineering",
+        "location": "United Kingdom (Remote); London, England",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "Senior Backend Engineer - Platform Scalability - UK; United Kingdom (Remote); London, England; FullTime; Remote"
+      },
+      {
+        "title": "Director of Product, Internal Tools",
+        "url": "https://jobs.ashbyhq.com/goteleport/acce97c8-5b17-46af-906a-3263bcbb1ead",
+        "department": "Product",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Director of Product, Internal Tools; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "VP of Finance",
+        "url": "https://jobs.ashbyhq.com/goteleport/b9a68160-dc94-46fb-b07f-88e2b383a782",
+        "department": "Business Operations",
+        "location": "San Francisco Bay Area, CA",
+        "work_model": "Hybrid",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "VP of Finance; San Francisco Bay Area, CA; FullTime; Hybrid"
+      },
+      {
+        "title": "Accountant",
+        "url": "https://jobs.ashbyhq.com/goteleport/c27c8559-61d9-47f2-863c-6d22277e3d1c",
+        "department": "Business Operations",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Accountant; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Partner Marketing Manager",
+        "url": "https://jobs.ashbyhq.com/goteleport/c7dede38-725b-4f15-9222-747c9a565937",
+        "department": "Marketing",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Senior Partner Marketing Manager; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Product Designer",
+        "url": "https://jobs.ashbyhq.com/goteleport/d5eb4352-e857-4678-bcc1-ae176882afb6",
+        "department": "Product",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Senior Product Designer; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Backend Engineer - Platform Security - UK",
+        "url": "https://jobs.ashbyhq.com/goteleport/f15e3d80-c417-469f-8db0-a23b48608347",
+        "department": "Engineering",
+        "location": "United Kingdom (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role at Teleport, but title and scope differ from the target full-stack product role.",
+        "source_quote": "Senior Backend Engineer - Platform Security - UK; United Kingdom (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Senior Software Engineer, Security",
+        "url": "https://jobs.ashbyhq.com/goteleport/f920e496-90bd-4e62-a479-e45c47940d07",
+        "department": "Engineering",
+        "location": "United States (Remote); United Kingdom (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering software role with overlapping backend/security scope, but not the target full-stack Teleport Connect opening.",
+        "source_quote": "Senior Software Engineer, Security; United States (Remote); United Kingdom (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Product & Privacy Counsel",
+        "url": "https://jobs.ashbyhq.com/goteleport/fc87af71-8464-4e05-ae4d-668e029818d2",
+        "department": "Business Operations",
+        "location": "United States (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Product & Privacy Counsel; United States (Remote); FullTime; Remote"
+      },
+      {
+        "title": "Field Engineer - EMEA",
+        "url": "https://jobs.ashbyhq.com/goteleport/ffaaa533-b420-4c33-8157-761c213e6f9c",
+        "department": "Revenue",
+        "location": "United Kingdom (Remote)",
+        "work_model": "Remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different function or department from the target full-stack engineering role.",
+        "source_quote": "Field Engineer - EMEA; United Kingdom (Remote); FullTime; Remote"
+      }
+    ],
+    "source_notes": [
+      {
+        "claim": "Teleport unifies identities for humans, machines, and AI with strong identity implementation to speed engineering and improve resilience against identity-based attacks.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport establishes a unified identity layer secured cryptographically, with no shared secrets, no standing privilege, and no anonymity.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport describes its vision as making infrastructure trustworthy and trusted computing simple.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/about/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport culture behaviors include writing things down, starting simple and iterating, being drivers, being builders, lifting each other up, assuming charity, and valuing time.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/about/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport platform products include Zero Trust Access, Identity Governance, Machine & Workload Identity, and Identity Security.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/platform/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport Zero Trust Access includes passwordless authentication, ephemeral least-privileged access, certificate-based authentication, access governance and compliance, and elimination of VPNs and bastions.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/platform/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport Agentic AI gives every user, machine, and agent a cryptographic identity and governed access path across GPU clouds, Kubernetes clusters, model registries, and agentic workflows.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/use-cases/agentic-ai/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport Beams are trusted ephemeral runtimes for infrastructure agents with isolated VMs, delegated identity, and audit trails.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/use-cases/agentic-ai/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Teleport security commitments include annual third-party security audits, vulnerability scanning, incident response, SOC 2 Type II, ISO 27001, and HIPAA Security Rule compliance.",
+        "source_type": "official_site",
+        "source_url": "https://goteleport.com/security/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "The official careers page links to Ashby for current openings, and the Ashby API returned 25 listed roles.",
+        "source_type": "official_careers",
+        "source_url": "https://jobs.ashbyhq.com/goteleport",
+        "confidence": "direct"
+      },
+      {
+        "claim": "The likely matching target opening is Senior Full Stack Engineer - Teleport Connect on Ashby.",
+        "source_type": "official_careers",
+        "source_url": "https://jobs.ashbyhq.com/goteleport/900deafc-cd79-42b4-bb10-30497b6f5500",
+        "confidence": "direct"
+      },
+      {
+        "claim": "The user-provided JD describes a product-focused full-stack role building Teleport UI and backend APIs with Go or Rust, TypeScript, React, RFDs, testing, docs, Teleport Connect, server-side pagination, onboarding, and passwordless UI.",
+        "source_type": "job_description",
+        "source_url": "user-provided job description and matching Ashby role page",
+        "confidence": "jd_only"
+      }
+    ]
+  }
+}

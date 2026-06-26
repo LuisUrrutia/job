@@ -1,0 +1,108 @@
+{
+  "position": "Senior React Frontend Developer (AI Platform)",
+  "company": "x4-tech-1",
+  "department": "Engineering",
+  "work_model": "remote",
+  "employment_type": "full-time",
+  "work_eligibility_requirements": [
+    "Role is listed as fully remote within the European Union"
+  ],
+  "geographic_restrictions": [
+    "European Union only"
+  ],
+  "seniority_level": "senior",
+  "experience_years": 5,
+  "experience_requirements": [
+    "5+ years of experience building modern front-end applications using React",
+    "Experience building real-time, data-intensive UIs with WebSockets, streaming, or live updates",
+    "Experience designing developer-facing interfaces and tools",
+    "Experience integrating frontend applications with REST APIs and backend services",
+    "Experience working in fast-paced startup environments with evolving requirements"
+  ],
+  "education_requirements": [
+    "Bachelor's or Master's degree in Computer Science, Engineering, or a related field"
+  ],
+  "certification_requirements": [],
+  "required_skills": [
+    "React",
+    "TypeScript",
+    "JavaScript (ES6+)",
+    "WebSockets",
+    "Streaming UIs",
+    "Live updates",
+    "State management libraries",
+    "REST APIs",
+    "Developer-facing interfaces",
+    "Frontend performance"
+  ],
+  "preferred_skills": [
+    "AI/LLM-powered applications",
+    "Agent-based systems",
+    "Workflow visualization",
+    "Graphs",
+    "State machines",
+    "Design systems",
+    "Component libraries",
+    "Node.js",
+    "Python",
+    "Full-stack collaboration"
+  ],
+  "soft_skills": [
+    "ownership",
+    "clarity in complex systems",
+    "collaboration",
+    "adaptability",
+    "product thinking"
+  ],
+  "domain_requirements": [
+    "AI platform",
+    "AI agents",
+    "Developer tooling",
+    "Enterprise systems"
+  ],
+  "key_responsibilities": [
+    "Own the user-facing platform experience",
+    "Build intuitive, high-performance interfaces",
+    "Expose complex AI agent behavior in a clear and actionable way",
+    "Build real-time streaming UIs",
+    "Support workflow visualization",
+    "Create developer-focused tooling"
+  ],
+  "success_outcomes": [
+    "Deliver clear interfaces for complex AI-agent workflows",
+    "Build responsive real-time product experiences",
+    "Improve how developers and enterprise users interact with the platform",
+    "Ship effectively in a fast-moving startup environment"
+  ],
+  "keywords": [
+    { "term": "React", "priority": "high", "count_in_jd": 1 },
+    { "term": "TypeScript", "priority": "high", "count_in_jd": 1 },
+    { "term": "JavaScript", "priority": "high", "count_in_jd": 1 },
+    { "term": "real-time", "priority": "high", "count_in_jd": 2 },
+    { "term": "streaming", "priority": "high", "count_in_jd": 1 },
+    { "term": "live updates", "priority": "high", "count_in_jd": 1 },
+    { "term": "WebSockets", "priority": "high", "count_in_jd": 1 },
+    { "term": "state management", "priority": "high", "count_in_jd": 1 },
+    { "term": "REST APIs", "priority": "high", "count_in_jd": 1 },
+    { "term": "developer-focused tooling", "priority": "high", "count_in_jd": 1 },
+    { "term": "AI", "priority": "medium", "count_in_jd": 3 },
+    { "term": "workflow visualisation", "priority": "medium", "count_in_jd": 1 }
+  ],
+  "must_have_checklist": [
+    "Bachelor's or Master's degree in a relevant field",
+    "5+ years building modern front-end applications with React",
+    "Strong TypeScript and modern JavaScript proficiency",
+    "Experience with real-time, data-intensive UI work",
+    "Familiarity with state management libraries such as Redux or Zustand",
+    "Experience building developer-facing interfaces and tools",
+    "REST API and backend integration experience",
+    "Startup experience with evolving requirements"
+  ],
+  "screening_weights": {
+    "required_experience": 35,
+    "required_skills": 35,
+    "education": 10,
+    "preferred_qualifications": 20
+  },
+  "red_flags": []
+}

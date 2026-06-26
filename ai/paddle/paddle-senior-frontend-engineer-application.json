@@ -1,0 +1,887 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Frontend Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "timezone": "+01:00",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "summary": "Senior Frontend Engineer with 12+ years building production web products across B2B SaaS, enterprise platforms, marketplaces, and Web3 security. Deep in TypeScript, React, CSS, React Router, Storybook, and developer-facing tooling, with recent work spanning OpenZeppelin's Secure Audit frontend, SDK capabilities for external developers, and a TypeScript monorepo refactor that cut build times from about 15 minutes to 3 minutes. At Premise and Resit, integrated Storybook to improve how designers and developers worked together, with a focus on shared components, clearer handoff, and UI consistency. Brings production ownership across CI, monitoring, payment integrations, and AI-assisted development.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Zustand",
+        "Tailwind CSS",
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "Express.js",
+        "Stripe",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "Rust",
+        "Solidity",
+        "Svelte",
+        "PostgreSQL",
+        "Redis",
+        "Amazon SQS",
+        "AWS Lambda",
+        "DynamoDB",
+        "Claude",
+        "Cursor"
+      ],
+      "description": [
+        "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a TypeScript and React frontend with Zustand so auditors could work with clients, track findings, verify fixes, and deliver final PDF reports.",
+        "Built SDK capabilities for Defender and the open-source Relayer so developers and technical teams could integrate the products and build custom automation tooling.",
+        "Refactored the TypeScript monorepo build system through ESM migration, package exports, bundler and tsconfig updates, lint, and typecheck flow, cutting build times from about 15 minutes to 3 minutes while reducing bundle size.",
+        "Led Playwright end-to-end testing for critical Defender user flows, improving release confidence for a complex production frontend.",
+        "Owned production-facing Defender work, including Stripe billing integration for Pro and enterprise plans and alert tuning that cut Slack and PagerDuty noise by about 60%."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Storybook",
+        "Material-UI",
+        "Tailwind CSS",
+        "Jest",
+        "GitHub Actions",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Express.js",
+        "PostgreSQL",
+        "BigQuery",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "Python",
+        "JavaScript"
+      ],
+      "description": [
+        "Built a React and TypeScript presentation feature in MyPremise that surfaced up-to-date, often live data through one shareable URL, replacing repeated PDF or PPT exports after each update.",
+        "Integrated Storybook with Material UI to improve designer and developer handoff, document shared components, reduce prototyping time from one week to one day, and cut UI bugs.",
+        "Contributed to the migration from REST to GraphQL with Apollo across key entities, including Express.js service updates, improving API response times by 35% and lowering server usage.",
+        "Expanded Jest coverage and added GitHub Actions quality gates, reducing release cycles from one week to less than 24 hours by cutting manual testing effort."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "Angular",
+        "Go",
+        "Node.js",
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "Amazon Web Services (AWS)",
+        "Docker",
+        "Kubernetes",
+        "Python",
+        "Git"
+      ],
+      "description": [
+        "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, removing dependency on external engineering support, saving $75,000 annually, and helping customer service teams onboard merchants faster.",
+        "Built merchant ingestion pipelines that normalized data from FTP, APIs, SOAP XML feeds, and web scraping for pricing, stock, availability, bundles, and product attributes.",
+        "Implemented real-time catalog and pricing updates with Go and Kafka, moving core logic from Python ETL so product and discount changes reached the app faster and contributed to a 21% increase in CSAT."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Redux",
+        "Tailwind CSS",
+        "Express.js",
+        "Node.js",
+        "Angular",
+        "JavaScript",
+        "Python",
+        "C#",
+        "MSSQL",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "Azure",
+        "Kubernetes",
+        "Docker",
+        "Git"
+      ],
+      "description": [
+        "Improved architecture and delivery for a legacy internal platform, working with product, engineering, and infrastructure teams to reduce delivery cycles from months to about two weeks.",
+        "Implemented transaction-related API flows with Express.js, including Transbank payment processing integrations.",
+        "Introduced DevOps practices and led a staged migration from on-prem to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "TypeScript",
+        "React",
+        "React Native",
+        "Redux",
+        "Storybook",
+        "Tailwind CSS",
+        "GraphQL",
+        "Express.js",
+        "Node.js",
+        "Angular",
+        "JavaScript",
+        "Django",
+        "Python",
+        "MongoDB",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "Docker",
+        "Kubernetes",
+        "Git"
+      ],
+      "description": [
+        "Delivered more than five web and mobile products for clients across medical, industrial, government, legal, and cultural sectors, working from discovery and requirements through planning and implementation.",
+        "Integrated Storybook into React and TypeScript workflows to improve collaboration between designers and developers and make shared UI work easier to review and reuse.",
+        "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native across the company.",
+        "Mentored five developers through pairing sessions, code reviews, and workshops focused on architecture, testing, and code quality."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "TypeScript",
+        "JavaScript",
+        "Angular",
+        "Python",
+        "Go",
+        "Flask",
+        "PostgreSQL",
+        "Redis",
+        "Tile38",
+        "Google Cloud Platform (GCP)",
+        "Git"
+      ],
+      "description": [
+        "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile, working with a small product and engineering team.",
+        "Applied Angular on operational interfaces and built Python and Go services for search, geolocation, real-time operations, and ETL workflows that normalized catalogs with more than 5,000 products."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "JavaScript",
+        "AngularJS",
+        "Node.js",
+        "Django",
+        "Python",
+        "PHP",
+        "Laravel",
+        "Vagrant"
+      ],
+      "description": [
+        "Started as a junior developer and took on growing frontend ownership, helping introduce Node.js and AngularJS into the agency stack."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": [
+        "React",
+        "TypeScript",
+        "CSS",
+        "React Router",
+        "TanStack Router",
+        "Astro",
+        "Next.js",
+        "Storybook",
+        "Material-UI",
+        "Tailwind CSS",
+        "Redux",
+        "Zustand",
+        "React Native",
+        "Svelte",
+        "Angular",
+        "AngularJS",
+        "HTML5"
+      ]
+    },
+    {
+      "category": "Languages",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "Rust",
+        "Go",
+        "Python",
+        "Solidity",
+        "C#",
+        "PHP"
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "items": [
+        "Playwright",
+        "Jest",
+        "React Testing Library",
+        "Cypress",
+        "Pytest"
+      ]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": [
+        "Node.js",
+        "Express.js",
+        "REST APIs",
+        "GraphQL",
+        "Apollo GraphQL",
+        "WebSockets",
+        "Django",
+        "Flask",
+        "Laravel"
+      ]
+    },
+    {
+      "category": "Databases & Messaging",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "Kafka",
+        "DynamoDB",
+        "Amazon SQS",
+        "BigQuery",
+        "MSSQL",
+        "MongoDB",
+        "Tile38"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "AWS",
+        "Amazon Web Services (AWS)",
+        "AWS Lambda",
+        "GCP",
+        "Google Cloud Platform (GCP)",
+        "Azure",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "Serverless"
+      ]
+    },
+    {
+      "category": "Platforms & Practices",
+      "items": [
+        "SDKs",
+        "Developer Experience",
+        "Design Systems",
+        "CI/CD",
+        "Stripe",
+        "Claude",
+        "Cursor",
+        "Agile",
+        "Scrum",
+        "Git",
+        "Microservices",
+        "Vagrant"
+      ]
+    }
+  ],
+  "additional": {
+    "technicalSkills": [
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "React Router",
+      "TanStack Router",
+      "Astro",
+      "CSS",
+      "HTML5",
+      "Storybook",
+      "Material-UI",
+      "Tailwind CSS",
+      "Next.js",
+      "Redux",
+      "Zustand",
+      "React Native",
+      "Svelte",
+      "Angular",
+      "AngularJS",
+      "Node.js",
+      "Express.js",
+      "GraphQL",
+      "Apollo GraphQL",
+      "RESTful APIs",
+      "WebSockets",
+      "SDKs",
+      "Developer Experience",
+      "Design Systems",
+      "Stripe",
+      "Claude",
+      "Cursor",
+      "GitHub Actions",
+      "Playwright",
+      "Jest",
+      "Cypress",
+      "React Testing Library",
+      "Rust",
+      "Go",
+      "Python",
+      "Solidity",
+      "C#",
+      "PHP",
+      "MSSQL",
+      "MongoDB",
+      "PostgreSQL",
+      "MySQL",
+      "Redis",
+      "DynamoDB",
+      "BigQuery",
+      "Kafka",
+      "Amazon SQS",
+      "Tile38",
+      "AWS",
+      "Amazon Web Services (AWS)",
+      "AWS Lambda",
+      "GCP",
+      "Google Cloud Platform (GCP)",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "CloudWatch",
+      "Sentry",
+      "Serverless",
+      "Django",
+      "Flask",
+      "Laravel",
+      "shadcn/ui",
+      "RabbitMQ",
+      "Mocha",
+      "Pytest",
+      "Agile",
+      "Scrum",
+      "Git",
+      "CI/CD",
+      "Microservices",
+      "SOLID Principles",
+      "Vagrant"
+    ],
+    "languages": [
+      "Spanish (Native)",
+      "English (Advanced - C1)"
+    ],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "targetCompany": "Paddle",
+  "targetPosition": "Senior Frontend Engineer",
+  "jobSlug": "paddle-senior-frontend-engineer",
+  "company_profile": {
+    "description": "Paddle is a Merchant of Record platform for digital product businesses, managing payments, tax, compliance, fraud, billing, checkout, subscriptions, invoicing, reporting, and retention so software sellers can operate and grow globally with less operational complexity.",
+    "mission": "Help digital product companies operate and grow automatically by transforming complexity into simplicity.",
+    "vision": "Reach every market and capture every opportunity by helping sellers scale globally without adding payment, tax, compliance, and billing complexity.",
+    "values": [
+      "Paddle for others",
+      "Paddle together",
+      "Paddle simply"
+    ],
+    "products": [
+      "Paddle Billing",
+      "Checkout",
+      "Subscriptions",
+      "Payments",
+      "Reporting",
+      "Invoicing",
+      "Fraud protection",
+      "Tax & compliance",
+      "ProfitWell Metrics",
+      "Retain",
+      "In-app purchase",
+      "Paddle.js",
+      "Official Node.js, PHP, Go, and Python SDKs",
+      "Developer docs",
+      "Paddle docs MCP server",
+      "Next.js starter kit"
+    ],
+    "services": [
+      "Merchant of Record services for digital products",
+      "Global payment processing",
+      "Subscription management",
+      "Sales tax and VAT compliance",
+      "Fraud prevention and liability coverage",
+      "Dunning and failed-payment recovery",
+      "Revenue and subscription analytics",
+      "Developer APIs, SDKs, webhooks, and integration tooling"
+    ],
+    "target_customers": [
+      "SaaS companies",
+      "Mobile app companies",
+      "App studios",
+      "Digital product businesses",
+      "Software sellers",
+      "Games companies",
+      "Independent developers",
+      "AI-native builders"
+    ],
+    "industry": "Fintech / Merchant of Record / SaaS billing infrastructure",
+    "business_model": "Merchant of Record billing platform for digital product companies, with managed payments, tax, compliance, fraud, checkout, subscriptions, analytics, and retention tooling.",
+    "recent_signals": [
+      "Paddle says it manages payments, tax, compliance, and billing across 300+ markets as Merchant of Record for digital product businesses.",
+      "Paddle's homepage reports 190 million transactions processed, $130 million in sales taxes remitted last year, and 10,000+ customers using Paddle.",
+      "The provided JD says Paddle serves over 6,000 software sellers in 245 territories globally.",
+      "Paddle's developer docs describe Paddle Billing as an all-in-one billing platform and document Paddle API, SDKs, webhooks, and Paddle.js.",
+      "Paddle publishes official SDKs for Node.js, PHP, Go, and Python, plus a Paddle.js wrapper and a Next.js starter kit.",
+      "Paddle developer docs advertise a docs MCP server and AI/IDE integration path for up-to-date Paddle knowledge.",
+      "Paddle is promoting Lovable Payments, powered by Paddle, with the official tagline 'From prompt to payments.'"
+    ],
+    "open_roles": [
+      {
+        "title": "APAC Sales Leader",
+        "url": "https://jobs.ashbyhq.com/paddle/b4893c42-d4ca-44c0-835f-8acd33447929",
+        "department": "Sales",
+        "location": "Singapore",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Sales leadership role, not frontend engineering.",
+        "source_quote": "SalesAPAC Sales Leader Singapore"
+      },
+      {
+        "title": "Associate Solutions Engineer",
+        "url": "https://jobs.ashbyhq.com/paddle/14fc5c4d-c1a4-4c83-8a4b-ce29a080b3a2",
+        "department": "Sales US",
+        "location": "Austin TX",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Solutions engineering role in sales, not the target senior frontend role.",
+        "source_quote": "Sales USAssociate Solutions EngineerAustin TX"
+      },
+      {
+        "title": "Business Development Representative",
+        "url": "https://jobs.ashbyhq.com/paddle/7ce1f342-3715-45ab-834a-ffafe97ce9d4",
+        "department": "Commercial",
+        "location": "Austin TX, Toronto",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Commercial/business development role, not engineering.",
+        "source_quote": "CommercialBusiness Development RepresentativeAustin TX, Toronto"
+      },
+      {
+        "title": "Customer Success Manager",
+        "url": "https://jobs.ashbyhq.com/paddle/993717cf-9d6a-4377-9080-1c266eeae50a",
+        "department": "Commercial",
+        "location": "UK",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Customer success role, not frontend engineering.",
+        "source_quote": "CommercialCustomer Success Manager UK"
+      },
+      {
+        "title": "Ecosystem Programmes Lead",
+        "url": "https://jobs.ashbyhq.com/paddle/c6b8c52d-0ae0-4403-9a40-5947d1e857e4",
+        "department": "Marketing",
+        "location": "UK, Toronto",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Marketing/programmes role, not engineering.",
+        "source_quote": "MarketingEcosystem Programmes LeadUK, Toronto"
+      },
+      {
+        "title": "Head of Content",
+        "url": "https://jobs.ashbyhq.com/paddle/5cd0581d-36a5-48a5-b67b-b71b79af8750",
+        "department": "Marketing",
+        "location": "UK",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Content/marketing leadership role, not engineering.",
+        "source_quote": "MarketingHead of Content UK"
+      },
+      {
+        "title": "Manager of Solutions Engineering",
+        "url": "https://jobs.ashbyhq.com/paddle/33319e45-ef11-4105-ae48-5c4463e01467",
+        "department": "Sales",
+        "location": "Boston, Toronto, Austin TX, New York - Remote",
+        "work_model": "remote",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Sales/solutions-engineering management role, not senior frontend engineering.",
+        "source_quote": "SalesManager of Solutions Engineering Boston, Toronto, Austin TX, New York - Remote"
+      },
+      {
+        "title": "Onboarding Risk Analyst",
+        "url": "https://jobs.ashbyhq.com/paddle/f423ae5f-5f53-4e66-8839-02ae090680ac",
+        "department": "Risk & Compliance",
+        "location": "Philippines",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Risk and compliance role, not engineering.",
+        "source_quote": "Risk & ComplianceOnboarding Risk Analyst Philippines"
+      },
+      {
+        "title": "Onboarding Risk Manager",
+        "url": "https://jobs.ashbyhq.com/paddle/2640b54a-7828-4bdf-9252-ede757a42d60",
+        "department": "Risk & Compliance",
+        "location": "UK",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Risk and compliance management role, not engineering.",
+        "source_quote": "Risk & ComplianceOnboarding Risk Manager UK"
+      },
+      {
+        "title": "Paid Social Specialist",
+        "url": "https://jobs.ashbyhq.com/paddle/d7987ea8-25e7-42ec-b1f4-20e64741a1ad",
+        "department": "Marketing",
+        "location": "Toronto, UK",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Marketing role, not engineering.",
+        "source_quote": "MarketingPaid Social Specialist Toronto, UK"
+      },
+      {
+        "title": "Senior Paid Search Manager",
+        "url": "https://jobs.ashbyhq.com/paddle/8e02e063-be4c-4636-98f6-201882a68756",
+        "department": "Marketing",
+        "location": "UK, Toronto",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Marketing role, not engineering.",
+        "source_quote": "MarketingSenior Paid Search Manager UK, Toronto"
+      },
+      {
+        "title": "Senior Solutions Architect",
+        "url": "https://jobs.ashbyhq.com/paddle/07c9d0d5-3b9b-4f0f-88b7-6207e0d8743a",
+        "department": "Sales",
+        "location": "Austin TX",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Sales/solutions architecture role, not target frontend engineering role.",
+        "source_quote": "SalesSenior Solutions ArchitectAustin TX"
+      },
+      {
+        "title": "Social Media & Community Manager",
+        "url": "https://jobs.ashbyhq.com/paddle/4914e453-f512-4c8a-b325-d2cc6f9dab21",
+        "department": "Marketing",
+        "location": "Toronto, London, UK",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Marketing/community role, not engineering.",
+        "source_quote": "MarketingSocial Media & Community ManagerToronto, London, UK"
+      },
+      {
+        "title": "Strategic Account Executive",
+        "url": "https://jobs.ashbyhq.com/paddle/dec96c3d-f266-4722-b7c8-ad7eea139c13",
+        "department": "Sales International",
+        "location": "UK, Netherlands",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Sales role, not engineering.",
+        "source_quote": "Sales InternationalStrategic Account ExecutiveUK, Netherlands"
+      },
+      {
+        "title": "VP of Revenue Operations",
+        "url": "https://jobs.ashbyhq.com/paddle/237536a7-879c-4b05-b368-53904d13ddaf",
+        "department": "Revenue Operations and Insights",
+        "location": "UK",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Revenue operations leadership role, not engineering.",
+        "source_quote": "Revenue Operations and InsightsVP of Revenue Operations UK"
+      },
+      {
+        "title": "Developer Advocate",
+        "url": "https://jobs.ashbyhq.com/paddle/9f0262a6-163f-4a60-ba74-3c6900139654",
+        "department": "Engineering",
+        "location": "London",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "possible_match",
+        "match_reason": "Engineering role with developer-facing overlap, but different title and scope from Senior Frontend Engineer.",
+        "source_quote": "EngineeringDeveloper AdvocateLondon"
+      },
+      {
+        "title": "Engineering Manager",
+        "url": "https://jobs.ashbyhq.com/paddle/0c44271d-b2b8-4614-aabf-943206e6742e",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Engineering management role, not individual-contributor senior frontend role.",
+        "source_quote": "EngineeringEngineering ManagerUK, Portugal, Ireland"
+      },
+      {
+        "title": "Head of Analytics Engineering",
+        "url": "https://jobs.ashbyhq.com/paddle/972ec054-8bad-4b84-bb97-9c4198391db0",
+        "department": "Engineering",
+        "location": "UK, Portugal, Dublin",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Analytics engineering leadership role, not frontend engineering.",
+        "source_quote": "EngineeringHead of Analytics Engineering UK, Portugal, Dublin"
+      },
+      {
+        "title": "Senior Frontend Engineer",
+        "url": "https://jobs.ashbyhq.com/paddle/18a95452-e913-4d55-af72-8700eb640b93",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "digital-first remote or hybrid",
+        "employment_type": "not_stated",
+        "target_jd_match": "likely_match",
+        "match_reason": "Exact title and engineering department match the target JD; official careers page lists location as UK, Portugal, Ireland.",
+        "source_quote": "EngineeringSenior Frontend Engineer UK, Portugal, Ireland"
+      },
+      {
+        "title": "Senior Product Manager (Dashboard)",
+        "url": "https://jobs.ashbyhq.com/paddle/abf0efd1-7ebb-4d1e-8587-1a7ae093f6f0",
+        "department": "Product",
+        "location": "UK",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "possible_match",
+        "match_reason": "Dashboard product scope overlaps with target group, but role is product management rather than frontend engineering.",
+        "source_quote": "ProductSenior Product Manager (Dashboard)UK"
+      },
+      {
+        "title": "Senior Product Manager (Retain)",
+        "url": "https://jobs.ashbyhq.com/paddle/c4e3ff9c-5fd1-4e52-a3ab-4d09b5babdea",
+        "department": "Product",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Product management role for Retain, not frontend engineering.",
+        "source_quote": "ProductSenior Product Manager (Retain)UK, Portugal, Ireland"
+      },
+      {
+        "title": "Senior Software Engineer - Go",
+        "url": "https://jobs.ashbyhq.com/paddle/461578a0-a996-4468-a2dc-5055fa08503e",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Engineering role, but backend Go rather than senior frontend Experience Group role.",
+        "source_quote": "EngineeringSenior Software Engineer - GoUK, Portugal, Ireland"
+      },
+      {
+        "title": "Site Reliability Engineer",
+        "url": "https://jobs.ashbyhq.com/paddle/39358ffd-7b34-4336-8e49-54ac703e0323",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "SRE role, not frontend engineering.",
+        "source_quote": "EngineeringSite Reliability EngineerUK, Portugal, Ireland"
+      },
+      {
+        "title": "Software Engineer - Developer Experience (Go)",
+        "url": "https://jobs.ashbyhq.com/paddle/a2e6ef3c-52f9-4785-afdc-6a3d570edd3d",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "possible_match",
+        "match_reason": "Developer Experience engineering overlaps with target group, but this is a Go role rather than Senior Frontend Engineer.",
+        "source_quote": "EngineeringSoftware Engineer - Developer Experience (Go)UK, Portugal, Ireland"
+      },
+      {
+        "title": "Software Engineer - Go",
+        "url": "https://jobs.ashbyhq.com/paddle/de7ac3e5-16db-4a59-989d-5e7840b019b6",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Backend Go role, not frontend engineering.",
+        "source_quote": "EngineeringSoftware Engineer - GoUK, Portugal, Ireland"
+      },
+      {
+        "title": "Staff Insights Analyst",
+        "url": "https://jobs.ashbyhq.com/paddle/031532d0-f8f8-40cd-96e6-b6164effb04e",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Analytics/insights role, not frontend engineering.",
+        "source_quote": "EngineeringStaff Insights AnalystUK, Portugal, Ireland"
+      },
+      {
+        "title": "Staff Insights Analyst",
+        "url": "https://jobs.ashbyhq.com/paddle/7ea554f4-47e4-4f85-8c19-2aa635d09e7e",
+        "department": "Engineering",
+        "location": "UK, Portugal, Ireland",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Analytics/insights role, not frontend engineering.",
+        "source_quote": "EngineeringStaff Insights AnalystUK, Portugal, Ireland"
+      },
+      {
+        "title": "Staff Product Manager",
+        "url": "https://jobs.ashbyhq.com/paddle/cde17e70-5be2-4b2f-86c0-26591c168cec",
+        "department": "Product",
+        "location": "London",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Product management role, not frontend engineering.",
+        "source_quote": "ProductStaff Product ManagerLondon"
+      },
+      {
+        "title": "Director of FP&A",
+        "url": "https://jobs.ashbyhq.com/paddle/464b4d6d-5797-465d-b7c7-b388ff58fb98",
+        "department": "Finance",
+        "location": "UK, Toronto, Dublin",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Finance role, not engineering.",
+        "source_quote": "FinanceDirector of FP&A UK, Toronto, Dublin"
+      },
+      {
+        "title": "Tax Manager",
+        "url": "https://jobs.ashbyhq.com/paddle/d75ec888-6ccd-4fa0-83d1-24d81d663e15",
+        "department": "Finance",
+        "location": "London",
+        "work_model": "not_stated",
+        "employment_type": "not_stated",
+        "target_jd_match": "not_match",
+        "match_reason": "Finance/tax role, not engineering.",
+        "source_quote": "FinanceTax Manager London"
+      }
+    ],
+    "source_notes": [
+      {
+        "claim": "Paddle homepage and official navigation were checked for product, developer, resources, and careers links.",
+        "source_type": "official_site",
+        "source_url": "https://www.paddle.com/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Paddle is a Merchant of Record for digital product businesses and manages payments, tax, compliance, and billing across 300+ markets.",
+        "source_type": "official_site",
+        "source_url": "https://www.paddle.com/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Paddle careers page says it helps digital product companies operate and grow automatically and transforms complexity into simplicity.",
+        "source_type": "official_site",
+        "source_url": "https://www.paddle.com/careers",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Paddle values are Paddle for others, Paddle together, and Paddle simply.",
+        "source_type": "official_site",
+        "source_url": "https://www.paddle.com/careers",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Paddle describes its work model as digital first with hubs, trust, and autonomy.",
+        "source_type": "official_site",
+        "source_url": "https://www.paddle.com/careers",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Careers page was checked and visible open roles were captured from https://www.paddle.com/careers; target Senior Frontend Engineer was found with location UK, Portugal, Ireland.",
+        "source_type": "official_site",
+        "source_url": "https://www.paddle.com/careers",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Target role URL from official careers list is https://jobs.ashbyhq.com/paddle/18a95452-e913-4d55-af72-8700eb640b93; webfetch returned only a JavaScript-required shell, so user-provided JD remains the full text source.",
+        "source_type": "official_job_board",
+        "source_url": "https://jobs.ashbyhq.com/paddle/18a95452-e913-4d55-af72-8700eb640b93",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Paddle developer docs cover Paddle API, SDKs, webhooks, Paddle.js, official SDKs, a Paddle.js wrapper, a Next.js starter kit, and AI/MCP documentation tools.",
+        "source_type": "official_docs",
+        "source_url": "https://developer.paddle.com/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Provided JD says the Experience Group includes Dashboard and Developer Experience teams, covering dashboard products, the design system, developer.paddle.com, SDKs, public libraries, and integration tooling.",
+        "source_type": "jd_text",
+        "source_url": "user_provided_jd",
+        "confidence": "jd_only"
+      }
+    ]
+  }
+}

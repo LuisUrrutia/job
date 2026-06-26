@@ -1,0 +1,1258 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Software Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "timezone": "+01:00",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "summary": "Senior Software Engineer with 12+ years building production web and mobile systems with React, TypeScript, Next.js, React Native, REST APIs, and WebSockets. Strong match for payments and blockchain-adjacent work: built Stripe and Transbank payment flows, co-led OpenZeppelin Defender Secure Audit for smart contract auditors, and owned EVM Relayer reliability work covering RPC retry and failover, cloud KMS signers, transaction cost handling, and a critical nonce race fix. Brings senior IC depth in frontend architecture, secure financial software, testing, and delivery systems, with results such as cutting TypeScript monorepo builds from about 15 minutes to 3 minutes, reducing alert noise by about 60%, improving API response times by 35%, and mentoring engineers through code reviews, pairing, and workshops.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Express.js",
+        "Stripe",
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "Zustand",
+        "Tailwind CSS",
+        "Rust",
+        "Solidity",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "Docker",
+        "PostgreSQL",
+        "Redis",
+        "Amazon SQS",
+        "AWS Lambda",
+        "DynamoDB",
+        "Svelte",
+        "Claude",
+        "Cursor"
+      ],
+      "description": [
+        "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a TypeScript and React module that helped smart contract auditors work with clients, track findings, verify fixes, and deliver final PDF reports.",
+        "Built Stripe billing integration for Defender 2.0 self-serve Pro subscriptions and enterprise-tier plans, covering payment flows across user-facing screens and backend API work.",
+        "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing, retry and failover behavior, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition.",
+        "Cut alert noise by about 60% across Slack and PagerDuty by tuning recoverable RPC and gas-spike alerts, making on-call incidents easier to triage.",
+        "Led end-to-end testing for Defender with Playwright on critical user flows, improving release confidence for a complex Web3 security product.",
+        "Refactored the TypeScript monorepo build system with ESM migration, package exports, bundler and tsconfig updates, and lint/typecheck flow, reducing local and CI build times from about 15 minutes to 3 minutes."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Express.js",
+        "REST APIs",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Jest",
+        "GitHub Actions",
+        "Material-UI",
+        "Storybook",
+        "Tailwind CSS",
+        "JavaScript",
+        "PostgreSQL",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "Python",
+        "BigQuery"
+      ],
+      "description": [
+        "Built a React and TypeScript presentation feature in MyPremise that surfaced up-to-date, often live data through a single shareable URL, reducing friction for account managers and clients sharing reports.",
+        "Contributed to the migration from REST to GraphQL with Apollo across key entities, including Express.js service updates, improving API response times by 35% and lowering server usage.",
+        "Expanded Jest coverage and added GitHub Actions quality gates, reducing release cycles from one week to less than 24 hours by cutting manual testing effort.",
+        "Standardized UI work with Material UI and Storybook, reducing prototyping time from one week to one day while improving consistency across shared components."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "TypeScript",
+        "Go",
+        "Node.js",
+        "Angular",
+        "Kafka",
+        "Redis",
+        "PostgreSQL",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Python",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, saving $75,000 annually and helping customer service teams onboard merchants faster.",
+        "Implemented real-time catalog and pricing updates with Go and Kafka, moving core logic from a Python ETL flow so product and discount changes reached the app faster and contributed to a 21% increase in CSAT.",
+        "Engineered a Redis-based conflict resolution layer that handled duplicate and out-of-order updates, improving product data accuracy and reliability by 40%."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Express.js",
+        "Redux",
+        "Tailwind CSS",
+        "Node.js",
+        "Angular",
+        "Azure",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "MySQL",
+        "MSSQL",
+        "Python",
+        "C#",
+        "JavaScript",
+        "Git"
+      ],
+      "description": [
+        "Implemented transaction-related API flows with Express.js, including Transbank payment processing use cases across user-facing flows and backend API work.",
+        "Worked with product, engineering, and infrastructure teams to simplify release flow for a legacy internal platform, reducing delivery cycles from months to about two weeks.",
+        "Modernized key parts of the stack from ASP.NET to Angular and from .NET Framework to .NET Core, removing Internet Explorer-only constraints and enabling Chrome compatibility."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "React Native",
+        "React",
+        "TypeScript",
+        "Express.js",
+        "REST APIs",
+        "GraphQL",
+        "Redux",
+        "Tailwind CSS",
+        "Angular",
+        "Django",
+        "Python",
+        "JavaScript",
+        "MySQL",
+        "MongoDB",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Git"
+      ],
+      "description": [
+        "Delivered more than five web and mobile products for clients across medical, industrial, government, legal, and cultural sectors, working end to end from discovery through implementation.",
+        "Built React Native applications for iOS and Android client products, including training apps for Eucerin and a medical clinic plus an employee check-in/check-out app.",
+        "Led architecture decisions and set engineering standards for TypeScript, React, React Native, and Redux across the company.",
+        "Implemented payment gateway integrations with Express.js services, including Transbank transaction flows for client projects.",
+        "Mentored five developers through pairing sessions, code reviews, and workshops focused on architecture, testing, and code quality."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "WebSockets",
+        "TypeScript",
+        "JavaScript",
+        "Angular",
+        "Python",
+        "Go",
+        "Flask",
+        "PostgreSQL",
+        "Redis",
+        "Tile38",
+        "GCP",
+        "Git"
+      ],
+      "description": [
+        "Used WebSockets for real-time courier coordinate transmission, allowing customers to see where their order was coming from.",
+        "Built platform capabilities for geolocation, real-time operational features, and product ETL workflows across Python and Go services while helping launch one of Chile’s first Uber Eats-style delivery services."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "JavaScript",
+        "AngularJS",
+        "Node.js",
+        "Python",
+        "Django",
+        "PHP",
+        "Laravel",
+        "Vagrant"
+      ],
+      "description": [
+        "Started as a junior developer and took on growing frontend ownership, helping introduce Node.js and AngularJS into the agency stack while supporting ecommerce and payment integration flows across client projects."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "React Native",
+        "Redux",
+        "Zustand",
+        "Tailwind CSS",
+        "Storybook",
+        "Material-UI",
+        "Svelte",
+        "Angular",
+        "AngularJS",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": [
+        "REST APIs",
+        "WebSockets",
+        "Node.js",
+        "Express.js",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Django",
+        "Flask",
+        "Laravel"
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "items": [
+        "Playwright",
+        "Jest",
+        "Cypress",
+        "React Testing Library",
+        "Pytest"
+      ]
+    },
+    {
+      "category": "Payments, Web3 & Reliability",
+      "items": [
+        "Stripe",
+        "Transbank",
+        "Solidity",
+        "EVM",
+        "RPC retry/failover",
+        "KMS signers",
+        "Smart contract auditor workflows",
+        "On-call alert tuning"
+      ]
+    },
+    {
+      "category": "Languages",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "Rust",
+        "Go",
+        "Python",
+        "C#",
+        "Solidity",
+        "PHP"
+      ]
+    },
+    {
+      "category": "Databases & Messaging",
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "Amazon SQS",
+        "DynamoDB",
+        "MySQL",
+        "MSSQL",
+        "MongoDB",
+        "BigQuery",
+        "Tile38",
+        "RabbitMQ"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "AWS",
+        "Amazon Web Services (AWS)",
+        "GCP",
+        "Google Cloud Platform (GCP)",
+        "Azure",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "AWS Lambda",
+        "Serverless"
+      ]
+    },
+    {
+      "category": "Platforms & Practices",
+      "items": [
+        "CI/CD",
+        "Agile",
+        "Scrum",
+        "Git",
+        "Microservices",
+        "SOLID Principles",
+        "Claude",
+        "Cursor",
+        "Vagrant"
+      ]
+    }
+  ],
+  "additional": {
+    "technicalSkills": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "React Native",
+      "JavaScript",
+      "RESTful APIs",
+      "REST APIs",
+      "WebSockets",
+      "Express.js",
+      "Node.js",
+      "Stripe",
+      "Transbank",
+      "Playwright",
+      "Jest",
+      "Cypress",
+      "React Testing Library",
+      "Rust",
+      "Solidity",
+      "EVM",
+      "RPC retry/failover",
+      "KMS signers",
+      "GraphQL",
+      "Apollo GraphQL",
+      "Go",
+      "Python",
+      "PostgreSQL",
+      "Redis",
+      "Kafka",
+      "AWS",
+      "Amazon Web Services (AWS)",
+      "GCP",
+      "Google Cloud Platform (GCP)",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "GitHub Actions",
+      "Zustand",
+      "Redux",
+      "Tailwind CSS",
+      "Storybook",
+      "Material-UI",
+      "Svelte",
+      "Angular",
+      "AngularJS",
+      "Django",
+      "Flask",
+      "C#",
+      "MySQL",
+      "MSSQL",
+      "MongoDB",
+      "DynamoDB",
+      "BigQuery",
+      "Amazon SQS",
+      "RabbitMQ",
+      "Tile38",
+      "Serverless",
+      "CloudWatch",
+      "Sentry",
+      "AWS Lambda",
+      "Pytest",
+      "Mocha",
+      "Claude",
+      "Cursor",
+      "Agile",
+      "Scrum",
+      "Git",
+      "Microservices",
+      "SOLID Principles",
+      "shadcn/ui",
+      "CSS",
+      "HTML5",
+      "PHP",
+      "Laravel",
+      "Vagrant"
+    ],
+    "languages": [
+      "Spanish (Native)",
+      "English (Advanced - C1)"
+    ],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {},
+  "targetCompany": "Payward",
+  "targetPosition": "Senior Software Engineer, Payments & Blockchain",
+  "jobSlug": "payward-senior-software-engineer-payments-blockchain",
+  "company_profile": {
+    "description": "Payward is the parent company behind Kraken and a portfolio of products spanning trading, custody, payments, lending, onchain finance, and benchmarks. Kraken is a globally remote crypto and financial infrastructure platform serving retail users, professional traders, institutions, and partner platforms.",
+    "mission": "Accelerate the global adoption of crypto so everyone can achieve financial freedom and inclusion.",
+    "vision": "Build open financial infrastructure that expands access, reduces inefficiencies, and helps financial technologies serve people around the world.",
+    "values": [
+      "Security and client funds protection",
+      "Financial freedom and inclusion",
+      "Remote-first ownership",
+      "High standards for reliable financial infrastructure",
+      "Merit-based, globally distributed teams"
+    ],
+    "products": [
+      "Kraken exchange",
+      "Kraken Pro",
+      "Kraken app",
+      "Kraken Desktop",
+      "Kraken API",
+      "Payward Services",
+      "xStocks",
+      "NinjaTrader",
+      "Breakout",
+      "CF Benchmarks"
+    ],
+    "services": [
+      "Crypto trading infrastructure",
+      "On/off ramps",
+      "Tokenized equities",
+      "Staking and yield",
+      "Institutional exchange services",
+      "OTC, prime, and custody services",
+      "Indices and market data",
+      "Payment rails and partner integrations"
+    ],
+    "target_customers": [
+      "Retail crypto users",
+      "Professional traders",
+      "Institutions",
+      "Fintech platforms",
+      "Consumer technology companies",
+      "Banks",
+      "Exchanges",
+      "Asset managers",
+      "DeFi and onchain infrastructure teams"
+    ],
+    "industry": "Crypto, fintech, trading, payments, and financial infrastructure",
+    "business_model": "Financial infrastructure and trading platform with exchange, institutional, API, custody, on/off-ramp, tokenized asset, payments, and partner-embedded services.",
+    "recent_signals": [
+      "Kraken says it is trusted by 13+ million people around the world and has operated for more than 14 years.",
+      "Payward states its platform operates across 190+ jurisdictions and has 100+ licenses and registrations spanning crypto assets, securities and derivatives, payments, money transmission, banking, and lending.",
+      "Payward Services advertises 15+ years in operation, 190+ countries supported, and $2T+ annual transaction volume.",
+      "Kraken careers describes the company as globally remote with the line: Work from anywhere, build the future of finance.",
+      "Kraken security pages state that protecting funds and privacy is the company’s number one objective and highlight ISO/IEC 27001:2022 and SOC 2 controls."
+    ],
+    "open_roles": [
+      {
+        "title": "Site Reliability Engineer - Core Infrastructure",
+        "url": "https://jobs.ashbyhq.com/kraken.com/02e188b8-1752-4f69-a206-221dd07f398b",
+        "department": "Engineering",
+        "location": "Paraguay, Uruguay",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Site Reliability Engineer - Core Infrastructure | FullTime | Remote | Paraguay, Uruguay"
+      },
+      {
+        "title": "Senior AI Compute Infrastructure Engineer",
+        "url": "https://jobs.ashbyhq.com/kraken.com/055adaf0-a15b-40f3-89ab-dc5ab4fa719e",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, Ireland, Peru, Costa Rica, Latvia, Argentina, Romania, Cyprus, Portugal, Slovenia, Lithuania, South Africa, Czech Republic, Panama, Estonia, Canada, Hungary, Mexico, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior AI Compute Infrastructure Engineer | FullTime | Remote | United Kingdom, Brazil, Ireland, Peru, Costa Rica, Latvia, Argentina, Romania, Cyprus, Portugal, Slovenia, Lithuania, South Africa, Czech Republic, Panama, Estonia, Canada, Hungary, Mexico, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Senior Sales Trader, EMEA",
+        "url": "https://jobs.ashbyhq.com/kraken.com/083afacb-edf7-4920-8428-e6c6fb7aecc9",
+        "department": "Institutional",
+        "location": "Europe",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Sales Trader, EMEA | FullTime | Remote | Europe"
+      },
+      {
+        "title": "Sr. Data Analyst, Growth",
+        "url": "https://jobs.ashbyhq.com/kraken.com/09078f9a-837f-4d91-a7d8-4d67faaffe02",
+        "department": "Data",
+        "location": "United Kingdom, Brazil, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Sr. Data Analyst, Growth | FullTime | Remote | United Kingdom, Brazil, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Compliance Associate, UK",
+        "url": "https://jobs.ashbyhq.com/kraken.com/0f3fc678-e122-474d-b0fb-d21f91983d21",
+        "department": "Compliance",
+        "location": "United Kingdom",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Compliance Associate, UK | FullTime | Remote | United Kingdom"
+      },
+      {
+        "title": "Senior Analyst, Security Compliance",
+        "url": "https://jobs.ashbyhq.com/kraken.com/13b78c74-0e27-46c6-be6c-174c4f19bec5",
+        "department": "Security & IT",
+        "location": "Canada",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Analyst, Security Compliance | FullTime | Remote | Canada"
+      },
+      {
+        "title": "Product Manager - Payments",
+        "url": "https://jobs.ashbyhq.com/kraken.com/15205d19-25d9-4e12-968e-9d445a5d8224",
+        "department": "Product",
+        "location": "United Kingdom, Ireland, Sweden, Romania, Cyprus, Switzerland, Portugal, Lithuania, Hungary, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Payments domain overlap, but this is a product management role rather than a software engineering role.",
+        "source_quote": "Product Manager - Payments | FullTime | Remote | United Kingdom, Ireland, Sweden, Romania, Cyprus, Switzerland, Portugal, Lithuania, Hungary, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Change Oversight & Third Party Operations Manager",
+        "url": "https://jobs.ashbyhq.com/kraken.com/155ad131-d77a-4d79-b99d-772df57eff14",
+        "department": "Regional Operations",
+        "location": "Ireland",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Change Oversight & Third Party Operations Manager | FullTime | Remote | Ireland"
+      },
+      {
+        "title": "Product Manager, Prop Trading - Breakout",
+        "url": "https://jobs.ashbyhq.com/kraken.com/1f12b2eb-5d14-4aab-995e-eae7a126b90a",
+        "department": "Product",
+        "location": "United States, Canada",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Product Manager, Prop Trading - Breakout | FullTime | Remote | United States, Canada"
+      },
+      {
+        "title": "AI Agents Solutions Architect - HR",
+        "url": "https://jobs.ashbyhq.com/kraken.com/233914aa-9008-4c52-bd23-029526fdb8a6",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "AI Agents Solutions Architect - HR | FullTime | Remote | United States"
+      },
+      {
+        "title": "Senior Solutions Engineer - Payward Services",
+        "url": "https://jobs.ashbyhq.com/kraken.com/2727f6f7-31b2-4f8f-95d9-55cecde1f340",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Some crypto, API, or customer integration overlap, but it is not the target frontend payments engineering role.",
+        "source_quote": "Senior Solutions Engineer - Payward Services | FullTime | Remote | United Kingdom, Brazil, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain"
+      },
+      {
+        "title": "Principal Compliance Associate",
+        "url": "https://jobs.ashbyhq.com/kraken.com/29d21b3a-ff85-4ddc-9224-ae7bc90f505b",
+        "department": "Compliance",
+        "location": "Ireland",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Principal Compliance Associate | FullTime | Remote | Ireland"
+      },
+      {
+        "title": "Staff Security Architect",
+        "url": "https://jobs.ashbyhq.com/kraken.com/2bad131b-78ad-4266-8c18-7b035a11937d",
+        "department": "Security & IT",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Staff Security Architect | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Staff Product Designer - Consumer",
+        "url": "https://jobs.ashbyhq.com/kraken.com/2bb8285f-d45a-441b-8628-983a101006ce",
+        "department": "Design",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Staff Product Designer - Consumer | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain"
+      },
+      {
+        "title": "AI Agents Solutions Architect - Finance",
+        "url": "https://jobs.ashbyhq.com/kraken.com/3544516a-ad0b-4aaf-8ee4-5744883985c1",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "AI Agents Solutions Architect - Finance | FullTime | Remote | United States"
+      },
+      {
+        "title": "Senior SOX Auditor – Business Process Controls",
+        "url": "https://jobs.ashbyhq.com/kraken.com/36826495-d999-4aa8-b009-0777f6ed574d",
+        "department": "Risk & Audit",
+        "location": "Canada",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior SOX Auditor – Business Process Controls | FullTime | Remote | Canada"
+      },
+      {
+        "title": "Software Development Engineer in Test - Pro",
+        "url": "https://jobs.ashbyhq.com/kraken.com/38dc79d7-5380-433a-8719-5d95f45d554c",
+        "department": "Engineering",
+        "location": "Poland, Brazil, Uruguay, Peru, Costa Rica, Argentina, Romania, Cyprus, Slovenia, Paraguay, Czech Republic, Estonia, Hungary, Mexico, Chile, Slovakia, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Software Development Engineer in Test - Pro | FullTime | Remote | Poland, Brazil, Uruguay, Peru, Costa Rica, Argentina, Romania, Cyprus, Slovenia, Paraguay, Czech Republic, Estonia, Hungary, Mexico, Chile, Slovakia, Bulgaria"
+      },
+      {
+        "title": "Mobile Design Engineer",
+        "url": "https://jobs.ashbyhq.com/kraken.com/3e769962-edad-47c1-898a-662208902b1c",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Frontend or mobile engineering overlap, but the team/title differs from the target Payments & Blockchain role.",
+        "source_quote": "Mobile Design Engineer | FullTime | Remote | United States"
+      },
+      {
+        "title": "AI Video Editor - Performance Marketing - Growth",
+        "url": "https://jobs.ashbyhq.com/kraken.com/412d3adf-126d-47c5-9334-31700a7de41b",
+        "department": "Marketing",
+        "location": "United States, Canada",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "AI Video Editor - Performance Marketing - Growth | FullTime | Remote | United States, Canada"
+      },
+      {
+        "title": "Product and Regional Risk Manager",
+        "url": "https://jobs.ashbyhq.com/kraken.com/49f21e16-2e9d-45a9-815b-d4c3657bbb7e",
+        "department": "Risk & Audit",
+        "location": "Ireland",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Product and Regional Risk Manager | FullTime | Remote | Ireland"
+      },
+      {
+        "title": "AI Agents Solutions Architect - HR ",
+        "url": "https://jobs.ashbyhq.com/kraken.com/4aacc5a1-a848-4b68-90b8-958b6e4a2d0b",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "AI Agents Solutions Architect - HR  | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Mexico, Poland, Spain"
+      },
+      {
+        "title": "Software Engineer - Frontend - Payments",
+        "url": "https://jobs.ashbyhq.com/kraken.com/4e8d9070-a1c7-406a-a333-7a57c7ef9f42",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Lithuania, South Africa, Czech Republic, Hungary, Mexico, Chile, Poland, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "likely_match",
+        "match_reason": "Official posting matches the target JD description: Payments & Blockchain team, React.js payment systems, client funds protection, React Native, Next.js, RESTful APIs, and WebSockets.",
+        "source_quote": "We are currently seeking an experienced Senior Software Engineer to join our growing Payments & Blockchain team to be focused on our payments systems."
+      },
+      {
+        "title": "Senior Solutions Engineer - Payward Services",
+        "url": "https://jobs.ashbyhq.com/kraken.com/4f89b39d-5dfb-4648-8943-640fc25de004",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Some crypto, API, or customer integration overlap, but it is not the target frontend payments engineering role.",
+        "source_quote": "Senior Solutions Engineer - Payward Services | FullTime | Remote | United States"
+      },
+      {
+        "title": "Staff React Native Engineer - Pro",
+        "url": "https://jobs.ashbyhq.com/kraken.com/52ccad44-e0a6-4b15-8b2a-ca6a17a40d6b",
+        "department": "Engineering",
+        "location": "Poland, Brazil, Peru, Colombia, Argentina, Romania, Cyprus, Slovenia, Lithuania, South Africa, Czech Republic, Estonia, Hungary, Mexico, Chile, Slovakia, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Frontend or mobile engineering overlap, but the team/title differs from the target Payments & Blockchain role.",
+        "source_quote": "Staff React Native Engineer - Pro | FullTime | Remote | Poland, Brazil, Peru, Colombia, Argentina, Romania, Cyprus, Slovenia, Lithuania, South Africa, Czech Republic, Estonia, Hungary, Mexico, Chile, Slovakia, Bulgaria"
+      },
+      {
+        "title": "SOX Auditor - IT Controls Manager",
+        "url": "https://jobs.ashbyhq.com/kraken.com/56c2aa8a-8a6a-4700-ad75-eeb941b43613",
+        "department": "Risk & Audit",
+        "location": "Canada, Ireland, United Kingdom",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "SOX Auditor - IT Controls Manager | FullTime | Remote | Canada, Ireland, United Kingdom"
+      },
+      {
+        "title": "SOX Auditor - IT Controls Manager",
+        "url": "https://jobs.ashbyhq.com/kraken.com/59df8379-a9b3-4967-b64d-19b94e9d0cc4",
+        "department": "Risk & Audit",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "SOX Auditor - IT Controls Manager | FullTime | Remote | United States"
+      },
+      {
+        "title": "AI Video Editor - Performance Marketing - Growth",
+        "url": "https://jobs.ashbyhq.com/kraken.com/5b422e12-2d2a-4dd9-beb3-3d5b46cd7e0a",
+        "department": "Marketing",
+        "location": "United Kingdom, Brazil, Ireland",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "AI Video Editor - Performance Marketing - Growth | FullTime | Remote | United Kingdom, Brazil, Ireland"
+      },
+      {
+        "title": "Senior Database Administrator - Core Infrastructure",
+        "url": "https://jobs.ashbyhq.com/kraken.com/5db9ce6f-4bc5-47b0-a976-e3a8c71771d3",
+        "department": "Engineering",
+        "location": "Australia, Thailand",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Database Administrator - Core Infrastructure | FullTime | Remote | Australia, Thailand"
+      },
+      {
+        "title": "Senior Engineering Manager - Frontend - Pro",
+        "url": "https://jobs.ashbyhq.com/kraken.com/6555e5e5-58a1-4419-86c6-fc232b4ea641",
+        "department": "Engineering",
+        "location": "Brazil, Uruguay, Sweden, Latvia, Colombia, Argentina, Romania, Cyprus, Malta, Slovenia, South Africa, Czech Republic, Estonia, Canada, Hungary, Mexico, Chile, Poland, Slovakia, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Frontend or mobile engineering overlap, but the team/title differs from the target Payments & Blockchain role.",
+        "source_quote": "Senior Engineering Manager - Frontend - Pro | FullTime | Remote | Brazil, Uruguay, Sweden, Latvia, Colombia, Argentina, Romania, Cyprus, Malta, Slovenia, South Africa, Czech Republic, Estonia, Canada, Hungary, Mexico, Chile, Poland, Slovakia, Bulgaria"
+      },
+      {
+        "title": "Data Analyst, Growth",
+        "url": "https://jobs.ashbyhq.com/kraken.com/782eea12-4114-4123-bae7-e897a057d196",
+        "department": "Data",
+        "location": "Canada, Brazil, Ireland, Argentina, Cyprus, Portugal, Lithuania, Mexico, Poland, Spain, United Kingdom",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Data Analyst, Growth | FullTime | Remote | Canada, Brazil, Ireland, Argentina, Cyprus, Portugal, Lithuania, Mexico, Poland, Spain, United Kingdom"
+      },
+      {
+        "title": "Security Associate, M&A & Partnerships",
+        "url": "https://jobs.ashbyhq.com/kraken.com/7865d82e-1365-4e5d-9293-5c099899ffc4",
+        "department": "Security & IT",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Security Associate, M&A & Partnerships | FullTime | Remote | United States"
+      },
+      {
+        "title": "Network Engineer ",
+        "url": "https://jobs.ashbyhq.com/kraken.com/7d289f6a-e40b-4fee-9c73-dc22cc5027d7",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Network Engineer  | FullTime | Remote | United States"
+      },
+      {
+        "title": "Client Engagement API Specialist",
+        "url": "https://jobs.ashbyhq.com/kraken.com/7f7e6a24-42e2-4f16-93df-b0d50c66c20b",
+        "department": "Client Services",
+        "location": "Brazil, Peru, Colombia, Argentina, Mexico, Chile",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Client Engagement API Specialist | FullTime | Remote | Brazil, Peru, Colombia, Argentina, Mexico, Chile"
+      },
+      {
+        "title": "Product Manager II - US Derivatives ",
+        "url": "https://jobs.ashbyhq.com/kraken.com/8062dccc-d328-4310-ad2a-db1ea1225dc7",
+        "department": "Product",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Product Manager II - US Derivatives  | FullTime | Remote | United States"
+      },
+      {
+        "title": "Security Associate, M&A & Partnerships",
+        "url": "https://jobs.ashbyhq.com/kraken.com/822d9d69-1af3-4860-8529-63f3a63f5155",
+        "department": "Security & IT",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Security Associate, M&A & Partnerships | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain"
+      },
+      {
+        "title": "Backend Crypto Engineer - L1",
+        "url": "https://jobs.ashbyhq.com/kraken.com/86ddffff-2549-45c4-afcc-a4f1f1c2dbef",
+        "department": "Engineering",
+        "location": "APAC, Brazil, Peru, Colombia, Argentina, Canada, Mexico, Chile",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Some crypto, API, or customer integration overlap, but it is not the target frontend payments engineering role.",
+        "source_quote": "Backend Crypto Engineer - L1 | FullTime | Remote | APAC, Brazil, Peru, Colombia, Argentina, Canada, Mexico, Chile"
+      },
+      {
+        "title": "Sr Product Manager - Onchain ",
+        "url": "https://jobs.ashbyhq.com/kraken.com/8ac64ec9-ea3f-4ce7-9dba-6bfdd9b6d6ce",
+        "department": "Product",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Sr Product Manager - Onchain  | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Risk, Compliance & Operations Analyst",
+        "url": "https://jobs.ashbyhq.com/kraken.com/8b17770f-c563-4b57-97e3-3fee88cf5c60",
+        "department": "Compliance",
+        "location": "Ireland",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Risk, Compliance & Operations Analyst | FullTime | Remote | Ireland"
+      },
+      {
+        "title": "Senior Analyst, Security Compliance",
+        "url": "https://jobs.ashbyhq.com/kraken.com/8f237e3a-9f73-451f-a210-2cea7442fc52",
+        "department": "Security & IT",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Analyst, Security Compliance | FullTime | Remote | United States"
+      },
+      {
+        "title": "Founding DevRel Lead",
+        "url": "https://jobs.ashbyhq.com/kraken.com/910d9a56-03ef-4386-9e56-d9de5b347ef2",
+        "department": "Business Expansion",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Founding DevRel Lead | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Founding DevRel Lead",
+        "url": "https://jobs.ashbyhq.com/kraken.com/914f1f62-1cd2-453a-907a-55a536f68327",
+        "department": "Business Expansion",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Founding DevRel Lead | FullTime | Remote | United States"
+      },
+      {
+        "title": "Sr. VIP Relationship Manager",
+        "url": "https://jobs.ashbyhq.com/kraken.com/9253ed06-6c4e-4a1d-a73d-775f5d0d243c",
+        "department": "Marketing",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Sr. VIP Relationship Manager | FullTime | Remote | United States"
+      },
+      {
+        "title": "Mobile Design Engineer",
+        "url": "https://jobs.ashbyhq.com/kraken.com/95b0206c-8168-49d5-8e6c-e0c5ff885cf6",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Frontend or mobile engineering overlap, but the team/title differs from the target Payments & Blockchain role.",
+        "source_quote": "Mobile Design Engineer | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain"
+      },
+      {
+        "title": "Account Executive, Trading-as-a-Service (TaaS), Payward Services",
+        "url": "https://jobs.ashbyhq.com/kraken.com/9b6ef26d-0e1b-4a7e-8a52-b4d568a332ab",
+        "department": "Business Expansion",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Account Executive, Trading-as-a-Service (TaaS), Payward Services | FullTime | Remote | United States"
+      },
+      {
+        "title": "Lead, M&A Integrations",
+        "url": "https://jobs.ashbyhq.com/kraken.com/9b731ef0-5b04-4323-a82f-507cca63c4cc",
+        "department": "Business Expansion",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Lead, M&A Integrations | FullTime | Remote | United States"
+      },
+      {
+        "title": "Senior Data Engineer - Agents Systems",
+        "url": "https://jobs.ashbyhq.com/kraken.com/9d32c590-deef-4e91-bd1a-1265d9426fc3",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Data Engineer - Agents Systems | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Senior Software Engineer - Frontend - Pro",
+        "url": "https://jobs.ashbyhq.com/kraken.com/aa04e385-a718-4630-ba2a-815ff2483ac8",
+        "department": "Engineering",
+        "location": "Brazil, Peru, Latvia, Colombia, Argentina, Romania, Cyprus, Malta, Slovenia, Paraguay, South Africa, Panama, Estonia, Hungary, Mexico, Chile, Poland, Slovakia, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Frontend or mobile engineering overlap, but the team/title differs from the target Payments & Blockchain role.",
+        "source_quote": "Senior Software Engineer - Frontend - Pro | FullTime | Remote | Brazil, Peru, Latvia, Colombia, Argentina, Romania, Cyprus, Malta, Slovenia, Paraguay, South Africa, Panama, Estonia, Hungary, Mexico, Chile, Poland, Slovakia, Bulgaria"
+      },
+      {
+        "title": "Staff Security Architect",
+        "url": "https://jobs.ashbyhq.com/kraken.com/ad27e3b9-35ce-4f61-81c8-21cd136340b2",
+        "department": "Security & IT",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Staff Security Architect | FullTime | Remote | United States"
+      },
+      {
+        "title": "Senior Data Engineer - Agents Systems",
+        "url": "https://jobs.ashbyhq.com/kraken.com/b3e49efe-c1e4-45fc-99a0-cf57ff9f543f",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Data Engineer - Agents Systems | FullTime | Remote | United States"
+      },
+      {
+        "title": "Senior Data Engineer - AI Infrastructure",
+        "url": "https://jobs.ashbyhq.com/kraken.com/bb43f65c-efe1-4642-8ddb-728cb0d17ef6",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Data Engineer - AI Infrastructure | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "AI Agents Solutions Architect - Compliance",
+        "url": "https://jobs.ashbyhq.com/kraken.com/bd1f8aca-7a8d-4127-92c5-8e0dcc3771f3",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "AI Agents Solutions Architect - Compliance | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Mexico, Poland, Spain"
+      },
+      {
+        "title": "Site Reliability Engineer - AI Agents",
+        "url": "https://jobs.ashbyhq.com/kraken.com/c331de1b-b75a-48f5-9d19-0e56ccb935ab",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Site Reliability Engineer - AI Agents | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "License Operations & Strategy Manager",
+        "url": "https://jobs.ashbyhq.com/kraken.com/c3c8d6b8-dc05-4289-85ff-ef1f6c3a5468",
+        "department": "Regional Operations",
+        "location": "Ireland",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "License Operations & Strategy Manager | FullTime | Remote | Ireland"
+      },
+      {
+        "title": "Senior Database Administrator",
+        "url": "https://jobs.ashbyhq.com/kraken.com/c5ff2169-9186-4758-bfd7-1bdd706c42ad",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Database Administrator | FullTime | Remote | United Kingdom, Brazil, Ireland, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Hungary, Mexico, Chile, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Staff Product Designer - Consumer",
+        "url": "https://jobs.ashbyhq.com/kraken.com/c726c163-90d7-4471-a70b-546775e7550d",
+        "department": "Design",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Staff Product Designer - Consumer | FullTime | Remote | United States"
+      },
+      {
+        "title": "Site Reliability Engineer - AI Agents",
+        "url": "https://jobs.ashbyhq.com/kraken.com/c7409ffc-4430-4cdd-906c-3a0487d3e780",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Site Reliability Engineer - AI Agents | FullTime | Remote | United States"
+      },
+      {
+        "title": "Senior Data Engineer - AI Infrastructure",
+        "url": "https://jobs.ashbyhq.com/kraken.com/c9b1bab4-344f-4dc8-b59e-340c3da8bb50",
+        "department": "Engineering",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Data Engineer - AI Infrastructure | FullTime | Remote | United States"
+      },
+      {
+        "title": "Data Platform Engineering Manager",
+        "url": "https://jobs.ashbyhq.com/kraken.com/cf14a771-0586-41de-b379-fe301c3c8120",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, Ireland, Peru, Romania, Cyprus, Portugal, Slovenia, Czech Republic, Panama, Estonia, Canada, Hungary, Mexico, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Data Platform Engineering Manager | FullTime | Remote | United Kingdom, Brazil, Ireland, Peru, Romania, Cyprus, Portugal, Slovenia, Czech Republic, Panama, Estonia, Canada, Hungary, Mexico, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "AI Agents Solutions Architect - Finance",
+        "url": "https://jobs.ashbyhq.com/kraken.com/d00e0127-f2ad-427b-bb68-512f2883bd26",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, United Arab Emirates, Ireland, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "AI Agents Solutions Architect - Finance | FullTime | Remote | United Kingdom, Brazil, United Arab Emirates, Ireland, Argentina, Romania, Cyprus, Switzerland, Portugal, Lithuania, South Africa, Czech Republic, Canada, Mexico, Poland, Spain"
+      },
+      {
+        "title": "Sr. Software Engineer - React Native - Pro",
+        "url": "https://jobs.ashbyhq.com/kraken.com/d61e6c86-cde5-4f1d-91b9-f2bc7aadd1ab",
+        "department": "Engineering",
+        "location": "Poland, Brazil, Peru, Colombia, Argentina, Romania, Cyprus, Slovenia, Lithuania, South Africa, Czech Republic, Estonia, Hungary, Mexico, Chile, Slovakia, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "possible_match",
+        "match_reason": "Frontend or mobile engineering overlap, but the team/title differs from the target Payments & Blockchain role.",
+        "source_quote": "Sr. Software Engineer - React Native - Pro | FullTime | Remote | Poland, Brazil, Peru, Colombia, Argentina, Romania, Cyprus, Slovenia, Lithuania, South Africa, Czech Republic, Estonia, Hungary, Mexico, Chile, Slovakia, Bulgaria"
+      },
+      {
+        "title": "Senior Software Engineer – AI Infrastructure",
+        "url": "https://jobs.ashbyhq.com/kraken.com/d62250a9-363c-43b0-b3de-958e3cc9f97b",
+        "department": "Engineering",
+        "location": "United Kingdom, Brazil, Ireland, Peru, Costa Rica, Latvia, Argentina, Romania, Cyprus, Portugal, Slovenia, South Africa, Czech Republic, Panama, Estonia, Canada, Hungary, Mexico, Poland, Spain, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Software Engineer – AI Infrastructure | FullTime | Remote | United Kingdom, Brazil, Ireland, Peru, Costa Rica, Latvia, Argentina, Romania, Cyprus, Portugal, Slovenia, South Africa, Czech Republic, Panama, Estonia, Canada, Hungary, Mexico, Poland, Spain, Bulgaria"
+      },
+      {
+        "title": "Sr. Compliance Associate, Sanctions",
+        "url": "https://jobs.ashbyhq.com/kraken.com/db55a4cb-5000-4d88-a33a-03763c7c261c",
+        "department": "Compliance",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Sr. Compliance Associate, Sanctions | FullTime | Remote | United States"
+      },
+      {
+        "title": "Sr Product Manager - Onchain ",
+        "url": "https://jobs.ashbyhq.com/kraken.com/e6e0fb41-a760-4a71-93f8-1fe5e8dab7a4",
+        "department": "Product",
+        "location": "United States",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Sr Product Manager - Onchain  | FullTime | Remote | United States"
+      },
+      {
+        "title": "Senior Counsel - Product",
+        "url": "https://jobs.ashbyhq.com/kraken.com/f002b80f-27e2-46cd-a01c-41f7a7da73e6",
+        "department": "Legal",
+        "location": "United Kingdom, Ireland, Lithuania, Czech Republic, Poland, Bulgaria",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Senior Counsel - Product | FullTime | Remote | United Kingdom, Ireland, Lithuania, Czech Republic, Poland, Bulgaria"
+      },
+      {
+        "title": "Product Manager - Prop Trading - Breakout",
+        "url": "https://jobs.ashbyhq.com/kraken.com/ff2129b4-2fc9-4e8e-9c92-777279b377fe",
+        "department": "Product",
+        "location": "United Kingdom, Brazil, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain",
+        "work_model": "remote",
+        "employment_type": "FullTime",
+        "target_jd_match": "not_match",
+        "match_reason": "Different role, team, or seniority focus from the target frontend payments engineering role.",
+        "source_quote": "Product Manager - Prop Trading - Breakout | FullTime | Remote | United Kingdom, Brazil, Ireland, Romania, Cyprus, Switzerland, Portugal, Lithuania, Czech Republic, Canada, Mexico, Poland, Spain"
+      }
+    ],
+    "source_notes": [
+      {
+        "claim": "Company description and product portfolio come from the official Payward site.",
+        "source_type": "official_site",
+        "source_url": "https://www.payward.com/",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Mission and remote-first culture come from Kraken careers.",
+        "source_type": "official_site",
+        "source_url": "https://www.kraken.com/careers",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Current open roles were discovered from the official Ashby job-board API linked from Kraken careers.",
+        "source_type": "official_job_board",
+        "source_url": "https://api.ashbyhq.com/posting-api/job-board/kraken.com",
+        "confidence": "direct"
+      },
+      {
+        "claim": "The target role likely matches the official Ashby posting at /4e8d9070-a1c7-406a-a333-7a57c7ef9f42 because its description matches the user-provided JD.",
+        "source_type": "official_job_board",
+        "source_url": "https://jobs.ashbyhq.com/kraken.com/4e8d9070-a1c7-406a-a333-7a57c7ef9f42",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Security, controls, and funds-protection signals come from Kraken official security and proof-of-reserves pages.",
+        "source_type": "official_site",
+        "source_url": "https://www.kraken.com/features/security",
+        "confidence": "direct"
+      },
+      {
+        "claim": "Payward Services product, on/off-ramp, security-controls, and annual-volume signals come from the official Payward Services page.",
+        "source_type": "official_site",
+        "source_url": "https://www.payward.com/payward-services",
+        "confidence": "direct"
+      }
+    ]
+  }
+}

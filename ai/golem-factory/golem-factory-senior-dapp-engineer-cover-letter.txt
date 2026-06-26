@@ -1,0 +1,7 @@
+Arkiv's Bridge UI needs the unglamorous parts of Web3 done well: wallet edge cases, RPC failures, transaction status, and clear user feedback when something goes wrong.
+
+At OpenZeppelin, I worked on Defender Secure Audit, OSS Relayer, and SDK integrations for Web3 developers. My strongest overlap is EVM reliability and product-facing execution: RPC retry and failover, gas-spike alerting, signer integrations, nonce race-condition work, Playwright coverage for critical flows, and Solidity test-network contracts for audit-support workflows, including OpenZeppelin Monitor checks.
+
+Golem's focus on open, decentralized compute and Arkiv's Ethereum-aligned data layer are exactly the kind of infrastructure work I want to stay close to.
+
+I would be glad to discuss where my OpenZeppelin experience maps well to this role, and where I would need to ramp up quickly.

@@ -1,0 +1,419 @@
+{
+  "personalInfo": {
+    "name": "Luis Urrutia",
+    "title": "Senior Full-Stack Engineer",
+    "email": "luis@urrutia.me",
+    "phone": "+56 9 45380763",
+    "location": "Spain",
+    "timezone": "+01:00",
+    "website": "https://urrutia.me",
+    "linkedin": "linkedin.com/in/luisurrutiaf",
+    "github": "github.com/LuisUrrutia"
+  },
+  "summary": "Senior Full-Stack Engineer with 12+ years of professional experience building and operating production systems across B2B SaaS, enterprise platforms, marketplaces, and Web3 security. Hands-on IC mentor with strengths in frontend architecture, backend systems, and end-to-end execution, with measurable impact such as reducing monorepo build times from 15 to 3 minutes, cutting alert noise by around 60%, and improving API response times by 35%. Contributor to approximately 14 open source projects, speaker on Angular, Ionic, Cucumber, and Redux in Chile, and active builder of practical AI tooling side projects.",
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "OpenZeppelin",
+      "location": "UK, Remote",
+      "years": "2023 - 2026",
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Zustand",
+        "Express.js",
+        "Tailwind CSS",
+        "Svelte",
+        "Rust",
+        "Solidity",
+        "Stripe",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Claude",
+        "Cursor",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "Playwright",
+        "Cypress",
+        "Jest",
+        "Docker",
+        "PostgreSQL",
+        "Redis",
+        "Amazon SQS",
+        "AWS Lambda",
+        "DynamoDB"
+      ],
+      "description": [
+        "Co-led Defender 2.0 Secure Audit as one of two engineers. Built a full-stack module with a frontend focus in TypeScript and React that helped smart contract auditors work directly with clients, track findings, verify fixes, and deliver final PDF reports.",
+        "Led end-to-end testing for Defender with Playwright, focusing on critical user flows to improve release confidence.",
+        "Built Stripe billing integration in Defender 2.0 for self-serve Pro subscriptions and enterprise-tier plans.",
+        "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate the products and build custom automation tooling.",
+        "Cut alert noise by about 60% across Slack and PagerDuty by tuning recoverable RPC and gas-spike alerts, reducing wake-ups and making on-call incidents easier to triage.",
+        "Refactored the TypeScript monorepo build system (ESM migration, package exports, bundler and tsconfig updates, plus lint and typecheck flow), reducing platform build times from about 15 minutes to 3 minutes in local and CI runs while also reducing bundle size and speeding up PR cycles.",
+        "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing/retry/failover, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition.",
+        "Supported the Defender sunset by helping close feature gaps, improving documentation, and working directly with enterprise users during migration to OSS Relayer, which covered most enterprise Defender users.",
+        "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions (SSR vs SPA, state management, i18n) and infrastructure direction with Kubernetes and Okta."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Software Engineer",
+      "company": "Premise",
+      "location": "US, Remote",
+      "years": "2021 - 2022",
+      "tech": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "Express.js",
+        "GraphQL",
+        "Apollo GraphQL",
+        "Material-UI",
+        "Tailwind CSS",
+        "Storybook",
+        "Jest",
+        "GitHub Actions",
+        "Python",
+        "PostgreSQL",
+        "BigQuery",
+        "GCP",
+        "Kubernetes",
+        "Docker"
+      ],
+      "description": [
+        "Built a presentation feature in MyPremise with React and TypeScript that surfaced up-to-date, often live data, so account managers and clients could use a single shareable URL instead of resending PDF or PPT exports after each update.",
+        "Contributed to the migration from REST to GraphQL with Apollo across key entities, including updates to Express.js services, reducing endpoint churn, enabling more flexible data retrieval, improving API response times by 35%, and lowering server usage.",
+        "Improved release reliability by expanding test coverage with Jest and adding quality gates in GitHub Actions, reducing release cycles from one week to less than 24 hours by cutting manual testing effort.",
+        "Helped standardize the UI with Material UI and introduced Storybook for shared component documentation and design handoff, reducing prototyping time from one week to one day while improving consistency and reducing UI bugs.",
+        "Built an internal hackathon AI proof of concept using the OpenAI API for natural-language report generation, showing a faster way for teams to request and assemble data-driven reports."
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Software Engineer",
+      "company": "Rappi",
+      "location": "Colombia, Remote",
+      "years": "2020 - 2021",
+      "tech": [
+        "Go",
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "Git",
+        "PostgreSQL",
+        "Node.js",
+        "Redis",
+        "Amazon Web Services (AWS)",
+        "Angular",
+        "Docker",
+        "Kubernetes",
+        "Kafka"
+      ],
+      "description": [
+        "Built backend integrations for merchant ingestion pipelines, normalizing data from FTP, APIs, SOAP XML feeds, and web scraping to support pricing, stock, availability, bundles, and product attributes.",
+        "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular, removing dependency on external engineering support, saving $75,000 annually, and enabling faster onboarding for customer service teams.",
+        "Implemented real-time catalog and pricing updates with Go and Kafka, and migrated core business logic from a previous Python ETL flow so product and discount changes reached the app faster, contributing to a 21% increase in CSAT and improved NPS.",
+        "Engineered a Redis-based conflict resolution layer that prioritized real-time event processing over scheduled tasks, handling duplicate and out-of-order updates while improving product data accuracy and reliability by 40%.",
+        "Drove unit testing for critical pricing, offers, and bundles logic with an 80% coverage target, reducing critical rollout defects by 33% and improving release confidence."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "System Architect",
+      "company": "Vitamina Holding",
+      "location": "Santiago, Chile",
+      "years": "2019 - 2022",
+      "tech": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Redux",
+        "Express.js",
+        "Tailwind CSS",
+        "Python",
+        "C#",
+        "Git",
+        "MSSQL",
+        "MySQL",
+        "Node.js",
+        "Amazon Web Services (AWS)",
+        "Kubernetes",
+        "Docker",
+        "Angular",
+        "Azure"
+      ],
+      "description": [
+        "Improved architecture and delivery process for a legacy internal platform built on .NET Framework and Microsoft tooling, where releases depended on multiple approval meetings and manual documents.",
+        "Worked with product, engineering, and infrastructure teams to simplify the release flow and reduce delivery cycles from months to about two weeks.",
+        "Modernized key parts of the stack by moving from ASP.NET to Angular and from .NET Framework to .NET Core, removing Internet Explorer-only constraints and enabling Chrome compatibility.",
+        "Implemented transaction-related API flows with Express.js, including integrations with Transbank for payment processing use cases.",
+        "Introduced DevOps practices and led a staged migration from on-prem to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "Resit SPA",
+      "location": "Santiago, Chile",
+      "years": "2017 - 2019",
+      "tech": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Redux",
+        "Express.js",
+        "Tailwind CSS",
+        "React Native",
+        "GraphQL",
+        "Angular",
+        "Django",
+        "Python",
+        "MongoDB",
+        "MySQL",
+        "Amazon Web Services (AWS)",
+        "Git",
+        "Docker",
+        "Kubernetes"
+      ],
+      "description": [
+        "Delivered more than five web and mobile products for clients across medical, industrial, government, legal, and cultural sectors, working end to end from discovery and requirements to planning and implementation.",
+        "Led architecture decisions for each project and set engineering standards for TypeScript, React, and React Native across the company.",
+        "Built mobile applications with React Native for client products, aligning app architecture and delivery practices with shared web platform standards.",
+        "Implemented payment gateway integrations with Express.js services, including Transbank transaction flows for client projects.",
+        "Mentored five developers through pairing sessions, code reviews, and workshops focused on architecture, testing, and code quality.",
+        "Worked directly with clients through discovery calls, demos, and status updates, including delivery of the PIIA project under a short deadline that helped open government opportunities for the agency."
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Fullstack Developer",
+      "company": "Dxpress",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2017",
+      "tech": [
+        "Python",
+        "Go",
+        "JavaScript",
+        "TypeScript",
+        "Angular",
+        "Flask",
+        "PostgreSQL",
+        "Redis",
+        "Tile38",
+        "Google Cloud Platform (GCP)",
+        "Git"
+      ],
+      "description": [
+        "Contributed to building Dxpress from idea to launch as one of the first Uber Eats-style delivery services in Chile, working with a small product and engineering team inside an investment firm.",
+        "Focused on backend development across Python and Go services, building platform capabilities for advanced search, geolocation, real-time operational features, and product ETL workflows.",
+        "Developed ETL pipelines that ingested and normalized product data from manual uploads, APIs, web scraping, and FTP CSV files, supporting catalogs with more than 5,000 products.",
+        "Applied frontend skills in Angular for operational interfaces, and managed business metrics, performance monitoring, and deployment workflows to support continuous process improvements."
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Junior Software Developer",
+      "company": "Laboratorio de Ideas Ltda.",
+      "location": "Santiago, Chile",
+      "years": "2015 - 2015",
+      "tech": [
+        "AngularJS",
+        "JavaScript",
+        "PHP",
+        "Django",
+        "Python",
+        "Vagrant",
+        "Node.js",
+        "Laravel"
+      ],
+      "description": [
+        "Started as a junior developer and took on growing frontend ownership, helping introduce Node.js and AngularJS into the agency stack.",
+        "Contributed to an internal project management platform used by delivery and operations teams.",
+        "Contributed to a B2B sales system for an auto parts dealer, plus a medical consultation system and a warehouse access control system.",
+        "Supported development of ecommerce capabilities and payment integration flows across client projects."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidad Tecnologica de Chile",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "years": "2012 - 2015",
+      "description": ""
+    }
+  ],
+  "personalProjects": [],
+  "skills": [
+    {
+      "category": "Frontend & UI",
+      "items": [
+        "React",
+        "Next.js",
+        "Redux",
+        "Zustand",
+        "React Native",
+        "Tailwind CSS",
+        "Storybook",
+        "Material-UI",
+        "Svelte",
+        "Angular",
+        "AngularJS",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "category": "Languages",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "C#",
+        "Rust",
+        "Python",
+        "Go",
+        "Solidity",
+        "PHP"
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "items": [
+        "Playwright",
+        "React Testing Library",
+        "Jest",
+        "Cypress",
+        "Pytest"
+      ]
+    },
+    {
+      "category": "Backend & APIs",
+      "items": [
+        "Node.js",
+        "Express.js",
+        "Apollo GraphQL",
+        "GraphQL",
+        "REST APIs",
+        "WebSockets",
+        "Django",
+        "Flask",
+        "Laravel"
+      ]
+    },
+    {
+        "category": "Databases & Messaging",
+        "items": [
+          "MSSQL",
+          "MongoDB",
+          "PostgreSQL",
+          "MySQL",
+          "Redis",
+        "DynamoDB",
+        "BigQuery",
+        "Kafka",
+        "Amazon SQS",
+        "Tile38"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "AWS",
+        "Amazon Web Services (AWS)",
+        "AWS Lambda",
+        "GCP",
+        "Google Cloud Platform (GCP)",
+        "Azure",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "GitHub Actions",
+        "CloudWatch",
+        "Sentry",
+        "Serverless"
+      ]
+    },
+    {
+        "category": "Platforms & Practices",
+        "items": [
+          "Claude",
+          "Cursor",
+          "Stripe",
+          "Agile",
+          "Scrum",
+        "Git",
+        "CI/CD",
+        "Microservices",
+        "Vagrant"
+      ]
+    }
+  ],
+  "additional": {
+      "technicalSkills": [
+        "TypeScript",
+        "JavaScript",
+      "Express.js",
+      "Go",
+      "Python",
+      "Redux",
+      "Zustand",
+      "Solidity",
+      "React",
+      "Next.js",
+      "Svelte",
+      "Angular",
+      "Django",
+      "Flask",
+      "React Native",
+      "Storybook",
+      "Material-UI",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "CSS",
+      "HTML5",
+      "Node.js",
+      "GraphQL",
+      "RESTful APIs",
+      "MSSQL",
+      "WebSockets",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Redis",
+      "RabbitMQ",
+      "Kafka",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions",
+      "AWS",
+      "GCP",
+      "Azure",
+      "Terraform",
+      "Serverless",
+      "Jest",
+      "Cypress",
+      "Mocha",
+      "Pytest",
+      "Playwright",
+      "Claude",
+      "Cursor",
+      "Agile",
+      "Scrum",
+      "Git",
+      "Microservices",
+      "SOLID Principles"
+    ],
+    "languages": [
+      "Spanish (Native)",
+      "English (Advanced - C1)"
+    ],
+    "certificationsTraining": [],
+    "awards": []
+  },
+  "customSections": {}
+}

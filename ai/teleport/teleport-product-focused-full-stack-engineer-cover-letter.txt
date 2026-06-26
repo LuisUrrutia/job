@@ -1,0 +1,7 @@
+Teleport Connect needs a product engineer who can move between React workflows, backend APIs, and security-sensitive infrastructure without treating UI as a thin layer.
+
+At OpenZeppelin, I co-led TypeScript and React Secure Audit workflows for smart contract auditors, then owned EVM-side Rust OSS Relayer work around RPC failover, AWS/GCP KMS signers, and nonce safety. At Rappi, I built Go/Kafka catalog and onboarding systems that improved operational reliability and customer-service speed.
+
+My background is stronger in Web3 and infrastructure security than direct passwordless UI, so I would bring adjacent security judgment rather than pretend otherwise. Teleport's focus on cryptographic identity, no shared secrets, and no standing privilege is exactly the kind of product-security boundary I like working on.
+
+I would be glad to discuss how I can help the Teleport Connect team ship customer-facing security workflows.

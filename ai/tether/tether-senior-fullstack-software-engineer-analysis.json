@@ -1,0 +1,213 @@
+{
+  "job": {
+    "position": "Senior Fullstack Software Engineer",
+    "company": "Tether"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false
+  },
+  "fit_analysis": {
+    "must_have_pass": "9/10",
+    "weighted_match_score": 78,
+    "strengths": [
+      "12+ years of fullstack engineering experience with React, TypeScript, backend APIs, databases, Docker, and Kubernetes",
+      "Recent production work on developer-facing Web3 infrastructure, SDKs, relayers, RPC reliability, and distributed transaction handling at OpenZeppelin",
+      "Event-driven and real-time backend evidence through Kafka, Redis conflict resolution, RPC retry/failover, and live data product work",
+      "Remote experience across UK, US, Colombia, Chile, and Spain with advanced English",
+      "Open-source contribution signal through OpenZeppelin Relayer OSS and approximately 14 open source projects"
+    ],
+    "gaps": [
+      {
+        "item": "Expert-level Node.js backend ownership is present historically, but the strongest recent backend evidence is TypeScript/Express, Rust, RPC, and platform work rather than explicit Node.js ownership",
+        "severity": "minor",
+        "type": "required"
+      },
+      {
+        "item": "Peer-to-peer technologies such as Hyperswarm, libp2p, WebRTC, and Holepunch are not listed in the source profile",
+        "severity": "minor",
+        "type": "preferred"
+      },
+      {
+        "item": "GPU resource management and ML framework infrastructure are not listed in the source profile",
+        "severity": "major",
+        "type": "preferred"
+      },
+      {
+        "item": "AI/ML inference APIs and OpenAI-compatible endpoints are only adjacent through an internal OpenAI API proof of concept, not production AI platform work",
+        "severity": "major",
+        "type": "preferred"
+      },
+      {
+        "item": "Prometheus, Grafana, and ELK are not listed; observability evidence is adjacent through CloudWatch, Sentry, Slack, and PagerDuty alerting",
+        "severity": "minor",
+        "type": "preferred"
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      "Backend API and distributed systems evidence from OpenZeppelin, Premise, Vitamina Holding, Rappi, and Dxpress",
+      "React and TypeScript frontend work for developer-facing dashboards and workflows",
+      "Kubernetes, Docker, Redis, Kafka, PostgreSQL, and production reliability experience",
+      "Open-source, remote collaboration, and English communication signals",
+      "Adjacent AI evidence without overstating production ML or GPU experience"
+    ],
+    "recommendation": "apply_with_caution"
+  },
+  "must_have_evidence_map": [
+    {
+      "requirement": "5+ years fullstack development with strong backend emphasis",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Senior Full-Stack Engineer summary",
+          "bullet": "12+ years of professional experience building and operating production systems across B2B SaaS, enterprise platforms, marketplaces, and Web3 security."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate the products and build custom automation tooling."
+        }
+      ]
+    },
+    {
+      "requirement": "Expert-level Node.js/JavaScript backend development",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Led development of an internal integration and onboarding platform with Go, Node.js, and Angular."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Implemented transaction-related API flows with Express.js."
+        },
+        {
+          "role": "Skills",
+          "bullet": "Node.js, Express.js, REST APIs, WebSockets, TypeScript, JavaScript."
+        }
+      ]
+    },
+    {
+      "requirement": "React frontend framework experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built a full-stack module with a frontend focus in TypeScript and React."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a presentation feature in MyPremise with React and TypeScript."
+        }
+      ]
+    },
+    {
+      "requirement": "Distributed systems or event-driven architecture experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including chain-specific transaction cost handling, RPC balancing/retry/failover, AWS KMS and GCP KMS signer integrations, and a fix for a critical nonce race condition."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Implemented real-time catalog and pricing updates with Go and Kafka."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Engineered a Redis-based conflict resolution layer that prioritized real-time event processing over scheduled tasks."
+        }
+      ]
+    },
+    {
+      "requirement": "API design and implementation, including authentication, rate limiting, and versioning",
+      "status": "partial",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate the products and build custom automation tooling."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Contributed to the migration from REST to GraphQL with Apollo across key entities, including updates to Express.js services."
+        }
+      ]
+    },
+    {
+      "requirement": "Docker and Kubernetes experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Contributed to OIF and Ascend initiatives with React and Next.js, shaping frontend architecture decisions and infrastructure direction with Kubernetes and Okta."
+        },
+        {
+          "role": "Multiple roles",
+          "bullet": "Docker and Kubernetes are listed across OpenZeppelin, Premise, Vitamina Holding, Rappi, and Resit SPA tech arrays."
+        }
+      ]
+    },
+    {
+      "requirement": "Database proficiency with data modeling and optimization",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Improved API response times by 35% and lowered server usage through REST to GraphQL migration across key entities."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Normalized data from FTP, APIs, SOAP XML feeds, and web scraping to support pricing, stock, availability, bundles, and product attributes."
+        }
+      ]
+    },
+    {
+      "requirement": "Networking, security principles, and production systems experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Cut alert noise by about 60% across Slack and PagerDuty by tuning recoverable RPC and gas-spike alerts."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Worked in Web3 security products at OpenZeppelin, including Defender and OSS Relayer."
+        }
+      ]
+    },
+    {
+      "requirement": "Real-time data streaming and RPC implementations",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Owned RPC balancing/retry/failover and transaction cost handling in OpenZeppelin Relayer OSS."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Implemented real-time catalog and pricing updates with Go and Kafka."
+        }
+      ]
+    },
+    {
+      "requirement": "Independent remote work and cross-time-zone communication",
+      "status": "matched",
+      "severity_if_missing": "minor",
+      "evidence": [
+        {
+          "role": "Personal info and work history",
+          "bullet": "Current location Spain with remote roles in UK, US, Colombia, and Chile, plus English Advanced - C1."
+        }
+      ]
+    }
+  ]
+}

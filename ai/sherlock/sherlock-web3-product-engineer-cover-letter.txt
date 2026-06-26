@@ -1,0 +1,7 @@
+Sherlock AI's focus on turning security findings into clear, fix-ready reports is close to work I did at OpenZeppelin.
+
+I co-led Defender 2.0 Secure Audit as one of two engineers, working closely with smart contract auditors and clients to plan, prioritize, and ship TypeScript and React workflows for findings, fix verification, and final reports. I also worked directly with enterprise users during the Defender to OSS Relayer migration, closing feature gaps and improving documentation for most enterprise users.
+
+Sherlock's lifecycle approach to Web3 security, from AI analysis to audits, bounties, and coverage, fits the kind of product engineering I enjoy: customer-facing, technical, and tied to real security workflows.
+
+I would be glad to discuss how my Web3 security, frontend product, Python systems, and client communication experience can help Sherlock ship better tools for protocol teams.

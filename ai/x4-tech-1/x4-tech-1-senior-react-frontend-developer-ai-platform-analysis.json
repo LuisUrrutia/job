@@ -1,0 +1,175 @@
+{
+  "job": {
+    "position": "Senior React Frontend Developer (AI Platform)",
+    "company": "x4-tech-1"
+  },
+  "candidate_constraints": {
+    "us_based": false,
+    "us_work_authorization": false,
+    "eu_based": true,
+    "current_location": "Spain"
+  },
+  "fit_analysis": {
+    "must_have_pass": "8/8",
+    "weighted_match_score": 91,
+    "strengths": [
+      "12+ years of professional engineering experience",
+      "Multiple senior React and TypeScript roles across remote product teams",
+      "Direct evidence of Redux and Zustand state management in production roles",
+      "Strong developer-facing tooling and frontend ownership",
+      "Experience with live or frequently updated data interfaces",
+      "Clear startup and fast-changing environment experience",
+      "Relevant AI adjacency through an internal AI proof of concept and AI tooling side projects"
+    ],
+    "gaps": [
+      {
+        "item": "Workflow, graph, or state-machine visualization is not directly evidenced",
+        "severity": "minor",
+        "type": "preferred"
+      }
+    ],
+    "eligibility_risks": [],
+    "resume_focus_priority": [
+      "React and TypeScript frontend ownership",
+      "Real-time or frequently updated UI evidence",
+      "Developer-facing product and tooling work",
+      "Startup execution and cross-functional delivery",
+      "AI-adjacent work that stays fully grounded"
+    ],
+    "recommendation": "apply"
+  },
+  "must_have_evidence_map": [
+    {
+      "requirement": "Bachelor's or Master's degree in a relevant field",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Education",
+          "bullet": "Bachelor of Engineering in Computer Science, Universidad Tecnologica de Chile"
+        }
+      ]
+    },
+    {
+      "requirement": "5+ years building modern front-end applications with React",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a React and TypeScript frontend with Zustand state management so smart contract auditors could track findings, verify fixes, and deliver final PDF reports with clients."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a React and TypeScript presentation feature in MyPremise that surfaced up-to-date, often live data through a single shareable URL for account managers and clients."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions and set engineering standards for TypeScript, React, React Native, and Redux across the company."
+        }
+      ]
+    },
+    {
+      "requirement": "Strong TypeScript and modern JavaScript proficiency",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Refactored the TypeScript monorepo build system, cutting build times from about 15 minutes to 3 minutes in local and CI runs while reducing bundle size and speeding up pull request cycles."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a React and TypeScript presentation feature in MyPremise that surfaced up-to-date, often live data through a single shareable URL for account managers and clients."
+        }
+      ]
+    },
+    {
+      "requirement": "Experience with real-time, data-intensive UI work",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Built a React and TypeScript presentation feature in MyPremise that surfaced up-to-date, often live data through a single shareable URL for account managers and clients."
+        },
+        {
+          "role": "Software Engineer, Rappi",
+          "bullet": "Implemented real-time catalog and pricing updates with Go and Kafka, moving core logic from a previous Python ETL flow so product and discount changes reached the app faster and contributed to a 21% increase in CSAT."
+        },
+        {
+          "role": "Skills",
+          "bullet": "Backend & APIs section includes REST APIs and WebSockets."
+        }
+      ]
+    },
+    {
+      "requirement": "Familiarity with state management libraries such as Redux or Zustand",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a React and TypeScript frontend with Zustand state management so smart contract auditors could track findings, verify fixes, and deliver final PDF reports with clients."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Led architecture decisions and set engineering standards for TypeScript, React, React Native, and Redux across the company."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Worked across frontend modernization efforts that included React, Redux, and Angular while the platform moved away from Internet Explorer-only constraints and toward modern browser support."
+        }
+      ]
+    },
+    {
+      "requirement": "Experience building developer-facing interfaces and tools",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Co-led OpenZeppelin Defender 2.0 Secure Audit as one of two engineers, building a React and TypeScript frontend with Zustand state management so smart contract auditors could track findings, verify fixes, and deliver final PDF reports with clients."
+        },
+        {
+          "role": "Software Engineer, OpenZeppelin",
+          "bullet": "Built SDK capabilities for Defender and OSS Relayer so Web3 developers and technical teams could integrate the products and build custom automation tooling."
+        }
+      ]
+    },
+    {
+      "requirement": "REST API and backend integration experience",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Summary",
+          "bullet": "Strong fit for developer-facing products that need clear interfaces for complex systems, with hands-on React, TypeScript, Redux, Zustand, REST API integration, and live or frequently updated data experiences."
+        },
+        {
+          "role": "Software Engineer, Premise",
+          "bullet": "Helped migrate key entities to GraphQL with Apollo, including Express.js service updates, improving API response times by 35% and lowering server usage."
+        }
+      ]
+    },
+    {
+      "requirement": "Startup experience with evolving requirements",
+      "status": "matched",
+      "severity_if_missing": "major",
+      "evidence": [
+        {
+          "role": "Fullstack Developer, Dxpress",
+          "bullet": "Helped build Dxpress from idea to launch inside a small product and engineering team, focusing on geolocation, real-time operational features, and product ETL workflows across Python and Go services."
+        },
+        {
+          "role": "Full Stack Developer, Resit SPA",
+          "bullet": "Delivered more than five web and mobile products end to end across medical, industrial, government, legal, and cultural sectors."
+        },
+        {
+          "role": "System Architect, Vitamina Holding",
+          "bullet": "Improved architecture and delivery for a legacy internal platform, working with product, engineering, and infrastructure teams to reduce delivery cycles from months to about two weeks."
+        }
+      ]
+    }
+  ]
+}

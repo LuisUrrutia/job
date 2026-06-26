@@ -1,0 +1,442 @@
+{
+  "position": "Senior Software Engineer, Payments & Blockchain",
+  "company": "Payward",
+  "department": "Payments & Blockchain",
+  "employment_type": "full-time",
+  "seniority_level": "senior",
+  "work_model": {
+    "id": "constraint-work-model",
+    "state": "remote",
+    "source_quote": "Ashby posting metadata: workplaceType Remote"
+  },
+  "location": {
+    "id": "constraint-location",
+    "state": "United Kingdom, Brazil, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Lithuania, South Africa, Czech Republic, Hungary, Mexico, Chile, Poland, Bulgaria",
+    "source_quote": "Ashby posting metadata: workplaceType Remote; location United Kingdom; secondary locations Brazil, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Lithuania, South Africa, Czech Republic, Hungary, Mexico, Chile, Poland, Bulgaria."
+  },
+  "compensation": {
+    "id": "constraint-compensation",
+    "state": "not_stated",
+    "source_quote": null
+  },
+  "eligibility": {
+    "id": "constraint-eligibility",
+    "visa": "not_stated",
+    "sponsorship": "not_stated",
+    "work_authorization": "not_stated",
+    "source_quote": null
+  },
+  "requirements": [
+    {
+      "id": "req-001",
+      "text": "5+ years of software development experience focused on web and mobile applications",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "5+ years of experience in software development, with a focus on web and mobile applications"
+    },
+    {
+      "id": "req-002",
+      "text": "Deep JavaScript and TypeScript expertise",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Deep understanding of JavaScript/TypeScript"
+    },
+    {
+      "id": "req-003",
+      "text": "Proficiency with React and React Native frameworks",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "proficiency with React and React Native frameworks"
+    },
+    {
+      "id": "req-004",
+      "text": "Experience with Next.js",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience with Next.js, RESTful APIs and WebSockets"
+    },
+    {
+      "id": "req-005",
+      "text": "Experience with RESTful APIs and WebSockets",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience with Next.js, RESTful APIs and WebSockets"
+    },
+    {
+      "id": "req-006",
+      "text": "Experience with frontend testing frameworks",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience with frontend testing frameworks"
+    },
+    {
+      "id": "req-007",
+      "text": "Familiarity with modern front-end build pipelines and tooling",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Familiarity with modern front-end build pipelines and tooling"
+    },
+    {
+      "id": "req-008",
+      "text": "Strong understanding of UI/UX best practices and principles",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Strong understanding of UI/UX best practices and principles"
+    },
+    {
+      "id": "req-009",
+      "text": "Experience within a large technology organization or fast-growing startup",
+      "category": "experience",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience within a large technology organization or fast growing startup"
+    },
+    {
+      "id": "req-010",
+      "text": "Strong written and verbal English communication skills",
+      "category": "language",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Strong written and verbal communication skills in English"
+    },
+    {
+      "id": "req-011",
+      "text": "Build and maintain high-quality payment processing systems with React.js and relevant technologies",
+      "category": "domain",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Design, develop, and maintain high-quality payment processing systems using React.js and other relevant technologies"
+    },
+    {
+      "id": "req-012",
+      "text": "Design transaction experiences optimized for speed, security, reliability, and user trust",
+      "category": "domain",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Build and refine seamless transaction experiences that optimize fund transfers for speed, security, and reliability"
+    },
+    {
+      "id": "req-013",
+      "text": "Set a high bar for secure code in complex financial software systems",
+      "category": "domain",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Set the standard for high-quality, secure code and lead the development of complex financial software systems"
+    },
+    {
+      "id": "req-014",
+      "text": "Influence technical decisions, strategy, and product/domain decisions in financial systems",
+      "category": "leadership",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Influence technical decisions, contribute to strategy discussions, and shape product/domain decisions"
+    },
+    {
+      "id": "req-015",
+      "text": "Mentor engineers and drive process improvements toward technical excellence",
+      "category": "leadership",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Mentor engineers, foster a culture of technical excellence, and drive process improvements"
+    },
+    {
+      "id": "req-016",
+      "text": "Design scalable, maintainable, and fault-tolerant financial systems with compliance and security best practices",
+      "category": "domain",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Design and implement scalable, maintainable, and fault-tolerant financial systems, ensuring compliance and security best practices"
+    },
+    {
+      "id": "req-017",
+      "text": "Understand cryptocurrency industry and blockchain technology",
+      "category": "domain",
+      "priority": "low",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Knowledge of the cryptocurrency industry and blockchain technology"
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Integrate Kraken systems with payment providers and payment flows for the first and last mile of client funds.",
+      "requirement_ids": [
+        "req-011",
+        "req-012",
+        "req-016"
+      ]
+    },
+    {
+      "text": "Build systems that communicate with blockchains to process client transactions safely and on time.",
+      "requirement_ids": [
+        "req-012",
+        "req-013",
+        "req-016",
+        "req-017"
+      ]
+    },
+    {
+      "text": "Develop React.js payment processing interfaces and onboarding flows that reduce friction and increase trust.",
+      "requirement_ids": [
+        "req-003",
+        "req-008",
+        "req-011",
+        "req-012"
+      ]
+    },
+    {
+      "text": "Lead secure implementation practices, mentor engineers, and shape technical and product decisions for payments systems.",
+      "requirement_ids": [
+        "req-013",
+        "req-014",
+        "req-015",
+        "req-016"
+      ]
+    }
+  ],
+  "success_outcomes": [
+    {
+      "text": "Client fund transfers are faster, more reliable, and safer across digital and fiat payment rails.",
+      "requirement_ids": [
+        "req-011",
+        "req-012",
+        "req-013",
+        "req-016"
+      ]
+    },
+    {
+      "text": "Users can onboard and interact with payment systems through intuitive flows that build trust.",
+      "requirement_ids": [
+        "req-008",
+        "req-011",
+        "req-012"
+      ]
+    },
+    {
+      "text": "Payments code and architecture meet a senior bar for maintainability, fault tolerance, compliance, and security.",
+      "requirement_ids": [
+        "req-013",
+        "req-014",
+        "req-015",
+        "req-016"
+      ]
+    }
+  ],
+  "keyword_signals": [
+    {
+      "term": "React.js",
+      "reason": "Core technology named in payment processing responsibilities.",
+      "priority": "high"
+    },
+    {
+      "term": "React Native",
+      "reason": "Explicit framework requirement tied to web and mobile application experience.",
+      "priority": "high"
+    },
+    {
+      "term": "TypeScript",
+      "reason": "Explicit must-have language signal.",
+      "priority": "high"
+    },
+    {
+      "term": "Next.js",
+      "reason": "Explicit framework requirement.",
+      "priority": "high"
+    },
+    {
+      "term": "RESTful APIs",
+      "reason": "Explicit integration and systems requirement.",
+      "priority": "high"
+    },
+    {
+      "term": "WebSockets",
+      "reason": "Explicit real-time/API technology requirement.",
+      "priority": "high"
+    },
+    {
+      "term": "frontend testing frameworks",
+      "reason": "Explicit quality requirement for frontend delivery.",
+      "priority": "high"
+    },
+    {
+      "term": "payments",
+      "reason": "Domain focus repeated across team and opportunity sections.",
+      "priority": "high"
+    },
+    {
+      "term": "blockchain",
+      "reason": "Team scope and nice-to-have domain knowledge signal.",
+      "priority": "medium"
+    },
+    {
+      "term": "secure code",
+      "reason": "Security and client funds protection are central screening themes.",
+      "priority": "high"
+    },
+    {
+      "term": "fault-tolerant financial systems",
+      "reason": "Architecture standard explicitly called out for senior scope.",
+      "priority": "high"
+    },
+    {
+      "term": "UI/UX",
+      "reason": "Explicit requirement and onboarding/transaction experience responsibility.",
+      "priority": "medium"
+    }
+  ],
+  "screening_priorities": [
+    {
+      "id": "screen-001",
+      "rank": 1,
+      "reason": "The role centers on React/TypeScript delivery for payment processing systems.",
+      "requirement_ids": [
+        "req-001",
+        "req-002",
+        "req-003",
+        "req-004",
+        "req-011"
+      ],
+      "evidence": "Design, develop, and maintain high-quality payment processing systems using React.js"
+    },
+    {
+      "id": "screen-002",
+      "rank": 2,
+      "reason": "Payments at Kraken require security, reliability, and client funds protection rather than generic frontend work.",
+      "requirement_ids": [
+        "req-012",
+        "req-013",
+        "req-016"
+      ],
+      "evidence": "your focus is on protecting client funds"
+    },
+    {
+      "id": "screen-003",
+      "rank": 3,
+      "reason": "The job asks for senior influence, mentoring, and process improvements in financial software development.",
+      "requirement_ids": [
+        "req-014",
+        "req-015",
+        "req-016"
+      ],
+      "evidence": "Mentor engineers, foster a culture of technical excellence, and drive process improvements"
+    },
+    {
+      "id": "screen-004",
+      "rank": 4,
+      "reason": "API integration, WebSockets, frontend testing, and build tooling are explicit technical filters.",
+      "requirement_ids": [
+        "req-005",
+        "req-006",
+        "req-007"
+      ],
+      "evidence": "Experience with Next.js, RESTful APIs and WebSockets"
+    },
+    {
+      "id": "screen-005",
+      "rank": 5,
+      "reason": "Crypto and blockchain knowledge is a nice-to-have but strengthens domain credibility for Payward/Kraken.",
+      "requirement_ids": [
+        "req-017"
+      ],
+      "evidence": "Knowledge of the cryptocurrency industry and blockchain technology"
+    }
+  ],
+  "employer_constraints": [
+    {
+      "id": "constraint-001",
+      "type": "geography",
+      "state": "United Kingdom, Brazil, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Lithuania, South Africa, Czech Republic, Hungary, Mexico, Chile, Poland, Bulgaria",
+      "source_quote": "Ashby posting metadata: workplaceType Remote; location United Kingdom; secondary locations Brazil, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Lithuania, South Africa, Czech Republic, Hungary, Mexico, Chile, Poland, Bulgaria."
+    },
+    {
+      "id": "constraint-002",
+      "type": "work_authorization",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-003",
+      "type": "visa_sponsorship",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-004",
+      "type": "travel",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-005",
+      "type": "schedule",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-006",
+      "type": "assessment",
+      "state": "Candidates may be asked to complete job-related skills or work-style assessments.",
+      "source_quote": "We may ask candidates to complete job-related skills or work-style assessments"
+    }
+  ],
+  "candidate_risk_notes": [
+    {
+      "id": "risk-001",
+      "text": "Official Ashby posting is remote but lists specific eligible countries; Spain is not listed, which may block a Spain-based candidate unless they have eligibility in a listed country.",
+      "severity": "blocker",
+      "requirement_ids": [],
+      "constraint_ids": [
+        "constraint-location",
+        "constraint-001",
+        "constraint-002",
+        "constraint-003"
+      ],
+      "source_quote": "Ashby posting metadata: workplaceType Remote; location United Kingdom; secondary locations Brazil, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Lithuania, South Africa, Czech Republic, Hungary, Mexico, Chile, Poland, Bulgaria."
+    }
+  ],
+  "red_flags": [
+    {
+      "id": "risk-003",
+      "text": "No compensation range is disclosed in the provided JD.",
+      "severity": "minor",
+      "constraint_ids": [
+        "constraint-compensation"
+      ],
+      "source_quote": null
+    },
+    {
+      "id": "risk-004",
+      "text": "Remote role has an official country list; Spain is not listed in the current Ashby posting metadata.",
+      "severity": "blocker",
+      "constraint_ids": [
+        "constraint-work-model",
+        "constraint-location"
+      ],
+      "source_quote": "Ashby posting metadata: workplaceType Remote; location United Kingdom; secondary locations Brazil, Peru, Sweden, Colombia, Argentina, Romania, Cyprus, Lithuania, South Africa, Czech Republic, Hungary, Mexico, Chile, Poland, Bulgaria."
+    }
+  ]
+}

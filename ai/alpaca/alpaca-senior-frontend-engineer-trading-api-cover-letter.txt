@@ -1,0 +1,7 @@
+The Trading API team's mix of frontend dashboards and backend systems behind features like Elite, High Yield Cash, and paper accounts is the kind of product surface I like working on.
+
+At OpenZeppelin, I co-led a React and TypeScript product area as one of two engineers, building workflows that helped auditors track findings, verify fixes, and deliver final reports. I also owned Rust-based backend work for the open-source Relayer and led Playwright coverage for critical user flows.
+
+Earlier, I built React and TypeScript interfaces with live data at Premise, improved API response times by 35%, and shipped React Native apps for iOS and Android at Resit. Alpaca's developer-first model and mission to open financial services to everyone on the planet make the role a strong fit.
+
+I'd welcome the chance to discuss how I could contribute to the Trading API team.

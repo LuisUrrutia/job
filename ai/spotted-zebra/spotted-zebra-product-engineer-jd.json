@@ -1,0 +1,432 @@
+{
+  "position": "Product Engineer",
+  "company": "Spotted Zebra",
+  "department": "Engineering / AI Augmented Delivery",
+  "employment_type": "not_stated",
+  "seniority_level": "senior IC / lead-leaning, not people-management",
+  "work_model": {
+    "id": "constraint-work-model",
+    "state": "remote-first",
+    "source_quote": "Remote-first"
+  },
+  "location": {
+    "id": "constraint-location",
+    "state": "not_stated",
+    "source_quote": null
+  },
+  "compensation": {
+    "id": "constraint-compensation",
+    "state": "not_stated",
+    "source_quote": null
+  },
+  "eligibility": {
+    "id": "constraint-eligibility",
+    "visa": "not_stated",
+    "sponsorship": "not_stated",
+    "work_authorization": "not_stated",
+    "source_quote": null
+  },
+  "requirements": [
+    {
+      "id": "req-001",
+      "text": "Full-stack engineering experience with strong TypeScript and React proficiency",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Proven experience as a full stack engineer with strong proficiency in TypeScript and React"
+    },
+    {
+      "id": "req-002",
+      "text": "Product-oriented mindset and care for the why behind what is being built",
+      "category": "other",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "A product-oriented mindset - you care about the why behind what you're building, not just the how"
+    },
+    {
+      "id": "req-003",
+      "text": "Demonstrated ability to take features from concept to production independently",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Demonstrable experience taking features from concept to production independently"
+    },
+    {
+      "id": "req-004",
+      "text": "Meaningful use of AI tools such as Cursor, Copilot, or Claude in the engineering workflow",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Comfort using AI tools (e.g. Cursor, Copilot, Claude) as a genuine part of your engineering workflow - not just experimenting, but integrating them meaningfully"
+    },
+    {
+      "id": "req-005",
+      "text": "Strong communication and self-management in a small, high-trust team",
+      "category": "leadership",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Strong communication skills and the ability to self-manage within a small, high-trust team"
+    },
+    {
+      "id": "req-006",
+      "text": "Experience working in a startup or early-stage environment",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience working in a startup or early-stage environment"
+    },
+    {
+      "id": "req-007",
+      "text": "Experience working in a B2B SaaS environment",
+      "category": "domain",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience working in a B2B SaaS environment"
+    },
+    {
+      "id": "req-008",
+      "text": "Enthusiasm for shaping how AI-augmented delivery teams work in practice",
+      "category": "other",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Enthusiasm for helping shape how AI-augmented delivery teams actually work in practice"
+    },
+    {
+      "id": "req-009",
+      "text": "Partner directly with a Product Manager to shape, define, scope, and prioritise features",
+      "category": "leadership",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "repeated",
+      "source_quote": "Partnering closely with your Product Manager to define, scope, and prioritise features - bringing your own product thinking to the table"
+    },
+    {
+      "id": "req-010",
+      "text": "Own feature build-out end to end from architecture through production across frontend and backend",
+      "category": "experience",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "repeated",
+      "source_quote": "Owning features end to end, from architecture decisions through to production, across the full stack"
+    },
+    {
+      "id": "req-011",
+      "text": "Write and maintain well-considered TypeScript across React frontend and backend services, with GraphQL APIs connecting the two",
+      "category": "technical_skill",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Writing and maintaining clean, well-considered TypeScript across both frontend (React) and backend (NestJS), with GraphQL APIs connecting the two"
+    },
+    {
+      "id": "req-012",
+      "text": "Familiarity with NestJS, PostgreSQL, Redis, RabbitMQ, GraphQL, Apollo, or similar technologies",
+      "category": "technical_skill",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Familiarity with our broader tech stack, including NestJS, PostgreSQL, Redis, RabbitMQ, GraphQL, Apollo, or similar technologies"
+    },
+    {
+      "id": "req-013",
+      "text": "Collaborate ad hoc with Staff Engineers, Engineering Managers, Designers, Data Science, QA, and DevOps",
+      "category": "leadership",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Collaborating with subject matter experts - including a Staff Engineers, Engineering Managers, Designers, Data Science, QA, and DevOps"
+    },
+    {
+      "id": "req-014",
+      "text": "Contribute to a delivery culture that values speed, ownership, and continuous improvement over bureaucracy and hand-offs",
+      "category": "other",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Contributing to a delivery culture that values speed, ownership, and continuous improvement over bureaucracy and hand-offs"
+    },
+    {
+      "id": "req-015",
+      "text": "Potential involvement in customer calls, discovery, solution shaping, and prioritisation",
+      "category": "experience",
+      "priority": "medium",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "You may be involved in customer calls, discovery, solution shaping and prioritisation"
+    },
+    {
+      "id": "req-016",
+      "text": "Build for end users with strong product intuition, technical judgement, and customer context",
+      "category": "other",
+      "priority": "high",
+      "confidence": "high",
+      "evidence_type": "repeated",
+      "source_quote": "This is a role for someone who genuinely lives and breathes building for end users"
+    },
+    {
+      "id": "req-017",
+      "text": "Experience in HR tech",
+      "category": "domain",
+      "priority": "low",
+      "confidence": "high",
+      "evidence_type": "explicit",
+      "source_quote": "Experience in HR tech"
+    },
+    {
+      "id": "req-018",
+      "text": "Interest in AI-native hiring, interview intelligence, skills assessments, and responsible human-controlled AI workflows",
+      "category": "domain",
+      "priority": "medium",
+      "confidence": "medium",
+      "evidence_type": "inferred_from_responsibilities",
+      "source_quote": "AI-native end-to-end hiring platform" 
+    }
+  ],
+  "responsibilities": [
+    {
+      "text": "Partner with the PM to define, scope, and prioritise product features rather than simply executing tickets.",
+      "requirement_ids": ["req-002", "req-009", "req-016"]
+    },
+    {
+      "text": "Own full-stack features from architecture and implementation through production release.",
+      "requirement_ids": ["req-001", "req-003", "req-010", "req-011"]
+    },
+    {
+      "text": "Use AI tooling in day-to-day engineering to move faster and operate effectively in a lean crew.",
+      "requirement_ids": ["req-004", "req-008", "req-014"]
+    },
+    {
+      "text": "Collaborate with design, data science, QA, DevOps, and senior engineering experts when the work demands it.",
+      "requirement_ids": ["req-005", "req-013"]
+    },
+    {
+      "text": "Participate in customer discovery, solution shaping, and prioritisation to understand the full picture behind the work.",
+      "requirement_ids": ["req-002", "req-015", "req-016"]
+    }
+  ],
+  "success_outcomes": [
+    {
+      "text": "Ship meaningful AI-native hiring platform features quickly in a compact AAD crew.",
+      "requirement_ids": ["req-003", "req-004", "req-008", "req-010", "req-014"]
+    },
+    {
+      "text": "Improve talent-team and candidate workflows across Interview Intelligence, Skills Assessments, and AI Interview Agent experiences.",
+      "requirement_ids": ["req-016", "req-018"]
+    },
+    {
+      "text": "Make strong technical and product trade-offs without formal people-management overhead.",
+      "requirement_ids": ["req-002", "req-005", "req-009", "req-010"]
+    },
+    {
+      "text": "Contribute to Spotted Zebra's evolving AI-augmented delivery model through practical engineering habits and feedback.",
+      "requirement_ids": ["req-004", "req-008", "req-014"]
+    }
+  ],
+  "keyword_signals": [
+    {
+      "term": "TypeScript",
+      "reason": "Core must-have and repeated implementation language for frontend and backend.",
+      "priority": "high"
+    },
+    {
+      "term": "React",
+      "reason": "Core must-have frontend technology.",
+      "priority": "high"
+    },
+    {
+      "term": "full stack",
+      "reason": "Role owns frontend, backend, and production feature delivery.",
+      "priority": "high"
+    },
+    {
+      "term": "product engineer",
+      "reason": "The role sits in a PM-plus-product-engineers AAD crew and values product intuition.",
+      "priority": "high"
+    },
+    {
+      "term": "AI tooling",
+      "reason": "Must-have asks for meaningful use of Cursor, Copilot, Claude, or similar tools.",
+      "priority": "high"
+    },
+    {
+      "term": "GraphQL",
+      "reason": "Backend/API connector in key responsibilities and nice-to-have stack.",
+      "priority": "high"
+    },
+    {
+      "term": "NestJS",
+      "reason": "Named backend framework in the target stack.",
+      "priority": "medium"
+    },
+    {
+      "term": "Apollo",
+      "reason": "Named GraphQL ecosystem technology in the target stack.",
+      "priority": "medium"
+    },
+    {
+      "term": "PostgreSQL",
+      "reason": "Named target-stack database.",
+      "priority": "medium"
+    },
+    {
+      "term": "Redis",
+      "reason": "Named target-stack data/messaging technology.",
+      "priority": "medium"
+    },
+    {
+      "term": "RabbitMQ",
+      "reason": "Named target-stack messaging technology.",
+      "priority": "medium"
+    },
+    {
+      "term": "B2B SaaS",
+      "reason": "Explicit must-have domain environment.",
+      "priority": "high"
+    },
+    {
+      "term": "startup",
+      "reason": "Explicit must-have operating environment.",
+      "priority": "high"
+    },
+    {
+      "term": "HR tech",
+      "reason": "Nice-to-have domain alignment.",
+      "priority": "low"
+    },
+    {
+      "term": "Interview Intelligence",
+      "reason": "Product-specific company signal.",
+      "priority": "medium"
+    },
+    {
+      "term": "Skills Assessments",
+      "reason": "Product-specific company signal.",
+      "priority": "medium"
+    }
+  ],
+  "screening_priorities": [
+    {
+      "id": "screen-001",
+      "rank": 1,
+      "reason": "The role's first screen is likely strong TypeScript/React full-stack experience tied to production feature delivery.",
+      "requirement_ids": ["req-001", "req-010", "req-011"],
+      "evidence": "Proven experience as a full stack engineer with strong proficiency in TypeScript and React"
+    },
+    {
+      "id": "screen-002",
+      "rank": 2,
+      "reason": "The role is a product-engineering IC role, so independent concept-to-production ownership and product judgement are central.",
+      "requirement_ids": ["req-002", "req-003", "req-009", "req-016"],
+      "evidence": "taking features from concept to production independently"
+    },
+    {
+      "id": "screen-003",
+      "rank": 3,
+      "reason": "Spotted Zebra is explicitly building an AI-native company and asks for genuine integration of AI tools in engineering work.",
+      "requirement_ids": ["req-004", "req-008", "req-014"],
+      "evidence": "integrating them meaningfully"
+    },
+    {
+      "id": "screen-004",
+      "rank": 4,
+      "reason": "Operating context matters: startup/early-stage, B2B SaaS, high-trust lean teams, and direct PM collaboration are all explicit.",
+      "requirement_ids": ["req-005", "req-006", "req-007", "req-009"],
+      "evidence": "Experience working in a startup or early-stage environment"
+    },
+    {
+      "id": "screen-005",
+      "rank": 5,
+      "reason": "Nice-to-have stack and HR tech are differentiators after core fit is established.",
+      "requirement_ids": ["req-012", "req-017", "req-018"],
+      "evidence": "Familiarity with our broader tech stack"
+    }
+  ],
+  "employer_constraints": [
+    {
+      "id": "constraint-001",
+      "type": "work_model",
+      "state": "remote-first",
+      "source_quote": "Remote-first"
+    },
+    {
+      "id": "constraint-002",
+      "type": "geography",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-003",
+      "type": "work_authorization",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-004",
+      "type": "compensation",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-005",
+      "type": "travel",
+      "state": "not_stated",
+      "source_quote": null
+    },
+    {
+      "id": "constraint-006",
+      "type": "schedule",
+      "state": "not_stated",
+      "source_quote": null
+    }
+  ],
+  "candidate_risk_notes": [
+    {
+      "id": "risk-001",
+      "text": "A candidate without clear independent full-stack feature ownership may be screened out because the role often expects largely solo ownership from architecture to production.",
+      "severity": "major",
+      "requirement_ids": ["req-003", "req-010"],
+      "constraint_ids": [],
+      "source_quote": "you'll often own the build-out of a feature largely solo, taking it from architecture through to production"
+    },
+    {
+      "id": "risk-002",
+      "text": "A candidate who only experiments with AI tools, rather than using them as part of daily engineering delivery, may be a weaker match.",
+      "severity": "major",
+      "requirement_ids": ["req-004", "req-008"],
+      "constraint_ids": [],
+      "source_quote": "not just experimenting, but integrating them meaningfully"
+    },
+    {
+      "id": "risk-003",
+      "text": "Location and work authorization constraints are not stated beyond remote-first, so non-UK or non-local applicants may need confirmation before applying.",
+      "severity": "major",
+      "requirement_ids": [],
+      "constraint_ids": ["constraint-001", "constraint-002", "constraint-003"],
+      "source_quote": "Remote-first"
+    }
+  ],
+  "red_flags": [
+    {
+      "id": "risk-004",
+      "text": "No salary or compensation range is disclosed.",
+      "severity": "minor",
+      "constraint_ids": ["constraint-compensation", "constraint-004"],
+      "source_quote": null
+    },
+    {
+      "id": "risk-005",
+      "text": "No specific country, time-zone, visa, or work-authorization constraints are stated, despite the company being UK-based and remote-first.",
+      "severity": "major",
+      "constraint_ids": ["constraint-location", "constraint-eligibility", "constraint-001", "constraint-002", "constraint-003"],
+      "source_quote": "Remote-first"
+    }
+  ]
+}
