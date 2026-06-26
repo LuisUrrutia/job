@@ -83,7 +83,7 @@
 	\begin{minipage}{0.4\textwidth}
 		\raggedleft{}
 		Email: \href{mailto:luis@urrutia.me}luis@urrutia.me \\
-		Mobile: \href{tel:+56945380763}+56 9 45380763  \\
+		Mobile: \href{tel:+34644402855}{+34 644 402 855}  \\
 		Location: Spain \\
 		LinkedIn: \href{https://linkedin.com/in/luisurrutiaf}{linkedin.com/in/luisurrutiaf} \\
 		GitHub: \href{https://github.com/LuisUrrutia}{github.com/LuisUrrutia}
@@ -98,48 +98,48 @@
 \WorkExperience{SOFTWARE ENGINEER \hfill UK, Remote}{OpenZeppelin \hfill 2023 {-} 2026} \\
 \Skills{TypeScript, React, Next.js, Express.js, GraphQL, PostgreSQL, Redis, Claude, Cursor, AWS, Kubernetes, Docker, Playwright, Jest, Rust}
 \begin{itemize}
-\item Co-led Defender 2.0 Secure Audit as one of two engineers, building \textbf{TypeScript and React audit workflows} that helped auditors work with clients, track findings, verify fixes, and deliver final PDF reports.
-\item Built \textbf{developer SDK capabilities} for Defender and OpenZeppelin Relayer OSS so Web3 developers and technical teams could integrate products and build custom automation tooling.
-\item Supported the Defender sunset by closing feature gaps, improving documentation, and \textbf{working directly with enterprise users} during migration to OSS Relayer, which covered most enterprise Defender users.
-\item Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including \textbf{RPC failover, signer integrations, and nonce reliability}.
-\item Refactored the TypeScript monorepo build system through ESM migration, package exports, bundler and tsconfig updates, \textbf{reducing builds from 15 to 3 minutes}.
+	\item Co-led Defender 2.0 Secure Audit as one of two engineers, building \textbf{TypeScript and React audit workflows} that helped auditors work with clients, track findings, verify fixes, and deliver final PDF reports.
+	\item Built \textbf{developer SDK capabilities} for Defender and OpenZeppelin Relayer OSS so Web3 developers and technical teams could integrate products and build custom automation tooling.
+	\item Supported the Defender sunset by closing feature gaps, improving documentation, and \textbf{working directly with enterprise users} during migration to OSS Relayer, which covered most enterprise Defender users.
+	\item Owned the EVM side of the Rust-based OpenZeppelin Relayer OSS work, including \textbf{RPC failover, signer integrations, and nonce reliability}.
+	\item Refactored the TypeScript monorepo build system through ESM migration, package exports, bundler and tsconfig updates, \textbf{reducing builds from 15 to 3 minutes}.
 \end{itemize}
 
 \WorkExperience{SOFTWARE ENGINEER \hfill US, Remote}{Premise \hfill 2021 {-} 2022} \\
 \Skills{TypeScript, React, Next.js, GraphQL, Apollo GraphQL, Express.js, PostgreSQL, Jest, GitHub Actions, Docker, Kubernetes, GCP}
 \begin{itemize}
-\item Built a \textbf{client-facing React and TypeScript feature} that surfaced live data through one shareable URL instead of repeated PDF or PPT exports.
-\item Contributed to the \textbf{REST to GraphQL migration with Apollo} across key entities, including Express.js service updates, improving API response times by 35\%.
-\item Built an internal hackathon \textbf{OpenAI API proof of concept} for natural-language report generation.
+	\item Built a \textbf{client-facing React and TypeScript feature} that surfaced live data through one shareable URL instead of repeated PDF or PPT exports.
+	\item Contributed to the \textbf{REST to GraphQL migration with Apollo} across key entities, including Express.js service updates, improving API response times by 35\%.
+	\item Built an internal hackathon \textbf{OpenAI API proof of concept} for natural-language report generation.
 \end{itemize}
 
 \WorkExperience{SOFTWARE ENGINEER \hfill Colombia, Remote}{Rappi \hfill 2020 {-} 2021} \\
 \Skills{TypeScript, Node.js, Go, Redis, PostgreSQL, Kafka, Docker, Kubernetes, AWS, Angular}
 \begin{itemize}
-\item Led development of an \textbf{internal integration and onboarding platform} with Go, Node.js, and Angular, saving \$75,000 annually.
-\item Implemented \textbf{real-time catalog and pricing updates} with Go and Kafka, migrating core business logic from a Python ETL flow.
-\item Engineered a \textbf{Redis-based conflict resolution layer} for duplicate and out-of-order updates, improving product data accuracy by 40\%.
+	\item Led development of an \textbf{internal integration and onboarding platform} with Go, Node.js, and Angular, saving \$75,000 annually.
+	\item Implemented \textbf{real-time catalog and pricing updates} with Go and Kafka, migrating core business logic from a Python ETL flow.
+	\item Engineered a \textbf{Redis-based conflict resolution layer} for duplicate and out-of-order updates, improving product data accuracy by 40\%.
 \end{itemize}
 
 \WorkExperience{SYSTEM ARCHITECT \hfill Santiago, Chile}{Vitamina Holding \hfill 2019 {-} 2022} \\
 \Skills{TypeScript, React, Express.js, Node.js, Azure, Kubernetes, Docker, C\#, Angular, MSSQL, MySQL, AWS}
 \begin{itemize}
-\item Worked with product, engineering, and infrastructure teams to simplify release flow and \textbf{reduce delivery cycles from months to two weeks}.
-\item Introduced DevOps practices and led a staged migration from on-prem infrastructure to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking.
+	\item Worked with product, engineering, and infrastructure teams to simplify release flow and \textbf{reduce delivery cycles from months to two weeks}.
+	\item Introduced DevOps practices and led a staged migration from on-prem infrastructure to Azure hybrid infrastructure across applications, databases, jobs, storage, and networking.
 \end{itemize}
 
 \WorkExperience{FULL STACK DEVELOPER \hfill Santiago, Chile}{Resit SPA \hfill 2017 {-} 2019} \\
 \Skills{TypeScript, React, GraphQL, Express.js, React Native, Python, Django, MongoDB, MySQL, Docker, Kubernetes, AWS}
 \begin{itemize}
-\item Delivered more than five web and mobile products across regulated and service sectors, working \textbf{end to end from discovery to implementation}.
-\item Led architecture decisions and set engineering standards for \textbf{TypeScript, React, and React Native} across the company.
-\item Worked directly with clients through \textbf{discovery calls, demos, and status updates}, including a short-deadline government project.
+	\item Delivered more than five web and mobile products across regulated and service sectors, working \textbf{end to end from discovery to implementation}.
+	\item Led architecture decisions and set engineering standards for \textbf{TypeScript, React, and React Native} across the company.
+	\item Worked directly with clients through \textbf{discovery calls, demos, and status updates}, including a short-deadline government project.
 \end{itemize}
 
 \WorkExperience{FULLSTACK DEVELOPER \hfill Santiago, Chile}{Dxpress \hfill 2015 {-} 2017} \\
 \Skills{TypeScript, Python, Go, PostgreSQL, Redis, Flask, GCP, Angular}
 \begin{itemize}
-\item Contributed to building Dxpress \textbf{from idea to launch} as one of the first Uber Eats-style delivery services in Chile.
+	\item Contributed to building Dxpress \textbf{from idea to launch} as one of the first Uber Eats-style delivery services in Chile.
 \end{itemize}
 
 \section*{EDUCATION}

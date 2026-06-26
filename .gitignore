@@ -3,6 +3,7 @@
 *.log
 *.gz
 *.fls
+*.flx
 *.out
 *.fdb_latexmk
 *.toc
@@ -13,6 +14,9 @@
 *.blg
 *.nav
 *.snm
+*.bak*
+*.pyc
+__pycache__/
 .DS_Store
 data/*.sqlite*
 var/jobs/raw-agent-runs*/

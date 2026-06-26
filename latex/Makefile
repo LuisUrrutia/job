@@ -1,5 +1,7 @@
 LATEXMK ?= latexmk
 LUALATEX_FLAGS := -lualatex -interaction=nonstopmode -halt-on-error
+AUX_DIR ?= build
+LATEXMK_BUILD_FLAGS := $(LUALATEX_FLAGS) -outdir=$(AUX_DIR)
 CHKTEX_FALLBACK := $(HOME)/Library/TinyTeX/bin/universal-darwin/chktex
 CHKTEX_FLAGS := -q -n1 -n2 -n8 -n13 -n24 -n26
 
@@ -13,13 +15,18 @@ build: build-main build-cols
 
 build-main:
 	@echo "Building $(MAIN_RESUME)"
-	$(LATEXMK) $(LUALATEX_FLAGS) $(MAIN_RESUME)
+	@mkdir -p $(AUX_DIR)
+	$(LATEXMK) $(LATEXMK_BUILD_FLAGS) $(MAIN_RESUME)
+	@cp "$(AUX_DIR)/$(basename $(MAIN_RESUME)).pdf" .
 
 build-cols:
-	$(LATEXMK) $(LUALATEX_FLAGS) $(ALT_RESUME)
+	@mkdir -p $(AUX_DIR)
+	$(LATEXMK) $(LATEXMK_BUILD_FLAGS) $(ALT_RESUME)
+	@cp "$(AUX_DIR)/$(basename $(ALT_RESUME)).pdf" .
 
 watch:
-	$(LATEXMK) -pvc $(LUALATEX_FLAGS) $(MAIN_RESUME)
+	@mkdir -p $(AUX_DIR)
+	$(LATEXMK) -pvc $(LATEXMK_BUILD_FLAGS) $(MAIN_RESUME)
 
 lint:
 	@if command -v chktex >/dev/null 2>&1; then \
@@ -29,6 +36,7 @@ lint:
 	fi
 
 clean:
-	$(LATEXMK) -C $(MAIN_RESUME)
-	$(LATEXMK) -C $(ALT_RESUME)
-	@rm -f *.aux *.fdb_latexmk *.fls *.log *.gz *.out *.toc *.synctex.gz *.xdv *.dvi *.bbl *.blg *.nav *.snm
+	$(LATEXMK) -C -outdir=$(AUX_DIR) $(MAIN_RESUME)
+	$(LATEXMK) -C -outdir=$(AUX_DIR) $(ALT_RESUME)
+	@rm -rf $(AUX_DIR)
+	@rm -f *.aux *.fdb_latexmk *.fls *.flx *.log *.gz *.out *.toc *.synctex.gz *.xdv *.dvi *.bbl *.blg *.nav *.snm *.bak*
