@@ -3,16 +3,16 @@
 Este repositorio tiene dos partes:
 
 - El CV y los paquetes de aplicación, que siguen viviendo en `ai/`, `latex/` y `applications/`.
-- Un pipeline local con Bun para descubrir trabajos, guardar estado en SQLite y generar `Jobs.md` como reporte.
+- Un pipeline local con Node para descubrir trabajos y guardar estado durable en SQLite.
 
-La regla importante: `Jobs.md` no es la fuente de verdad. Es una vista generada. El estado durable del pipeline vive en SQLite.
+La regla importante: SQLite es la fuente de verdad del pipeline. Los archivos JSON de debug son opcionales y no forman parte del estado principal.
 
 ## Requisitos
 
-Instala Bun:
+Instala Node.js 26 o superior para el pipeline de trabajos y el generador TypeScript de resumes. El módulo `node:sqlite` y la ejecución directa de `.ts` forman parte del runtime:
 
 ```sh
-brew install bun
+node --version
 ```
 
 Para el flujo de LaTeX/CV también necesitas las herramientas TeX:
@@ -23,27 +23,26 @@ wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 xargs tlmgr install < packages.txt
 ```
 
-Para discovery real en LinkedIn necesitas al menos un runner con acceso a MCP configurado. Hoy el caso principal es `opencode`, porque `opencode.json` ya configura `mcp-server-linkedin`.
+Para discovery real en LinkedIn necesitas al menos un runner con acceso a MCP configurado. Hoy el caso principal es `opencode`, porque `opencode.json` ya configura `mcp-server-linkedin`. El prompt default apunta a trabajos remotos React/TypeScript en UK, US y Unión Europea, y pide al agente devolver al menos 10 candidatos cuando LinkedIn tenga suficientes resultados válidos.
 
 ## Comandos principales
 
 Ejecuta el CLI del pipeline con:
 
 ```sh
-bun run jobs <comando> [opciones]
+npm run jobs -- <comando> [opciones]
 ```
 
 Comandos disponibles:
 
-- `discover`: ejecuta un agente o fixture, guarda el raw output y normaliza candidatos en SQLite.
-- `report`: genera Markdown desde SQLite. Por defecto escribe `Jobs.md`.
-- `enrich`: siguiente fase, todavía stub. Será para verificar empresa, JD, website y datos extra.
+- `discover`: ejecuta búsquedas livianas, normaliza candidatos search-only en SQLite.
+- `enrich`: obtiene JD, empresa real y website para candidatos guardados, con concurrencia acotada.
 - `process`: siguiente fase, todavía stub. Será para mandar trabajos aprobados al workflow existente de application package.
 
 Validar el proyecto:
 
 ```sh
-bun test
+npm run test:jobs
 ```
 
 ## Probar sin LinkedIn
@@ -51,19 +50,35 @@ bun test
 Usa el runner `fixture` para comprobar que el pipeline funciona sin tocar LinkedIn ni agentes reales:
 
 ```sh
-bun run jobs discover --runner fixture --db data/jobs-dev.sqlite
-bun run jobs report --db data/jobs-dev.sqlite --output reports/jobs-fixture.md
+npm run jobs -- discover --runner fixture --db data/jobs-dev.sqlite
 ```
 
-El fixture usa datos falsos de `tests/fixtures/linkedin-discovery.json`. No lo uses para generar el `Jobs.md` real.
+El fixture usa datos falsos de `tests/fixtures/linkedin-discovery.json`. Solo sirve para probar el pipeline local.
 
 ## Discovery real con LinkedIn
 
-Para que OpenCode use su conexión MCP de LinkedIn:
+La forma recomendada es separar discovery de enrichment. Discovery solo busca publicaciones con `search_jobs`, filtra por título y guarda candidatos search-only en SQLite. Enrichment procesa esos candidatos después, obtiene JD/details y verifica website.
+
+Pídele al agente algo como:
+
+```text
+Usa la skill linkedin-job-discovery para buscar trabajos React remotos en UK, US y EU, y guarda los resultados en data/jobs.sqlite.
+```
+
+Discovery usa solo `mcp-server-linkedin_search_jobs`. Para runners reales, el CLI lanza una corrida por término: `React`, `Typescript`, `Frontend` y `full-stack`; cada corrida recorre tres páginas cuando LinkedIn lo permite. Luego mergea y dedupea por identidad estable antes de pasar Defender y guardar en SQLite.
+
+Si usas la skill manualmente, persiste el JSON search-only con:
 
 ```sh
-bun run jobs discover --runner opencode --db data/jobs.sqlite
-bun run jobs report --db data/jobs.sqlite
+node linkedin-job-discovery/scripts/persist-discovery.mjs \
+  --input path/to/discovery.json \
+  --db data/jobs.sqlite
+```
+
+Si quieres ejecutar el runner CLI antiguo para debug técnico:
+
+```sh
+npm run jobs -- discover --runner opencode --db data/jobs.sqlite
 ```
 
 Eso ejecuta conceptualmente:
@@ -72,23 +87,39 @@ Eso ejecuta conceptualmente:
 opencode run "<prompt de discovery>" --dir <repo>
 ```
 
-El agente debe devolver JSON. El código guarda:
+Tanto la skill como el runner CLI esperan JSON. El código guarda:
 
 - stdout, stderr y exit code del agente.
-- Un archivo raw en `var/jobs/raw-agent-runs*/`.
+- Un archivo JSON raw solo si pasas `--debug-json <file>` o `--debug-json-dir <dir>`.
 - Candidatos normalizados en SQLite.
+
+El mensaje final separa tres números: `normalized` es lo que devolvió el agente después de parsear el JSON, `saved` es lo que quedó guardado tras pasar Defender, y `skipped` son candidatos ignorados por prompt injection.
+
+Antes de guardar candidatos, el pipeline pasa los campos no confiables de cada oferta por `@stackone/defender`. Si Defender detecta prompt injection de alto riesgo, el run queda registrado en SQLite, ese candidato se ignora, y el resto de candidatos seguros continúa. Si además activaste JSON de debug, también queda guardado el raw output del runner.
+
+Por defecto Defender corre con Tier 1 y Tier 2 activados. Tier 2 usa el clasificador ONNX en un subproceso Node aislado, para que un cierre nativo raro del runtime no tumbe el proceso principal de Node después de devolver el resultado. Si necesitas apagar Tier 2 para una corrida concreta:
+
+```sh
+JOBS_DEFENDER_TIER2=0 npm run jobs -- discover --runner opencode --db data/jobs.sqlite
+```
+
+Para ver el prompt, el runner usado, la normalización y el resultado de Defender, añade `--verbose`:
+
+```sh
+npm run jobs -- discover --runner opencode --db data/jobs.sqlite --verbose
+```
 
 También existen adaptadores para Codex y Claude:
 
 ```sh
-bun run jobs discover --runner codex --db data/jobs.sqlite
-bun run jobs discover --runner claude --db data/jobs.sqlite
+npm run jobs -- discover --runner codex --db data/jobs.sqlite
+npm run jobs -- discover --runner claude --db data/jobs.sqlite
 ```
 
 Claude acepta configuración MCP explícita si hace falta:
 
 ```sh
-bun run jobs discover --runner claude --mcp-config path/to/mcp.json --db data/jobs.sqlite
+npm run jobs -- discover --runner claude --mcp-config path/to/mcp.json --db data/jobs.sqlite
 ```
 
 ## Controlar el prompt desde código
@@ -96,19 +127,19 @@ bun run jobs discover --runner claude --mcp-config path/to/mcp.json --db data/jo
 El prompt default está en:
 
 ```text
-src/jobs/discover/prompts.js
+src/jobs/discover/prompts.ts
 ```
 
 Si quieres probar otro prompt sin editar ese archivo, usa `--prompt-file`:
 
 ```sh
-bun run jobs discover \
+npm run jobs -- discover \
   --runner opencode \
   --prompt-file prompts/linkedin-react.md \
   --db data/jobs.sqlite
 ```
 
-El prompt debe pedir JSON con esta forma:
+El prompt debe pedir JSON con esta forma y un lote útil de candidatos. El default pide al menos 10 candidatos elegibles antes de terminar, salvo que LinkedIn no entregue suficientes resultados válidos:
 
 ```json
 {
@@ -133,13 +164,14 @@ El prompt debe pedir JSON con esta forma:
 }
 ```
 
-No metas decisiones de idempotencia en el prompt. El prompt descubre. El código decide qué ya existe, qué cambió y qué se reporta.
+No metas decisiones de idempotencia en el prompt. El prompt descubre. El código decide qué ya existe, qué cambió y qué pasa a las fases siguientes.
 
 ## Identidad e idempotencia
 
-La identidad estable la controla `src/jobs/domain.js`:
+La identidad estable la controla `src/jobs/domain.ts`:
 
 - Si hay ID numérico de LinkedIn, se guarda como `linkedin:<id>`.
+- El ID numérico también se persiste en la columna `source_job_id` para auditoría.
 - Si no hay ID, se usa hash de URL canónica: `url:<hash>`.
 - Como último fallback, se hashea título, empresa y source.
 
@@ -154,26 +186,41 @@ data/*.sqlite*
 var/jobs/raw-agent-runs*/
 ```
 
+`discover` no escribe archivos JSON de debug por defecto. Si quieres guardar una corrida para debug:
+
+```sh
+npm run jobs -- discover --runner opencode --db data/jobs.sqlite --debug-json var/jobs/raw-agent-runs/latest.json
+```
+
 Usa una DB de desarrollo para pruebas:
 
 ```sh
-bun run jobs discover --runner fixture --db data/jobs-dev.sqlite
+npm run jobs -- discover --runner fixture --db data/jobs-dev.sqlite
 ```
 
-Usa la DB real para discovery real:
+Para discovery real, usa la skill y deja que persista en la DB real:
+
+```text
+Usa la skill linkedin-job-discovery para buscar trabajos React remotos en UK, US y EU, y guarda los resultados en data/jobs.sqlite.
+```
+
+## Enrichment
+
+Después de discovery, ejecuta enrichment para completar JD y website:
 
 ```sh
-bun run jobs discover --runner opencode --db data/jobs.sqlite
+npm run jobs -- enrich --runner opencode --db data/jobs.sqlite --concurrency 4
 ```
+
+`enrich` lee candidatos sin `description` o sin `company_website`, lanza un agente por candidato y limita la concurrencia con `--concurrency` (default `4`). Cada agente debe resolver details/JD y website para un solo job; el proceso padre vuelve a pasar Defender y re-upsertea la misma fila en SQLite.
 
 ## Flujo recomendado
 
-1. Prueba el pipeline con fixture.
-2. Ajusta el prompt en `src/jobs/discover/prompts.js` o con `--prompt-file`.
-3. Ejecuta discovery real con `opencode`.
-4. Genera `Jobs.md` con `report`.
-5. En una fase posterior, usa `enrich` para completar empresa/JD/website.
-6. Después, usa `process` para conectar trabajos aprobados con los skills existentes de job application.
+1. Ejecuta discovery real search-only para poblar SQLite.
+2. Audita los títulos guardados si algo se ve raro.
+3. Ejecuta `enrich` con concurrencia acotada para completar JD, empresa y website.
+4. Usa SQLite como fuente de verdad; los JSON de debug son solo inspección.
+5. En una fase posterior, conecta trabajos aprobados con los skills existentes de job application.
 
 ## Relación con el workflow de aplicaciones
 
@@ -203,10 +250,14 @@ make -C latex lint
 make -C latex clean
 ```
 
-Para generar resumes desde JSON, revisa la ayuda del script existente:
+La compilación con `make -C latex build` manda los archivos auxiliares (`.aux`, `.fls`, `.log`, `.fdb_latexmk`, etc.) a `latex/build/` y copia solo el PDF final junto a los `.tex`. Si quieres borrar todo ese ruido, usa `make -C latex clean`.
+
+Para generar resumes desde JSON, usa el generador TypeScript integrado en Node:
 
 ```sh
-python3 scripts/generate_resume_from_json.py --help
+npm run resume -- --help
+npm run resume -- --input ai/{company}/{slug}-application.json --tex-only
+npm run resume -- --compile-tex latex/{candidate-slug}-{slug}-Resume.tex
 ```
 
-No mezcles este flujo con `Jobs.md`: el pipeline de trabajos descubre oportunidades; el workflow de aplicaciones genera materiales para una oportunidad concreta.
+No mezcles discovery con la generación de materiales: el pipeline de trabajos descubre oportunidades; el workflow de aplicaciones genera materiales para una oportunidad concreta.
