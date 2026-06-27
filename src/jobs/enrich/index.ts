@@ -1,5 +1,6 @@
 import { normalizeDiscoveryOutput } from "../discover/normalizer.ts";
 import { persistRawRun, runDiscoveryAgent } from "../discover/runners.ts";
+import { buildRunLedger } from "../run-ledger.ts";
 import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
 import { linkedInEnrichmentPrompt, renderEnrichmentPrompt } from "./prompts.ts";
 import type { AgentRunResult, EnrichmentOptions, EnrichmentResult, JobCandidate, JobStore, StoredJobCandidate } from "../types.ts";
@@ -33,11 +34,31 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
   }
 
   const failedRuns = runs.filter((run) => run.exitCode !== 0);
-  const stdout = enrichmentRunLedgerStdout(runs);
-  const stderr = enrichmentRunLedgerStderr(runs);
-  const combinedPrompt = enrichmentRunLedgerPrompt(runs);
+  const ledger = buildRunLedger({
+    candidates: runs.flatMap((run) => normalizeEnrichmentRunOutput(run)),
+    runKey: "enrichmentRuns",
+    entries: runs.map((run) => ({
+      label: run.candidate.id,
+      exitCode: run.exitCode,
+      stdout: run.stdout,
+      stderr: run.stderr,
+      prompt: run.prompt,
+      record: {
+        candidateId: run.candidate.id,
+        exitCode: run.exitCode,
+        stdout: run.stdout,
+        stderr: run.stderr,
+        prompt: run.prompt
+      }
+    }))
+  });
   const exitCode = failedRuns[0]?.exitCode ?? 0;
-  const combinedRun: CombinedEnrichmentRun = { stdout, stderr, exitCode, prompt: combinedPrompt };
+  const combinedRun: CombinedEnrichmentRun = {
+    stdout: ledger.stdout,
+    stderr: ledger.stderr,
+    exitCode,
+    prompt: ledger.prompt
+  };
 
   const runId = store.saveAgentRun({
     runner: options.runner,
@@ -51,7 +72,7 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
   const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, combinedRun);
   if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
 
-  const normalizedCandidates = dedupeCandidates(normalizeDiscoveryOutput(stdout));
+  const normalizedCandidates = dedupeCandidates(normalizeDiscoveryOutput(combinedRun.stdout));
   if (failedRuns.length > 0) log("skipped failed enrichment runners", failedRuns.map(failedRunDetails));
   if (failedRuns.length > 0 && normalizedCandidates.length === 0) {
     const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : ` Run ${runId}; inspect agent_runs.stdout/stderr in SQLite.`;
@@ -88,38 +109,6 @@ async function runAgent(options: EnrichmentOptions, prompt: string): Promise<Age
 function normalizeEnrichmentRunOutput(run: EnrichmentRun): JobCandidate[] {
   if (run.exitCode !== 0) return [];
   return JSON.parse(JSON.stringify(normalizeDiscoveryOutput(run.stdout)));
-}
-
-function enrichmentRunLedgerStdout(runs: EnrichmentRun[]): string {
-  return JSON.stringify({
-    candidates: runs.flatMap((run) => normalizeEnrichmentRunOutput(run)),
-    enrichmentRuns: runs.map((run) => ({
-      candidateId: run.candidate.id,
-      exitCode: run.exitCode,
-      stdout: run.stdout,
-      stderr: run.stderr,
-      prompt: run.prompt
-    }))
-  });
-}
-
-function enrichmentRunLedgerPrompt(runs: EnrichmentRun[]): string {
-  return runs.map((run) => [
-    `# ${run.candidate.id}`,
-    `Exit code: ${run.exitCode}`,
-    run.prompt
-  ].join("\n")).join("\n\n");
-}
-
-function enrichmentRunLedgerStderr(runs: EnrichmentRun[]): string {
-  return runs
-    .filter((run) => run.stderr || run.exitCode !== 0)
-    .map((run) => [
-      `# ${run.candidate.id}`,
-      `Exit code: ${run.exitCode}`,
-      run.stderr.trim()
-    ].filter(Boolean).join("\n"))
-    .join("\n\n");
 }
 
 function dedupeCandidates(candidates: JobCandidate[]): JobCandidate[] {

@@ -11,6 +11,7 @@ import { openJobStore } from "../src/jobs/store.ts";
 import { discoverJobs } from "../src/jobs/discover/index.ts";
 import { enrichJobs } from "../src/jobs/enrich/index.ts";
 import { stableJobId } from "../src/jobs/domain.ts";
+import { buildRunLedger } from "../src/jobs/run-ledger.ts";
 
 describe("jobs pipeline", () => {
   test("fixture discover is idempotent and stores normalized candidates", async () => {
@@ -488,6 +489,47 @@ describe("jobs pipeline", () => {
       store.close();
       rmSync(workspace, { recursive: true, force: true });
     }
+  });
+
+  test("run ledger renders shared stdout prompt and stderr sections", () => {
+    const candidate = enrichedCandidate("1234567890");
+    const ledger = buildRunLedger({
+      candidates: [{
+        ...candidate,
+        id: "linkedin:1234567890",
+        contentHash: "hash-1234567890",
+        rawJson: JSON.stringify(candidate)
+      }],
+      runKey: "exampleRuns",
+      entries: [
+        {
+          label: "first",
+          exitCode: 0,
+          stdout: "first stdout",
+          stderr: "",
+          prompt: "first prompt",
+          record: { id: "first", exitCode: 0, stdout: "first stdout" }
+        },
+        {
+          label: "second",
+          exitCode: 7,
+          stdout: "second stdout",
+          stderr: " second stderr \n",
+          prompt: "second prompt",
+          record: { id: "second", exitCode: 7, stdout: "second stdout" }
+        }
+      ]
+    });
+    const stdout = JSON.parse(ledger.stdout);
+
+    assert.equal(stdout.candidates[0].sourceJobId, "1234567890");
+    assert.deepEqual(stdout.exampleRuns, [
+      { id: "first", exitCode: 0, stdout: "first stdout" },
+      { id: "second", exitCode: 7, stdout: "second stdout" }
+    ]);
+    assert.match(ledger.prompt, /# first\nExit code: 0\nfirst prompt/);
+    assert.match(ledger.prompt, /# second\nExit code: 7\nsecond prompt/);
+    assert.equal(ledger.stderr, "# second\nExit code: 7\nsecond stderr");
   });
 
   test("stable identity prefers LinkedIn numeric IDs and hashes canonical URLs", () => {
