@@ -12,6 +12,7 @@ import { discoverJobs } from "../src/jobs/discover/index.ts";
 import { enrichJobs } from "../src/jobs/enrich/index.ts";
 import { stableJobId } from "../src/jobs/domain.ts";
 import { normalizeDiscoveryOutputWithReport } from "../src/jobs/discover/normalizer.ts";
+import { normalizeCandidateOutput } from "../src/jobs/candidate-output.ts";
 import { buildRunLedger } from "../src/jobs/run-ledger.ts";
 
 describe("jobs pipeline", () => {
@@ -581,6 +582,34 @@ describe("jobs pipeline", () => {
       store.close();
       rmSync(workspace, { recursive: true, force: true });
     }
+  });
+
+  test("candidate output normalizer separates rejected rows, parse errors, and runner failures", () => {
+    const withRejected = normalizeCandidateOutput({
+      stdout: JSON.stringify({
+        candidates: [
+          searchOnlyCandidate("1010101010", "React Engineer"),
+          {
+            title: "Incomplete Engineer",
+            company: "Missing URL Example",
+            source: "linkedin",
+            sourceJobId: "2020202020"
+          }
+        ]
+      }),
+      stderr: "",
+      exitCode: 0
+    });
+    const invalidSuccessfulOutput = normalizeCandidateOutput({ stdout: "not json", stderr: "", exitCode: 0 });
+    const failedRunnerOutput = normalizeCandidateOutput({ stdout: "not json", stderr: "runner failed", exitCode: 1 });
+
+    assert.equal(withRejected.candidates.length, 1);
+    assert.deepEqual(withRejected.rejected[0].reasons, ["missing-url"]);
+    assert.equal(withRejected.normalizationError, null);
+    assert.ok(invalidSuccessfulOutput.normalizationError);
+    assert.match(invalidSuccessfulOutput.normalizationError, /parseable JSON/);
+    assert.equal(failedRunnerOutput.normalizationError, null);
+    assert.equal(failedRunnerOutput.candidates.length, 0);
   });
 
   test("run ledger preserves records and aggregate failure state", () => {

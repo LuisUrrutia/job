@@ -1,5 +1,6 @@
 import { DEFAULT_DISCOVERY_TERMS, loadDiscoveryPrompt, renderDiscoveryPrompt } from "./prompts.ts";
 import { normalizeDiscoveryOutputWithReport } from "./normalizer.ts";
+import { normalizeCandidateOutput } from "../candidate-output.ts";
 import { persistRawRun, runDiscoveryAgent } from "./runners.ts";
 import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
 import { buildRunLedger } from "../run-ledger.ts";
@@ -159,20 +160,7 @@ async function runAgent(options: DiscoveryOptions, prompt: string): Promise<Agen
 }
 
 function normalizeSearchRunOutput(run: SearchRun): NormalizedSearchRun {
-  if (run.exitCode !== 0) {
-    return { ...run, candidates: [], rejected: [], normalizationError: null };
-  }
-
-  try {
-    const report = normalizeDiscoveryOutputWithReport(run.stdout);
-    return { ...run, candidates: report.candidates, rejected: report.rejected, normalizationError: null };
-  } catch (error) {
-    return { ...run, candidates: [], rejected: [], normalizationError: errorMessage(error) };
-  }
-}
-
-function errorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : String(error);
+  return { ...run, ...normalizeCandidateOutput(run) };
 }
 
 function discoverySearchTerms(options: DiscoveryOptions): string[] {
