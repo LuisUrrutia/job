@@ -65,6 +65,23 @@ export interface JobCandidate {
   rawJson: string;
 }
 
+export type CandidateRejectionReason = "missing-title" | "missing-company" | "missing-url";
+
+export interface CandidateRejection {
+  index: number;
+  reasons: CandidateRejectionReason[];
+  title: string;
+  company: string;
+  url: string;
+  source: string;
+  sourceJobId: string;
+}
+
+export interface CandidateNormalizationReport {
+  candidates: JobCandidate[];
+  rejected: CandidateRejection[];
+}
+
 export interface StoredJobCandidate extends Omit<JobCandidate, "rawJson"> {
   firstSeenAt?: string;
   lastSeenAt?: string;
@@ -125,6 +142,7 @@ export interface DiscoveryResult {
   rawOutputPath: string | null;
   normalizedCount: number;
   dedupedCount: number;
+  rejectedCandidates: number;
   skippedCandidates: number;
   candidates: JobCandidate[];
 }
@@ -147,6 +165,7 @@ export interface EnrichmentResult {
   requestedCount: number;
   normalizedCount: number;
   failedCandidates: number;
+  rejectedCandidates: number;
   skippedCandidates: number;
   candidates: JobCandidate[];
 }

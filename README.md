@@ -93,7 +93,7 @@ Tanto la skill como el runner CLI esperan JSON. El código guarda:
 - Un archivo JSON raw solo si pasas `--debug-json <file>` o `--debug-json-dir <dir>`.
 - Candidatos normalizados en SQLite.
 
-El mensaje final separa tres números: `normalized` es lo que devolvió el agente después de parsear el JSON, `saved` es lo que quedó guardado tras pasar Defender, y `skipped` son candidatos ignorados por prompt injection.
+El mensaje final separa los números importantes: `normalized` son candidatos completos después de parsear el JSON, `saved` es lo que quedó guardado tras pasar Defender, `rejected` son candidatos incompletos (por ejemplo sin título, empresa o URL), y `skipped` son candidatos ignorados por prompt injection.
 
 Antes de guardar candidatos, el pipeline pasa los campos no confiables de cada oferta por `@stackone/defender`. Si Defender detecta prompt injection de alto riesgo, el run queda registrado en SQLite, ese candidato se ignora, y el resto de candidatos seguros continúa. Si además activaste JSON de debug, también queda guardado el raw output del runner.
 

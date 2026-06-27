@@ -11,6 +11,7 @@ import { openJobStore } from "../src/jobs/store.ts";
 import { discoverJobs } from "../src/jobs/discover/index.ts";
 import { enrichJobs } from "../src/jobs/enrich/index.ts";
 import { stableJobId } from "../src/jobs/domain.ts";
+import { normalizeDiscoveryOutputWithReport } from "../src/jobs/discover/normalizer.ts";
 
 describe("jobs pipeline", () => {
   test("fixture discover is idempotent and stores normalized candidates", async () => {
@@ -40,6 +41,63 @@ describe("jobs pipeline", () => {
       assert.ok(linkedInCandidate);
       assert.equal(linkedInCandidate.sourceJobId, "1234567890");
       assert.ok(candidates[0].companyWebsite.includes("example.invalid"));
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+  test("normalizer reports incomplete candidates instead of silently dropping them", () => {
+    const report = normalizeDiscoveryOutputWithReport(JSON.stringify({
+      candidates: [
+        searchOnlyCandidate("1231231231", "React Engineer"),
+        {
+          title: "Frontend Engineer",
+          company: "Incomplete Example",
+          source: "linkedin",
+          sourceJobId: "1231231232"
+        }
+      ]
+    }));
+
+    assert.equal(report.candidates.length, 1);
+    assert.equal(report.rejected.length, 1);
+    assert.deepEqual(report.rejected[0].reasons, ["missing-url"]);
+    assert.equal(report.rejected[0].title, "Frontend Engineer");
+    assert.equal(report.rejected[0].company, "Incomplete Example");
+  });
+
+  test("discover surfaces incomplete raw candidates separately from prompt-defense skips", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-rejected-candidates-"));
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+
+    try {
+      const result = await discoverJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        searchTerms: ["React"],
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [
+              searchOnlyCandidate("1212121212", "React Engineer"),
+              {
+                title: "Frontend Engineer",
+                company: "Missing URL Example",
+                source: "linkedin",
+                sourceJobId: "3434343434"
+              }
+            ]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      assert.equal(result.normalizedCount, 1);
+      assert.equal(result.rejectedCandidates, 1);
+      assert.equal(result.skippedCandidates, 0);
+      assert.equal(result.candidates.length, 1);
+      assert.equal(store.countCandidates(), 1);
     } finally {
       store.close();
       rmSync(workspace, { recursive: true, force: true });
@@ -265,6 +323,57 @@ describe("jobs pipeline", () => {
       assert.equal(result.candidates.length, 5);
       assert.equal(store.listCandidatesForEnrichment(10).length, 0);
       assert.ok(store.listCandidates().every((candidate) => candidate.description.includes("Enriched JD")));
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+  test("enrich reports incomplete agent rows separately from failed runners", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-rejected-"));
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+
+    try {
+      await discoverJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        searchTerms: ["React"],
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [searchOnlyCandidate("5656565656", "React Engineer")]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      const result = await enrichJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        limit: 1,
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [
+              {
+                title: "Enriched React Engineer",
+                company: "Missing URL Example",
+                source: "linkedin",
+                sourceJobId: "5656565656",
+                description: "Enriched JD without a canonical URL."
+              }
+            ]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      assert.equal(result.requestedCount, 1);
+      assert.equal(result.normalizedCount, 0);
+      assert.equal(result.failedCandidates, 0);
+      assert.equal(result.rejectedCandidates, 1);
+      assert.equal(result.candidates.length, 0);
+      assert.equal(store.countCandidates(), 1);
     } finally {
       store.close();
       rmSync(workspace, { recursive: true, force: true });

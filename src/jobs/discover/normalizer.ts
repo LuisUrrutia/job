@@ -1,12 +1,50 @@
 import { canonicalUrl, contentHash, stableJobId } from "../domain.ts";
-import type { JobCandidate, RawJobCandidate } from "../types.ts";
+import type {
+  CandidateNormalizationReport,
+  CandidateRejection,
+  CandidateRejectionReason,
+  JobCandidate,
+  RawJobCandidate
+} from "../types.ts";
+
+interface CandidateFields {
+  title: string;
+  company: string;
+  companyWebsite: string;
+  publisherCompany: string;
+  url: string;
+  source: string;
+  sourceJobId: string;
+  location: string;
+  remoteScope: string;
+  employmentType: string;
+  salaryRange: string;
+  postedAt: string;
+  description: string;
+  verificationNote: string;
+}
 
 export function normalizeDiscoveryOutput(stdout: string): JobCandidate[] {
-  const rawCandidates = rawDiscoveryCandidates(stdout);
+  return normalizeDiscoveryOutputWithReport(stdout).candidates;
+}
 
-  return rawCandidates
-    .map(normalizeCandidate)
-    .filter((candidate) => candidate.title && candidate.company && candidate.url);
+export function normalizeDiscoveryOutputWithReport(stdout: string): CandidateNormalizationReport {
+  const rawCandidates = rawDiscoveryCandidates(stdout);
+  const candidates: JobCandidate[] = [];
+  const rejected: CandidateRejection[] = [];
+
+  rawCandidates.forEach((raw, index) => {
+    const fields = candidateFields(raw);
+    const reasons = rejectionReasons(fields);
+    if (reasons.length > 0) {
+      rejected.push(candidateRejection(index, fields, reasons));
+      return;
+    }
+
+    candidates.push(normalizeCandidate(raw, fields));
+  });
+
+  return { candidates, rejected };
 }
 
 export function rawDiscoveryCandidates(stdout: string): RawJobCandidate[] {
@@ -20,8 +58,8 @@ export function rawDiscoveryCandidates(stdout: string): RawJobCandidate[] {
   return candidates.filter(isRecord);
 }
 
-function normalizeCandidate(raw: RawJobCandidate): JobCandidate {
-  const candidate = {
+function candidateFields(raw: RawJobCandidate): CandidateFields {
+  return {
     title: text(raw.title),
     company: text(raw.company || raw.hiringCompany),
     companyWebsite: canonicalUrl(raw.companyWebsite || raw.company_website),
@@ -37,7 +75,29 @@ function normalizeCandidate(raw: RawJobCandidate): JobCandidate {
     description: text(raw.description || raw.jd),
     verificationNote: text(raw.verificationNote || raw.verification_note)
   };
+}
 
+function rejectionReasons(candidate: CandidateFields): CandidateRejectionReason[] {
+  const reasons: CandidateRejectionReason[] = [];
+  if (!candidate.title) reasons.push("missing-title");
+  if (!candidate.company) reasons.push("missing-company");
+  if (!candidate.url) reasons.push("missing-url");
+  return reasons;
+}
+
+function candidateRejection(index: number, candidate: CandidateFields, reasons: CandidateRejectionReason[]): CandidateRejection {
+  return {
+    index,
+    reasons,
+    title: candidate.title,
+    company: candidate.company,
+    url: candidate.url,
+    source: candidate.source,
+    sourceJobId: candidate.sourceJobId
+  };
+}
+
+function normalizeCandidate(raw: RawJobCandidate, candidate: CandidateFields): JobCandidate {
   return {
     id: stableJobId(candidate),
     contentHash: contentHash(candidate),

@@ -52,8 +52,9 @@ async function main(argv: string[]): Promise<void> {
       });
       const rawOutput = result.rawOutputPath ? `; debug JSON ${result.rawOutputPath}` : "; debug JSON not written";
       const skipped = result.skippedCandidates ? `; skipped ${result.skippedCandidates} prompt-injected candidates` : "";
+      const rejected = result.rejectedCandidates ? `; rejected ${result.rejectedCandidates} incomplete candidates` : "";
       const failed = result.failedCandidates ? `; failed ${result.failedCandidates} candidates` : "";
-      console.log(`Stored enrichment run ${result.runId}; requested ${result.requestedCount} candidates; enriched ${result.candidates.length} candidates${failed}${skipped}${rawOutput}`);
+      console.log(`Stored enrichment run ${result.runId}; requested ${result.requestedCount} candidates; enriched ${result.candidates.length} candidates${failed}${rejected}${skipped}${rawOutput}`);
     } finally {
       store.close();
     }
@@ -83,7 +84,8 @@ async function main(argv: string[]): Promise<void> {
       });
       const rawOutput = result.rawOutputPath ? `; debug JSON ${result.rawOutputPath}` : "; debug JSON not written";
       const skipped = result.skippedCandidates ? `; skipped ${result.skippedCandidates} prompt-injected candidates` : "";
-      console.log(`Stored run ${result.runId}; normalized ${result.normalizedCount} candidates; saved ${result.candidates.length} candidates${skipped}${rawOutput}`);
+      const rejected = result.rejectedCandidates ? `; rejected ${result.rejectedCandidates} incomplete candidates` : "";
+      console.log(`Stored run ${result.runId}; normalized ${result.normalizedCount} candidates; saved ${result.candidates.length} candidates${rejected}${skipped}${rawOutput}`);
       return;
     }
 
