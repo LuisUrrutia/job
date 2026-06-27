@@ -65,7 +65,7 @@ Pídele al agente algo como:
 Usa la skill linkedin-job-discovery para buscar trabajos React remotos en UK, US y EU, y guarda los resultados en data/jobs.sqlite.
 ```
 
-Discovery usa solo `mcp-server-linkedin_search_jobs`. Para runners reales, el CLI lanza una corrida por término: `React`, `Typescript`, `Frontend` y `full-stack`; cada corrida recorre tres páginas cuando LinkedIn lo permite. Luego mergea y dedupea por identidad estable antes de pasar Defender y guardar en SQLite.
+Discovery usa solo `mcp-server-linkedin_search_jobs`. Para runners reales, el CLI lanza una corrida por término: `React`, `Typescript`, `Frontend` y `full-stack`; cada corrida recorre tres páginas cuando LinkedIn lo permite. El stdout agregado conserva un ledger `searchRuns` con la salida de cada término. Luego mergea y dedupea por identidad estable antes de pasar Defender y guardar en SQLite.
 
 Si usas la skill manualmente, persiste el JSON search-only con:
 

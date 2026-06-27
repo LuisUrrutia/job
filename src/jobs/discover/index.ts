@@ -9,6 +9,12 @@ interface SearchRun extends AgentRunResult {
   prompt: string;
 }
 
+interface NormalizedSearchRun extends SearchRun {
+  candidates: JobCandidate[];
+  rejected: CandidateRejection[];
+  normalizationError: string | null;
+}
+
 interface CombinedRun extends AgentRunResult {
   prompt: string;
   rejectedCandidates: CandidateRejection[];
@@ -118,19 +124,21 @@ async function runDiscoverySearches({
     return { searchTerm, prompt: renderedPrompt, ...result };
   }));
 
-  const failed = runs.find((run) => run.exitCode !== 0);
   const normalizedRuns = runs.map((run) => normalizeSearchRunOutput(run));
+  const failed = normalizedRuns.find((run) => run.exitCode !== 0);
+  const invalidOutput = normalizedRuns.find((run) => run.normalizationError);
   const stdout = JSON.stringify({
-    candidates: normalizedRuns.flatMap((run) => run.candidates)
+    candidates: normalizedRuns.flatMap((run) => run.candidates),
+    searchRuns: normalizedRuns.map(searchRunLedgerRecord)
   });
   const rejectedCandidates = normalizedRuns.flatMap((run) => run.rejected);
-  const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
-  const combinedPrompt = runs.map((run) => `# ${run.searchTerm}\n${run.prompt}`).join("\n\n");
+  const stderr = normalizedRuns.map(formatSearchRunStderr).filter(Boolean).join("\n\n");
+  const combinedPrompt = normalizedRuns.map((run) => `# ${run.searchTerm}\n${run.prompt}`).join("\n\n");
 
   return {
     stdout,
     stderr,
-    exitCode: failed ? failed.exitCode : 0,
+    exitCode: failed?.exitCode ?? (invalidOutput ? 1 : 0),
     prompt: combinedPrompt,
     rejectedCandidates
   };
@@ -147,10 +155,41 @@ async function runAgent(options: DiscoveryOptions, prompt: string): Promise<Agen
   });
 }
 
-function normalizeSearchRunOutput(run: SearchRun): { candidates: JobCandidate[]; rejected: CandidateRejection[] } {
-  if (run.exitCode !== 0) return { candidates: [], rejected: [] };
-  const report = normalizeDiscoveryOutputWithReport(run.stdout);
-  return JSON.parse(JSON.stringify(report));
+function normalizeSearchRunOutput(run: SearchRun): NormalizedSearchRun {
+  if (run.exitCode !== 0) {
+    return { ...run, candidates: [], rejected: [], normalizationError: null };
+  }
+
+  try {
+    const report = normalizeDiscoveryOutputWithReport(run.stdout);
+    return { ...run, candidates: report.candidates, rejected: report.rejected, normalizationError: null };
+  } catch (error) {
+    return { ...run, candidates: [], rejected: [], normalizationError: errorMessage(error) };
+  }
+}
+
+function searchRunLedgerRecord(run: NormalizedSearchRun): Record<string, unknown> {
+  return {
+    searchTerm: run.searchTerm,
+    exitCode: run.exitCode,
+    stdout: run.stdout,
+    stderr: run.stderr,
+    rejectedCandidates: run.rejected,
+    normalizationError: run.normalizationError
+  };
+}
+
+function formatSearchRunStderr(run: NormalizedSearchRun): string {
+  const lines = [];
+  if (run.stderr.trim()) lines.push(run.stderr.trim());
+  if (run.normalizationError) lines.push(`Normalization error: ${run.normalizationError}`);
+  if (run.exitCode !== 0 && lines.length === 0) lines.push("Runner exited without stderr.");
+  if (lines.length === 0) return "";
+  return `# ${run.searchTerm} (exit ${run.exitCode})\n${lines.join("\n")}`;
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
 }
 
 function discoverySearchTerms(options: DiscoveryOptions): string[] {

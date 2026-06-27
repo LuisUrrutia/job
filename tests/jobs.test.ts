@@ -269,6 +269,69 @@ describe("jobs pipeline", () => {
     }
   });
 
+  test("agent discovery preserves per-term output when one term returns invalid JSON", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-fanout-invalid-json-"));
+    const debugPath = join(workspace, "raw", "run.json");
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+
+    try {
+      await assert.rejects(
+        discoverJobs(store, {
+          runner: "opencode",
+          cwd: process.cwd(),
+          searchTerms: ["React", "Frontend"],
+          rawOutputPath: debugPath,
+          runAgent: async (options) => {
+            if (options.prompt.includes("Search only for the term: React")) {
+              return {
+                stdout: JSON.stringify({
+                  candidates: [
+                    searchOnlyCandidate("1919191919", "React Engineer"),
+                    {
+                      title: "Incomplete React Engineer",
+                      company: "Missing URL Example",
+                      source: "linkedin",
+                      sourceJobId: "2929292929"
+                    }
+                  ]
+                }),
+                stderr: "",
+                exitCode: 0
+              };
+            }
+
+            return {
+              stdout: "not json",
+              stderr: "",
+              exitCode: 0
+            };
+          }
+        }),
+        /Discovery runner failed with exit code 1/
+      );
+
+      const raw = JSON.parse(await readFile(debugPath, "utf8"));
+      const stdout = JSON.parse(raw.stdout);
+
+      assert.equal(raw.exitCode, 1);
+      assert.equal(stdout.candidates.length, 1);
+      assert.equal(stdout.searchRuns.length, 2);
+      assert.equal(stdout.searchRuns[0].searchTerm, "React");
+      assert.equal(stdout.searchRuns[0].stdout.includes("1919191919"), true);
+      assert.equal(stdout.searchRuns[0].rejectedCandidates.length, 1);
+      assert.deepEqual(stdout.searchRuns[0].rejectedCandidates[0].reasons, ["missing-url"]);
+      assert.equal(stdout.searchRuns[1].searchTerm, "Frontend");
+      assert.equal(stdout.searchRuns[1].stdout, "not json");
+      assert.match(stdout.searchRuns[1].normalizationError, /parseable JSON/);
+      assert.match(raw.stderr, /# Frontend \(exit 0\)/);
+      assert.match(raw.stderr, /Normalization error:/);
+      assert.equal(store.countCandidates(), 0);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
   test("enrich processes stored candidates serially", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-"));
     const store = openJobStore(join(workspace, "jobs.sqlite"));
