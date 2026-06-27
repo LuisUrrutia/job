@@ -207,6 +207,64 @@ describe("jobs pipeline", () => {
     }
   });
 
+  test("agent discovery records failed search term provenance before throwing", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-fanout-failure-"));
+    const debugPath = join(workspace, "raw", "run.json");
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+
+    try {
+      await assert.rejects(
+        discoverJobs(store, {
+          runner: "opencode",
+          cwd: process.cwd(),
+          searchTerms: ["React", "Frontend"],
+          rawOutputPath: debugPath,
+          runAgent: async (options) => {
+            if (options.prompt.includes("Search only for the term: Frontend")) {
+              return {
+                stdout: "partial frontend stdout",
+                stderr: "provider refused frontend search",
+                exitCode: 7
+              };
+            }
+
+            return {
+              stdout: JSON.stringify({
+                candidates: [searchOnlyCandidate("4444444444", "Senior React Engineer")]
+              }),
+              stderr: "react stderr warning",
+              exitCode: 0
+            };
+          }
+        }),
+        /Discovery runner failed with exit code 7\. Failed search terms: Frontend\./
+      );
+
+      const raw = JSON.parse(await readFile(debugPath, "utf8"));
+      const stdout = JSON.parse(raw.stdout);
+
+      assert.equal(raw.exitCode, 7);
+      assert.match(stdout.candidates[0].sourceJobId, /4444444444/);
+      assert.deepEqual(
+        stdout.searchRuns.map((run: { searchTerm: string }) => run.searchTerm),
+        ["React", "Frontend"]
+      );
+      assert.match(stdout.searchRuns[0].stdout, /4444444444/);
+      assert.equal(stdout.searchRuns[0].exitCode, 0);
+      assert.equal(stdout.searchRuns[1].stdout, "partial frontend stdout");
+      assert.equal(stdout.searchRuns[1].exitCode, 7);
+      assert.match(raw.prompt, /# React\nExit code: 0/);
+      assert.match(raw.prompt, /# Frontend\nExit code: 7/);
+      assert.match(raw.stderr, /# React\nExit code: 0\nreact stderr warning/);
+      assert.match(raw.stderr, /# Frontend\nExit code: 7\nprovider refused frontend search/);
+      assert.deepEqual(raw.failedSearchTerms, ["Frontend"]);
+      assert.equal(store.countCandidates(), 0);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
   test("enrich processes stored candidates serially", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-"));
     const store = openJobStore(join(workspace, "jobs.sqlite"));

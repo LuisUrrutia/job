@@ -11,6 +11,7 @@ interface SearchRun extends AgentRunResult {
 
 interface CombinedRun extends AgentRunResult {
   prompt: string;
+  failedSearchTerms: string[];
 }
 
 export async function discoverJobs(store: JobStore, options: DiscoveryOptions): Promise<DiscoveryResult> {
@@ -55,7 +56,8 @@ export async function discoverJobs(store: JobStore, options: DiscoveryOptions): 
 
   if (result.exitCode !== 0) {
     const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : " Raw output file was not requested; inspect agent_runs.stdout/stderr in SQLite.";
-    throw new Error(`Discovery runner failed with exit code ${result.exitCode}.${rawOutput}`);
+    const failedTerms = result.failedSearchTerms.length > 0 ? ` Failed search terms: ${result.failedSearchTerms.join(", ")}.` : "";
+    throw new Error(`Discovery runner failed with exit code ${result.exitCode}.${failedTerms}${rawOutput}`);
   }
 
   const normalizedCandidates = normalizeDiscoveryOutput(result.stdout);
@@ -101,7 +103,7 @@ async function runDiscoverySearches({
   if (searchTerms.length === 0) {
     const renderedPrompt = renderDiscoveryPrompt(prompt, "");
     const result = await runAgent(options, renderedPrompt);
-    return { ...result, prompt: renderedPrompt };
+    return { ...result, prompt: renderedPrompt, failedSearchTerms: [] };
   }
 
   const runs = await Promise.all(searchTerms.map(async (searchTerm) => {
@@ -112,18 +114,19 @@ async function runDiscoverySearches({
     return { searchTerm, prompt: renderedPrompt, ...result };
   }));
 
-  const failed = runs.find((run) => run.exitCode !== 0);
-  const stdout = JSON.stringify({
-    candidates: runs.flatMap((run) => normalizeSearchRunOutput(run))
-  });
-  const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
-  const combinedPrompt = runs.map((run) => `# ${run.searchTerm}\n${run.prompt}`).join("\n\n");
+  return aggregateSearchRuns(runs);
+}
+
+function aggregateSearchRuns(runs: SearchRun[]): CombinedRun {
+  const failedRuns = runs.filter((run) => run.exitCode !== 0);
+  const failed = failedRuns[0];
 
   return {
-    stdout,
-    stderr,
+    stdout: discoveryRunLedgerStdout(runs),
+    stderr: discoveryRunLedgerStderr(runs),
     exitCode: failed ? failed.exitCode : 0,
-    prompt: combinedPrompt
+    prompt: discoveryRunLedgerPrompt(runs),
+    failedSearchTerms: failedRuns.map((run) => run.searchTerm)
   };
 }
 
@@ -141,6 +144,36 @@ async function runAgent(options: DiscoveryOptions, prompt: string): Promise<Agen
 function normalizeSearchRunOutput(run: SearchRun): JobCandidate[] {
   if (run.exitCode !== 0) return [];
   return JSON.parse(JSON.stringify(normalizeDiscoveryOutput(run.stdout)));
+}
+
+function discoveryRunLedgerStdout(runs: SearchRun[]): string {
+  return JSON.stringify({
+    candidates: runs.flatMap((run) => normalizeSearchRunOutput(run)),
+    searchRuns: runs.map((run) => ({
+      searchTerm: run.searchTerm,
+      exitCode: run.exitCode,
+      stdout: run.stdout
+    }))
+  });
+}
+
+function discoveryRunLedgerPrompt(runs: SearchRun[]): string {
+  return runs.map((run) => [
+    `# ${run.searchTerm}`,
+    `Exit code: ${run.exitCode}`,
+    run.prompt
+  ].join("\n")).join("\n\n");
+}
+
+function discoveryRunLedgerStderr(runs: SearchRun[]): string {
+  return runs
+    .filter((run) => run.stderr || run.exitCode !== 0)
+    .map((run) => [
+      `# ${run.searchTerm}`,
+      `Exit code: ${run.exitCode}`,
+      run.stderr.trim()
+    ].filter(Boolean).join("\n"))
+    .join("\n\n");
 }
 
 function discoverySearchTerms(options: DiscoveryOptions): string[] {
