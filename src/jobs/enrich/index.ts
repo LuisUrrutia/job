@@ -9,6 +9,12 @@ interface EnrichmentRun extends AgentRunResult {
   prompt: string;
 }
 
+interface NormalizedEnrichmentRun extends EnrichmentRun {
+  candidates: JobCandidate[];
+  rejected: CandidateRejection[];
+  normalizationError: string | null;
+}
+
 export async function enrichJobs(store: JobStore, options: EnrichmentOptions): Promise<EnrichmentResult> {
   const log = options.logger || noop;
   const candidatesToEnrich = store.listCandidatesForEnrichment(Number(options.limit || 25));
@@ -28,15 +34,18 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
     runs.push({ candidate, prompt, ...result });
   }
 
-  const failedRuns = runs.filter((run) => run.exitCode !== 0);
   const normalizedRuns = runs.map((run) => normalizeEnrichmentRunOutput(run));
+  const failedRuns = normalizedRuns.filter((run) => run.exitCode !== 0 || run.normalizationError);
+  const firstRunnerFailure = normalizedRuns.find((run) => run.exitCode !== 0);
+  const firstInvalidOutput = normalizedRuns.find((run) => run.normalizationError);
   const stdout = JSON.stringify({
-    candidates: normalizedRuns.flatMap((run) => run.candidates)
+    candidates: normalizedRuns.flatMap((run) => run.candidates),
+    enrichmentRuns: normalizedRuns.map(enrichmentRunLedgerRecord)
   });
   const runRejectedCandidates = normalizedRuns.flatMap((run) => run.rejected);
-  const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
-  const combinedPrompt = runs.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
-  const exitCode = failedRuns[0]?.exitCode ?? 0;
+  const stderr = normalizedRuns.map(formatEnrichmentRunStderr).filter(Boolean).join("\n\n");
+  const combinedPrompt = normalizedRuns.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
+  const exitCode = firstRunnerFailure?.exitCode ?? (firstInvalidOutput ? 1 : 0);
 
   const runId = store.saveAgentRun({
     runner: options.runner,
@@ -93,10 +102,42 @@ async function runAgent(options: EnrichmentOptions, prompt: string): Promise<Age
   });
 }
 
-function normalizeEnrichmentRunOutput(run: EnrichmentRun): { candidates: JobCandidate[]; rejected: CandidateRejection[] } {
-  if (run.exitCode !== 0) return { candidates: [], rejected: [] };
-  const report = normalizeDiscoveryOutputWithReport(run.stdout);
-  return JSON.parse(JSON.stringify(report));
+function normalizeEnrichmentRunOutput(run: EnrichmentRun): NormalizedEnrichmentRun {
+  if (run.exitCode !== 0) {
+    return { ...run, candidates: [], rejected: [], normalizationError: null };
+  }
+
+  try {
+    const report = normalizeDiscoveryOutputWithReport(run.stdout);
+    return { ...run, candidates: report.candidates, rejected: report.rejected, normalizationError: null };
+  } catch (error) {
+    return { ...run, candidates: [], rejected: [], normalizationError: errorMessage(error) };
+  }
+}
+
+function enrichmentRunLedgerRecord(run: NormalizedEnrichmentRun): Record<string, unknown> {
+  return {
+    candidateId: run.candidate.id,
+    title: run.candidate.title,
+    exitCode: run.exitCode,
+    stdout: run.stdout,
+    stderr: run.stderr,
+    rejectedCandidates: run.rejected,
+    normalizationError: run.normalizationError
+  };
+}
+
+function formatEnrichmentRunStderr(run: NormalizedEnrichmentRun): string {
+  const lines = [];
+  if (run.stderr.trim()) lines.push(run.stderr.trim());
+  if (run.normalizationError) lines.push(`Normalization error: ${run.normalizationError}`);
+  if (run.exitCode !== 0 && lines.length === 0) lines.push("Runner exited without stderr.");
+  if (lines.length === 0) return "";
+  return `# ${run.candidate.id} (exit ${run.exitCode})\n${lines.join("\n")}`;
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
 }
 
 function dedupeCandidates(candidates: JobCandidate[]): JobCandidate[] {
@@ -105,16 +146,21 @@ function dedupeCandidates(candidates: JobCandidate[]): JobCandidate[] {
   return [...byId.values()];
 }
 
-function failedRunDetails(run: EnrichmentRun): Record<string, unknown> {
+function failedRunDetails(run: NormalizedEnrichmentRun): Record<string, unknown> {
   return {
     id: run.candidate.id,
     title: run.candidate.title,
     exitCode: run.exitCode,
+    normalizationError: run.normalizationError,
     stderr: compactText(run.stderr)
   };
 }
 
-function failedRunSummary(run: EnrichmentRun): string {
+function failedRunSummary(run: NormalizedEnrichmentRun): string {
+  if (run.normalizationError) {
+    return `${run.candidate.id} (${run.candidate.title}) returned invalid JSON: ${run.normalizationError}`;
+  }
+
   const details = failedRunDetails(run);
   const stderr = details.stderr ? `: ${details.stderr}` : "";
   return `${details.id} (${details.title}) exited ${details.exitCode}${stderr}`;

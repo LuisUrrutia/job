@@ -76,7 +76,7 @@ Run enrichment after discovery:
 npm run jobs -- enrich --runner opencode --db data/jobs.sqlite
 ```
 
-The enrichment phase selects candidates where `description` or `company_website` is missing. It processes one candidate at a time, capped by `--limit` (default `25`). Each runner gets one stored candidate and may call `mcp-server-linkedin_get_job_details` plus company/official-site evidence tools. The returned candidate JSON goes through the same normalizer, Defender, and SQLite upsert path as discovery.
+The enrichment phase selects candidates where `description` or `company_website` is missing. It processes one candidate at a time, capped by `--limit` (default `25`). Each runner gets one stored candidate and may call `mcp-server-linkedin_get_job_details` plus company/official-site evidence tools. The aggregate stdout preserves per-candidate output in an `enrichmentRuns` ledger, and returned candidate JSON goes through the same normalizer, Defender, and SQLite upsert path as discovery.
 
 Other adapters are available when those CLIs are installed:
 
