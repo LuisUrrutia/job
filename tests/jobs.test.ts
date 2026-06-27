@@ -12,6 +12,7 @@ import { discoverJobs } from "../src/jobs/discover/index.ts";
 import { enrichJobs } from "../src/jobs/enrich/index.ts";
 import { stableJobId } from "../src/jobs/domain.ts";
 import { normalizeDiscoveryOutputWithReport } from "../src/jobs/discover/normalizer.ts";
+import { buildRunLedger } from "../src/jobs/run-ledger.ts";
 
 describe("jobs pipeline", () => {
   test("fixture discover is idempotent and stores normalized candidates", async () => {
@@ -582,6 +583,50 @@ describe("jobs pipeline", () => {
     }
   });
 
+  test("run ledger preserves records and aggregate failure state", () => {
+    const rejected = {
+      index: 1,
+      reasons: ["missing-url" as const],
+      title: "Incomplete Engineer",
+      company: "Missing URL Example",
+      url: "",
+      source: "linkedin",
+      sourceJobId: "1010101010"
+    };
+    const ledger = buildRunLedger("sampleRuns", [
+      {
+        label: "React",
+        ledgerFields: { searchTerm: "React" },
+        exitCode: 0,
+        stdout: "{\"candidates\":[]}",
+        stderr: "",
+        candidates: [ledgerCandidate("linkedin:1010101010")],
+        rejectedCandidates: [rejected],
+        normalizationError: null
+      },
+      {
+        label: "Frontend",
+        ledgerFields: { searchTerm: "Frontend" },
+        exitCode: 0,
+        stdout: "not json",
+        stderr: "",
+        candidates: [],
+        rejectedCandidates: [],
+        normalizationError: "Discovery runner did not return parseable JSON."
+      }
+    ]);
+    const stdout = JSON.parse(ledger.stdout);
+
+    assert.equal(ledger.exitCode, 1);
+    assert.match(ledger.stderr, /# Frontend \(exit 0\)/);
+    assert.equal(ledger.candidates.length, 1);
+    assert.equal(ledger.rejectedCandidates.length, 1);
+    assert.equal(stdout.sampleRuns.length, 2);
+    assert.equal(stdout.sampleRuns[0].searchTerm, "React");
+    assert.deepEqual(stdout.sampleRuns[0].rejectedCandidates[0].reasons, ["missing-url"]);
+    assert.match(stdout.sampleRuns[1].normalizationError, /parseable JSON/);
+  });
+
   test("stable identity prefers LinkedIn numeric IDs and hashes canonical URLs", () => {
     assert.equal(stableJobId({ url: "https://www.linkedin.com/jobs/view/1234567890/?trk=public" }), "linkedin:1234567890");
     assert.match(stableJobId({ url: "https://example.invalid/jobs/one?trk=ignored" }), /^url:[a-f0-9]{24}$/);
@@ -623,6 +668,28 @@ function enrichedCandidate(sourceJobId: string) {
     postedAt: "Sample posted now",
     description: `Enriched JD for ${sourceJobId}`,
     verificationNote: "Verified by enrichment fixture."
+  };
+}
+
+function ledgerCandidate(id: string) {
+  return {
+    id,
+    contentHash: "hash",
+    title: "React Engineer",
+    company: "Ledger Example",
+    companyWebsite: "",
+    publisherCompany: "",
+    url: "https://www.linkedin.com/jobs/view/1010101010/",
+    source: "linkedin",
+    sourceJobId: "1010101010",
+    location: "Remote",
+    remoteScope: "Remote",
+    employmentType: "Full-time",
+    salaryRange: "",
+    postedAt: "Sample posted now",
+    description: "",
+    verificationNote: "",
+    rawJson: "{}"
   };
 }
 

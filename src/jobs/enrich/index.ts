@@ -1,6 +1,7 @@
 import { normalizeDiscoveryOutputWithReport } from "../discover/normalizer.ts";
 import { persistRawRun, runDiscoveryAgent } from "../discover/runners.ts";
 import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
+import { buildRunLedger } from "../run-ledger.ts";
 import { linkedInEnrichmentPrompt, renderEnrichmentPrompt } from "./prompts.ts";
 import type { AgentRunResult, CandidateRejection, EnrichmentOptions, EnrichmentResult, JobCandidate, JobStore, StoredJobCandidate } from "../types.ts";
 
@@ -36,30 +37,32 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
 
   const normalizedRuns = runs.map((run) => normalizeEnrichmentRunOutput(run));
   const failedRuns = normalizedRuns.filter((run) => run.exitCode !== 0 || run.normalizationError);
-  const firstRunnerFailure = normalizedRuns.find((run) => run.exitCode !== 0);
-  const firstInvalidOutput = normalizedRuns.find((run) => run.normalizationError);
-  const stdout = JSON.stringify({
-    candidates: normalizedRuns.flatMap((run) => run.candidates),
-    enrichmentRuns: normalizedRuns.map(enrichmentRunLedgerRecord)
-  });
-  const runRejectedCandidates = normalizedRuns.flatMap((run) => run.rejected);
-  const stderr = normalizedRuns.map(formatEnrichmentRunStderr).filter(Boolean).join("\n\n");
+  const ledger = buildRunLedger("enrichmentRuns", normalizedRuns.map((run) => ({
+    label: run.candidate.id,
+    ledgerFields: { candidateId: run.candidate.id, title: run.candidate.title },
+    exitCode: run.exitCode,
+    stdout: run.stdout,
+    stderr: run.stderr,
+    candidates: run.candidates,
+    rejectedCandidates: run.rejected,
+    normalizationError: run.normalizationError
+  })));
+  const runRejectedCandidates = ledger.rejectedCandidates;
   const combinedPrompt = normalizedRuns.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
-  const exitCode = firstRunnerFailure?.exitCode ?? (firstInvalidOutput ? 1 : 0);
 
   const runId = store.saveAgentRun({
     runner: options.runner,
     promptVersion: linkedInEnrichmentPrompt.version,
     prompt: combinedPrompt || linkedInEnrichmentPrompt.template,
-    stdout,
-    stderr,
-    exitCode,
+    stdout: ledger.stdout,
+    stderr: ledger.stderr,
+    exitCode: ledger.exitCode,
     rawOutputPath: null
   });
-  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode });
+  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout: ledger.stdout, stderr: ledger.stderr, exitCode: ledger.exitCode });
   if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
 
-  const normalization = normalizeDiscoveryOutputWithReport(stdout);
+  const normalization = normalizeDiscoveryOutputWithReport(ledger.stdout);
   const normalizedCandidates = dedupeCandidates(normalization.candidates);
   const rejectedCandidates = [...runRejectedCandidates, ...normalization.rejected];
   if (failedRuns.length > 0) log("skipped failed enrichment runners", failedRuns.map(failedRunDetails));
@@ -113,27 +116,6 @@ function normalizeEnrichmentRunOutput(run: EnrichmentRun): NormalizedEnrichmentR
   } catch (error) {
     return { ...run, candidates: [], rejected: [], normalizationError: errorMessage(error) };
   }
-}
-
-function enrichmentRunLedgerRecord(run: NormalizedEnrichmentRun): Record<string, unknown> {
-  return {
-    candidateId: run.candidate.id,
-    title: run.candidate.title,
-    exitCode: run.exitCode,
-    stdout: run.stdout,
-    stderr: run.stderr,
-    rejectedCandidates: run.rejected,
-    normalizationError: run.normalizationError
-  };
-}
-
-function formatEnrichmentRunStderr(run: NormalizedEnrichmentRun): string {
-  const lines = [];
-  if (run.stderr.trim()) lines.push(run.stderr.trim());
-  if (run.normalizationError) lines.push(`Normalization error: ${run.normalizationError}`);
-  if (run.exitCode !== 0 && lines.length === 0) lines.push("Runner exited without stderr.");
-  if (lines.length === 0) return "";
-  return `# ${run.candidate.id} (exit ${run.exitCode})\n${lines.join("\n")}`;
 }
 
 function errorMessage(error: unknown): string {
