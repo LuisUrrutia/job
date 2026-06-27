@@ -12,9 +12,10 @@ Search only for the term: {{SEARCH_TERM}}.
 
 Use only mcp-server-linkedin_search_jobs. Do not call mcp-server-linkedin_get_job_details, company profile tools, web fetch, browser tools, or application pages.
 
-Call search_jobs for remote jobs over exactly 3 result pages where the MCP supports pagination. Search by date/newest first where available. Target remote roles in the United Kingdom, United States, and European Union. Prefer individual-contributor roles, especially senior IC roles. Exclude management, executive, founder, and high-level leadership postings, including Staff, Lead, Principal, Head of Engineering, Engineering Manager, CTO, founder, co-founder, cofounder, freelance, and non-remote roles. If a role is ambiguous, exclude it.
+Call search_jobs for remote jobs over exactly 5 result pages where the MCP supports pagination. Search by date/newest first where available. Target remote roles in the United Kingdom, United States, and European Union. Prefer individual-contributor roles, especially senior IC roles. Exclude management, executive, founder, and high-level leadership postings, including Staff, Lead, Principal, Head of Engineering, Engineering Manager, CTO, founder, co-founder, cofounder, freelance, and non-remote roles. If a role is ambiguous, exclude it.
 
 Filter results by publication title. Keep only titles that match with Frontend Engineer, Full Stack Engineer, Backend Engineer, Software Engineer, Developer, Engineer or close title variants. Do not use JD/body text for inclusion because this phase must not fetch details.
+Also avoid results related to PHP, Java, C#, Kotlin or Swift.
 
 Return one JSON object with a candidates array. The object below shows the required structure for one job candidate only; do not limit the response to one candidate. Include every eligible job candidate found across the searched pages by repeating this candidate object inside the candidates array:
 {

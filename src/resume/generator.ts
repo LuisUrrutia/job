@@ -38,6 +38,7 @@ export interface GenerateResumeOptions {
   headline?: string;
   texOnly?: boolean;
   cwd?: string;
+  profilePath?: string;
 }
 
 export interface CompileTexOptions {
@@ -300,10 +301,12 @@ export async function compileTexToPdf(texPath: string, outputPdfPath: string, co
   return { outputPdfPath, compactModeApplied, pageCount };
 }
 
-export function buildExperienceBlock(workExperience: unknown): string {
+export function buildExperienceBlock(workExperience: unknown, boldPhrases: unknown = []): string {
   if (!Array.isArray(workExperience)) {
     return "";
   }
+  const highlights = normalizeBoldPhrases(boldPhrases);
+
 
   const lines: string[] = [];
   for (const role of workExperience) {
@@ -325,7 +328,7 @@ export function buildExperienceBlock(workExperience: unknown): string {
     if (Array.isArray(role.description) && role.description.length > 0) {
       lines.push(String.raw`\begin{itemize}`);
       for (const item of role.description) {
-        lines.push(String.raw`\item ${latexEscape(String(item))}`);
+        lines.push(String.raw`\item ${latexEscapeWithBoldPhrases(String(item), highlights)}`);
       }
       lines.push(String.raw`\end{itemize}`);
     }
@@ -378,9 +381,10 @@ export async function generateResumeFromJson(options: GenerateResumeOptions): Pr
   const inputPath = resolvePath(options.input, cwd);
   const templatePath = resolvePath(options.template ?? DEFAULT_TEMPLATE_PATH, cwd);
   const data = loadJsonObject(inputPath);
-  const profileData = loadJsonObject(DEFAULT_PROFILE_PATH);
-  const profilePersonInfo = getPersonalInfo(profileData, DEFAULT_PROFILE_PATH);
-  const candidateSlug = candidateSlugFromProfile(profileData, DEFAULT_PROFILE_PATH);
+  const profilePath = resolvePath(options.profilePath ?? DEFAULT_PROFILE_PATH, cwd);
+  const profileData = loadJsonObject(profilePath);
+  const profilePersonInfo = getPersonalInfo(profileData, profilePath);
+  const candidateSlug = candidateSlugFromProfile(profileData, profilePath);
   const templateContent = readFileSync(templatePath, "utf8");
   const outputPdfPath = options.output ? resolvePath(options.output, cwd) : defaultOutputPdfPath(inputPath, data, candidateSlug);
   const outputTexPath = options.outputTex ? resolvePath(options.outputTex, cwd) : join(dirname(templatePath), `${parse(outputPdfPath).name}.tex`);
@@ -391,8 +395,8 @@ export async function generateResumeFromJson(options: GenerateResumeOptions): Pr
     throw new Error("Missing personalInfo.title in JSON and no --headline override provided.");
   }
 
-  const experienceBlock = buildExperienceBlock(data.workExperience);
-  const outputContent = renderTemplate(templateContent, profilePersonInfo, DEFAULT_PROFILE_PATH, headline, experienceBlock);
+  const experienceBlock = buildExperienceBlock(data.workExperience, resumeBoldPhrases(data));
+  const outputContent = renderTemplate(templateContent, profilePersonInfo, profilePath, headline, experienceBlock);
   mkdirSync(dirname(outputTexPath), { recursive: true });
   writeFileSync(outputTexPath, `${outputContent}\n`, "utf8");
 
@@ -417,6 +421,57 @@ function isJsonObject(value: unknown): value is JsonObject {
 
 function optionalString(value: unknown): string {
   return typeof value === "string" ? value : "";
+}
+
+export function latexEscapeWithBoldPhrases(value: string, rawPhrases: unknown): string {
+  const phrases = normalizeBoldPhrases(rawPhrases).filter((phrase) => phrase !== value.trim());
+  const ranges: { start: number; end: number }[] = [];
+
+  for (const phrase of phrases.sort((left, right) => right.length - left.length)) {
+    const start = value.indexOf(phrase);
+    if (start === -1) continue;
+    const end = start + phrase.length;
+    if (ranges.some((range) => start < range.end && end > range.start)) continue;
+    ranges.push({ start, end });
+  }
+
+  if (ranges.length === 0) return latexEscape(value);
+
+  ranges.sort((left, right) => left.start - right.start);
+  let cursor = 0;
+  let output = "";
+  for (const range of ranges) {
+    output += latexEscape(value.slice(cursor, range.start));
+    output += String.raw`\textbf{${latexEscape(value.slice(range.start, range.end))}}`;
+    cursor = range.end;
+  }
+
+  return output + latexEscape(value.slice(cursor));
+}
+
+function resumeBoldPhrases(data: JsonObject): string[] {
+  const raw = data.resume_bold_phrases ?? data.resumeBoldPhrases ?? data.boldPhrases;
+  return normalizeBoldPhrases(raw);
+}
+
+function normalizeBoldPhrases(rawPhrases: unknown): string[] {
+  if (!Array.isArray(rawPhrases)) return [];
+
+  const seen = new Set<string>();
+  const phrases: string[] = [];
+  for (const rawPhrase of rawPhrases) {
+    if (typeof rawPhrase !== "string") continue;
+    const phrase = rawPhrase.trim().replace(/\s+/g, " ");
+    if (!isValidBoldPhrase(phrase) || seen.has(phrase)) continue;
+    seen.add(phrase);
+    phrases.push(phrase);
+  }
+  return phrases;
+}
+
+function isValidBoldPhrase(phrase: string): boolean {
+  const words = phrase.split(/\s+/).filter(Boolean);
+  return words.length >= 2 && words.length <= 8;
 }
 
 function getNestedString(data: JsonObject, parentKey: string, childKey: string): string {

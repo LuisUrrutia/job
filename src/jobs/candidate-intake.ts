@@ -1,11 +1,50 @@
-import { canonicalUrl, contentHash, stableJobId } from "../domain.ts";
+import { canonicalUrl, contentHash, stableJobId } from "./domain.ts";
+import { defendDiscoveryCandidates } from "./security/prompt-defense.ts";
 import type {
   CandidateNormalizationReport,
   CandidateRejection,
   CandidateRejectionReason,
   JobCandidate,
+  Logger,
   RawJobCandidate
-} from "../types.ts";
+} from "./types.ts";
+
+interface SkippedCandidate {
+  id: string;
+  title: string;
+  company: string;
+  sourceJobId: string;
+  riskLevel: string;
+  detections: string[];
+  fieldsSanitized: string[];
+}
+
+interface JobCandidateIntakeOptions {
+  defend?: boolean;
+  logger?: Logger;
+}
+
+export interface JobCandidateRunOutput {
+  stdout: string;
+  stderr?: string;
+  exitCode: number;
+}
+
+export interface JobCandidateIntakePlan {
+  stdout: string;
+  normalizedCandidates: JobCandidate[];
+  rejectedCandidates: CandidateRejection[];
+}
+
+export interface JobCandidateIntakeResult {
+  candidates: JobCandidate[];
+  normalizedCandidates: JobCandidate[];
+  normalizedCount: number;
+  dedupedCount: number;
+  rejectedCandidates: CandidateRejection[];
+  rejectedCount: number;
+  skippedCandidates: SkippedCandidate[];
+}
 
 interface CandidateFields {
   title: string;
@@ -24,12 +63,42 @@ interface CandidateFields {
   verificationNote: string;
 }
 
-export function normalizeDiscoveryOutput(stdout: string): JobCandidate[] {
-  return normalizeDiscoveryOutputWithReport(stdout).candidates;
+export function prepareJobCandidateIntake(runs: JobCandidateRunOutput | JobCandidateRunOutput[]): JobCandidateIntakePlan {
+  const successfulRuns = Array.isArray(runs) ? runs.filter((run) => run.exitCode === 0) : [runs].filter((run) => run.exitCode === 0);
+  const reports = successfulRuns.map((run) => normalizeJobCandidateOutputWithReport(run.stdout));
+  const normalizedCandidates = reports.flatMap((report) => report.candidates);
+  const rejectedCandidates = reports.flatMap((report) => report.rejected);
+
+  return {
+    stdout: JSON.stringify({ candidates: normalizedCandidates }),
+    normalizedCandidates,
+    rejectedCandidates
+  };
 }
 
-export function normalizeDiscoveryOutputWithReport(stdout: string): CandidateNormalizationReport {
-  const rawCandidates = rawDiscoveryCandidates(stdout);
+export async function intakePreparedJobCandidates(plan: JobCandidateIntakePlan, options: JobCandidateIntakeOptions = {}): Promise<JobCandidateIntakeResult> {
+  const dedupedCandidates = dedupeJobCandidates(plan.normalizedCandidates);
+  const defenseResult = options.defend === false
+    ? { candidates: dedupedCandidates, skipped: [] }
+    : await defendDiscoveryCandidates(dedupedCandidates, { logger: options.logger });
+
+  return {
+    candidates: defenseResult.candidates,
+    normalizedCandidates: plan.normalizedCandidates,
+    normalizedCount: plan.normalizedCandidates.length,
+    dedupedCount: dedupedCandidates.length,
+    rejectedCandidates: plan.rejectedCandidates,
+    rejectedCount: plan.rejectedCandidates.length,
+    skippedCandidates: defenseResult.skipped
+  };
+}
+
+export function normalizeJobCandidateOutput(stdout: string): JobCandidate[] {
+  return normalizeJobCandidateOutputWithReport(stdout).candidates;
+}
+
+export function normalizeJobCandidateOutputWithReport(stdout: string): CandidateNormalizationReport {
+  const rawCandidates = rawJobCandidates(stdout);
   const candidates: JobCandidate[] = [];
   const rejected: CandidateRejection[] = [];
 
@@ -47,14 +116,14 @@ export function normalizeDiscoveryOutputWithReport(stdout: string): CandidateNor
   return { candidates, rejected };
 }
 
-export function rawDiscoveryCandidates(stdout: string): RawJobCandidate[] {
+export function rawJobCandidates(stdout: string): RawJobCandidate[] {
   const parsed = parseJson(stdout);
   const unwrapped = unwrapAgentResult(parsed);
   if (Array.isArray(unwrapped)) return unwrapped.filter(isRecord);
-  if (!isRecord(unwrapped)) throw new Error("Discovery output JSON must contain a candidates array.");
+  if (!isRecord(unwrapped)) throw new Error("Job candidate output JSON must contain a candidates array.");
 
   const candidates = unwrapped.candidates ?? unwrapped.jobs ?? [];
-  if (!Array.isArray(candidates)) throw new Error("Discovery output JSON must contain a candidates array.");
+  if (!Array.isArray(candidates)) throw new Error("Job candidate output JSON must contain a candidates array.");
   return candidates.filter(isRecord);
 }
 
@@ -124,7 +193,7 @@ function parseJson(stdout: string): unknown {
     return JSON.parse(stdout);
   } catch {
     const match = stdout.match(/\{[\s\S]*\}/);
-    if (!match) throw new Error("Discovery runner did not return parseable JSON.");
+    if (!match) throw new Error("Agent run did not return parseable JSON.");
     return JSON.parse(match[0]);
   }
 }
@@ -140,6 +209,12 @@ function unwrapAgentResult(parsed: unknown): unknown {
   }
 
   return parsed;
+}
+
+function dedupeJobCandidates(candidates: JobCandidate[]): JobCandidate[] {
+  const byId = new Map<string, JobCandidate>();
+  for (const candidate of candidates) byId.set(candidate.id, candidate);
+  return [...byId.values()];
 }
 
 function text(value: unknown): string {

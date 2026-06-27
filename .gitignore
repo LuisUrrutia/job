@@ -22,3 +22,4 @@ data/*.sqlite*
 var/jobs/raw-agent-runs*/
 .omo/
 debug/
+.env

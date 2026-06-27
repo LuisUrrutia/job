@@ -41,7 +41,7 @@ describe("resume generator", () => {
     assert.ok(rendered.includes("https://linkedin.com/in/luisurrutiaf"));
   });
 
-  test("builds experience blocks with LaTeX escaping", () => {
+  test("builds experience blocks with sparse bold phrases", () => {
     const block = buildExperienceBlock([
       {
         title: "Software Engineer",
@@ -49,14 +49,14 @@ describe("resume generator", () => {
         company: "OpenZeppelin & Partners",
         years: "2023 - 2026",
         tech: ["TypeScript", "React"],
-        description: ["Improved API response time by 35%"]
+        description: ["Improved API response time by 35% with GraphQL gateway work"]
       }
-    ]);
+    ], ["API response time", "GraphQL gateway work", "TypeScript"]);
 
     assert.ok(block.includes(String.raw`OpenZeppelin \& Partners`));
     assert.ok(block.includes("2023 {-} 2026"));
     assert.ok(block.includes(String.raw`\Skills{TypeScript, React}`));
-    assert.ok(block.includes(String.raw`\item Improved API response time by 35\%`));
+    assert.ok(block.includes(String.raw`\item Improved \textbf{API response time} by 35\% with \textbf{GraphQL gateway work}`));
   });
 
   test("writes TeX from JSON without compiling when tex-only is enabled", async () => {
@@ -69,7 +69,12 @@ describe("resume generator", () => {
     try {
       writeFileSync(
         inputPath,
-        JSON.stringify({ personalInfo: { title: "Senior Engineer (Remote)" }, workExperience: [], targetCompany: "Example Company" })
+        JSON.stringify({
+          personalInfo: { title: "Senior Engineer (Remote)" },
+          workExperience: [{ title: "Engineer", location: "Remote", company: "Example", years: "2023 - 2026", description: ["Built React and TypeScript workflows for designers"] }],
+          resume_bold_phrases: ["React and TypeScript workflows"],
+          targetCompany: "Example Company"
+        })
       );
       writeFileSync(
         templatePath,
@@ -81,7 +86,7 @@ describe("resume generator", () => {
 
       assert.equal(result.outputTexPath, outputTexPath);
       assert.ok(output.includes("{Senior Engineer}"));
-      assert.ok(output.includes("+34644402855"));
+      assert.ok(output.includes(String.raw`\textbf{React and TypeScript workflows}`));
     } finally {
       rmSync(workspace, { recursive: true, force: true });
     }

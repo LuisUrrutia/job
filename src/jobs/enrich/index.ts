@@ -1,8 +1,7 @@
-import { normalizeDiscoveryOutputWithReport } from "../discover/normalizer.ts";
-import { persistRawRun, runDiscoveryAgent } from "../discover/runners.ts";
-import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
+import { intakePreparedJobCandidates, prepareJobCandidateIntake } from "../candidate-intake.ts";
+import { persistRawRun, runAgent } from "../agent-run.ts";
 import { linkedInEnrichmentPrompt, renderEnrichmentPrompt } from "./prompts.ts";
-import type { AgentRunResult, CandidateRejection, EnrichmentOptions, EnrichmentResult, JobCandidate, JobStore, StoredJobCandidate } from "../types.ts";
+import type { AgentRunResult, EnrichmentOptions, EnrichmentResult, JobStore, StoredJobCandidate } from "../types.ts";
 
 interface EnrichmentRun extends AgentRunResult {
   candidate: StoredJobCandidate;
@@ -23,17 +22,14 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
     const prompt = renderEnrichmentPrompt(linkedInEnrichmentPrompt, candidate);
     const progress = { position: index + 1, total, id: candidate.id, title: candidate.title };
     log("starting enrichment runner", progress);
-    const result = await runAgent(options, prompt);
+    const result = await runPromptAgent(options, prompt);
     log("finished enrichment runner", { ...progress, exitCode: result.exitCode });
     runs.push({ candidate, prompt, ...result });
   }
 
   const failedRuns = runs.filter((run) => run.exitCode !== 0);
-  const normalizedRuns = runs.map((run) => normalizeEnrichmentRunOutput(run));
-  const stdout = JSON.stringify({
-    candidates: normalizedRuns.flatMap((run) => run.candidates)
-  });
-  const runRejectedCandidates = normalizedRuns.flatMap((run) => run.rejected);
+  const intakePlan = prepareJobCandidateIntake(runs);
+  const stdout = intakePlan.stdout;
   const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
   const combinedPrompt = runs.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
   const exitCode = failedRuns[0]?.exitCode ?? 0;
@@ -50,40 +46,36 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
   const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode });
   if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
 
-  const normalization = normalizeDiscoveryOutputWithReport(stdout);
-  const normalizedCandidates = dedupeCandidates(normalization.candidates);
-  const rejectedCandidates = [...runRejectedCandidates, ...normalization.rejected];
+  const intake = await intakePreparedJobCandidates(intakePlan, { logger: log });
   if (failedRuns.length > 0) log("skipped failed enrichment runners", failedRuns.map(failedRunDetails));
-  if (failedRuns.length > 0 && normalizedCandidates.length === 0) {
+  if (failedRuns.length > 0 && intake.normalizedCount === 0) {
     const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : ` Run ${runId}; inspect agent_runs.stdout/stderr in SQLite.`;
     throw new Error(`All enrichment runners failed; first failure: ${failedRunSummary(failedRuns[0])}.${rawOutput}`);
   }
 
-  const defenseResult = await defendDiscoveryCandidates(normalizedCandidates, { logger: log });
-  const candidates = defenseResult.candidates;
-  store.saveCandidates(runId, candidates);
+  store.saveCandidates(runId, intake.candidates);
   log("saved enriched candidates", {
     runId,
-    candidates: candidates.length,
+    candidates: intake.candidates.length,
     failedCandidates: failedRuns.length,
-    rejectedCandidates: rejectedCandidates.length,
-    rejected: rejectedCandidates
+    rejectedCandidates: intake.rejectedCount,
+    rejected: intake.rejectedCandidates
   });
 
   return {
     runId,
     rawOutputPath,
     requestedCount: candidatesToEnrich.length,
-    normalizedCount: normalizedCandidates.length,
+    normalizedCount: intake.normalizedCount,
     failedCandidates: failedRuns.length,
-    rejectedCandidates: rejectedCandidates.length,
-    skippedCandidates: defenseResult.skipped.length,
-    candidates
+    rejectedCandidates: intake.rejectedCount,
+    skippedCandidates: intake.skippedCandidates.length,
+    candidates: intake.candidates
   };
 }
 
-async function runAgent(options: EnrichmentOptions, prompt: string): Promise<AgentRunResult> {
-  const agent = options.runAgent || runDiscoveryAgent;
+async function runPromptAgent(options: EnrichmentOptions, prompt: string): Promise<AgentRunResult> {
+  const agent = options.runAgent || runAgent;
   return agent({
     runner: options.runner,
     fixture: options.fixture,
@@ -93,17 +85,6 @@ async function runAgent(options: EnrichmentOptions, prompt: string): Promise<Age
   });
 }
 
-function normalizeEnrichmentRunOutput(run: EnrichmentRun): { candidates: JobCandidate[]; rejected: CandidateRejection[] } {
-  if (run.exitCode !== 0) return { candidates: [], rejected: [] };
-  const report = normalizeDiscoveryOutputWithReport(run.stdout);
-  return JSON.parse(JSON.stringify(report));
-}
-
-function dedupeCandidates(candidates: JobCandidate[]): JobCandidate[] {
-  const byId = new Map<string, JobCandidate>();
-  for (const candidate of candidates) byId.set(candidate.id, candidate);
-  return [...byId.values()];
-}
 
 function failedRunDetails(run: EnrichmentRun): Record<string, unknown> {
   return {

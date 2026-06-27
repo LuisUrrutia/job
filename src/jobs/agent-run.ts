@@ -4,7 +4,7 @@ import { spawn } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import type { ChildProcess } from "node:child_process";
 import type { Readable } from "node:stream";
-import type { AgentRunResult, AgentRunnerOptions } from "../types.ts";
+import type { AgentRunResult, AgentRunnerOptions } from "./types.ts";
 
 interface PersistRawRunOptions {
   rawDir?: string;
@@ -16,7 +16,7 @@ interface CommandOptions {
   stdin?: string;
 }
 
-export async function runDiscoveryAgent(options: AgentRunnerOptions): Promise<AgentRunResult> {
+export async function runAgent(options: AgentRunnerOptions): Promise<AgentRunResult> {
   const runner = options.runner || "fixture";
   if (runner === "fixture") return runFixture(options.fixture);
   if (runner === "opencode") return runCommand("opencode", ["run", options.prompt, "--dir", options.cwd || process.cwd()], { cwd: options.cwd });
@@ -28,7 +28,7 @@ export async function runDiscoveryAgent(options: AgentRunnerOptions): Promise<Ag
     return runCommand("claude", args, { cwd: options.cwd });
   }
 
-  throw new Error(`Unknown discovery runner: ${runner}`);
+  throw new Error(`Unknown agent runner: ${runner}`);
 }
 
 export async function persistRawRun(options: PersistRawRunOptions, runId: number, result: AgentRunResult): Promise<string | null> {

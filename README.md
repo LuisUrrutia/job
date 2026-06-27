@@ -37,6 +37,9 @@ Comandos disponibles:
 
 - `discover`: ejecuta búsquedas livianas, normaliza candidatos search-only en SQLite.
 - `enrich`: obtiene JD, empresa real y website para candidatos guardados, procesando uno por vez.
+- `fit`: analiza candidatos enriquecidos y clasifica `apply`, `weak_apply` o `dont_apply`.
+- `research-application`: busca apply URL oficial, perfil de empresa reutilizable y respuestas sugeridas para preguntas visibles.
+- `build-resume`: genera solo el PDF del resume y guarda su ruta en SQLite.
 - `process`: siguiente fase, todavía stub. Será para mandar trabajos aprobados al workflow existente de application package.
 
 Validar el proyecto:
@@ -65,7 +68,7 @@ Pídele al agente algo como:
 Usa la skill linkedin-job-discovery para buscar trabajos React remotos en UK, US y EU, y guarda los resultados en data/jobs.sqlite.
 ```
 
-Discovery usa solo `mcp-server-linkedin_search_jobs`. Para runners reales, el CLI lanza una corrida por término: `React`, `Typescript`, `Frontend` y `full-stack`; cada corrida recorre tres páginas cuando LinkedIn lo permite. Luego mergea y dedupea por identidad estable antes de pasar Defender y guardar en SQLite.
+Discovery usa solo `mcp-server-linkedin_search_jobs`. Para runners reales, el CLI lanza una corrida por término: `React`, `Typescript`, `Frontend` y `full-stack`; cada corrida recorre tres páginas cuando LinkedIn lo permite. Luego Job candidate intake mergea salidas exitosas, normaliza, dedupea por identidad estable y guarda en SQLite. Discovery no ejecuta Defender: guarda candidatos completos que se alinean con el prompt.
 
 Si usas la skill manualmente, persiste el JSON search-only con:
 
@@ -93,17 +96,17 @@ Tanto la skill como el runner CLI esperan JSON. El código guarda:
 - Un archivo JSON raw solo si pasas `--debug-json <file>` o `--debug-json-dir <dir>`.
 - Candidatos normalizados en SQLite.
 
-El mensaje final separa los números importantes: `normalized` son candidatos completos después de parsear el JSON, `saved` es lo que quedó guardado tras pasar Defender, `rejected` son candidatos incompletos (por ejemplo sin título, empresa o URL), y `skipped` son candidatos ignorados por prompt injection.
+El mensaje final separa los números importantes: `normalized` son candidatos completos después de parsear el JSON, `saved` es lo que quedó guardado, `rejected` son candidatos incompletos (por ejemplo sin título, empresa o URL), y `skipped` aparece en enrichment para candidatos ignorados por prompt injection.
 
-Antes de guardar candidatos, el pipeline pasa los campos no confiables de cada oferta por `@stackone/defender`. Si Defender detecta prompt injection de alto riesgo, el run queda registrado en SQLite, ese candidato se ignora, y el resto de candidatos seguros continúa. Si además activaste JSON de debug, también queda guardado el raw output del runner.
+Defender empieza en enrichment, donde el pipeline obtiene JD/details y trata ese texto como contenido no confiable. Si Defender detecta prompt injection de alto riesgo, el run queda registrado en SQLite, ese candidato se ignora, y el resto de candidatos seguros continúa. Si además activaste JSON de debug, también queda guardado el raw output del runner.
 
-Por defecto Defender corre con Tier 1 y Tier 2 activados. Tier 2 usa el clasificador ONNX en un subproceso Node aislado, para que un cierre nativo raro del runtime no tumbe el proceso principal de Node después de devolver el resultado. Si necesitas apagar Tier 2 para una corrida concreta:
+Por defecto Defender corre en enrichment con Tier 1 y Tier 2 activados. Tier 2 usa el clasificador ONNX en un subproceso Node aislado, para que un cierre nativo raro del runtime no tumbe el proceso principal de Node después de devolver el resultado. Si necesitas apagar Tier 2 para una corrida concreta:
 
 ```sh
-JOBS_DEFENDER_TIER2=0 npm run jobs -- discover --runner opencode --db data/jobs.sqlite
+JOBS_DEFENDER_TIER2=0 npm run jobs -- enrich --runner opencode --db data/jobs.sqlite
 ```
 
-Para ver el prompt, el runner usado, la normalización y el resultado de Defender, añade `--verbose`:
+Para ver el prompt, el runner usado y la normalización, añade `--verbose`. En enrichment también muestra el resultado de Defender:
 
 ```sh
 npm run jobs -- discover --runner opencode --db data/jobs.sqlite --verbose
@@ -214,13 +217,46 @@ npm run jobs -- enrich --runner opencode --db data/jobs.sqlite
 
 `enrich` lee candidatos sin `description` o sin `company_website` y los procesa de a uno. Cada agente debe resolver details/JD y website para un solo job; el proceso padre vuelve a pasar Defender y re-upsertea la misma fila en SQLite.
 
+## Fit analysis
+
+Después de enrichment, ejecuta fit para clasificar candidatos enriquecidos:
+
+```sh
+npm run jobs -- fit --runner opencode --db data/jobs.sqlite
+```
+
+`fit` lee candidatos con `description` y `company_website`, carga `info.json`, analiza un candidato a la vez y persiste `fit_decision`, `fit_score`, `fit_summary`, `fit_risks` y `fit_evidence`. Esta fase solo decide si conviene aplicar; no genera resume, PDF, cover letter ni respuestas de aplicación.
+
+## Application research
+
+Después de `fit`, ejecuta research solo para candidatos `apply` o `weak_apply`:
+
+```sh
+npm run jobs -- research-application --runner opencode --db data/jobs.sqlite
+```
+
+`research-application` guarda información reutilizable de la empresa en `companies`, guarda el `apply_url` específico de la oferta en `candidates`, y guarda cada pregunta visible con una respuesta sugerida en `application_questions`. Las respuestas son referencia para revisión humana; el comando no envía aplicaciones ni genera resume/PDF/cover letter.
+
+## Build resume
+
+Después de `research-application`, genera el paquete de resume para candidatos con `apply` o `weak_apply`:
+
+```sh
+npm run jobs -- build-resume --runner opencode --db data/jobs.sqlite
+```
+
+`build-resume` carga `info.json`, company research y preguntas visibles; pide un JSON tailor-made compatible con `src/resume/generator.ts` como entrada temporal; compila `applications/{candidate-slug}-{slug}-Resume.pdf`; y guarda solo `resume_pdf_path` y `resume_generated_at` en `candidates`. Usa `--output-root <path>` para escribir el PDF fuera del directorio actual.
+
 ## Flujo recomendado
 
 1. Ejecuta discovery real search-only para poblar SQLite.
 2. Audita los títulos guardados si algo se ve raro.
 3. Ejecuta `enrich` en modo serial para completar JD, empresa y website.
-4. Usa SQLite como fuente de verdad; los JSON de debug son solo inspección.
-5. En una fase posterior, conecta trabajos aprobados con los skills existentes de job application.
+4. Ejecuta `fit` para clasificar `apply`, `weak_apply` o `dont_apply`.
+5. Ejecuta `research-application` para buenos fits.
+6. Ejecuta `build-resume` para generar el PDF del resume.
+7. Usa SQLite como fuente de verdad; los JSON de debug son solo inspección.
+8. En una fase posterior, conecta trabajos aprobados con los skills existentes de job application.
 
 ## Relación con el workflow de aplicaciones
 
@@ -231,10 +267,8 @@ Los artefactos finales siguen estas rutas:
 ```text
 ai/{company}/{slug}-jd.json
 ai/{company}/{slug}-analysis.json
-ai/{company}/{slug}-application.json
 ai/{company}/{slug}-cover-letter.txt
 ai/{company}/{slug}-apply.json
-latex/{candidate-slug}-{slug}-Resume.tex
 applications/{candidate-slug}-{slug}-Resume.pdf
 ```
 
@@ -252,12 +286,11 @@ make -C latex clean
 
 La compilación con `make -C latex build` manda los archivos auxiliares (`.aux`, `.fls`, `.log`, `.fdb_latexmk`, etc.) a `latex/build/` y copia solo el PDF final junto a los `.tex`. Si quieres borrar todo ese ruido, usa `make -C latex clean`.
 
-Para generar resumes desde JSON, usa el generador TypeScript integrado en Node:
+Para generar resumes manualmente desde JSON, usa el generador TypeScript integrado en Node:
 
 ```sh
 npm run resume -- --help
-npm run resume -- --input ai/{company}/{slug}-application.json --tex-only
-npm run resume -- --compile-tex latex/{candidate-slug}-{slug}-Resume.tex
+npm run resume -- --input ai/{company}/{slug}-application.json
 ```
 
-No mezcles discovery con la generación de materiales: el pipeline de trabajos descubre oportunidades; el workflow de aplicaciones genera materiales para una oportunidad concreta.
+No mezcles discovery con la generación de materiales: `build-resume` corre solo después de fit y application research para una oportunidad concreta.
