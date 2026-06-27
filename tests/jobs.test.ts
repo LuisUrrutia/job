@@ -270,6 +270,7 @@ describe("jobs pipeline", () => {
     const store = openJobStore(join(workspace, "jobs.sqlite"));
     let active = 0;
     let maxActive = 0;
+    const rawPath = join(workspace, "raw", "run.json");
 
     try {
       await discoverJobs(store, {
@@ -295,6 +296,7 @@ describe("jobs pipeline", () => {
         runner: "opencode",
         cwd: process.cwd(),
         limit: 5,
+        rawOutputPath: rawPath,
         runAgent: async (options) => {
           active += 1;
           maxActive = Math.max(maxActive, active);
@@ -314,11 +316,30 @@ describe("jobs pipeline", () => {
         }
       });
 
+      const raw = JSON.parse(await readFile(rawPath, "utf8"));
+      const stdout = JSON.parse(raw.stdout);
+
       assert.equal(maxActive, 1);
       assert.equal(result.requestedCount, 5);
+      assert.equal(result.rawOutputPath, rawPath);
       assert.equal(result.candidates.length, 5);
       assert.equal(store.listCandidatesForEnrichment(10).length, 0);
       assert.ok(store.listCandidates().every((candidate) => candidate.description.includes("Enriched JD")));
+      assert.equal(raw.exitCode, 0);
+      assert.equal(stdout.candidates.length, 5);
+      assert.equal(stdout.enrichmentRuns.length, 5);
+      assert.deepEqual(stdout.enrichmentRuns.map((run: { candidateId: string }) => run.candidateId), [
+        "linkedin:1111111111",
+        "linkedin:6666666666",
+        "linkedin:7777777777",
+        "linkedin:8888888888",
+        "linkedin:9999999999"
+      ]);
+      assert.equal(stdout.enrichmentRuns[0].exitCode, 0);
+      assert.match(stdout.enrichmentRuns[0].stdout, /1111111111/);
+      assert.equal(stdout.enrichmentRuns[0].stderr, "");
+      assert.match(raw.prompt, /# linkedin:6666666666\nExit code: 0/);
+      assert.equal(raw.stderr, "");
     } finally {
       store.close();
       rmSync(workspace, { recursive: true, force: true });
@@ -328,6 +349,7 @@ describe("jobs pipeline", () => {
   test("enrich saves successful candidates when one runner fails", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-partial-"));
     const store = openJobStore(join(workspace, "jobs.sqlite"));
+    const rawPath = join(workspace, "raw", "run.json");
 
     try {
       await discoverJobs(store, {
@@ -351,6 +373,7 @@ describe("jobs pipeline", () => {
         runner: "opencode",
         cwd: process.cwd(),
         limit: 3,
+        rawOutputPath: rawPath,
         runAgent: async (options) => {
           const match = /"sourceJobId": "(\d+)"/.exec(options.prompt);
           assert.ok(match);
@@ -373,10 +396,94 @@ describe("jobs pipeline", () => {
         }
       });
 
+      const raw = JSON.parse(await readFile(rawPath, "utf8"));
+      const stdout = JSON.parse(raw.stdout);
+
       assert.equal(result.requestedCount, 3);
       assert.equal(result.failedCandidates, 1);
+      assert.equal(result.rawOutputPath, rawPath);
       assert.equal(result.candidates.length, 2);
       assert.equal(store.listCandidatesForEnrichment(10).length, 1);
+      assert.equal(raw.exitCode, 1);
+      assert.equal(stdout.candidates.length, 2);
+      assert.deepEqual(stdout.enrichmentRuns.map((run: { candidateId: string; exitCode: number }) => ({
+        candidateId: run.candidateId,
+        exitCode: run.exitCode
+      })), [
+        { candidateId: "linkedin:2222222222", exitCode: 0 },
+        { candidateId: "linkedin:3333333333", exitCode: 1 },
+        { candidateId: "linkedin:4444444444", exitCode: 0 }
+      ]);
+      assert.match(stdout.enrichmentRuns[0].stdout, /2222222222/);
+      assert.equal(stdout.enrichmentRuns[1].stdout, "");
+      assert.match(stdout.enrichmentRuns[1].stderr, /blocked by the provider's content filter/);
+      assert.match(raw.prompt, /# linkedin:3333333333\nExit code: 1/);
+      assert.match(raw.stderr, /# linkedin:3333333333\nExit code: 1\nError: The response was blocked by the provider's content filter/);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+  test("enrich records failed run provenance before all-failed throw", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-all-failed-"));
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+    const rawPath = join(workspace, "raw", "run.json");
+
+    try {
+      await discoverJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        searchTerms: ["React"],
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [
+              searchOnlyCandidate("2222222222", "React Engineer"),
+              searchOnlyCandidate("3333333333", "Frontend React Engineer")
+            ]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      await assert.rejects(
+        enrichJobs(store, {
+          runner: "opencode",
+          cwd: process.cwd(),
+          limit: 2,
+          rawOutputPath: rawPath,
+          runAgent: async (options) => {
+            const match = /"sourceJobId": "(\d+)"/.exec(options.prompt);
+            assert.ok(match);
+            return {
+              stdout: "",
+              stderr: `provider refused ${match[1]}`,
+              exitCode: 9
+            };
+          }
+        }),
+        /All enrichment runners failed; first failure:/
+      );
+
+      const raw = JSON.parse(await readFile(rawPath, "utf8"));
+      const stdout = JSON.parse(raw.stdout);
+
+      assert.equal(raw.exitCode, 9);
+      assert.deepEqual(stdout.candidates, []);
+      assert.deepEqual(stdout.enrichmentRuns.map((run: { candidateId: string; exitCode: number; stdout: string }) => ({
+        candidateId: run.candidateId,
+        exitCode: run.exitCode,
+        stdout: run.stdout
+      })), [
+        { candidateId: "linkedin:2222222222", exitCode: 9, stdout: "" },
+        { candidateId: "linkedin:3333333333", exitCode: 9, stdout: "" }
+      ]);
+      assert.match(stdout.enrichmentRuns[0].stderr, /provider refused 2222222222/);
+      assert.match(stdout.enrichmentRuns[1].stderr, /provider refused 3333333333/);
+      assert.match(raw.prompt, /# linkedin:2222222222\nExit code: 9/);
+      assert.match(raw.stderr, /# linkedin:3333333333\nExit code: 9\nprovider refused 3333333333/);
+      assert.equal(store.listCandidatesForEnrichment(10).length, 2);
     } finally {
       store.close();
       rmSync(workspace, { recursive: true, force: true });
