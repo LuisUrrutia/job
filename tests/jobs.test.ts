@@ -443,6 +443,87 @@ describe("jobs pipeline", () => {
     }
   });
 
+  test("enrich preserves per-candidate output when one runner returns invalid JSON", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-invalid-json-"));
+    const debugPath = join(workspace, "raw", "enrich.json");
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+
+    try {
+      await discoverJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        searchTerms: ["React"],
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [
+              searchOnlyCandidate("7878787878", "React Engineer"),
+              searchOnlyCandidate("8989898989", "Frontend React Engineer")
+            ]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      const result = await enrichJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        limit: 2,
+        rawOutputPath: debugPath,
+        runAgent: async (options) => {
+          const match = /"sourceJobId": "(\d+)"/.exec(options.prompt);
+          assert.ok(match);
+          const sourceJobId = match[1];
+          if (sourceJobId === "8989898989") {
+            return {
+              stdout: "not json",
+              stderr: "",
+              exitCode: 0
+            };
+          }
+
+          return {
+            stdout: JSON.stringify({
+              candidates: [
+                enrichedCandidate(sourceJobId),
+                {
+                  title: "Incomplete Enriched Engineer",
+                  company: "Missing URL Example",
+                  source: "linkedin",
+                  sourceJobId: "7878787878",
+                  description: "Enriched JD without a canonical URL."
+                }
+              ]
+            }),
+            stderr: "",
+            exitCode: 0
+          };
+        }
+      });
+      const raw = JSON.parse(await readFile(debugPath, "utf8"));
+      const stdout = JSON.parse(raw.stdout);
+
+      assert.equal(result.requestedCount, 2);
+      assert.equal(result.normalizedCount, 1);
+      assert.equal(result.failedCandidates, 1);
+      assert.equal(result.candidates.length, 1);
+      assert.equal(raw.exitCode, 1);
+      assert.equal(stdout.candidates.length, 1);
+      assert.equal(stdout.enrichmentRuns.length, 2);
+      assert.equal(stdout.enrichmentRuns[0].rejectedCandidates.length, 1);
+      assert.deepEqual(stdout.enrichmentRuns[0].rejectedCandidates[0].reasons, ["missing-url"]);
+      assert.equal(stdout.enrichmentRuns[1].candidateId, "linkedin:8989898989");
+      assert.equal(stdout.enrichmentRuns[1].stdout, "not json");
+      assert.match(stdout.enrichmentRuns[1].normalizationError, /parseable JSON/);
+      assert.match(raw.stderr, /# linkedin:8989898989 \(exit 0\)/);
+      assert.match(raw.stderr, /Normalization error:/);
+      assert.equal(store.listCandidatesForEnrichment(10).length, 1);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
   test("enrich saves successful candidates when one runner fails", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-partial-"));
     const store = openJobStore(join(workspace, "jobs.sqlite"));

@@ -212,7 +212,7 @@ Después de discovery, ejecuta enrichment para completar JD y website:
 npm run jobs -- enrich --runner opencode --db data/jobs.sqlite
 ```
 
-`enrich` lee candidatos sin `description` o sin `company_website` y los procesa de a uno. Cada agente debe resolver details/JD y website para un solo job; el proceso padre vuelve a pasar Defender y re-upsertea la misma fila en SQLite.
+`enrich` lee candidatos sin `description` o sin `company_website` y los procesa de a uno. Cada agente debe resolver details/JD y website para un solo job; el stdout agregado conserva un ledger `enrichmentRuns` con la salida de cada candidato. El proceso padre vuelve a pasar Defender y re-upsertea la misma fila en SQLite.
 
 ## Flujo recomendado
 
