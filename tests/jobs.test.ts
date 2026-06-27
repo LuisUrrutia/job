@@ -34,9 +34,12 @@ describe("jobs pipeline", () => {
       assert.equal(firstRun.rawOutputPath, null);
       assert.equal(secondRun.rawOutputPath, null);
       assert.equal(store.countCandidates(), 2);
-      assert.ok(store.listCandidates().map((candidate) => candidate.id).includes("linkedin:1234567890"));
-      assert.equal(store.listCandidates().find((candidate) => candidate.id === "linkedin:1234567890").sourceJobId, "1234567890");
-      assert.ok(store.listCandidates()[0].companyWebsite.includes("example.invalid"));
+      const candidates = store.listCandidates();
+      const linkedInCandidate = candidates.find((candidate) => candidate.id === "linkedin:1234567890");
+      assert.ok(candidates.map((candidate) => candidate.id).includes("linkedin:1234567890"));
+      assert.ok(linkedInCandidate);
+      assert.equal(linkedInCandidate.sourceJobId, "1234567890");
+      assert.ok(candidates[0].companyWebsite.includes("example.invalid"));
     } finally {
       store.close();
       rmSync(workspace, { recursive: true, force: true });
@@ -204,7 +207,7 @@ describe("jobs pipeline", () => {
     }
   });
 
-  test("enrich processes stored candidates with bounded concurrency", async () => {
+  test("enrich processes stored candidates serially", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-"));
     const store = openJobStore(join(workspace, "jobs.sqlite"));
     let active = 0;
@@ -233,7 +236,6 @@ describe("jobs pipeline", () => {
       const result = await enrichJobs(store, {
         runner: "opencode",
         cwd: process.cwd(),
-        concurrency: 2,
         limit: 5,
         runAgent: async (options) => {
           active += 1;
@@ -254,11 +256,69 @@ describe("jobs pipeline", () => {
         }
       });
 
-      assert.equal(maxActive, 2);
+      assert.equal(maxActive, 1);
       assert.equal(result.requestedCount, 5);
       assert.equal(result.candidates.length, 5);
       assert.equal(store.listCandidatesForEnrichment(10).length, 0);
       assert.ok(store.listCandidates().every((candidate) => candidate.description.includes("Enriched JD")));
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+  test("enrich saves successful candidates when one runner fails", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-partial-"));
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+
+    try {
+      await discoverJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        searchTerms: ["React"],
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [
+              searchOnlyCandidate("2222222222", "React Engineer"),
+              searchOnlyCandidate("3333333333", "Frontend React Engineer"),
+              searchOnlyCandidate("4444444444", "Typescript Frontend Engineer")
+            ]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      const result = await enrichJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        limit: 3,
+        runAgent: async (options) => {
+          const match = /"sourceJobId": "(\d+)"/.exec(options.prompt);
+          assert.ok(match);
+          const sourceJobId = match[1];
+          if (sourceJobId === "3333333333") {
+            return {
+              stdout: "",
+              stderr: "Error: The response was blocked by the provider's content filter",
+              exitCode: 1
+            };
+          }
+
+          return {
+            stdout: JSON.stringify({
+              candidates: [enrichedCandidate(sourceJobId)]
+            }),
+            stderr: "",
+            exitCode: 0
+          };
+        }
+      });
+
+      assert.equal(result.requestedCount, 3);
+      assert.equal(result.failedCandidates, 1);
+      assert.equal(result.candidates.length, 2);
+      assert.equal(store.listCandidatesForEnrichment(10).length, 1);
     } finally {
       store.close();
       rmSync(workspace, { recursive: true, force: true });

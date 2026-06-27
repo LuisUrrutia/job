@@ -36,7 +36,7 @@ npm run jobs -- <comando> [opciones]
 Comandos disponibles:
 
 - `discover`: ejecuta búsquedas livianas, normaliza candidatos search-only en SQLite.
-- `enrich`: obtiene JD, empresa real y website para candidatos guardados, con concurrencia acotada.
+- `enrich`: obtiene JD, empresa real y website para candidatos guardados, procesando uno por vez.
 - `process`: siguiente fase, todavía stub. Será para mandar trabajos aprobados al workflow existente de application package.
 
 Validar el proyecto:
@@ -209,16 +209,16 @@ Usa la skill linkedin-job-discovery para buscar trabajos React remotos en UK, US
 Después de discovery, ejecuta enrichment para completar JD y website:
 
 ```sh
-npm run jobs -- enrich --runner opencode --db data/jobs.sqlite --concurrency 4
+npm run jobs -- enrich --runner opencode --db data/jobs.sqlite
 ```
 
-`enrich` lee candidatos sin `description` o sin `company_website`, lanza un agente por candidato y limita la concurrencia con `--concurrency` (default `4`). Cada agente debe resolver details/JD y website para un solo job; el proceso padre vuelve a pasar Defender y re-upsertea la misma fila en SQLite.
+`enrich` lee candidatos sin `description` o sin `company_website` y los procesa de a uno. Cada agente debe resolver details/JD y website para un solo job; el proceso padre vuelve a pasar Defender y re-upsertea la misma fila en SQLite.
 
 ## Flujo recomendado
 
 1. Ejecuta discovery real search-only para poblar SQLite.
 2. Audita los títulos guardados si algo se ve raro.
-3. Ejecuta `enrich` con concurrencia acotada para completar JD, empresa y website.
+3. Ejecuta `enrich` en modo serial para completar JD, empresa y website.
 4. Usa SQLite como fuente de verdad; los JSON de debug son solo inspección.
 5. En una fase posterior, conecta trabajos aprobados con los skills existentes de job application.
 

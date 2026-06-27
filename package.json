@@ -18,5 +18,8 @@
   "trustedDependencies": [
     "onnxruntime-node",
     "protobufjs"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
 }

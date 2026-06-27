@@ -20,8 +20,9 @@ interface CliOptions {
   mcpConfig?: string;
   output?: string;
   limit?: string;
-  concurrency?: string;
 }
+
+type ParsedCliOptions = CliOptions & Record<string, string | boolean | undefined>;
 
 async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -35,9 +36,10 @@ async function main(argv: string[]): Promise<void> {
   if (command === "enrich") {
     if (options.output) throw new Error("--output is not supported by jobs enrich. Use --debug-json or --debug-json-dir for debug JSON.");
     if (options.debugJson && options.debugJsonDir) throw new Error("Use either --debug-json or --debug-json-dir, not both.");
+    if (options.concurrency) throw new Error("--concurrency is not supported by jobs enrich. Enrichment runs one candidate at a time.");
     const store = openJobStore(options.db || DEFAULT_DB);
     try {
-      const logger = createVerboseLogger(options.verbose);
+      const logger = createEnrichmentLogger(options.verbose);
       const result = await enrichJobs(store, {
         runner: options.runner || "opencode",
         fixture: options.fixture,
@@ -46,12 +48,12 @@ async function main(argv: string[]): Promise<void> {
         rawOutputPath: options.debugJson,
         mcpConfig: options.mcpConfig,
         limit: numberOption(options.limit, 25),
-        concurrency: numberOption(options.concurrency, 4),
         logger
       });
       const rawOutput = result.rawOutputPath ? `; debug JSON ${result.rawOutputPath}` : "; debug JSON not written";
       const skipped = result.skippedCandidates ? `; skipped ${result.skippedCandidates} prompt-injected candidates` : "";
-      console.log(`Stored enrichment run ${result.runId}; requested ${result.requestedCount} candidates; enriched ${result.candidates.length} candidates${skipped}${rawOutput}`);
+      const failed = result.failedCandidates ? `; failed ${result.failedCandidates} candidates` : "";
+      console.log(`Stored enrichment run ${result.runId}; requested ${result.requestedCount} candidates; enriched ${result.candidates.length} candidates${failed}${skipped}${rawOutput}`);
     } finally {
       store.close();
     }
@@ -98,8 +100,8 @@ function numberOption(value: string | undefined, fallback: number): number {
   return parsed;
 }
 
-function parseOptions(args: string[]): CliOptions {
-  const options: CliOptions = {};
+function parseOptions(args: string[]): ParsedCliOptions {
+  const options: ParsedCliOptions = {};
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
     if (!arg.startsWith("--")) continue;
@@ -134,6 +136,16 @@ function createVerboseLogger(enabled?: boolean): Logger | undefined {
   };
 }
 
+function createEnrichmentLogger(verbose?: boolean): Logger {
+  const verboseLogger = createVerboseLogger(verbose);
+  if (verboseLogger) return verboseLogger;
+
+  return (message, details) => {
+    const suffix = details === undefined ? "" : ` ${JSON.stringify(details)}`;
+    console.error(`[jobs:enrich] ${message}${suffix}`);
+  };
+}
+
 function printHelp(): void {
   console.log(`Usage: npm run jobs -- <command> [options]
 
@@ -152,7 +164,6 @@ Options:
   --dir <path>            Working directory passed to shell runners.
   --mcp-config <path>     Passed to claude for later MCP-connected runs.
   --limit <n>             Enrich only: maximum stored candidates to enrich. Default: 25
-  --concurrency <n>       Enrich only: concurrent enrichment runners. Default: 4
   --verbose               Print prompt, runner, normalization, and defense details to stderr.`);
 }
 

@@ -164,7 +164,8 @@ function parseIsolatedDefenseResults(stdout: string, stderr: string, exitCode: n
   try {
     return JSON.parse(payload);
   } catch (error) {
-    throw new Error(`Defender Tier 2 subprocess returned invalid JSON: ${error.message}`);
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Defender Tier 2 subprocess returned invalid JSON: ${message}`);
   }
 }
 

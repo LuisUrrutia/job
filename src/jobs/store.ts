@@ -4,18 +4,6 @@ import { mkdirSync } from "node:fs";
 import type { DatabaseSync as DatabaseSyncType } from "node:sqlite";
 import type { AgentRunRecord, JobCandidate, JobStore, StoredJobCandidate } from "./types.ts";
 
-interface IdRow {
-  id: number | bigint | string;
-}
-
-interface CountRow {
-  count: number | bigint | string;
-}
-
-interface TableInfoRow {
-  name: string;
-}
-
 export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
   mkdirSync(dirname(dbPath), { recursive: true });
   const db = new DatabaseSync(dbPath);
@@ -109,7 +97,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
 
   return {
     saveAgentRun(run: AgentRunRecord): number {
-      const row = insertRun.get(
+      const row = requiredRow(insertRun.get(
         run.runner,
         run.promptVersion,
         run.prompt,
@@ -117,8 +105,8 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
         run.stderr,
         run.exitCode,
         run.rawOutputPath
-      ) as IdRow;
-      return Number(row.id);
+      ), "inserted agent run");
+      return numberColumn(row, "id");
     },
 
     saveRunRawOutputPath(runId: number, rawOutputPath: string): void {
@@ -173,7 +161,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
           posted_at DESC,
           company ASC,
           title ASC
-      `).all() as StoredJobCandidate[];
+      `).all().map((row) => storedCandidateFromRow(row));
     },
 
     listCandidatesForEnrichment(limit = 25): StoredJobCandidate[] {
@@ -189,12 +177,12 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
         WHERE description IS NULL OR description = '' OR company_website IS NULL OR company_website = ''
         ORDER BY last_seen_at DESC, company ASC, title ASC
         LIMIT ?
-      `).all(limit) as StoredJobCandidate[];
+      `).all(limit).map((row) => storedCandidateFromRow(row));
     },
 
     countCandidates(): number {
-      const row = db.prepare("SELECT count(*) AS count FROM candidates").get() as CountRow;
-      return Number(row.count);
+      const row = requiredRow(db.prepare("SELECT count(*) AS count FROM candidates").get(), "candidate count");
+      return numberColumn(row, "count");
     },
 
     close(): void {
@@ -204,7 +192,57 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
 }
 
 function ensureColumn(db: DatabaseSyncType, tableName: string, columnName: string, columnType: string): void {
-  const rows = db.prepare(`PRAGMA table_info(${tableName})`).all() as TableInfoRow[];
-  if (rows.some((row) => row.name === columnName)) return;
+  const rows = db.prepare(`PRAGMA table_info(${tableName})`).all();
+  if (rows.some((row) => textColumn(row, "name") === columnName)) return;
   db.exec(`ALTER TABLE ${tableName} ADD COLUMN ${columnName} ${columnType}`);
+}
+
+function storedCandidateFromRow(row: Record<string, unknown>): StoredJobCandidate {
+  return {
+    id: requiredTextColumn(row, "id"),
+    contentHash: requiredTextColumn(row, "contentHash"),
+    title: requiredTextColumn(row, "title"),
+    company: requiredTextColumn(row, "company"),
+    companyWebsite: textColumn(row, "companyWebsite"),
+    publisherCompany: textColumn(row, "publisherCompany"),
+    url: requiredTextColumn(row, "url"),
+    source: requiredTextColumn(row, "source"),
+    sourceJobId: textColumn(row, "sourceJobId"),
+    location: textColumn(row, "location"),
+    remoteScope: textColumn(row, "remoteScope"),
+    employmentType: textColumn(row, "employmentType"),
+    salaryRange: textColumn(row, "salaryRange"),
+    postedAt: textColumn(row, "postedAt"),
+    description: textColumn(row, "description"),
+    verificationNote: textColumn(row, "verificationNote"),
+    firstSeenAt: textColumn(row, "firstSeenAt"),
+    lastSeenAt: textColumn(row, "lastSeenAt")
+  };
+}
+
+function requiredRow(row: Record<string, unknown> | undefined, context: string): Record<string, unknown> {
+  if (!row) throw new Error(`Expected row for ${context}.`);
+  return row;
+}
+
+function requiredTextColumn(row: Record<string, unknown>, columnName: string): string {
+  const value = row[columnName];
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "bigint") return String(value);
+  throw new Error(`Expected text column ${columnName}.`);
+}
+
+function textColumn(row: Record<string, unknown>, columnName: string): string {
+  const value = row[columnName];
+  if (value === null || value === undefined) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "bigint") return String(value);
+  throw new Error(`Expected text column ${columnName}.`);
+}
+
+function numberColumn(row: Record<string, unknown>, columnName: string): number {
+  const value = row[columnName];
+  if (typeof value === "number") return value;
+  if (typeof value === "bigint" || typeof value === "string") return Number(value);
+  throw new Error(`Expected numeric column ${columnName}.`);
 }

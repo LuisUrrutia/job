@@ -20,7 +20,7 @@ export async function runDiscoveryAgent(options: AgentRunnerOptions): Promise<Ag
   const runner = options.runner || "fixture";
   if (runner === "fixture") return runFixture(options.fixture);
   if (runner === "opencode") return runCommand("opencode", ["run", options.prompt, "--dir", options.cwd || process.cwd()], { cwd: options.cwd });
-  if (runner === "codex") return runCommand("codex", ["exec", "-C", options.cwd, "-"], { cwd: options.cwd, stdin: options.prompt });
+  if (runner === "codex") return runCommand("codex", ["exec", "-C", options.cwd ?? process.cwd(), "-"], { cwd: options.cwd, stdin: options.prompt });
   if (runner === "claude") {
     const args = ["--print", "--output-format", "json"];
     if (options.mcpConfig) args.push("--mcp-config", options.mcpConfig);
@@ -55,6 +55,9 @@ async function runCommand(command: string, args: string[], options: CommandOptio
     if (!child.stdin) throw new Error(`${command} stdin was not available.`);
     child.stdin.end(options.stdin);
   }
+
+  if (!child.stdout) throw new Error(`${command} stdout was not available.`);
+  if (!child.stderr) throw new Error(`${command} stderr was not available.`);
 
   const [stdout, stderr, exitCode] = await Promise.all([
     streamToText(child.stdout),

@@ -1,4 +1,5 @@
 # Node Jobs Pipeline
+# Node Jobs Pipeline
 
 This is the persistence layer for split LinkedIn job discovery. Discovery is search-only: it finds postings, filters by title, and saves stable candidate rows. Enrichment is a separate phase: it reads stored candidates, gets JD/details and company website evidence, then re-upserts the same rows. SQLite is the source of truth; debug JSON files are optional and only for inspection.
 
@@ -29,7 +30,7 @@ npm run jobs -- discover --runner fixture --db data/jobs-dev.sqlite
 The CLI remains available for technical debug and fixture checks. It exposes three commands:
 
 - `discover`: runs search-only discovery, stores the run in SQLite, normalizes candidates, and upserts them by stable job ID.
-- `enrich`: reads stored candidates missing JD or website fields, runs bounded detail enrichment, and re-upserts them by stable job ID.
+- `enrich`: reads stored candidates missing JD or website fields, runs serial detail enrichment, and re-upserts them by stable job ID.
 - `process`: explicit stub for the later phase, where approved enriched candidates can feed the existing job-application workflow.
 
 ## Module Shape
@@ -41,7 +42,7 @@ The pipeline keeps the interface small and puts the implementation behind deep m
 - `src/jobs/discover/prompts.ts`: prompt registry and `--prompt-file` override. The default LinkedIn discovery prompt is source-controlled and versioned.
 - `src/jobs/discover/runners.ts`: adapters for `fixture`, `opencode`, `codex`, and `claude`, each returning stdout, stderr, and exit code.
 - `src/jobs/discover/normalizer.ts`: accepts JSON-only agent output and turns it into stored candidate rows.
-- `src/jobs/enrich/`: prompt and coordinator for bounded JD/company-website enrichment.
+- `src/jobs/enrich/`: prompt and coordinator for serial JD/company-website enrichment.
 - `src/jobs/security/prompt-defense.ts`: the prompt-injection defense seam. It uses `@stackone/defender` behind a small internal interface before candidates reach SQLite.
 - `src/jobs/cli.ts`: thin command entrypoint.
 
@@ -67,15 +68,15 @@ The CLI output reports both the normalized candidate count and the saved candida
 
 Use `--verbose` to print the prompt, runner lifecycle, normalization details, and Defender subprocess/result summaries to stderr.
 
-## Enrichment With Bounded Agents
+## Serial Enrichment
 
 Run enrichment after discovery:
 
 ```sh
-npm run jobs -- enrich --runner opencode --db data/jobs.sqlite --concurrency 4
+npm run jobs -- enrich --runner opencode --db data/jobs.sqlite
 ```
 
-The enrichment phase selects candidates where `description` or `company_website` is missing. It spawns one runner per candidate, bounded by `--concurrency` (default `4`) and `--limit` (default `25`). Each runner gets one stored candidate and may call `mcp-server-linkedin_get_job_details` plus company/official-site evidence tools. The returned candidate JSON goes through the same normalizer, Defender, and SQLite upsert path as discovery.
+The enrichment phase selects candidates where `description` or `company_website` is missing. It processes one candidate at a time, capped by `--limit` (default `25`). Each runner gets one stored candidate and may call `mcp-server-linkedin_get_job_details` plus company/official-site evidence tools. The returned candidate JSON goes through the same normalizer, Defender, and SQLite upsert path as discovery.
 
 Other adapters are available when those CLIs are installed:
 

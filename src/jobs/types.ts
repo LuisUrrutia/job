@@ -137,7 +137,6 @@ export interface EnrichmentOptions {
   rawOutputPath?: string;
   mcpConfig?: string;
   limit?: number;
-  concurrency?: number;
   runAgent?: AgentRunner;
   logger?: Logger;
 }
@@ -147,6 +146,7 @@ export interface EnrichmentResult {
   rawOutputPath: string | null;
   requestedCount: number;
   normalizedCount: number;
+  failedCandidates: number;
   skippedCandidates: number;
   candidates: JobCandidate[];
 }

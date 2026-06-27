@@ -4,8 +4,6 @@ import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
 import { linkedInEnrichmentPrompt, renderEnrichmentPrompt } from "./prompts.ts";
 import type { AgentRunResult, EnrichmentOptions, EnrichmentResult, JobCandidate, JobStore, StoredJobCandidate } from "../types.ts";
 
-const DEFAULT_CONCURRENCY = 4;
-
 interface EnrichmentRun extends AgentRunResult {
   candidate: StoredJobCandidate;
   prompt: string;
@@ -14,26 +12,29 @@ interface EnrichmentRun extends AgentRunResult {
 export async function enrichJobs(store: JobStore, options: EnrichmentOptions): Promise<EnrichmentResult> {
   const log = options.logger || noop;
   const candidatesToEnrich = store.listCandidatesForEnrichment(Number(options.limit || 25));
-  const concurrency = Math.max(1, Number(options.concurrency || DEFAULT_CONCURRENCY));
   log("loaded enrichment candidates", {
     candidates: candidatesToEnrich.length,
-    concurrency
+    mode: "serial"
   });
 
-  const runs = await mapLimited(candidatesToEnrich, concurrency, async (candidate) => {
+  const total = candidatesToEnrich.length;
+  const runs: EnrichmentRun[] = [];
+  for (const [index, candidate] of candidatesToEnrich.entries()) {
     const prompt = renderEnrichmentPrompt(linkedInEnrichmentPrompt, candidate);
-    log("starting enrichment runner", { id: candidate.id, title: candidate.title });
+    const progress = { position: index + 1, total, id: candidate.id, title: candidate.title };
+    log("starting enrichment runner", progress);
     const result = await runAgent(options, prompt);
-    log("finished enrichment runner", { id: candidate.id, exitCode: result.exitCode });
-    return { candidate, prompt, ...result };
-  });
+    log("finished enrichment runner", { ...progress, exitCode: result.exitCode });
+    runs.push({ candidate, prompt, ...result });
+  }
 
-  const failed = runs.find((run) => run.exitCode !== 0);
+  const failedRuns = runs.filter((run) => run.exitCode !== 0);
   const stdout = JSON.stringify({
     candidates: runs.flatMap((run) => normalizeEnrichmentRunOutput(run))
   });
   const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
   const combinedPrompt = runs.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
+  const exitCode = failedRuns[0]?.exitCode ?? 0;
 
   const runId = store.saveAgentRun({
     runner: options.runner,
@@ -41,28 +42,30 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
     prompt: combinedPrompt || linkedInEnrichmentPrompt.template,
     stdout,
     stderr,
-    exitCode: failed ? failed.exitCode : 0,
+    exitCode,
     rawOutputPath: null
   });
-  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode: failed ? failed.exitCode : 0 });
+  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode });
   if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
 
-  if (failed) {
-    const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : " Raw output file was not requested; inspect agent_runs.stdout/stderr in SQLite.";
-    throw new Error(`Enrichment runner failed with exit code ${failed.exitCode}.${rawOutput}`);
+  const normalizedCandidates = dedupeCandidates(normalizeDiscoveryOutput(stdout));
+  if (failedRuns.length > 0) log("skipped failed enrichment runners", failedRuns.map(failedRunDetails));
+  if (failedRuns.length > 0 && normalizedCandidates.length === 0) {
+    const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : ` Run ${runId}; inspect agent_runs.stdout/stderr in SQLite.`;
+    throw new Error(`All enrichment runners failed; first failure: ${failedRunSummary(failedRuns[0])}.${rawOutput}`);
   }
 
-  const normalizedCandidates = dedupeCandidates(normalizeDiscoveryOutput(stdout));
   const defenseResult = await defendDiscoveryCandidates(normalizedCandidates, { logger: log });
   const candidates = defenseResult.candidates;
   store.saveCandidates(runId, candidates);
-  log("saved enriched candidates", { runId, candidates: candidates.length });
+  log("saved enriched candidates", { runId, candidates: candidates.length, failedCandidates: failedRuns.length });
 
   return {
     runId,
     rawOutputPath,
     requestedCount: candidatesToEnrich.length,
     normalizedCount: normalizedCandidates.length,
+    failedCandidates: failedRuns.length,
     skippedCandidates: defenseResult.skipped.length,
     candidates
   };
@@ -84,26 +87,36 @@ function normalizeEnrichmentRunOutput(run: EnrichmentRun): JobCandidate[] {
   return JSON.parse(JSON.stringify(normalizeDiscoveryOutput(run.stdout)));
 }
 
-async function mapLimited<TItem, TResult>(items: TItem[], limit: number, mapper: (item: TItem) => Promise<TResult>): Promise<TResult[]> {
-  const results = new Array<TResult>(items.length);
-  let nextIndex = 0;
-
-  async function worker(): Promise<void> {
-    while (nextIndex < items.length) {
-      const index = nextIndex;
-      nextIndex += 1;
-      results[index] = await mapper(items[index]);
-    }
-  }
-
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
-  return results;
-}
-
 function dedupeCandidates(candidates: JobCandidate[]): JobCandidate[] {
   const byId = new Map<string, JobCandidate>();
   for (const candidate of candidates) byId.set(candidate.id, candidate);
   return [...byId.values()];
+}
+
+function failedRunDetails(run: EnrichmentRun): Record<string, unknown> {
+  return {
+    id: run.candidate.id,
+    title: run.candidate.title,
+    exitCode: run.exitCode,
+    stderr: compactText(run.stderr)
+  };
+}
+
+function failedRunSummary(run: EnrichmentRun): string {
+  const details = failedRunDetails(run);
+  const stderr = details.stderr ? `: ${details.stderr}` : "";
+  return `${details.id} (${details.title}) exited ${details.exitCode}${stderr}`;
+}
+
+function compactText(value: string): string {
+  return value
+    .replace(new RegExp("\\x1b\\[[0-9;]*m", "g"), "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .slice(0, 8)
+    .join(" | ")
+    .slice(0, 800);
 }
 
 function noop(): void {}

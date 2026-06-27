@@ -1,0 +1,30 @@
+name: LaTeX CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install chktex
+        run: sudo apt-get update && sudo apt-get install -y chktex
+
+      - name: Lint TeX sources
+        run: chktex -q -n1 -n2 -n8 -n13 -n24 -n26 Luis-Urrutia-Resume.tex main-cols.tex
+
+      - name: Build resumes with LuaLaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: |
+            Luis-Urrutia-Resume.tex
+            main-cols.tex
+          latexmk_use_lualatex: true
+          args: -interaction=nonstopmode -halt-on-error
