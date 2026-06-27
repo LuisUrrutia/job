@@ -1,6 +1,7 @@
 import { DEFAULT_DISCOVERY_TERMS, loadDiscoveryPrompt, renderDiscoveryPrompt } from "./prompts.ts";
 import { normalizeDiscoveryOutput } from "./normalizer.ts";
 import { persistRawRun, runDiscoveryAgent } from "./runners.ts";
+import { buildRunLedger } from "../run-ledger.ts";
 import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
 import type { AgentRunResult, DiscoveryOptions, DiscoveryResult, JobCandidate, JobStore, Logger, PromptTemplate } from "../types.ts";
 
@@ -120,12 +121,28 @@ async function runDiscoverySearches({
 function aggregateSearchRuns(runs: SearchRun[]): CombinedRun {
   const failedRuns = runs.filter((run) => run.exitCode !== 0);
   const failed = failedRuns[0];
+  const ledger = buildRunLedger({
+    candidates: runs.flatMap((run) => normalizeSearchRunOutput(run)),
+    runKey: "searchRuns",
+    entries: runs.map((run) => ({
+      label: run.searchTerm,
+      exitCode: run.exitCode,
+      stdout: run.stdout,
+      stderr: run.stderr,
+      prompt: run.prompt,
+      record: {
+        searchTerm: run.searchTerm,
+        exitCode: run.exitCode,
+        stdout: run.stdout
+      }
+    }))
+  });
 
   return {
-    stdout: discoveryRunLedgerStdout(runs),
-    stderr: discoveryRunLedgerStderr(runs),
+    stdout: ledger.stdout,
+    stderr: ledger.stderr,
     exitCode: failed ? failed.exitCode : 0,
-    prompt: discoveryRunLedgerPrompt(runs),
+    prompt: ledger.prompt,
     failedSearchTerms: failedRuns.map((run) => run.searchTerm)
   };
 }
@@ -144,36 +161,6 @@ async function runAgent(options: DiscoveryOptions, prompt: string): Promise<Agen
 function normalizeSearchRunOutput(run: SearchRun): JobCandidate[] {
   if (run.exitCode !== 0) return [];
   return JSON.parse(JSON.stringify(normalizeDiscoveryOutput(run.stdout)));
-}
-
-function discoveryRunLedgerStdout(runs: SearchRun[]): string {
-  return JSON.stringify({
-    candidates: runs.flatMap((run) => normalizeSearchRunOutput(run)),
-    searchRuns: runs.map((run) => ({
-      searchTerm: run.searchTerm,
-      exitCode: run.exitCode,
-      stdout: run.stdout
-    }))
-  });
-}
-
-function discoveryRunLedgerPrompt(runs: SearchRun[]): string {
-  return runs.map((run) => [
-    `# ${run.searchTerm}`,
-    `Exit code: ${run.exitCode}`,
-    run.prompt
-  ].join("\n")).join("\n\n");
-}
-
-function discoveryRunLedgerStderr(runs: SearchRun[]): string {
-  return runs
-    .filter((run) => run.stderr || run.exitCode !== 0)
-    .map((run) => [
-      `# ${run.searchTerm}`,
-      `Exit code: ${run.exitCode}`,
-      run.stderr.trim()
-    ].filter(Boolean).join("\n"))
-    .join("\n\n");
 }
 
 function discoverySearchTerms(options: DiscoveryOptions): string[] {
