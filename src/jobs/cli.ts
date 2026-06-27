@@ -70,7 +70,7 @@ async function main(argv: string[]): Promise<void> {
     if (command === "discover") {
       if (options.output) throw new Error("--output is not supported by jobs discover. Use --debug-json or --debug-json-dir for debug JSON.");
       if (options.debugJson && options.debugJsonDir) throw new Error("Use either --debug-json or --debug-json-dir, not both.");
-      const logger = createVerboseLogger(options.verbose);
+      const logger = createDiscoveryLogger(options.verbose);
       const result = await discoverJobs(store, {
         runner: options.runner || "fixture",
         fixture: options.fixture,
@@ -133,6 +133,17 @@ function createVerboseLogger(enabled?: boolean): Logger | undefined {
       return;
     }
     console.error(JSON.stringify(details, null, 2));
+  };
+}
+
+function createDiscoveryLogger(verbose?: boolean): Logger {
+  const verboseLogger = createVerboseLogger(verbose);
+  if (verboseLogger) return verboseLogger;
+
+  return (message, details) => {
+    if (message !== "skipping prompt-injected candidate") return;
+    const suffix = details === undefined ? "" : ` ${JSON.stringify(details)}`;
+    console.error(`[jobs:defender] ${message}${suffix}`);
   };
 }
 

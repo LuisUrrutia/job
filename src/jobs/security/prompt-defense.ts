@@ -30,6 +30,7 @@ interface SkippedCandidate {
   id: string;
   title: string;
   company: string;
+  sourceJobId: string;
   riskLevel: string;
   detections: string[];
   fieldsSanitized: string[];
@@ -121,20 +122,9 @@ function applyDefenseResults(candidates: JobCandidate[], results: DefenseResult[
     const result = results[index];
     log("Defender result", defenderResultSummary(candidate, result));
     if (!result.allowed) {
-      log("skipping prompt-injected candidate", {
-        id: candidate.id,
-        riskLevel: result.riskLevel,
-        detections: result.detections || [],
-        fieldsSanitized: result.fieldsSanitized || []
-      });
-      skipped.push({
-        id: candidate.id,
-        title: candidate.title,
-        company: candidate.company,
-        riskLevel: result.riskLevel,
-        detections: result.detections || [],
-        fieldsSanitized: result.fieldsSanitized || []
-      });
+      const skippedCandidate = skippedCandidateSummary(candidate, result);
+      log("skipping prompt-injected candidate", skippedCandidate);
+      skipped.push(skippedCandidate);
       continue;
     }
     defended.push(applySanitizedValue(candidate, result.sanitized));
@@ -255,6 +245,18 @@ function defenderResultSummary(candidate: JobCandidate, result: DefenseResult): 
   return {
     id: candidate.id,
     allowed: result.allowed,
+    riskLevel: result.riskLevel,
+    detections: result.detections || [],
+    fieldsSanitized: result.fieldsSanitized || []
+  };
+}
+
+function skippedCandidateSummary(candidate: JobCandidate, result: DefenseResult): SkippedCandidate {
+  return {
+    id: candidate.id,
+    title: candidate.title,
+    company: candidate.company,
+    sourceJobId: candidate.sourceJobId,
     riskLevel: result.riskLevel,
     detections: result.detections || [],
     fieldsSanitized: result.fieldsSanitized || []
