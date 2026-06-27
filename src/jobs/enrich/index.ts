@@ -9,6 +9,10 @@ interface EnrichmentRun extends AgentRunResult {
   prompt: string;
 }
 
+interface CombinedEnrichmentRun extends AgentRunResult {
+  prompt: string;
+}
+
 export async function enrichJobs(store: JobStore, options: EnrichmentOptions): Promise<EnrichmentResult> {
   const log = options.logger || noop;
   const candidatesToEnrich = store.listCandidatesForEnrichment(Number(options.limit || 25));
@@ -29,23 +33,22 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
   }
 
   const failedRuns = runs.filter((run) => run.exitCode !== 0);
-  const stdout = JSON.stringify({
-    candidates: runs.flatMap((run) => normalizeEnrichmentRunOutput(run))
-  });
-  const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
-  const combinedPrompt = runs.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
+  const stdout = enrichmentRunLedgerStdout(runs);
+  const stderr = enrichmentRunLedgerStderr(runs);
+  const combinedPrompt = enrichmentRunLedgerPrompt(runs);
   const exitCode = failedRuns[0]?.exitCode ?? 0;
+  const combinedRun: CombinedEnrichmentRun = { stdout, stderr, exitCode, prompt: combinedPrompt };
 
   const runId = store.saveAgentRun({
     runner: options.runner,
     promptVersion: linkedInEnrichmentPrompt.version,
-    prompt: combinedPrompt || linkedInEnrichmentPrompt.template,
-    stdout,
-    stderr,
-    exitCode,
+    prompt: combinedRun.prompt || linkedInEnrichmentPrompt.template,
+    stdout: combinedRun.stdout,
+    stderr: combinedRun.stderr,
+    exitCode: combinedRun.exitCode,
     rawOutputPath: null
   });
-  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode });
+  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, combinedRun);
   if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
 
   const normalizedCandidates = dedupeCandidates(normalizeDiscoveryOutput(stdout));
@@ -85,6 +88,38 @@ async function runAgent(options: EnrichmentOptions, prompt: string): Promise<Age
 function normalizeEnrichmentRunOutput(run: EnrichmentRun): JobCandidate[] {
   if (run.exitCode !== 0) return [];
   return JSON.parse(JSON.stringify(normalizeDiscoveryOutput(run.stdout)));
+}
+
+function enrichmentRunLedgerStdout(runs: EnrichmentRun[]): string {
+  return JSON.stringify({
+    candidates: runs.flatMap((run) => normalizeEnrichmentRunOutput(run)),
+    enrichmentRuns: runs.map((run) => ({
+      candidateId: run.candidate.id,
+      exitCode: run.exitCode,
+      stdout: run.stdout,
+      stderr: run.stderr,
+      prompt: run.prompt
+    }))
+  });
+}
+
+function enrichmentRunLedgerPrompt(runs: EnrichmentRun[]): string {
+  return runs.map((run) => [
+    `# ${run.candidate.id}`,
+    `Exit code: ${run.exitCode}`,
+    run.prompt
+  ].join("\n")).join("\n\n");
+}
+
+function enrichmentRunLedgerStderr(runs: EnrichmentRun[]): string {
+  return runs
+    .filter((run) => run.stderr || run.exitCode !== 0)
+    .map((run) => [
+      `# ${run.candidate.id}`,
+      `Exit code: ${run.exitCode}`,
+      run.stderr.trim()
+    ].filter(Boolean).join("\n"))
+    .join("\n\n");
 }
 
 function dedupeCandidates(candidates: JobCandidate[]): JobCandidate[] {
