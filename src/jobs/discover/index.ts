@@ -2,6 +2,7 @@ import { DEFAULT_DISCOVERY_TERMS, loadDiscoveryPrompt, renderDiscoveryPrompt } f
 import { normalizeDiscoveryOutputWithReport } from "./normalizer.ts";
 import { persistRawRun, runDiscoveryAgent } from "./runners.ts";
 import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
+import { buildRunLedger } from "../run-ledger.ts";
 import type { AgentRunResult, CandidateRejection, DiscoveryOptions, DiscoveryResult, JobCandidate, JobStore, Logger, PromptTemplate } from "../types.ts";
 
 interface SearchRun extends AgentRunResult {
@@ -125,22 +126,24 @@ async function runDiscoverySearches({
   }));
 
   const normalizedRuns = runs.map((run) => normalizeSearchRunOutput(run));
-  const failed = normalizedRuns.find((run) => run.exitCode !== 0);
-  const invalidOutput = normalizedRuns.find((run) => run.normalizationError);
-  const stdout = JSON.stringify({
-    candidates: normalizedRuns.flatMap((run) => run.candidates),
-    searchRuns: normalizedRuns.map(searchRunLedgerRecord)
-  });
-  const rejectedCandidates = normalizedRuns.flatMap((run) => run.rejected);
-  const stderr = normalizedRuns.map(formatSearchRunStderr).filter(Boolean).join("\n\n");
+  const ledger = buildRunLedger("searchRuns", normalizedRuns.map((run) => ({
+    label: run.searchTerm,
+    ledgerFields: { searchTerm: run.searchTerm },
+    exitCode: run.exitCode,
+    stdout: run.stdout,
+    stderr: run.stderr,
+    candidates: run.candidates,
+    rejectedCandidates: run.rejected,
+    normalizationError: run.normalizationError
+  })));
   const combinedPrompt = normalizedRuns.map((run) => `# ${run.searchTerm}\n${run.prompt}`).join("\n\n");
 
   return {
-    stdout,
-    stderr,
-    exitCode: failed?.exitCode ?? (invalidOutput ? 1 : 0),
+    stdout: ledger.stdout,
+    stderr: ledger.stderr,
+    exitCode: ledger.exitCode,
     prompt: combinedPrompt,
-    rejectedCandidates
+    rejectedCandidates: ledger.rejectedCandidates
   };
 }
 
@@ -166,26 +169,6 @@ function normalizeSearchRunOutput(run: SearchRun): NormalizedSearchRun {
   } catch (error) {
     return { ...run, candidates: [], rejected: [], normalizationError: errorMessage(error) };
   }
-}
-
-function searchRunLedgerRecord(run: NormalizedSearchRun): Record<string, unknown> {
-  return {
-    searchTerm: run.searchTerm,
-    exitCode: run.exitCode,
-    stdout: run.stdout,
-    stderr: run.stderr,
-    rejectedCandidates: run.rejected,
-    normalizationError: run.normalizationError
-  };
-}
-
-function formatSearchRunStderr(run: NormalizedSearchRun): string {
-  const lines = [];
-  if (run.stderr.trim()) lines.push(run.stderr.trim());
-  if (run.normalizationError) lines.push(`Normalization error: ${run.normalizationError}`);
-  if (run.exitCode !== 0 && lines.length === 0) lines.push("Runner exited without stderr.");
-  if (lines.length === 0) return "";
-  return `# ${run.searchTerm} (exit ${run.exitCode})\n${lines.join("\n")}`;
 }
 
 function errorMessage(error: unknown): string {
