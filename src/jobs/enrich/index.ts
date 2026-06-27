@@ -1,8 +1,8 @@
-import { normalizeDiscoveryOutput } from "../discover/normalizer.ts";
+import { normalizeDiscoveryOutputWithReport } from "../discover/normalizer.ts";
 import { persistRawRun, runDiscoveryAgent } from "../discover/runners.ts";
 import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
 import { linkedInEnrichmentPrompt, renderEnrichmentPrompt } from "./prompts.ts";
-import type { AgentRunResult, EnrichmentOptions, EnrichmentResult, JobCandidate, JobStore, StoredJobCandidate } from "../types.ts";
+import type { AgentRunResult, CandidateRejection, EnrichmentOptions, EnrichmentResult, JobCandidate, JobStore, StoredJobCandidate } from "../types.ts";
 
 interface EnrichmentRun extends AgentRunResult {
   candidate: StoredJobCandidate;
@@ -29,9 +29,11 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
   }
 
   const failedRuns = runs.filter((run) => run.exitCode !== 0);
+  const normalizedRuns = runs.map((run) => normalizeEnrichmentRunOutput(run));
   const stdout = JSON.stringify({
-    candidates: runs.flatMap((run) => normalizeEnrichmentRunOutput(run))
+    candidates: normalizedRuns.flatMap((run) => run.candidates)
   });
+  const runRejectedCandidates = normalizedRuns.flatMap((run) => run.rejected);
   const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
   const combinedPrompt = runs.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
   const exitCode = failedRuns[0]?.exitCode ?? 0;
@@ -48,7 +50,9 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
   const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode });
   if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
 
-  const normalizedCandidates = dedupeCandidates(normalizeDiscoveryOutput(stdout));
+  const normalization = normalizeDiscoveryOutputWithReport(stdout);
+  const normalizedCandidates = dedupeCandidates(normalization.candidates);
+  const rejectedCandidates = [...runRejectedCandidates, ...normalization.rejected];
   if (failedRuns.length > 0) log("skipped failed enrichment runners", failedRuns.map(failedRunDetails));
   if (failedRuns.length > 0 && normalizedCandidates.length === 0) {
     const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : ` Run ${runId}; inspect agent_runs.stdout/stderr in SQLite.`;
@@ -58,7 +62,13 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
   const defenseResult = await defendDiscoveryCandidates(normalizedCandidates, { logger: log });
   const candidates = defenseResult.candidates;
   store.saveCandidates(runId, candidates);
-  log("saved enriched candidates", { runId, candidates: candidates.length, failedCandidates: failedRuns.length });
+  log("saved enriched candidates", {
+    runId,
+    candidates: candidates.length,
+    failedCandidates: failedRuns.length,
+    rejectedCandidates: rejectedCandidates.length,
+    rejected: rejectedCandidates
+  });
 
   return {
     runId,
@@ -66,6 +76,7 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
     requestedCount: candidatesToEnrich.length,
     normalizedCount: normalizedCandidates.length,
     failedCandidates: failedRuns.length,
+    rejectedCandidates: rejectedCandidates.length,
     skippedCandidates: defenseResult.skipped.length,
     candidates
   };
@@ -82,9 +93,10 @@ async function runAgent(options: EnrichmentOptions, prompt: string): Promise<Age
   });
 }
 
-function normalizeEnrichmentRunOutput(run: EnrichmentRun): JobCandidate[] {
-  if (run.exitCode !== 0) return [];
-  return JSON.parse(JSON.stringify(normalizeDiscoveryOutput(run.stdout)));
+function normalizeEnrichmentRunOutput(run: EnrichmentRun): { candidates: JobCandidate[]; rejected: CandidateRejection[] } {
+  if (run.exitCode !== 0) return { candidates: [], rejected: [] };
+  const report = normalizeDiscoveryOutputWithReport(run.stdout);
+  return JSON.parse(JSON.stringify(report));
 }
 
 function dedupeCandidates(candidates: JobCandidate[]): JobCandidate[] {

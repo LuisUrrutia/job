@@ -64,7 +64,7 @@ The discovery prompt asks the agent to use only `mcp-server-linkedin_search_jobs
 
 Normalized candidates are defended before persistence with `@stackone/defender`. High-risk prompt injection skips only that candidate while preserving the run in SQLite for audit and allowing other safe candidates to continue. If debug JSON was requested, the raw runner JSON is preserved too. The default guard enables Defender Tier 1 and Tier 2. Tier 2 runs in an isolated Node subprocess so native ONNX teardown cannot abort the main Node CLI after a valid result is returned. Set `JOBS_DEFENDER_TIER2=0` to disable Tier 2 for one run.
 
-The CLI output reports both the normalized candidate count and the saved candidate count. If Defender skips anything, the message includes the skipped count so a low saved total is not confused with a low raw discovery total.
+The CLI output reports the normalized candidate count and the saved candidate count. If the normalizer rejects incomplete rows, the message includes the rejected count. If Defender skips anything, the message includes the skipped count so a low saved total is not confused with a low raw discovery total.
 
 Use `--verbose` to print the prompt, runner lifecycle, normalization details, and Defender subprocess/result summaries to stderr.
 

@@ -1,8 +1,8 @@
 import { DEFAULT_DISCOVERY_TERMS, loadDiscoveryPrompt, renderDiscoveryPrompt } from "./prompts.ts";
-import { normalizeDiscoveryOutput } from "./normalizer.ts";
+import { normalizeDiscoveryOutputWithReport } from "./normalizer.ts";
 import { persistRawRun, runDiscoveryAgent } from "./runners.ts";
 import { defendDiscoveryCandidates } from "../security/prompt-defense.ts";
-import type { AgentRunResult, DiscoveryOptions, DiscoveryResult, JobCandidate, JobStore, Logger, PromptTemplate } from "../types.ts";
+import type { AgentRunResult, CandidateRejection, DiscoveryOptions, DiscoveryResult, JobCandidate, JobStore, Logger, PromptTemplate } from "../types.ts";
 
 interface SearchRun extends AgentRunResult {
   searchTerm: string;
@@ -11,6 +11,7 @@ interface SearchRun extends AgentRunResult {
 
 interface CombinedRun extends AgentRunResult {
   prompt: string;
+  rejectedCandidates: CandidateRejection[];
 }
 
 export async function discoverJobs(store: JobStore, options: DiscoveryOptions): Promise<DiscoveryResult> {
@@ -58,11 +59,15 @@ export async function discoverJobs(store: JobStore, options: DiscoveryOptions): 
     throw new Error(`Discovery runner failed with exit code ${result.exitCode}.${rawOutput}`);
   }
 
-  const normalizedCandidates = normalizeDiscoveryOutput(result.stdout);
+  const normalization = normalizeDiscoveryOutputWithReport(result.stdout);
+  const normalizedCandidates = normalization.candidates;
+  const rejectedCandidates = [...result.rejectedCandidates, ...normalization.rejected];
   const dedupedCandidates = dedupeCandidates(normalizedCandidates);
   log("normalized discovery output", {
     candidates: normalizedCandidates.length,
     dedupedCandidates: dedupedCandidates.length,
+    rejectedCandidates: rejectedCandidates.length,
+    rejected: rejectedCandidates,
     ids: dedupedCandidates.map((candidate) => candidate.id)
   });
 
@@ -82,6 +87,7 @@ export async function discoverJobs(store: JobStore, options: DiscoveryOptions): 
     rawOutputPath,
     normalizedCount: normalizedCandidates.length,
     dedupedCount: dedupedCandidates.length,
+    rejectedCandidates: rejectedCandidates.length,
     skippedCandidates: defenseResult.skipped.length,
     candidates
   };
@@ -101,7 +107,7 @@ async function runDiscoverySearches({
   if (searchTerms.length === 0) {
     const renderedPrompt = renderDiscoveryPrompt(prompt, "");
     const result = await runAgent(options, renderedPrompt);
-    return { ...result, prompt: renderedPrompt };
+    return { ...result, prompt: renderedPrompt, rejectedCandidates: [] };
   }
 
   const runs = await Promise.all(searchTerms.map(async (searchTerm) => {
@@ -113,9 +119,11 @@ async function runDiscoverySearches({
   }));
 
   const failed = runs.find((run) => run.exitCode !== 0);
+  const normalizedRuns = runs.map((run) => normalizeSearchRunOutput(run));
   const stdout = JSON.stringify({
-    candidates: runs.flatMap((run) => normalizeSearchRunOutput(run))
+    candidates: normalizedRuns.flatMap((run) => run.candidates)
   });
+  const rejectedCandidates = normalizedRuns.flatMap((run) => run.rejected);
   const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
   const combinedPrompt = runs.map((run) => `# ${run.searchTerm}\n${run.prompt}`).join("\n\n");
 
@@ -123,7 +131,8 @@ async function runDiscoverySearches({
     stdout,
     stderr,
     exitCode: failed ? failed.exitCode : 0,
-    prompt: combinedPrompt
+    prompt: combinedPrompt,
+    rejectedCandidates
   };
 }
 
@@ -138,9 +147,10 @@ async function runAgent(options: DiscoveryOptions, prompt: string): Promise<Agen
   });
 }
 
-function normalizeSearchRunOutput(run: SearchRun): JobCandidate[] {
-  if (run.exitCode !== 0) return [];
-  return JSON.parse(JSON.stringify(normalizeDiscoveryOutput(run.stdout)));
+function normalizeSearchRunOutput(run: SearchRun): { candidates: JobCandidate[]; rejected: CandidateRejection[] } {
+  if (run.exitCode !== 0) return { candidates: [], rejected: [] };
+  const report = normalizeDiscoveryOutputWithReport(run.stdout);
+  return JSON.parse(JSON.stringify(report));
 }
 
 function discoverySearchTerms(options: DiscoveryOptions): string[] {
