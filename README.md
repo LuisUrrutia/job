@@ -23,7 +23,13 @@ wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 xargs tlmgr install < packages.txt
 ```
 
-Para discovery real en LinkedIn necesitas al menos un runner con acceso a MCP configurado. Hoy el caso principal es `opencode`, porque `opencode.json` ya configura `mcp-server-linkedin`. El prompt default apunta a trabajos remotos React/TypeScript en UK, US y Unión Europea, y pide al agente devolver al menos 10 candidatos cuando LinkedIn tenga suficientes resultados válidos.
+Para discovery real en LinkedIn necesitas OpenCode y BrowserMCP. `opencode.json` configura `browsermcp` para controlar una pestaña existente de Chrome con tu sesión iniciada. El prompt default apunta a trabajos remotos React/TypeScript en UK, US y Unión Europea, y pide al agente devolver al menos 10 candidatos cuando LinkedIn tenga suficientes resultados válidos.
+
+Instala la extensión desde https://browsermcp.io/install. Después de cambiar la configuración, cierra y reinicia OpenCode, abre LinkedIn en Chrome, abre la extensión Browser MCP y pulsa `Connect` en la pestaña que quieres automatizar. Puedes comprobar el servidor con:
+
+```sh
+opencode mcp list
+```
 
 ## Comandos principales
 
@@ -38,7 +44,7 @@ Comandos disponibles:
 - `discover`: ejecuta búsquedas livianas, normaliza candidatos search-only en SQLite.
 - `enrich`: obtiene JD, empresa real y website para candidatos guardados, procesando uno por vez.
 - `fit`: analiza candidatos enriquecidos y clasifica `apply`, `weak_apply` o `dont_apply`.
-- `research-application`: busca apply URL oficial, perfil de empresa reutilizable y respuestas sugeridas para preguntas visibles.
+- `research-application`: inspecciona páginas públicas en modo lectura para guardar el URL oficial, contexto reutilizable de empresa y preguntas visibles, sin iniciar una aplicación.
 - `build-resume`: genera solo el PDF del resume y guarda su ruta en SQLite.
 - `process`: siguiente fase, todavía stub. Será para mandar trabajos aprobados al workflow existente de application package.
 
@@ -60,7 +66,7 @@ El fixture usa datos falsos de `tests/fixtures/linkedin-discovery.json`. Solo si
 
 ## Discovery real con LinkedIn
 
-La forma recomendada es separar discovery de enrichment. Discovery solo busca publicaciones con `search_jobs`, filtra por título y guarda candidatos search-only en SQLite. Enrichment procesa esos candidatos después, obtiene JD/details y verifica website.
+La forma recomendada es separar discovery de enrichment. Discovery solo navega los resultados de búsqueda, filtra por título y guarda candidatos search-only en SQLite. Enrichment procesa esos candidatos después, obtiene JD/details y verifica website.
 
 Pídele al agente algo como:
 
@@ -68,7 +74,7 @@ Pídele al agente algo como:
 Usa la skill linkedin-job-discovery para buscar trabajos React remotos en UK, US y EU, y guarda los resultados en data/jobs.sqlite.
 ```
 
-Discovery usa solo `mcp-server-linkedin_search_jobs`. Para runners reales, el CLI lanza una corrida por término: `React`, `Typescript`, `Frontend` y `full-stack`; cada corrida recorre tres páginas cuando LinkedIn lo permite. Luego Job candidate intake mergea salidas exitosas, normaliza, dedupea por identidad estable y guarda en SQLite. Discovery no ejecuta Defender: guarda candidatos completos que se alinean con el prompt.
+Discovery usa solo herramientas `browsermcp_browser_*` para navegar la búsqueda de LinkedIn, leer snapshots accesibles e interactuar con la paginación. Para runners reales, el CLI lanza una corrida por término: `React`, `Typescript`, `Frontend` y `full-stack`; cada corrida recorre cinco páginas cuando LinkedIn lo permite. Luego Job candidate intake mergea salidas exitosas, normaliza, dedupea por identidad estable y guarda en SQLite. Discovery no ejecuta Defender: guarda candidatos completos que se alinean con el prompt.
 
 Si usas la skill manualmente, persiste el JSON search-only con:
 
@@ -78,7 +84,7 @@ node linkedin-job-discovery/scripts/persist-discovery.mjs \
   --db data/jobs.sqlite
 ```
 
-Si quieres ejecutar el runner CLI antiguo para debug técnico:
+Si quieres ejecutar el runner CLI para debug técnico, mantén conectada la pestaña de Browser MCP durante la corrida:
 
 ```sh
 npm run jobs -- discover --runner opencode --db data/jobs.sqlite
@@ -225,27 +231,37 @@ Después de enrichment, ejecuta fit para clasificar candidatos enriquecidos:
 npm run jobs -- fit --runner opencode --db data/jobs.sqlite
 ```
 
-`fit` lee candidatos con `description` y `company_website`, carga `info.json`, analiza un candidato a la vez y persiste `fit_decision`, `fit_score`, `fit_summary`, `fit_risks` y `fit_evidence`. Esta fase solo decide si conviene aplicar; no genera resume, PDF, cover letter ni respuestas de aplicación.
+`fit` lee candidatos con `description`, carga `info.json` y ejecuta hasta cinco análisis en paralelo con OpenCode usando `openai/gpt-5.6-sol` y la variante `medium`. No navega ni usa BrowserMCP: trabaja solo con el perfil y los candidatos guardados. Después persiste los resultados en orden como `fit_decision`, `fit_score`, `fit_summary`, `fit_risks` y `fit_evidence`. `weak_apply` se reserva para gaps secundarios cuando el stack central sí está respaldado. Si falta experiencia profesional sustantiva en el lenguaje o framework principal del puesto, el resultado se fuerza a `dont_apply` con score máximo 49. Esta fase solo decide si conviene aplicar; no genera resume, PDF, cover letter ni respuestas de aplicación.
 
 ## Application research
 
-Después de `fit`, ejecuta research solo para candidatos `apply` o `weak_apply`:
+Después de `fit`, ejecuta research solo para candidatos `apply`. Los candidatos `weak_apply` quedan guardados para revisión, pero no avanzan automáticamente:
 
 ```sh
 npm run jobs -- research-application --runner opencode --db data/jobs.sqlite
 ```
 
-`research-application` guarda información reutilizable de la empresa en `companies`, guarda el `apply_url` específico de la oferta en `candidates`, y guarda cada pregunta visible con una respuesta sugerida en `application_questions`. Las respuestas son referencia para revisión humana; el comando no envía aplicaciones ni genera resume/PDF/cover letter.
+`research-application` procesa un candidato a la vez porque comparte la pestaña conectada de BrowserMCP. Usa la página pública de la oferta solo como fuente de lectura. Guarda información reutilizable de la empresa en `companies`, el `apply_url` específico como referencia y las observaciones visibles de screening en `candidates`, y cada pregunta ya visible con una respuesta sugerida en `application_questions`. Esas observaciones permiten conservar requisitos, restricciones o discrepancias que ayuden a revisar el fit o adaptar el resume. No escribe en formularios, no selecciona opciones, no carga archivos, no inicia sesión y no pulsa controles que inicien o avancen una aplicación. Si las preguntas requieren login o avanzar el formulario, se detiene. El comando tampoco genera resume/PDF/cover letter.
 
 ## Build resume
 
-Después de `research-application`, genera el paquete de resume para candidatos con `apply` o `weak_apply`:
+Después de `research-application`, genera el paquete de resume solo para candidatos con `apply`:
 
 ```sh
 npm run jobs -- build-resume --runner opencode --db data/jobs.sqlite
 ```
 
-`build-resume` carga `info.json`, company research y preguntas visibles; pide un JSON tailor-made compatible con `src/resume/generator.ts` como entrada temporal; compila `applications/{candidate-slug}-{slug}-Resume.pdf`; y guarda solo `resume_pdf_path` y `resume_generated_at` en `candidates`. Usa `--output-root <path>` para escribir el PDF fuera del directorio actual.
+`build-resume` carga `info.json`, company research y preguntas visibles; procesa hasta cinco candidatos en paralelo tanto en el Agent run como en la compilación del PDF; y persiste los resultados en orden. No navega ni usa BrowserMCP. Pide un JSON tailor-made compatible con `src/resume/generator.ts` como entrada temporal, compila `applications/{candidate-slug}-{slug}-Resume.pdf` y guarda solo `resume_pdf_path` y `resume_generated_at` en `candidates`. Si el PDF supera dos páginas, quita bullets que no estén ligados a `resume_bold_phrases` conservando cargo, empresa, fechas, tech stack y bullets que sostienen la historia de fit. Usa `--output-root <path>` para escribir el PDF fuera del directorio actual. Usa `--rebuild-existing` para volver a generar PDFs de candidatos elegibles que ya tenían `resume_pdf_path` y `resume_generated_at`.
+
+## Telegram
+
+Después de generar los PDFs, envía los candidatos pendientes a Telegram:
+
+```sh
+npm run jobs -- notify-telegram --runner opencode --db data/jobs.sqlite
+```
+
+`notify-telegram` procesa hasta cinco candidatos en paralelo. Para cada uno genera un resumen sin navegar ni usar BrowserMCP, lee el PDF y lo envía al chat o topic configurado. Después de completar el trabajo externo, guarda el Agent run agregado y marca los candidatos enviados en SQLite de forma secuencial y en el orden original.
 
 ## Flujo recomendado
 
@@ -255,8 +271,9 @@ npm run jobs -- build-resume --runner opencode --db data/jobs.sqlite
 4. Ejecuta `fit` para clasificar `apply`, `weak_apply` o `dont_apply`.
 5. Ejecuta `research-application` para buenos fits.
 6. Ejecuta `build-resume` para generar el PDF del resume.
-7. Usa SQLite como fuente de verdad; los JSON de debug son solo inspección.
-8. En una fase posterior, conecta trabajos aprobados con los skills existentes de job application.
+7. Ejecuta `notify-telegram` para enviar hasta cinco resumes en paralelo.
+8. Usa SQLite como fuente de verdad; los JSON de debug son solo inspección.
+9. En una fase posterior, conecta trabajos aprobados con los skills existentes de job application.
 
 ## Relación con el workflow de aplicaciones
 

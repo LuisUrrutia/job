@@ -136,12 +136,12 @@ function applyDefenseResults(candidates: JobCandidate[], results: DefenseResult[
 function createDiscoveryDefense(options: { enableTier2?: boolean } = {}): DiscoveryDefense {
   return createPromptDefense({
     blockHighRisk: true,
-    enableTier2: options.enableTier2 ?? tier2Enabled()
+    enableTier2: false
   });
 }
 
 function tier2Enabled(): boolean {
-  return process.env.JOBS_DEFENDER_TIER2 !== "0";
+  return process.env.JOBS_DEFENDER_TIER2 !== "1";
 }
 
 function parseIsolatedDefenseResults(stdout: string, stderr: string, exitCode: number): DefenseResult[] {
@@ -172,7 +172,7 @@ const input = await new Promise((resolve, reject) => {
 });
 
 const payload = JSON.parse(input);
-const defense = createPromptDefense({ blockHighRisk: true, enableTier2: true });
+const defense = createPromptDefense({ blockHighRisk: true, enableTier2: false });
 const results = await defense.defendToolResults(
   payload.items.map((item) => ({ value: item.value, toolName: payload.toolName }))
 );
@@ -269,7 +269,7 @@ function preview(value: unknown, length = 240): string {
   return compact.length > length ? `${compact.slice(0, length)}...` : compact;
 }
 
-function noop(): void {}
+function noop(): void { }
 
 function streamToText(stream: Readable): Promise<string> {
   return new Promise((resolve, reject) => {

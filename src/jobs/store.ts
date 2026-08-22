@@ -96,6 +96,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
   ensureColumn(db, "candidates", "company_id", "TEXT");
   ensureColumn(db, "candidates", "apply_url", "TEXT");
   ensureColumn(db, "candidates", "apply_url_source", "TEXT");
+  ensureColumn(db, "candidates", "application_screening_notes", "TEXT NOT NULL DEFAULT '[]'");
   ensureColumn(db, "candidates", "apply_researched_run_id", "INTEGER");
   ensureColumn(db, "candidates", "apply_researched_at", "TEXT");
   ensureColumn(db, "candidates", "resume_pdf_path", "TEXT");
@@ -110,7 +111,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
       WHEN resume_generated_at IS NOT NULL AND resume_generated_at != '' THEN 'resume_built'
       WHEN apply_researched_at IS NOT NULL AND apply_researched_at != '' THEN 'application_researched'
       WHEN fit_decision IS NOT NULL AND fit_decision != '' THEN 'fit_analyzed'
-      WHEN description IS NOT NULL AND description != '' AND company_website IS NOT NULL AND company_website != '' THEN 'enriched'
+      WHEN description IS NOT NULL AND description != '' THEN 'enriched'
       ELSE 'needs_enrichment'
     END
     WHERE pipeline_state IS NULL OR pipeline_state = '' OR pipeline_state = 'discovered'
@@ -161,7 +162,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
       WHEN resume_generated_at IS NOT NULL AND resume_generated_at != '' THEN 'resume_built'
       WHEN apply_researched_at IS NOT NULL AND apply_researched_at != '' THEN 'application_researched'
       WHEN fit_decision IS NOT NULL AND fit_decision != '' THEN 'fit_analyzed'
-      WHEN description IS NOT NULL AND description != '' AND company_website IS NOT NULL AND company_website != '' THEN 'enriched'
+      WHEN description IS NOT NULL AND description != '' THEN 'enriched'
       ELSE 'needs_enrichment'
     END
     WHERE id = ?
@@ -212,6 +213,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
     SET company_id = ?,
       apply_url = ?,
       apply_url_source = ?,
+      application_screening_notes = ?,
       apply_researched_run_id = ?,
       apply_researched_at = datetime('now'),
       pipeline_state = 'application_researched'
@@ -359,6 +361,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
             research.company.id,
             research.applyUrl,
             research.applyUrlSource,
+            JSON.stringify(research.screeningNotes),
             runId,
             research.candidateId
           );
@@ -420,6 +423,7 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
           fit_risks AS fitRisks, fit_evidence AS fitEvidence,
           fit_analyzed_at AS fitAnalyzedAt, company_id AS companyId,
           apply_url AS applyUrl, apply_url_source AS applyUrlSource,
+          application_screening_notes AS applicationScreeningNotes,
           resume_pdf_path AS resumePdfPath, resume_generated_at AS resumeGeneratedAt,
           telegram_notified_at AS telegramNotifiedAt
         FROM candidates
@@ -444,9 +448,10 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
           fit_risks AS fitRisks, fit_evidence AS fitEvidence,
           fit_analyzed_at AS fitAnalyzedAt, company_id AS companyId,
           apply_url AS applyUrl, apply_url_source AS applyUrlSource,
+          application_screening_notes AS applicationScreeningNotes,
           resume_pdf_path AS resumePdfPath, resume_generated_at AS resumeGeneratedAt
         FROM candidates
-        WHERE description IS NULL OR description = '' OR company_website IS NULL OR company_website = ''
+        WHERE description IS NULL OR description = ''
         ORDER BY last_seen_at DESC, company ASC, title ASC
         LIMIT ?
       `).all(limit).map((row) => storedCandidateFromRow(row));
@@ -465,10 +470,10 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
           fit_risks AS fitRisks, fit_evidence AS fitEvidence,
           fit_analyzed_at AS fitAnalyzedAt, company_id AS companyId,
           apply_url AS applyUrl, apply_url_source AS applyUrlSource,
+          application_screening_notes AS applicationScreeningNotes,
           resume_pdf_path AS resumePdfPath, resume_generated_at AS resumeGeneratedAt
         FROM candidates
         WHERE description IS NOT NULL AND description != ''
-          AND company_website IS NOT NULL AND company_website != ''
           AND (fit_decision IS NULL OR fit_decision = '')
         ORDER BY last_seen_at DESC, company ASC, title ASC
         LIMIT ?
@@ -488,9 +493,10 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
           fit_risks AS fitRisks, fit_evidence AS fitEvidence,
           fit_analyzed_at AS fitAnalyzedAt, company_id AS companyId,
           apply_url AS applyUrl, apply_url_source AS applyUrlSource,
+          application_screening_notes AS applicationScreeningNotes,
           resume_pdf_path AS resumePdfPath, resume_generated_at AS resumeGeneratedAt
         FROM candidates
-        WHERE fit_decision IN ('apply', 'weak_apply')
+        WHERE fit_decision = 'apply'
           AND (apply_researched_at IS NULL OR apply_researched_at = ''
             OR apply_url IS NULL OR apply_url = ''
             OR company_id IS NULL OR company_id = '')
@@ -499,7 +505,11 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
       `).all(limit).map((row) => storedCandidateFromRow(row));
     },
 
-    listCandidatesForResumeBuild(limit = 25): StoredJobCandidate[] {
+    listCandidatesForResumeBuild(limit = 25, options: { includeGenerated?: boolean } = {}): StoredJobCandidate[] {
+      const generatedFilter = options.includeGenerated
+        ? ""
+        : `AND (resume_generated_at IS NULL OR resume_generated_at = ''
+          OR resume_pdf_path IS NULL OR resume_pdf_path = '')`;
       return db.prepare(`
         SELECT id, content_hash AS contentHash, title, company,
           company_website AS companyWebsite, publisher_company AS publisherCompany,
@@ -512,14 +522,14 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
           fit_risks AS fitRisks, fit_evidence AS fitEvidence,
           fit_analyzed_at AS fitAnalyzedAt, company_id AS companyId,
           apply_url AS applyUrl, apply_url_source AS applyUrlSource,
+          application_screening_notes AS applicationScreeningNotes,
           apply_researched_at AS applyResearchedAt,
           resume_pdf_path AS resumePdfPath, resume_generated_at AS resumeGeneratedAt
         FROM candidates
-        WHERE fit_decision IN ('apply', 'weak_apply')
+        WHERE fit_decision = 'apply'
           AND apply_url IS NOT NULL AND apply_url != ''
           AND company_id IS NOT NULL AND company_id != ''
-          AND (resume_generated_at IS NULL OR resume_generated_at = ''
-            OR resume_pdf_path IS NULL OR resume_pdf_path = '')
+          ${generatedFilter}
         ORDER BY fit_score DESC, apply_researched_at DESC, company ASC, title ASC
         LIMIT ?
       `).all(limit).map((row) => storedCandidateFromRow(row));
@@ -538,11 +548,12 @@ export function openJobStore(dbPath = "data/jobs.sqlite"): JobStore {
           fit_risks AS fitRisks, fit_evidence AS fitEvidence,
           fit_analyzed_at AS fitAnalyzedAt, company_id AS companyId,
           apply_url AS applyUrl, apply_url_source AS applyUrlSource,
+          application_screening_notes AS applicationScreeningNotes,
           apply_researched_at AS applyResearchedAt,
           resume_pdf_path AS resumePdfPath, resume_generated_at AS resumeGeneratedAt,
           telegram_notified_at AS telegramNotifiedAt
         FROM candidates
-        WHERE fit_decision IN ('apply', 'weak_apply')
+        WHERE fit_decision = 'apply'
           AND apply_url IS NOT NULL AND apply_url != ''
           AND resume_pdf_path IS NOT NULL AND resume_pdf_path != ''
           AND (telegram_notified_at IS NULL OR telegram_notified_at = '')
@@ -614,6 +625,7 @@ function storedCandidateFromRow(row: Record<string, unknown>): StoredJobCandidat
     applyUrl: textColumn(row, "applyUrl"),
     applyUrlSource: textColumn(row, "applyUrlSource"),
     applyResearchedAt: textColumn(row, "applyResearchedAt"),
+    applicationScreeningNotes: jsonStringList(row, "applicationScreeningNotes"),
     resumePdfPath: textColumn(row, "resumePdfPath"),
     resumeGeneratedAt: textColumn(row, "resumeGeneratedAt"),
     telegramNotifiedAt: textColumn(row, "telegramNotifiedAt")

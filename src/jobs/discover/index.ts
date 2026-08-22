@@ -1,6 +1,6 @@
 import { DEFAULT_DISCOVERY_TERMS, loadDiscoveryPrompt, renderDiscoveryPrompt } from "./prompts.ts";
 import { intakePreparedJobCandidates, prepareJobCandidateIntake } from "../candidate-intake.ts";
-import { persistRawRun, runAgent } from "../agent-run.ts";
+import { persistAgentRun, runAgent } from "../agent-run.ts";
 import type { AgentRunResult, DiscoveryOptions, DiscoveryResult, JobStore, Logger, PromptTemplate } from "../types.ts";
 
 interface SearchRun extends AgentRunResult {
@@ -8,12 +8,6 @@ interface SearchRun extends AgentRunResult {
   prompt: string;
 }
 
-interface CombinedRun {
-  runs: SearchRun[];
-  prompt: string;
-  stderr: string;
-  exitCode: number;
-}
 
 export async function discoverJobs(store: JobStore, options: DiscoveryOptions): Promise<DiscoveryResult> {
   const log = options.logger || noop;
@@ -35,99 +29,87 @@ export async function discoverJobs(store: JobStore, options: DiscoveryOptions): 
     mcpConfig: options.mcpConfig || null,
     searchTerms
   });
-  const result = await runDiscoverySearches({ options, prompt, searchTerms, log });
+  const result = await runDiscoverySearches({ store, options, prompt, searchTerms, log });
   const intakePlan = prepareJobCandidateIntake(result.runs);
-  const persistedRun = { stdout: intakePlan.stdout, stderr: result.stderr, exitCode: result.exitCode };
-  log("discovery runner finished", {
-    exitCode: persistedRun.exitCode,
-    stdoutCharacters: persistedRun.stdout.length,
-    stderrCharacters: persistedRun.stderr.length
-  });
-
-  const runId = store.saveAgentRun({
-    runner: options.runner,
-    promptVersion: prompt.version,
-    prompt: result.prompt,
-    stdout: persistedRun.stdout,
-    stderr: persistedRun.stderr,
-    exitCode: persistedRun.exitCode,
-    rawOutputPath: null
-  });
-  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, persistedRun);
-  if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
-  log("stored discovery run", { runId, rawOutputPath });
-
-  if (persistedRun.exitCode !== 0) {
-    const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : " Raw output file was not requested; inspect agent_runs.stdout/stderr in SQLite.";
-    throw new Error(`Discovery Agent run failed with exit code ${persistedRun.exitCode}.${rawOutput}`);
+  const aggregate = await intakePreparedJobCandidates(intakePlan, { defend: false, logger: log });
+  const failed = result.runs.find((run) => run.exitCode !== 0);
+  if (failed && aggregate.candidates.length === 0) {
+    const rawOutput = result.rawOutputPath
+      ? ` Raw output: ${result.rawOutputPath}`
+      : " Raw output file was not requested; inspect agent_runs.stdout/stderr in SQLite.";
+    throw new Error(`Discovery Agent run failed with exit code ${failed.exitCode}.${rawOutput}`);
   }
 
-  const intake = await intakePreparedJobCandidates(intakePlan, { defend: false, logger: log });
   log("accepted discovery candidates", {
-    normalizedCandidates: intake.normalizedCount,
-    dedupedCandidates: intake.dedupedCount,
-    rejectedCandidates: intake.rejectedCount,
-    rejected: intake.rejectedCandidates,
-    skippedCandidates: intake.skippedCandidates.length,
-    skippedIds: intake.skippedCandidates.map((candidate) => candidate.id),
-    ids: intake.candidates.map((candidate) => candidate.id)
+    normalizedCandidates: aggregate.normalizedCount,
+    dedupedCandidates: aggregate.dedupedCount,
+    rejectedCandidates: aggregate.rejectedCount,
+    rejected: aggregate.rejectedCandidates,
+    skippedCandidates: aggregate.skippedCandidates.length,
+    skippedIds: aggregate.skippedCandidates.map((candidate) => candidate.id),
+    ids: aggregate.candidates.map((candidate) => candidate.id)
   });
 
-  store.saveCandidates(runId, intake.candidates);
-  log("saved discovery candidates", { runId, candidates: intake.candidates.length });
-
   return {
-    runId,
-    rawOutputPath,
-    normalizedCount: intake.normalizedCount,
-    dedupedCount: intake.dedupedCount,
-    rejectedCandidates: intake.rejectedCount,
-    skippedCandidates: intake.skippedCandidates.length,
-    candidates: intake.candidates
+    runId: result.runId,
+    rawOutputPath: result.rawOutputPath,
+    normalizedCount: aggregate.normalizedCount,
+    dedupedCount: aggregate.dedupedCount,
+    rejectedCandidates: aggregate.rejectedCount,
+    skippedCandidates: aggregate.skippedCandidates.length,
+    candidates: aggregate.candidates
   };
 }
 
 async function runDiscoverySearches({
+  store,
   options,
   prompt,
   searchTerms,
   log
 }: {
+  store: JobStore;
   options: DiscoveryOptions;
   prompt: PromptTemplate;
   searchTerms: string[];
   log: Logger;
-}): Promise<CombinedRun> {
-  if (searchTerms.length === 0) {
-    const renderedPrompt = renderDiscoveryPrompt(prompt, "");
-    const result = await runPromptAgent(options, renderedPrompt);
-    return {
-      runs: [{ searchTerm: "", prompt: renderedPrompt, ...result }],
-      prompt: renderedPrompt,
-      stderr: result.stderr,
-      exitCode: result.exitCode
-    };
-  }
-
+}): Promise<{ runs: SearchRun[]; runId: number; rawOutputPath: string | null }> {
+  const terms = searchTerms.length === 0 ? [""] : searchTerms;
   const runs: SearchRun[] = [];
-  for (const searchTerm of searchTerms) {
+  let lastRunId = 0;
+  let lastRawOutputPath: string | null = null;
+
+  for (const searchTerm of terms) {
     const renderedPrompt = renderDiscoveryPrompt(prompt, searchTerm);
     log("starting discovery search term", { searchTerm });
     const result = await runPromptAgent(options, renderedPrompt);
-    log("finished discovery search term", { searchTerm, exitCode: result.exitCode });
-    runs.push({ searchTerm, prompt: renderedPrompt, ...result });
+    const run: SearchRun = { searchTerm, prompt: renderedPrompt, ...result };
+    runs.push(run);
+
+    const intakePlan = prepareJobCandidateIntake(run);
+    const persistedRun = { stdout: intakePlan.stdout, stderr: run.stderr, exitCode: run.exitCode };
+    const saved = await persistAgentRun(store, { rawDir: options.rawDir, outputPath: options.rawOutputPath }, {
+      runner: options.runner,
+      promptVersion: prompt.version,
+      prompt: renderedPrompt,
+      stdout: persistedRun.stdout,
+      stderr: persistedRun.stderr,
+      exitCode: persistedRun.exitCode,
+      rawOutputPath: null
+    });
+    lastRunId = saved.runId;
+    lastRawOutputPath = saved.rawOutputPath;
+    log("stored discovery run", { runId: saved.runId, rawOutputPath: saved.rawOutputPath });
+    log("finished discovery search term", { searchTerm, exitCode: run.exitCode });
+
+    if (run.exitCode !== 0) continue;
+
+    const intake = await intakePreparedJobCandidates(intakePlan, { defend: false, logger: log });
+    store.saveCandidates(saved.runId, intake.candidates);
+    log("saved discovery candidates", { runId: saved.runId, candidates: intake.candidates.length });
   }
 
-  const failed = runs.find((run) => run.exitCode !== 0);
-  const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
-  const combinedPrompt = runs.map((run) => `# ${run.searchTerm}\n${run.prompt}`).join("\n\n");
-
-  return {
-    runs,
-    stderr,
-    exitCode: failed ? failed.exitCode : 0,
-    prompt: combinedPrompt
-  };
+  return { runs, runId: lastRunId, rawOutputPath: lastRawOutputPath };
 }
 
 async function runPromptAgent(options: DiscoveryOptions, prompt: string): Promise<AgentRunResult> {

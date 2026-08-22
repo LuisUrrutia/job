@@ -91,7 +91,6 @@ export async function runResumeCli(argv = process.argv.slice(2)): Promise<void> 
   if (args.compileTex) {
     const result = await compileExistingTex({ texPath: args.compileTex, output: args.output });
     console.log(`Generated ${result.outputPdfPath} from ${args.compileTex}`);
-    warnIfStillTooLong(result.compactModeApplied, result.pageCount);
     return;
   }
 
@@ -105,7 +104,6 @@ export async function runResumeCli(argv = process.argv.slice(2)): Promise<void> 
   });
 
   console.log(`Generated ${args.texOnly ? result.outputTexPath : result.outputPdfPath} from ${args.input}`);
-  warnIfStillTooLong(result.compactModeApplied, result.pageCount);
 }
 
 function readValue(argv: string[], index: number, optionName: string): string {
@@ -117,11 +115,6 @@ function readValue(argv: string[], index: number, optionName: string): string {
   return value;
 }
 
-function warnIfStillTooLong(compactModeApplied: boolean, pageCount: number | null): void {
-  if (compactModeApplied && pageCount !== null && pageCount > 2) {
-    console.log(`Warning: resume still exceeds 2 pages after compact spacing (${pageCount} pages).`);
-  }
-}
 
 function helpText(): string {
   return `Generate a LaTeX resume from a JSON profile.

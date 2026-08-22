@@ -1,5 +1,5 @@
 import { intakePreparedJobCandidates, prepareJobCandidateIntake } from "../candidate-intake.ts";
-import { persistRawRun, runAgent } from "../agent-run.ts";
+import { persistAgentRun, runAgent } from "../agent-run.ts";
 import { linkedInEnrichmentPrompt, renderEnrichmentPrompt } from "./prompts.ts";
 import type { AgentRunResult, EnrichmentOptions, EnrichmentResult, JobStore, StoredJobCandidate } from "../types.ts";
 
@@ -18,53 +18,68 @@ export async function enrichJobs(store: JobStore, options: EnrichmentOptions): P
 
   const total = candidatesToEnrich.length;
   const runs: EnrichmentRun[] = [];
+  let lastRunId = 0;
+  let lastRawOutputPath: string | null = null;
   for (const [index, candidate] of candidatesToEnrich.entries()) {
     const prompt = renderEnrichmentPrompt(linkedInEnrichmentPrompt, candidate);
     const progress = { position: index + 1, total, id: candidate.id, title: candidate.title };
     log("starting enrichment runner", progress);
     const result = await runPromptAgent(options, prompt);
+    const run: EnrichmentRun = { candidate, prompt, ...result };
+    runs.push(run);
+
+    const intakePlan = prepareJobCandidateIntake(run);
+    const saved = await persistAgentRun(store, { rawDir: options.rawDir, outputPath: options.rawOutputPath }, {
+      runner: options.runner,
+      promptVersion: linkedInEnrichmentPrompt.version,
+      prompt,
+      stdout: intakePlan.stdout,
+      stderr: run.stderr,
+      exitCode: run.exitCode,
+      rawOutputPath: null
+    });
+    lastRunId = saved.runId;
+    lastRawOutputPath = saved.rawOutputPath;
     log("finished enrichment runner", { ...progress, exitCode: result.exitCode });
-    runs.push({ candidate, prompt, ...result });
+
+    if (run.exitCode !== 0) continue;
+
+    const intake = await intakePreparedJobCandidates(intakePlan, { logger: log });
+    store.saveCandidates(saved.runId, intake.candidates);
+    log("saved enriched candidates", {
+      runId: saved.runId,
+      candidates: intake.candidates.length,
+      rejectedCandidates: intake.rejectedCount,
+      rejected: intake.rejectedCandidates
+    });
   }
 
   const failedRuns = runs.filter((run) => run.exitCode !== 0);
   const intakePlan = prepareJobCandidateIntake(runs);
-  const stdout = intakePlan.stdout;
-  const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
-  const combinedPrompt = runs.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
-  const exitCode = failedRuns[0]?.exitCode ?? 0;
-
-  const runId = store.saveAgentRun({
-    runner: options.runner,
-    promptVersion: linkedInEnrichmentPrompt.version,
-    prompt: combinedPrompt || linkedInEnrichmentPrompt.template,
-    stdout,
-    stderr,
-    exitCode,
-    rawOutputPath: null
-  });
-  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode });
-  if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
-
   const intake = await intakePreparedJobCandidates(intakePlan, { logger: log });
   if (failedRuns.length > 0) log("skipped failed enrichment runners", failedRuns.map(failedRunDetails));
   if (failedRuns.length > 0 && intake.normalizedCount === 0) {
-    const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : ` Run ${runId}; inspect agent_runs.stdout/stderr in SQLite.`;
+    const rawOutput = lastRawOutputPath ? ` Raw output: ${lastRawOutputPath}` : ` Run ${lastRunId}; inspect agent_runs.stdout/stderr in SQLite.`;
     throw new Error(`All enrichment runners failed; first failure: ${failedRunSummary(failedRuns[0])}.${rawOutput}`);
   }
 
-  store.saveCandidates(runId, intake.candidates);
-  log("saved enriched candidates", {
-    runId,
-    candidates: intake.candidates.length,
-    failedCandidates: failedRuns.length,
-    rejectedCandidates: intake.rejectedCount,
-    rejected: intake.rejectedCandidates
-  });
+  if (runs.length === 0) {
+    const saved = await persistAgentRun(store, { rawDir: options.rawDir, outputPath: options.rawOutputPath }, {
+      runner: options.runner,
+      promptVersion: linkedInEnrichmentPrompt.version,
+      prompt: linkedInEnrichmentPrompt.template,
+      stdout: intakePlan.stdout,
+      stderr: "",
+      exitCode: 0,
+      rawOutputPath: null
+    });
+    lastRunId = saved.runId;
+    lastRawOutputPath = saved.rawOutputPath;
+  }
 
   return {
-    runId,
-    rawOutputPath,
+    runId: lastRunId,
+    rawOutputPath: lastRawOutputPath,
     requestedCount: candidatesToEnrich.length,
     normalizedCount: intake.normalizedCount,
     failedCandidates: failedRuns.length,

@@ -4,6 +4,8 @@ import { runAgent } from "../agent-run.ts";
 import { linkedInTelegramSummaryPrompt, renderTelegramSummaryPrompt } from "./prompts.ts";
 import type { AgentRunResult, AgentRunner, ApplicationQuestion, CompanyResearch, JobStore, Logger, StoredJobCandidate } from "../types.ts";
 
+const TELEGRAM_CONCURRENCY = 5;
+
 export interface TelegramNotifyOptions {
   token?: string;
   chatId?: string;
@@ -45,6 +47,12 @@ interface TelegramSummaryRun extends AgentRunResult {
   summary: string;
 }
 
+interface TelegramWorkResult {
+  notification: TelegramCandidateNotification;
+  summaryRun?: TelegramSummaryRun;
+  error?: string;
+}
+
 export async function notifyTelegram(store: JobStore, options: TelegramNotifyOptions = {}): Promise<TelegramNotificationResult> {
   const token = requiredOption(options.token ?? process.env.TELEGRAM_BOT_TOKEN, "TELEGRAM_BOT_TOKEN");
   const chatId = requiredOption(options.chatId ?? process.env.TELEGRAM_CHAT_ID, "TELEGRAM_CHAT_ID");
@@ -52,22 +60,22 @@ export async function notifyTelegram(store: JobStore, options: TelegramNotifyOpt
   const send = options.fetcher ?? fetch;
   const log = options.logger ?? noop;
   const candidates = store.listCandidatesForTelegramNotification(options.limit ?? 25);
-  const summaryRuns: TelegramSummaryRun[] = [];
+  log("loaded Telegram candidates", { candidates: candidates.length, mode: "parallel", concurrency: TELEGRAM_CONCURRENCY });
+  const workResults = await runTelegramNotifications(store, candidates, { token, chatId, messageThreadId, send }, options, log);
+  const summaryRuns = workResults.flatMap((result) => result.summaryRun ? [result.summaryRun] : []);
   const notifications: TelegramCandidateNotification[] = [];
   const failures: TelegramNotificationFailure[] = [];
 
-  for (const candidate of candidates) {
-    const notification = notificationFromCandidate(candidate);
-    log("building Telegram summary", notification);
+  for (const result of workResults) {
+    if (result.error) {
+      failures.push({ ...result.notification, error: result.error });
+      continue;
+    }
     try {
-      const summaryRun = await summarizeCandidateForTelegram(store, candidate, options);
-      summaryRuns.push(summaryRun);
-      log("sending Telegram resume", notification);
-      await sendTelegramDocument({ token, chatId, messageThreadId, candidate, caption: summaryRun.summary, fetcher: send });
-      store.markTelegramNotified(candidate.id);
-      notifications.push(notification);
+      store.markTelegramNotified(result.notification.candidateId);
+      notifications.push(result.notification);
     } catch (error) {
-      failures.push({ ...notification, error: errorMessage(error) });
+      failures.push({ ...result.notification, error: errorMessage(error) });
     }
   }
 
@@ -90,6 +98,47 @@ export async function notifyTelegram(store: JobStore, options: TelegramNotifyOpt
     notifications,
     failures
   };
+}
+
+async function runTelegramNotifications(
+  store: JobStore,
+  candidates: StoredJobCandidate[],
+  transport: { token: string; chatId: string; messageThreadId: string; send: typeof fetch },
+  options: TelegramNotifyOptions,
+  log: Logger
+): Promise<TelegramWorkResult[]> {
+  const results = new Array<TelegramWorkResult>(candidates.length);
+  let nextIndex = 0;
+
+  async function worker(): Promise<void> {
+    while (nextIndex < candidates.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      const candidate = candidates[index];
+      const notification = notificationFromCandidate(candidate);
+      log("building Telegram summary", notification);
+      let summaryRun: TelegramSummaryRun | undefined;
+      try {
+        summaryRun = await summarizeCandidateForTelegram(store, candidate, options);
+        log("sending Telegram resume", notification);
+        await sendTelegramDocument({
+          token: transport.token,
+          chatId: transport.chatId,
+          messageThreadId: transport.messageThreadId,
+          candidate,
+          caption: summaryRun.summary,
+          fetcher: transport.send
+        });
+        results[index] = { notification, summaryRun };
+      } catch (error) {
+        results[index] = { notification, summaryRun, error: errorMessage(error) };
+      }
+    }
+  }
+
+  const workers = Array.from({ length: Math.min(TELEGRAM_CONCURRENCY, candidates.length) }, () => worker());
+  await Promise.all(workers);
+  return results;
 }
 
 async function sendTelegramDocument(options: {
@@ -142,9 +191,21 @@ async function summarizeCandidateForTelegram(store: JobStore, candidate: StoredJ
 }
 
 function captionForCandidate(candidate: StoredJobCandidate, summary: string): string {
-  const applyLine = candidate.applyUrl ? `Apply: ${candidate.applyUrl}` : "";
+  const summaryWithApply = includeApplyAfterPosition(summary, candidate.applyUrl);
   const fitLine = candidate.fitScore == null ? "" : `Fit: ${candidate.fitScore}`;
-  return appendWithinTelegramLimit(summary, [applyLine, fitLine]);
+  return appendWithinTelegramLimit(summaryWithApply, [fitLine]);
+}
+
+function includeApplyAfterPosition(summary: string, applyUrl: string | undefined): string {
+  const applyLine = `Apply: ${applyUrl?.trim() || "no especificado"}`;
+  const lines = summary.split("\n").filter((line) => !line.trim().toLowerCase().startsWith("apply:"));
+  const positionIndex = lines.findIndex((line) => line.trim().toLowerCase().startsWith("puesto:"));
+  if (positionIndex < 0) return [applyLine, ...lines].join("\n");
+  return [
+    ...lines.slice(0, positionIndex + 1),
+    applyLine,
+    ...lines.slice(positionIndex + 1)
+  ].join("\n");
 }
 
 function appendWithinTelegramLimit(summary: string, extraLines: string[]): string {

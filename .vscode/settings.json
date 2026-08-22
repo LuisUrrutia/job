@@ -1,0 +1,7 @@
+{
+    "latex-workshop.latex.build.forceRecipeUsage": false,
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.linting.chktex.enabled": true,
+    "latex-workshop.linting.chktex.exec.path": "~/Library/TinyTeX/bin/universal-darwin/chktex",
+    "latex-workshop.synctex.path": "~/Library/TinyTeX/bin/universal-darwin/synctex"
+}

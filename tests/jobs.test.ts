@@ -71,6 +71,27 @@ describe("jobs pipeline", () => {
     assert.equal(report.rejected[0].company, "Incomplete Example");
   });
 
+  test("discovery rejects excluded noisy companies before candidate processing", () => {
+    const report = normalizeJobCandidateOutputWithReport(JSON.stringify({
+      candidates: [
+        { ...searchOnlyCandidate("1231231241", "Backend Engineer"), company: "Crossing Hurdles" },
+        { ...searchOnlyCandidate("1231231242", "Java Engineer"), publisherCompany: "Crossing Hurdles" },
+        { ...searchOnlyCandidate("1231231244", "Full Stack Developer"), company: "FITFILE" },
+        { ...searchOnlyCandidate("1231231245", "Software Engineer"), publisherCompany: "micro1" },
+        searchOnlyCandidate("1231231243", "React Engineer")
+      ]
+    }));
+
+    assert.deepEqual(report.candidates.map((candidate) => candidate.sourceJobId), ["1231231243"]);
+    assert.equal(report.rejected.length, 4);
+    assert.deepEqual(report.rejected.map((candidate) => candidate.reasons), [
+      ["excluded-company"],
+      ["excluded-company"],
+      ["excluded-company"],
+      ["excluded-company"]
+    ]);
+  });
+
   test("Job candidate intake prepares successful Agent run outputs with rejections", () => {
     const plan = prepareJobCandidateIntake([
       {
@@ -479,6 +500,49 @@ describe("jobs pipeline", () => {
     }
   });
 
+  test("description-only enrichment leaves the enrichment queue and becomes fit eligible", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-enrich-description-only-"));
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+
+    try {
+      await discoverJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        searchTerms: ["React"],
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [searchOnlyCandidate("5555555555", "React Engineer")]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      const result = await enrichJobs(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        limit: 1,
+        runAgent: async () => ({
+          stdout: JSON.stringify({
+            candidates: [{ ...enrichedCandidate("5555555555"), companyWebsite: "" }]
+          }),
+          stderr: "",
+          exitCode: 0
+        })
+      });
+
+      assert.equal(result.requestedCount, 1);
+      assert.equal(result.candidates.length, 1);
+      assert.equal(store.listCandidatesForEnrichment(10).length, 0);
+      assert.equal(store.listCandidatesForFit(10).length, 1);
+      const candidate = store.listCandidates().find((row) => row.id === "linkedin:5555555555");
+      assert.equal(candidate?.pipelineState, "enriched");
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
   test("fit analyzes enriched candidates and saves decisions", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "jobs-fit-"));
     const profilePath = join(workspace, "info.json");
@@ -538,6 +602,7 @@ describe("jobs pipeline", () => {
         limit: 2,
         profilePath,
         runAgent: async (options) => {
+          assert.match(options.prompt, /Do not browse, call BrowserMCP, use web fetch or web search/);
           const match = /"id": "linkedin:(\d+)"/.exec(options.prompt);
           assert.ok(match);
           const sourceJobId = match[1];
@@ -569,8 +634,220 @@ describe("jobs pipeline", () => {
     }
   });
 
+  test("fit runs up to five OpenCode Sol medium analyses in parallel", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-fit-parallel-"));
+    const profilePath = join(workspace, "info.json");
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+    const sourceJobIds = Array.from({ length: 8 }, (_, index) => String(7800000000 + index));
+    let active = 0;
+    let maxActive = 0;
+    const runnerSettings: Array<{ model?: string; variant?: string }> = [];
 
-  test("application research stores company profile, apply URL, and answer drafts", async () => {
+    writeFileSync(profilePath, JSON.stringify({
+      personalInfo: { name: "Luis Urrutia" },
+      summary: "Senior Full-Stack Engineer with React and TypeScript experience."
+    }));
+
+    try {
+      const intake = prepareJobCandidateIntake({
+        stdout: JSON.stringify({
+          candidates: sourceJobIds.map((sourceJobId) => enrichedCandidate(sourceJobId))
+        }),
+        stderr: "",
+        exitCode: 0
+      });
+      const discoveryRunId = store.saveAgentRun({
+        runner: "fixture",
+        promptVersion: "test",
+        prompt: "test",
+        stdout: intake.stdout,
+        stderr: "",
+        exitCode: 0,
+        rawOutputPath: null
+      });
+      store.saveCandidates(discoveryRunId, intake.normalizedCandidates);
+
+      const result = await analyzeFit(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        limit: sourceJobIds.length,
+        profilePath,
+        runAgent: async (options) => {
+          const match = /"id": "linkedin:(\d+)"/.exec(options.prompt);
+          assert.ok(match);
+          active += 1;
+          maxActive = Math.max(maxActive, active);
+          runnerSettings.push({ model: options.model, variant: options.variant });
+          await new Promise((resolve) => setTimeout(resolve, 5));
+          active -= 1;
+          return {
+            stdout: JSON.stringify({
+              id: `linkedin:${match[1]}`,
+              decision: "apply",
+              score: 85,
+              summary: "Buen fit React/TypeScript.",
+              risks: [],
+              evidence: ["Experiencia React y TypeScript"]
+            }),
+            stderr: "",
+            exitCode: 0
+          };
+        }
+      });
+
+      assert.equal(maxActive, 5);
+      assert.equal(result.analyzedCount, sourceJobIds.length);
+      assert.equal(runnerSettings.length, sourceJobIds.length);
+      assert.ok(runnerSettings.every(({ model }) => model === "openai/gpt-5.6-sol"));
+      assert.ok(runnerSettings.every(({ variant }) => variant === "medium"));
+      assert.equal(store.listCandidatesForFit(10).length, 0);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+  test("fit forces dont_apply when core stack requirements are missing", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-fit-core-stack-"));
+    const profilePath = join(workspace, "info.json");
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+    const candidateId = "linkedin:4434584512";
+
+    writeFileSync(profilePath, JSON.stringify({
+      personalInfo: { name: "Luis Urrutia" },
+      summary: "Senior Full-Stack Engineer focused on TypeScript, Node.js, React, Go, and Python."
+    }));
+
+    try {
+      const intake = prepareJobCandidateIntake({
+        stdout: JSON.stringify({
+          candidates: [{
+            ...enrichedCandidate("4434584512"),
+            title: "Senior Backend Engineer",
+            description: "Build backend services. Strong Java and Spring Boot experience is required; Quarkus is the primary runtime."
+          }]
+        }),
+        stderr: "",
+        exitCode: 0
+      });
+      const runId = store.saveAgentRun({
+        runner: "fixture",
+        promptVersion: "test",
+        prompt: "test",
+        stdout: intake.stdout,
+        stderr: "",
+        exitCode: 0,
+        rawOutputPath: null
+      });
+      store.saveCandidates(runId, intake.normalizedCandidates);
+
+      const result = await analyzeFit(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        profilePath,
+        runAgent: async (options) => {
+          assert.match(options.prompt, /Java\/Spring Boot\/Quarkus/);
+          assert.match(options.prompt, /C#\/\.NET/);
+          assert.match(options.prompt, /PHP\/Laravel/);
+          assert.match(options.prompt, /Elixir/);
+          assert.match(options.prompt, /C\+\+/);
+          assert.match(options.prompt, /missingCoreRequirements/);
+          return {
+            stdout: JSON.stringify({
+              id: candidateId,
+              decision: "weak_apply",
+              score: 62,
+              summary: "Buen encaje general, pero falta el stack Java.",
+              missingCoreRequirements: ["Java", "Spring Boot", "Quarkus"],
+              risks: ["No hay experiencia profesional demostrada con Java."],
+              evidence: ["Experiencia general en backend y Kubernetes."]
+            }),
+            stderr: "",
+            exitCode: 0
+          };
+        }
+      });
+
+      assert.equal(result.analyses[0].decision, "dont_apply");
+      assert.equal(result.analyses[0].score, 49);
+      assert.deepEqual(result.analyses[0].missingCoreRequirements, ["Java", "Spring Boot", "Quarkus"]);
+      const candidate = store.listCandidates().find((row) => row.id === candidateId);
+      assert.equal(candidate?.fitDecision, "dont_apply");
+      assert.equal(candidate?.fitScore, 49);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+  test("weak fit candidates never enter downstream application queues", () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-weak-fit-filter-"));
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+    const candidateId = "linkedin:4398845008";
+
+    try {
+      const intake = prepareJobCandidateIntake({
+        stdout: JSON.stringify({ candidates: [enrichedCandidate("4398845008")] }),
+        stderr: "",
+        exitCode: 0
+      });
+      const runId = store.saveAgentRun({
+        runner: "fixture",
+        promptVersion: "test",
+        prompt: "test",
+        stdout: intake.stdout,
+        stderr: "",
+        exitCode: 0,
+        rawOutputPath: null
+      });
+      store.saveCandidates(runId, intake.normalizedCandidates);
+      store.saveFitAnalyses(runId, [{
+        id: candidateId,
+        decision: "weak_apply",
+        score: 62,
+        summary: "Falta experiencia reciente en el stack central.",
+        risks: ["El puesto exige C# y .NET 8 como requisitos centrales."],
+        evidence: ["Experiencia relevante en AWS."]
+      }]);
+
+      assert.equal(store.listCandidatesForApplicationResearch(10).length, 0);
+
+      store.saveApplicationResearch(runId, [{
+        candidateId,
+        company: {
+          id: "milliman",
+          name: "Milliman",
+          canonicalWebsite: "https://www.milliman.com",
+          linkedinCompanyId: "",
+          linkedinUrl: "",
+          description: "Consulting and technology company.",
+          mission: "",
+          vision: "",
+          productsServices: [],
+          businessModel: "",
+          markets: [],
+          sourceNotes: "Fixture",
+          sourceUrls: []
+        },
+        applyUrl: "https://example.com/apply",
+        applyUrlSource: "https://example.com/job",
+        screeningNotes: [],
+        questions: []
+      }]);
+
+      assert.equal(store.listCandidatesForResumeBuild(10).length, 0);
+
+      store.saveResumePackages(runId, [{ candidateId, resumePdfPath: "/tmp/weak-fit.pdf" }]);
+
+      assert.equal(store.listCandidatesForTelegramNotification(10).length, 0);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
+
+  test("application research passively stores company profile, apply URL, and visible questions", async () => {
     const workspace = mkdtempSync(join(tmpdir(), "jobs-application-research-"));
     const profilePath = join(workspace, "info.json");
     const store = openJobStore(join(workspace, "jobs.sqlite"));
@@ -644,6 +921,10 @@ describe("jobs pipeline", () => {
         runAgent: async (options) => {
           assert.match(options.prompt, /linkedin:8888888001/);
           assert.doesNotMatch(options.prompt, /linkedin:8888888002/);
+          assert.match(options.prompt, /Never visit, scan, scrape, fetch, or use joblet\.ai/);
+          assert.match(options.prompt, /do not click any control that starts or advances an application/);
+          assert.match(options.prompt, /Do not type into fields, select options, upload files, sign in, create an account/);
+          assert.match(options.prompt, /Do not progress the application to reveal more questions/);
           return {
             stdout: JSON.stringify({
               candidateId: "linkedin:8888888001",
@@ -664,6 +945,9 @@ describe("jobs pipeline", () => {
               },
               applyUrl: "https://company.example/careers/role-1/apply",
               applyUrlSource: "https://company.example/careers/role-1",
+              screeningNotes: [
+                "Requires three hours of overlap with US Eastern Time. Source: https://company.example/careers/role-1/apply"
+              ],
               questions: [
                 {
                   id: "interest",
@@ -689,6 +973,9 @@ describe("jobs pipeline", () => {
       assert.equal(result.researchedCount, 1);
       assert.equal(researched?.companyId, "verified-company-8888888001");
       assert.equal(researched?.applyUrl, "https://company.example/careers/role-1/apply");
+      assert.deepEqual(researched?.applicationScreeningNotes, [
+        "Requires three hours of overlap with US Eastern Time. Source: https://company.example/careers/role-1/apply"
+      ]);
       assert.equal(store.listCandidatesForApplicationResearch(10).length, 0);
       const questions = store.listApplicationQuestions("linkedin:8888888001");
       assert.equal(questions.length, 1);
@@ -796,6 +1083,9 @@ describe("jobs pipeline", () => {
             },
             applyUrl: "https://company.example/careers/role-1/apply",
             applyUrlSource: "https://company.example/careers/role-1",
+            screeningNotes: [
+              "Requires three hours of overlap with US Eastern Time. Source: https://company.example/careers/role-1/apply"
+            ],
             questions: []
           }),
           stderr: "",
@@ -803,34 +1093,53 @@ describe("jobs pipeline", () => {
         })
       });
 
+      const resumeRunPrompts: string[] = [];
+      const generatedResumeOutputs: string[] = [];
+      const generateResume = async (options: { output: string }) => {
+        generatedResumeOutputs.push(options.output);
+        writeFileSync(options.output, "%PDF-1.4\n% test resume\n");
+      };
+      const runResumeAgent = async (options: { prompt: string }) => {
+        resumeRunPrompts.push(options.prompt);
+        assert.match(options.prompt, /Do not browse, call BrowserMCP, use web fetch or web search/);
+        assert.match(options.prompt, /linkedin:8888889001/);
+        assert.match(options.prompt, /Verified Company 8888889001/);
+        assert.match(options.prompt, /Requires three hours of overlap with US Eastern Time/);
+        assert.match(options.prompt, /read-only screening notes/);
+        assert.match(options.prompt, /do that edit pass in the returned JSON source/);
+        assert.match(options.prompt, /Treat resume_bold_phrases as the TeX edit plan/);
+        assert.match(options.prompt, /Do not rely on a later TeX edit/);
+        assert.match(options.prompt, /Bolding is not decoration and not a keyword highlighter/);
+        assert.match(options.prompt, /Bold only short, meaningful phrases, usually 2 to 10 words/);
+        assert.match(options.prompt, /Do not bold isolated tech names unless they are part of a stronger phrase/);
+        assert.match(options.prompt, /bold-only skim check/);
+        assert.match(options.prompt, /Prefer "Led end-to-end testing with Playwright"; avoid "critical user flows"/);
+        assert.match(options.prompt, /Prefer "Built a presentation feature with React and TypeScript"; avoid "live data in a single shareable URL"/);
+        assert.match(options.prompt, /Keep must-have and high-signal adjacent technologies visible first/);
+        return {
+          stdout: JSON.stringify({
+            personalInfo: profile.personalInfo,
+            summary: profile.summary,
+            workExperience: profile.workExperience,
+            targetCompany: "Verified Company 8888889001",
+            targetPosition: "Senior React Engineer",
+            jobSlug: "verified-company-8888889001-senior-react-engineer",
+            company_profile: "Developer workflow tools company.",
+            application_questions: [],
+            resume_focus_priority: ["React", "TypeScript"]
+          }),
+          stderr: "",
+          exitCode: 0
+        };
+      };
       const result = await buildResumes(store, {
         runner: "opencode",
         cwd: process.cwd(),
         limit: 1,
         profilePath,
         outputRoot,
-        generateResume: async (options) => {
-          writeFileSync(options.output, "%PDF-1.4\n% test resume\n");
-        },
-        runAgent: async (options) => {
-          assert.match(options.prompt, /linkedin:8888889001/);
-          assert.match(options.prompt, /Verified Company 8888889001/);
-          return {
-            stdout: JSON.stringify({
-              personalInfo: profile.personalInfo,
-              summary: profile.summary,
-              workExperience: profile.workExperience,
-              targetCompany: "Verified Company 8888889001",
-              targetPosition: "Senior React Engineer",
-              jobSlug: "verified-company-8888889001-senior-react-engineer",
-              company_profile: "Developer workflow tools company.",
-              application_questions: [],
-              resume_focus_priority: ["React", "TypeScript"]
-            }),
-            stderr: "",
-            exitCode: 0
-          };
-        }
+        generateResume,
+        runAgent: runResumeAgent
       });
 
       assert.equal(result.requestedCount, 1);
@@ -844,6 +1153,24 @@ describe("jobs pipeline", () => {
       const candidate = store.listCandidates().find((row) => row.id === "linkedin:8888889001");
       assert.equal(candidate?.resumePdfPath, result.packages[0].resumePdfPath);
       assert.equal(store.listCandidatesForResumeBuild(10).length, 0);
+      assert.equal(store.listCandidatesForResumeBuild(10, { includeGenerated: true }).length, 1);
+
+      const rebuildResult = await buildResumes(store, {
+        runner: "opencode",
+        cwd: process.cwd(),
+        limit: 1,
+        profilePath,
+        outputRoot,
+        includeGenerated: true,
+        generateResume,
+        runAgent: runResumeAgent
+      });
+      assert.equal(rebuildResult.requestedCount, 1);
+      assert.equal(rebuildResult.builtCount, 1);
+      assert.equal(rebuildResult.packages[0].candidateId, "linkedin:8888889001");
+      assert.ok(existsSync(rebuildResult.packages[0].resumePdfPath));
+      assert.equal(resumeRunPrompts.length, 2);
+      assert.equal(generatedResumeOutputs.length, 2);
 
       const telegramSummaryPrompts: string[] = [];
       const telegramRequests: { url: string; caption: string }[] = [];
@@ -876,6 +1203,7 @@ describe("jobs pipeline", () => {
           assert.ok(body.get("document"));
           const caption = String(body.get("caption"));
           assert.match(caption, /Puesto: Enriched React Engineer 8888889001/);
+          assert.match(caption, /Puesto: Enriched React Engineer 8888889001\nApply: https:\/\/company\.example\/careers\/role-1\/apply\nTecnologías:/);
           assert.match(caption, /Empresa: Verified Company 8888889001/);
           telegramRequests.push({ url: String(input), caption });
           return new Response(JSON.stringify({ ok: true }), {
@@ -893,6 +1221,7 @@ describe("jobs pipeline", () => {
       assert.equal(telegramSummaryPrompts.length, 1);
       assert.match(telegramSummaryPrompts[0], /Candidato\/JD guardado en SQLite/);
       assert.match(telegramSummaryPrompts[0], /Información de empresa guardada en SQLite/);
+      assert.match(telegramSummaryPrompts[0], /Apply: <URL oficial para postular/);
       assert.match(telegramSummaryPrompts[0], /Preguntas visibles de aplicación y respuestas sugeridas/);
       const notifiedCandidate = store.listCandidates().find((row) => row.id === "linkedin:8888889001");
       assert.equal(notifiedCandidate?.pipelineState, "telegram_notified");
@@ -940,12 +1269,12 @@ describe("jobs pipeline", () => {
     }
   });
 
-  test("resume build writes each PDF before starting the next candidate", async () => {
-    const workspace = mkdtempSync(join(tmpdir(), "jobs-resume-build-order-"));
+  test("resume build runs up to five candidate agents and PDF generators in parallel", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-resume-build-parallel-"));
     const profilePath = join(workspace, "info.json");
     const outputRoot = join(workspace, "out");
     const store = openJobStore(join(workspace, "jobs.sqlite"));
-    const sourceJobIds = ["8888889101", "8888889102"];
+    const sourceJobIds = Array.from({ length: 8 }, (_, index) => String(8888889101 + index));
 
     const profile = {
       personalInfo: {
@@ -1016,21 +1345,27 @@ describe("jobs pipeline", () => {
         },
         applyUrl: `https://company.example/careers/${sourceJobId}/apply`,
         applyUrlSource: `https://company.example/careers/${sourceJobId}`,
+        screeningNotes: [],
         questions: []
       })));
 
-      const events: string[] = [];
+      let activeAgents = 0;
+      let maxActiveAgents = 0;
+      let activeGenerators = 0;
+      let maxActiveGenerators = 0;
       const result = await buildResumes(store, {
         runner: "opencode",
         cwd: process.cwd(),
-        limit: 2,
+        limit: sourceJobIds.length,
         profilePath,
         outputRoot,
         runAgent: async (options) => {
           const candidateId = /linkedin:\d+/.exec(options.prompt)?.[0];
           assert.ok(candidateId);
-          events.push(`agent:${candidateId}`);
-          const jobSlug = candidateId.endsWith("9101") ? "first-role" : "second-role";
+          activeAgents += 1;
+          maxActiveAgents = Math.max(maxActiveAgents, activeAgents);
+          await new Promise((resolve) => setTimeout(resolve, 5));
+          activeAgents -= 1;
           return {
             stdout: JSON.stringify({
               personalInfo: profile.personalInfo,
@@ -1038,31 +1373,141 @@ describe("jobs pipeline", () => {
               workExperience: profile.workExperience,
               targetCompany: `Verified Company ${candidateId.slice(-10)}`,
               targetPosition: "Senior React Engineer",
-              jobSlug
+              jobSlug: `role-${candidateId.slice(-10)}`
             }),
             stderr: "",
             exitCode: 0
           };
         },
         generateResume: async (options) => {
-          const source = JSON.parse(await readFile(options.input, "utf8"));
-          events.push(`pdf:${source.jobSlug}`);
+          activeGenerators += 1;
+          maxActiveGenerators = Math.max(maxActiveGenerators, activeGenerators);
+          await new Promise((resolve) => setTimeout(resolve, 5));
+          activeGenerators -= 1;
           writeFileSync(options.output, "%PDF-1.4\n% test resume\n");
         }
       });
 
-      assert.equal(result.builtCount, 2);
-      assert.deepEqual(events, [
-        "agent:linkedin:8888889101",
-        "pdf:first-role",
-        "agent:linkedin:8888889102",
-        "pdf:second-role"
-      ]);
+      assert.equal(maxActiveAgents, 5);
+      assert.equal(maxActiveGenerators, 5);
+      assert.equal(result.builtCount, sourceJobIds.length);
+      assert.deepEqual(result.packages.map(({ candidateId }) => candidateId), sourceJobIds.map((id) => `linkedin:${id}`));
+      assert.equal(store.listCandidatesForResumeBuild(10).length, 0);
     } finally {
       store.close();
       rmSync(workspace, { recursive: true, force: true });
     }
   });
+
+  test("Telegram runs up to five summaries and document sends in parallel", async () => {
+    const workspace = mkdtempSync(join(tmpdir(), "jobs-telegram-parallel-"));
+    const store = openJobStore(join(workspace, "jobs.sqlite"));
+    const sourceJobIds = Array.from({ length: 8 }, (_, index) => String(8888889201 + index));
+
+    try {
+      const intake = prepareJobCandidateIntake({
+        stdout: JSON.stringify({ candidates: sourceJobIds.map((sourceJobId) => enrichedCandidate(sourceJobId)) }),
+        stderr: "",
+        exitCode: 0
+      });
+      const runId = store.saveAgentRun({
+        runner: "fixture",
+        promptVersion: "test",
+        prompt: "test",
+        stdout: intake.stdout,
+        stderr: "",
+        exitCode: 0,
+        rawOutputPath: null
+      });
+      store.saveCandidates(runId, intake.normalizedCandidates);
+      store.saveFitAnalyses(runId, sourceJobIds.map((sourceJobId, index) => ({
+        id: `linkedin:${sourceJobId}`,
+        decision: "apply",
+        score: 95 - index,
+        summary: "Strong React fit.",
+        risks: [],
+        evidence: ["React evidence"]
+      })));
+      store.saveApplicationResearch(runId, sourceJobIds.map((sourceJobId) => ({
+        candidateId: `linkedin:${sourceJobId}`,
+        company: {
+          id: `verified-company-${sourceJobId}`,
+          name: `Verified Company ${sourceJobId}`,
+          canonicalWebsite: "https://company.example",
+          linkedinCompanyId: sourceJobId,
+          linkedinUrl: "https://www.linkedin.com/company/verified-company",
+          description: "Builds developer workflow tools.",
+          mission: "Help teams ship safer software.",
+          vision: "",
+          productsServices: ["Developer workflow platform"],
+          businessModel: "B2B SaaS",
+          markets: ["Software teams"],
+          sourceNotes: "Official website and careers page matched the role.",
+          sourceUrls: ["https://company.example"]
+        },
+        applyUrl: `https://company.example/careers/${sourceJobId}/apply`,
+        applyUrlSource: `https://company.example/careers/${sourceJobId}`,
+        screeningNotes: [],
+        questions: []
+      })));
+      store.saveResumePackages(runId, sourceJobIds.map((sourceJobId) => {
+        const resumePdfPath = join(workspace, `${sourceJobId}.pdf`);
+        writeFileSync(resumePdfPath, "%PDF-1.4\n% test resume\n");
+        return { candidateId: `linkedin:${sourceJobId}`, resumePdfPath };
+      }));
+
+      let activeAgents = 0;
+      let maxActiveAgents = 0;
+      let activeSends = 0;
+      let maxActiveSends = 0;
+      const result = await notifyTelegram(store, {
+        token: "bot-token",
+        chatId: "group-1",
+        limit: sourceJobIds.length,
+        runAgent: async (options) => {
+          assert.match(options.prompt, /Do not browse, call BrowserMCP, use web fetch or web search/);
+          const sourceJobId = /linkedin:(\d+)/.exec(options.prompt)?.[1];
+          assert.ok(sourceJobId);
+          activeAgents += 1;
+          maxActiveAgents = Math.max(maxActiveAgents, activeAgents);
+          await new Promise((resolve) => setTimeout(resolve, 5));
+          activeAgents -= 1;
+          return {
+            stdout: [
+              `Puesto: Enriched React Engineer ${sourceJobId}`,
+              "Tecnologías: React, TypeScript",
+              `Empresa: Verified Company ${sourceJobId}`,
+              "Productos/servicios: Developer workflow tools.",
+              "Función: Product engineering."
+            ].join("\n"),
+            stderr: "",
+            exitCode: 0
+          };
+        },
+        fetcher: async () => {
+          activeSends += 1;
+          maxActiveSends = Math.max(maxActiveSends, activeSends);
+          await new Promise((resolve) => setTimeout(resolve, 5));
+          activeSends -= 1;
+          return new Response(JSON.stringify({ ok: true }), {
+            status: 200,
+            headers: { "content-type": "application/json" }
+          });
+        }
+      });
+
+      assert.equal(maxActiveAgents, 5);
+      assert.equal(maxActiveSends, 5);
+      assert.equal(result.notifiedCount, sourceJobIds.length);
+      assert.deepEqual(result.failures, []);
+      assert.deepEqual(result.notifications.map(({ candidateId }) => candidateId), sourceJobIds.map((id) => `linkedin:${id}`));
+      assert.equal(store.listCandidatesForTelegramNotification(10).length, 0);
+    } finally {
+      store.close();
+      rmSync(workspace, { recursive: true, force: true });
+    }
+  });
+
   test("stable identity prefers LinkedIn numeric IDs and hashes canonical URLs", () => {
     assert.equal(stableJobId({ url: "https://www.linkedin.com/jobs/view/1234567890/?trk=public" }), "linkedin:1234567890");
     assert.match(stableJobId({ url: "https://example.invalid/jobs/one?trk=ignored" }), /^url:[a-f0-9]{24}$/);

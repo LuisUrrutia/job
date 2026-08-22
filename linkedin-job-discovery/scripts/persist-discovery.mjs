@@ -2,8 +2,7 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { openJobStore } from "../../src/jobs/store.ts";
-import { normalizeDiscoveryOutput } from "../../src/jobs/discover/normalizer.ts";
-import { defendDiscoveryCandidates } from "../../src/jobs/security/prompt-defense.ts";
+import { intakePreparedJobCandidates, prepareJobCandidateIntake } from "../../src/jobs/candidate-intake.ts";
 
 const DEFAULT_DB = "data/jobs.sqlite";
 const DEFAULT_RUNNER = "skill:linkedin-job-discovery";
@@ -24,31 +23,33 @@ async function main(argv) {
   const inputPath = resolve(options.input);
   const dbPath = options.db || DEFAULT_DB;
   const raw = await readFile(inputPath, "utf8");
-  const normalized = normalizeDiscoveryOutput(raw);
-  const defense = await defendDiscoveryCandidates(normalized, { logger: options.verbose ? log : undefined });
+  const intakePlan = prepareJobCandidateIntake({ stdout: raw, stderr: options.stderr || "", exitCode: 0 });
+  const intake = await intakePreparedJobCandidates(intakePlan, { logger: options.verbose ? log : undefined });
   const store = openJobStore(dbPath);
 
   try {
     const runId = store.saveAgentRun({
       runner: options.runner || DEFAULT_RUNNER,
       promptVersion: options.promptVersion || PROMPT_VERSION,
-      prompt: options.prompt || "LinkedIn MCP discovery performed by linkedin-job-discovery skill.",
+      prompt: options.prompt || "BrowserMCP discovery performed by linkedin-job-discovery skill.",
       stdout: raw,
       stderr: options.stderr || "",
       exitCode: 0,
       rawOutputPath: inputPath
     });
     store.saveRunRawOutputPath(runId, inputPath);
-    store.saveCandidates(runId, defense.candidates);
+    store.saveCandidates(runId, intake.candidates);
 
     console.log(JSON.stringify({
       runId,
       dbPath,
       rawOutputPath: inputPath,
-      normalized: normalized.length,
-      saved: defense.candidates.length,
-      skipped: defense.skipped.length,
-      skippedIds: defense.skipped.map((candidate) => candidate.id)
+      normalized: intake.normalizedCount,
+      saved: intake.candidates.length,
+      rejected: intake.rejectedCount,
+      excluded: intake.rejectedCandidates.filter((candidate) => candidate.reasons.includes("excluded-company")).length,
+      skipped: intake.skippedCandidates.length,
+      skippedIds: intake.skippedCandidates.map((candidate) => candidate.id)
     }, null, 2));
   } finally {
     store.close();

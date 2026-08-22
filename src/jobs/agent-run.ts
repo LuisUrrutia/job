@@ -4,7 +4,7 @@ import { spawn } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import type { ChildProcess } from "node:child_process";
 import type { Readable } from "node:stream";
-import type { AgentRunResult, AgentRunnerOptions } from "./types.ts";
+import type { AgentRunRecord, AgentRunResult, AgentRunnerOptions, JobStore } from "./types.ts";
 
 interface PersistRawRunOptions {
   rawDir?: string;
@@ -19,7 +19,12 @@ interface CommandOptions {
 export async function runAgent(options: AgentRunnerOptions): Promise<AgentRunResult> {
   const runner = options.runner || "fixture";
   if (runner === "fixture") return runFixture(options.fixture);
-  if (runner === "opencode") return runCommand("opencode", ["run", options.prompt, "--dir", options.cwd || process.cwd()], { cwd: options.cwd });
+  if (runner === "opencode") {
+    const args = ["run", options.prompt, "--dir", options.cwd || process.cwd()];
+    if (options.model) args.push("--model", options.model);
+    if (options.variant) args.push("--variant", options.variant);
+    return runCommand("opencode", args, { cwd: options.cwd });
+  }
   if (runner === "codex") return runCommand("codex", ["exec", "-C", options.cwd ?? process.cwd(), "-"], { cwd: options.cwd, stdin: options.prompt });
   if (runner === "claude") {
     const args = ["--print", "--output-format", "json"];
@@ -38,6 +43,21 @@ export async function persistRawRun(options: PersistRawRunOptions, runId: number
   mkdirSync(dirname(path), { recursive: true });
   await writeFile(path, JSON.stringify(result, null, 2));
   return path;
+}
+
+export async function persistAgentRun(
+  store: Pick<JobStore, "saveAgentRun" | "saveRunRawOutputPath">,
+  options: PersistRawRunOptions,
+  run: AgentRunRecord
+): Promise<{ runId: number; rawOutputPath: string | null }> {
+  const runId = store.saveAgentRun(run);
+  const rawOutputPath = await persistRawRun(options, runId, {
+    stdout: run.stdout,
+    stderr: run.stderr,
+    exitCode: run.exitCode
+  });
+  if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
+  return { runId, rawOutputPath };
 }
 
 async function runFixture(fixturePath = "tests/fixtures/linkedin-discovery.json"): Promise<AgentRunResult> {

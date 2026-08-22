@@ -25,8 +25,7 @@ const LINKEDIN_LABEL_TOKEN = "{{RESUME_LINKEDIN_LABEL}}";
 const GITHUB_HREF_TOKEN = "{{RESUME_GITHUB_HREF}}";
 const GITHUB_LABEL_TOKEN = "{{RESUME_GITHUB_LABEL}}";
 const APPLICATION_SUFFIX = "-application";
-const DEFAULT_ITEMIZE_LINE = String.raw`\setlist[itemize]{left=1.2em}`;
-const COMPACT_ITEMIZE_LINE = String.raw`\setlist[itemize]{left=1.2em, itemsep=0.2em, topsep=0.3em, parsep=0pt, partopsep=0pt}`;
+const MAX_RESUME_PAGES = 2;
 
 type JsonObject = Record<string, unknown>;
 
@@ -50,19 +49,27 @@ export interface CompileTexOptions {
 export interface GeneratedResume {
   outputPdfPath: string;
   outputTexPath: string;
-  compactModeApplied: boolean;
+  contentReductionApplied: boolean;
   pageCount: number | null;
 }
 
 export interface CompiledResume {
   outputPdfPath: string;
-  compactModeApplied: boolean;
+  contentReductionApplied: boolean;
   pageCount: number | null;
 }
 
 interface CompileOnceResult {
   pageCount: number | null;
   latexOutput: string;
+}
+
+interface CompileTexToPdfOptions {
+  reduceContent?: () => string | null;
+}
+
+interface ExperienceBlockOptions {
+  omittedDescriptionItems?: ReadonlySet<string>;
 }
 
 export function latexEscape(value: string): string {
@@ -272,44 +279,86 @@ function signalToExitCode(signal: NodeJS.Signals | null): number {
   return 128 + (signal === "SIGABRT" ? 6 : 1);
 }
 
-export function ensureCompactItemize(texPath: string): boolean {
-  const content = readFileSync(texPath, "utf8");
-  if (content.includes(COMPACT_ITEMIZE_LINE)) {
-    return false;
+
+export async function compileTexToPdf(
+  texPath: string,
+  outputPdfPath: string,
+  compileDir?: string,
+  options: CompileTexToPdfOptions = {}
+): Promise<CompiledResume> {
+  let { pageCount } = await compileOnce(texPath, outputPdfPath, compileDir);
+  let contentReductionApplied = false;
+
+  if (pageCount === null) {
+    throw new Error("Unable to verify resume page count from latexmk output.");
   }
 
-  const updated = content.includes(DEFAULT_ITEMIZE_LINE)
-    ? content.replace(DEFAULT_ITEMIZE_LINE, COMPACT_ITEMIZE_LINE)
-    : content.replace(String.raw`\usepackage{enumitem}`, `${String.raw`\usepackage{enumitem}`}\n${COMPACT_ITEMIZE_LINE}`);
-
-  writeFileSync(texPath, updated, "utf8");
-  return true;
-}
-
-export async function compileTexToPdf(texPath: string, outputPdfPath: string, compileDir?: string): Promise<CompiledResume> {
-  let { pageCount } = await compileOnce(texPath, outputPdfPath, compileDir);
-  let compactModeApplied = false;
-
-  if (pageCount !== null && pageCount > 2) {
-    compactModeApplied = ensureCompactItemize(texPath);
-    if (compactModeApplied) {
-      console.log("Resume exceeded 2 pages. Recompiling with compact itemize spacing.");
-      ({ pageCount } = await compileOnce(texPath, outputPdfPath, compileDir));
+  while (pageCount > MAX_RESUME_PAGES) {
+    const reduction = options.reduceContent?.();
+    if (!reduction) break;
+    contentReductionApplied = true;
+    console.log(`Resume exceeded ${MAX_RESUME_PAGES} pages. ${reduction}. Recompiling.`);
+    ({ pageCount } = await compileOnce(texPath, outputPdfPath, compileDir));
+    if (pageCount === null) {
+      throw new Error("Unable to verify resume page count from latexmk output.");
     }
   }
 
-  return { outputPdfPath, compactModeApplied, pageCount };
+  if (pageCount > MAX_RESUME_PAGES) {
+    throw new Error(`Resume still exceeds ${MAX_RESUME_PAGES} pages after available content reductions (${pageCount} pages): ${texPath}`);
+  }
+
+  return { outputPdfPath, contentReductionApplied, pageCount };
 }
 
-export function buildExperienceBlock(workExperience: unknown, boldPhrases: unknown = []): string {
+function collectNonRelevantDescriptionItemKeys(workExperience: unknown, boldPhrases: unknown): string[] {
+  const highlights = normalizeBoldPhrases(boldPhrases);
+  if (!Array.isArray(workExperience) || highlights.length === 0) return [];
+
+  const normalizedHighlights = highlights.map(normalizeComparableText);
+  const keys: string[] = [];
+  for (let roleIndex = workExperience.length - 1; roleIndex >= 0; roleIndex -= 1) {
+    const role = workExperience[roleIndex];
+    if (!isJsonObject(role) || !Array.isArray(role.description)) continue;
+
+    for (let itemIndex = role.description.length - 1; itemIndex >= 0; itemIndex -= 1) {
+      const item = role.description[itemIndex];
+      if (!descriptionMatchesNormalizedPhrase(String(item), normalizedHighlights)) {
+        keys.push(descriptionItemKey(roleIndex, itemIndex));
+      }
+    }
+  }
+  return keys;
+}
+
+function descriptionMatchesNormalizedPhrase(description: string, normalizedHighlights: string[]): boolean {
+  const normalizedDescription = normalizeComparableText(description);
+  return normalizedHighlights.some((phrase) => normalizedDescription.includes(phrase));
+}
+
+function normalizeComparableText(value: string): string {
+  return value.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function removeSkillsSection(texContent: string): string | null {
+  const skillsSectionPattern = /(^|\n)\\section\*\{SKILLS\}\s*\n[\s\S]*?(?=\n\\section\*\{|\n\\end\{document\})/;
+  if (!skillsSectionPattern.test(texContent)) return null;
+  return texContent.replace(skillsSectionPattern, "$1").replace(/\n{3,}/g, "\n\n");
+}
+
+function descriptionItemKey(roleIndex: number, itemIndex: number): string {
+  return `${roleIndex}:${itemIndex}`;
+}
+
+export function buildExperienceBlock(workExperience: unknown, boldPhrases: unknown = [], options: ExperienceBlockOptions = {}): string {
   if (!Array.isArray(workExperience)) {
     return "";
   }
   const highlights = normalizeBoldPhrases(boldPhrases);
-
+  const omittedDescriptionItems = options.omittedDescriptionItems;
 
   const lines: string[] = [];
-  for (const role of workExperience) {
+  for (const [roleIndex, role] of workExperience.entries()) {
     if (!isJsonObject(role)) {
       continue;
     }
@@ -326,11 +375,14 @@ export function buildExperienceBlock(workExperience: unknown, boldPhrases: unkno
     }
 
     if (Array.isArray(role.description) && role.description.length > 0) {
-      lines.push(String.raw`\begin{itemize}`);
-      for (const item of role.description) {
-        lines.push(String.raw`\item ${latexEscapeWithBoldPhrases(String(item), highlights)}`);
+      const visibleItems = role.description.filter((_, itemIndex) => !omittedDescriptionItems?.has(descriptionItemKey(roleIndex, itemIndex)));
+      if (visibleItems.length > 0) {
+        lines.push(String.raw`\begin{itemize}`);
+        for (const item of visibleItems) {
+          lines.push(String.raw`\item ${latexEscapeWithBoldPhrases(String(item), highlights)}`);
+        }
+        lines.push(String.raw`\end{itemize}`);
       }
-      lines.push(String.raw`\end{itemize}`);
     }
 
     lines.push("");
@@ -395,17 +447,54 @@ export async function generateResumeFromJson(options: GenerateResumeOptions): Pr
     throw new Error("Missing personalInfo.title in JSON and no --headline override provided.");
   }
 
-  const experienceBlock = buildExperienceBlock(data.workExperience, resumeBoldPhrases(data));
-  const outputContent = renderTemplate(templateContent, profilePersonInfo, profilePath, headline, experienceBlock);
-  mkdirSync(dirname(outputTexPath), { recursive: true });
-  writeFileSync(outputTexPath, `${outputContent}\n`, "utf8");
+  const boldPhrases = resumeBoldPhrases(data);
+  const removableDescriptionItems = collectNonRelevantDescriptionItemKeys(data.workExperience, boldPhrases);
+  const omittedDescriptionItems = new Set<string>();
+  let omitSkillsSection = false;
+  let removedDescriptionCount = 0;
+  const writeResumeTex = () => {
+    const experienceBlock = buildExperienceBlock(data.workExperience, boldPhrases, { omittedDescriptionItems });
+    let outputContent = renderTemplate(templateContent, profilePersonInfo, profilePath, headline, experienceBlock);
+    let skillsSectionRemoved = false;
+    if (omitSkillsSection) {
+      const outputWithoutSkills = removeSkillsSection(outputContent);
+      if (outputWithoutSkills !== null) {
+        outputContent = outputWithoutSkills;
+        skillsSectionRemoved = true;
+      }
+    }
+    mkdirSync(dirname(outputTexPath), { recursive: true });
+    writeFileSync(outputTexPath, `${outputContent}\n`, "utf8");
+    return { skillsSectionRemoved };
+  };
+  writeResumeTex();
 
   if (options.texOnly) {
-    return { outputPdfPath, outputTexPath, compactModeApplied: false, pageCount: null };
+    return { outputPdfPath, outputTexPath, contentReductionApplied: false, pageCount: null };
   }
 
-  const compiled = await compileTexToPdf(outputTexPath, outputPdfPath, dirname(templatePath));
-  return { outputPdfPath, outputTexPath, compactModeApplied: compiled.compactModeApplied, pageCount: compiled.pageCount };
+  const compiled = await compileTexToPdf(outputTexPath, outputPdfPath, dirname(templatePath), {
+    reduceContent: () => {
+      if (!omitSkillsSection) {
+        omitSkillsSection = true;
+        const { skillsSectionRemoved } = writeResumeTex();
+        if (skillsSectionRemoved) return "Removed the resume Skills section before trimming bullets";
+      }
+
+      const key = removableDescriptionItems[removedDescriptionCount];
+      if (!key) return null;
+      omittedDescriptionItems.add(key);
+      removedDescriptionCount += 1;
+      writeResumeTex();
+      return `Removed ${removedDescriptionCount} non-relevant resume ${removedDescriptionCount === 1 ? "bullet" : "bullets"} while preserving bullets tied to resume_bold_phrases`;
+    }
+  });
+  return {
+    outputPdfPath,
+    outputTexPath,
+    contentReductionApplied: compiled.contentReductionApplied,
+    pageCount: compiled.pageCount
+  };
 }
 
 export async function compileExistingTex(options: CompileTexOptions): Promise<CompiledResume> {
@@ -471,7 +560,7 @@ function normalizeBoldPhrases(rawPhrases: unknown): string[] {
 
 function isValidBoldPhrase(phrase: string): boolean {
   const words = phrase.split(/\s+/).filter(Boolean);
-  return words.length >= 2 && words.length <= 8;
+  return words.length >= 2 && words.length <= 10;
 }
 
 function getNestedString(data: JsonObject, parentKey: string, childKey: string): string {

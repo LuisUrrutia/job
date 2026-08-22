@@ -65,7 +65,7 @@ export interface JobCandidate {
   rawJson: string;
 }
 
-export type CandidateRejectionReason = "missing-title" | "missing-company" | "missing-url";
+export type CandidateRejectionReason = "missing-title" | "missing-company" | "missing-url" | "excluded-company";
 
 export interface CandidateRejection {
   index: number;
@@ -100,6 +100,7 @@ export interface StoredJobCandidate extends Omit<JobCandidate, "rawJson"> {
   applyUrl?: string;
   applyUrlSource?: string;
   applyResearchedAt?: string;
+  applicationScreeningNotes?: string[];
   resumePdfPath?: string;
   resumeGeneratedAt?: string;
   telegramNotifiedAt?: string;
@@ -139,6 +140,7 @@ export interface ApplicationResearch {
   company: CompanyResearch;
   applyUrl: string;
   applyUrlSource: string;
+  screeningNotes: string[];
   questions: ApplicationQuestion[];
 }
 
@@ -162,6 +164,7 @@ export interface FitRunAnalysis {
   decision: FitDecision;
   score: number;
   summary: string;
+  missingCoreRequirements?: string[];
   risks: string[];
   evidence: string[];
 }
@@ -178,7 +181,7 @@ export interface JobStore {
   listCandidatesForEnrichment(limit?: number): StoredJobCandidate[];
   listCandidatesForFit(limit?: number): StoredJobCandidate[];
   listCandidatesForApplicationResearch(limit?: number): StoredJobCandidate[];
-  listCandidatesForResumeBuild(limit?: number): StoredJobCandidate[];
+  listCandidatesForResumeBuild(limit?: number, options?: { includeGenerated?: boolean }): StoredJobCandidate[];
   listApplicationQuestions(candidateId: string): ApplicationQuestion[];
   listCandidatesForTelegramNotification(limit?: number): StoredJobCandidate[];
   markTelegramNotified(candidateId: string): void;
@@ -198,6 +201,8 @@ export interface AgentRunnerOptions {
   prompt: string;
   cwd?: string;
   mcpConfig?: string;
+  model?: string;
+  variant?: string;
 }
 
 export type AgentRunner = (options: AgentRunnerOptions) => Promise<AgentRunResult>;
@@ -311,6 +316,7 @@ export interface ResumeBuildOptions {
   limit?: number;
   profilePath?: string;
   outputRoot?: string;
+  includeGenerated?: boolean;
   runAgent?: AgentRunner;
   generateResume?: ResumeGenerator;
   logger?: Logger;

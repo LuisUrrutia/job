@@ -1,12 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "skills": {
+    "paths": ["linkedin-job-discovery"]
+  },
   "mcp": {
-    "mcp-server-linkedin": {
+    "browsermcp": {
       "type": "local",
-      "command": ["uvx", "mcp-server-linkedin@latest"],
-      "environment": {
-        "UV_HTTP_TIMEOUT": "300"
-      }
+      "command": ["npx", "-y", "@browsermcp/mcp@latest"],
+      "enabled": true
     }
   }
 }

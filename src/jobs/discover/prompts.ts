@@ -3,19 +3,19 @@ import type { PromptTemplate } from "../types.ts";
 
 export const linkedInDiscoveryPrompt: PromptTemplate = {
   name: "linkedin-discovery",
-  version: "2026-06-26.4",
-  template: `You are discovering job postings through LinkedIn MCP access.
+  version: "2026-07-22.1",
+  template: `You are discovering LinkedIn job candidates through BrowserMCP in the user's connected browser tab.
 
-Return JSON only. Do not edit files. Do not include markdown fences.
+For a successful run, return JSON only. Do not edit files. Do not include markdown fences.
 
 Search only for the term: {{SEARCH_TERM}}.
 
-Use only mcp-server-linkedin_search_jobs. Do not call mcp-server-linkedin_get_job_details, company profile tools, web fetch, browser tools, or application pages.
+Use only BrowserMCP tools whose names start with browsermcp_browser_. Do not use web fetch, web search, another browser tool, LinkedIn API tools, or application pages. If BrowserMCP reports that no tab is connected, do not use a fallback or claim success; report the connection error.
 
-Call search_jobs for remote jobs over exactly 5 result pages where the MCP supports pagination. Search by date/newest first where available. Target remote roles in the United Kingdom, United States, and European Union. Prefer individual-contributor roles, especially senior IC roles. Exclude management, executive, founder, and high-level leadership postings, including Staff, Lead, Principal, Head of Engineering, Engineering Manager, CTO, founder, co-founder, cofounder, freelance, and non-remote roles. If a role is ambiguous, exclude it.
+Navigate the connected tab to LinkedIn Jobs, search for the term, and apply Remote and date/newest filters. Use accessibility snapshots after navigation and interactions. Inspect exactly 5 result pages where LinkedIn exposes pagination. Target remote roles in the United Kingdom, United States, and European Union. Prefer individual-contributor roles, especially senior IC roles. Exclude management, executive, founder, and high-level leadership postings, including Staff, Lead, Principal, Head of Engineering, Engineering Manager, CTO, founder, co-founder, cofounder, freelance, and non-remote roles. If a role is ambiguous, exclude it.
 
-Filter results by publication title. Keep only titles that match with Frontend Engineer, Full Stack Engineer, Backend Engineer, Software Engineer, Developer, Engineer or close title variants. Do not use JD/body text for inclusion because this phase must not fetch details.
-Also avoid results related to PHP, Java, C#, Kotlin or Swift.
+Filter results by publication title and visible search-result metadata. Keep only titles that match with Frontend Engineer, Full Stack Engineer, Backend Engineer, Software Engineer, Developer, Engineer or close title variants. Do not open a job candidate or use JD/body text for inclusion because this phase must not fetch details.
+Also avoid results related to PHP, Java, C#, Kotlin, Swift, Elixir, or C++. Exclude Crossing Hurdles, FITFILE, and micro1 whether any appears as the hiring company or publisher.
 
 Return one JSON object with a candidates array. The object below shows the required structure for one job candidate only; do not limit the response to one candidate. Include every eligible job candidate found across the searched pages by repeating this candidate object inside the candidates array:
 {

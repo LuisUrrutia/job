@@ -15,11 +15,12 @@ The generator derives `{candidate-slug}` from `info.json` `personalInfo.name`.
 3. Use `\textbf{...}` for emphasis in the TeX edit pass. Completion criterion: emphasis follows [skim-rules.md](reference/skim-rules.md).
 4. If you materially rewrite, tighten, or remove a bullet in TeX, mirror that wording change back into `ai/{company}/{slug}-application.json`. Completion criterion: TeX and JSON do not disagree on material bullet wording.
 5. Run `npm run resume -- --compile-tex latex/{candidate-slug}-{slug}-Resume.tex`. Completion criterion: `applications/{candidate-slug}-{slug}-Resume.pdf` exists.
-6. Apply the page-count fallback only if needed. Completion criterion: PDFs over 2 pages either receive the compact spacing fallback and are recompiled, or the user is told clearly that the PDF still exceeds 2 pages.
+6. Apply the page-count fallback only if needed. Completion criterion: PDFs over 2 pages remove bullets that do not support the fit story while preserving role headers, dates, tech stacks, and bullets tied to `resume_bold_phrases`. Tell the user explicitly only if the PDF still exceeds 2 pages after those reductions.
 
 ## Page-Count Fallback Rule
 
 - Do not edit the template file for page-count control. Only edit the generated `latex/{candidate-slug}-{slug}-Resume.tex`.
-- If the first compiled PDF is more than 2 pages, update the generated TeX to use `\setlist[itemize]{left=1.2em, itemsep=0.2em, topsep=0.3em, parsep=0pt, partopsep=0pt}`.
-- Recompile after applying that compact itemize spacing.
-- If the PDF still exceeds 2 pages after that fallback, tell the user explicitly instead of silently accepting it.
+- If the compiled PDF is more than 2 pages, remove bullet points that are not tied to `resume_bold_phrases`.
+- Preserve role title, company, dates, location, tech stack, and bullets that carry the fit story.
+- Recompile after each non-relevant bullet removal.
+- If the PDF still exceeds 2 pages after every non-relevant bullet has been removed, tell the user explicitly instead of silently accepting it.

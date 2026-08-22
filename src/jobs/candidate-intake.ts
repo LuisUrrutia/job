@@ -9,6 +9,8 @@ import type {
   RawJobCandidate
 } from "./types.ts";
 
+const EXCLUDED_JOB_COMPANIES = new Set(["crossing hurdles", "fitfile", "micro1"]);
+
 interface SkippedCandidate {
   id: string;
   title: string;
@@ -151,7 +153,14 @@ function rejectionReasons(candidate: CandidateFields): CandidateRejectionReason[
   if (!candidate.title) reasons.push("missing-title");
   if (!candidate.company) reasons.push("missing-company");
   if (!candidate.url) reasons.push("missing-url");
+  if (isExcludedCompany(candidate)) reasons.push("excluded-company");
   return reasons;
+}
+
+function isExcludedCompany(candidate: CandidateFields): boolean {
+  return [candidate.company, candidate.publisherCompany]
+    .map((company) => company.toLowerCase().replace(/\s+/g, " ").trim())
+    .some((company) => EXCLUDED_JOB_COMPANIES.has(company));
 }
 
 function candidateRejection(index: number, candidate: CandidateFields, reasons: CandidateRejectionReason[]): CandidateRejection {

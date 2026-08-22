@@ -30,6 +30,7 @@ interface CliOptions {
   telegramToken?: string;
   telegramChatId?: string;
   telegramMessageThreadId?: string;
+  rebuildExisting?: boolean;
 }
 
 type ParsedCliOptions = CliOptions & Record<string, string | boolean | undefined>;
@@ -143,6 +144,7 @@ async function main(argv: string[]): Promise<void> {
         limit: numberOption(options.limit, 25),
         profilePath: options.profilePath,
         outputRoot: options.outputRoot,
+        includeGenerated: options.rebuildExisting === true,
         logger
       });
       const rawOutput = result.rawOutputPath ? `; debug JSON ${result.rawOutputPath}` : "; debug JSON not written";
@@ -273,6 +275,10 @@ function parseOptions(args: string[]): ParsedCliOptions {
       options.texOnly = true;
       continue;
     }
+    if (key === "rebuildExisting") {
+      options.rebuildExisting = true;
+      continue;
+    }
     const value = args[index + 1];
     if (!value || value.startsWith("--")) throw new Error(`Missing value for ${arg}`);
     options[key] = value;
@@ -359,9 +365,9 @@ Commands:
   discover  Run search-only discovery and persist normalized candidates in SQLite.
   enrich    Enrich stored candidates with JD details and verified website data.
   fit       Analyze enriched candidates and classify apply|weak_apply|dont_apply.
-  research-application  Find official apply URLs, company research, and answer drafts.
+  research-application  Inspect public role pages for company context and visible screening questions without starting an application.
   build-resume      Generate tailored resume PDFs.
-  notify-telegram  Send generated resume PDFs to a Telegram chat/topic.
+  notify-telegram  Summarize and send up to five generated resume PDFs concurrently to a Telegram chat/topic.
   process           Stub for handing approved jobs to the downstream application workflow.
 
 Options:
@@ -376,6 +382,7 @@ Options:
   --limit <n>                    Enrich/fit/research-application/build-resume/notify-telegram only: maximum candidates to process. Default: 25
   --profile-path <path>          Fit/build-resume only: candidate profile JSON. Default: info.json
   --output-root <path>           Build-resume only: artifact root. Default: current directory
+  --rebuild-existing             Build-resume only: regenerate PDFs for eligible candidates that already have resume_pdf_path/resume_generated_at.
   --telegram-token <token>       Notify-telegram only: bot token. Default: TELEGRAM_BOT_TOKEN
   --telegram-chat-id <id>        Notify-telegram only: chat/group ID. Default: TELEGRAM_CHAT_ID
   --telegram-message-thread-id <id> Notify-telegram only: group topic ID. Default: TELEGRAM_MESSAGE_THREAD_ID

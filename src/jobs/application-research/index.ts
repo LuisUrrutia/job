@@ -1,4 +1,4 @@
-import { persistRawRun, runAgent } from "../agent-run.ts";
+import { persistAgentRun, runAgent } from "../agent-run.ts";
 import { linkedInApplicationResearchPrompt, renderApplicationResearchPrompt } from "./prompts.ts";
 import type { AgentRunResult, ApplicationQuestion, ApplicationResearch, ApplicationResearchOptions, ApplicationResearchResult, CompanyResearch, JobStore, StoredJobCandidate } from "../types.ts";
 
@@ -19,51 +19,66 @@ export async function researchApplications(store: JobStore, options: Application
 
   const total = candidatesToResearch.length;
   const runs: ApplicationResearchRun[] = [];
+  let lastRunId = 0;
+  let lastRawOutputPath: string | null = null;
   for (const [index, candidate] of candidatesToResearch.entries()) {
     const prompt = renderApplicationResearchPrompt(linkedInApplicationResearchPrompt, candidate);
     const progress = { position: index + 1, total, id: candidate.id, title: candidate.title };
     log("starting application research runner", progress);
     const result = await runPromptAgent(options, prompt);
+    const run: ApplicationResearchRun = { candidate, prompt, ...result };
+    runs.push(run);
     log("finished application research runner", { ...progress, exitCode: result.exitCode });
-    runs.push({ candidate, prompt, ...result });
+
+    const normalizedRun = normalizeApplicationResearchRuns([run]);
+    const saved = await persistAgentRun(store, { rawDir: options.rawDir, outputPath: options.rawOutputPath }, {
+      runner: options.runner,
+      promptVersion: linkedInApplicationResearchPrompt.version,
+      prompt,
+      stdout: JSON.stringify({ researches: normalizedRun.researches }),
+      stderr: run.stderr,
+      exitCode: run.exitCode,
+      rawOutputPath: null
+    });
+    lastRunId = saved.runId;
+    lastRawOutputPath = saved.rawOutputPath;
+
+    if (normalizedRun.researches.length > 0) {
+      store.saveApplicationResearch(saved.runId, normalizedRun.researches);
+      log("saved application research", {
+        runId: saved.runId,
+        researches: normalizedRun.researches.length,
+        rejectedResearches: normalizedRun.rejected
+      });
+    }
   }
 
   const failedRuns = runs.filter((run) => run.exitCode !== 0);
   const normalized = normalizeApplicationResearchRuns(runs);
-  const stdout = JSON.stringify({ researches: normalized.researches });
-  const stderr = runs.map((run) => run.stderr).filter(Boolean).join("\n");
-  const combinedPrompt = runs.map((run) => `# ${run.candidate.id}\n${run.prompt}`).join("\n\n");
-  const exitCode = failedRuns[0]?.exitCode ?? 0;
-
-  const runId = store.saveAgentRun({
-    runner: options.runner,
-    promptVersion: linkedInApplicationResearchPrompt.version,
-    prompt: combinedPrompt || linkedInApplicationResearchPrompt.template,
-    stdout,
-    stderr,
-    exitCode,
-    rawOutputPath: null
-  });
-  const rawOutputPath = await persistRawRun({ rawDir: options.rawDir, outputPath: options.rawOutputPath }, runId, { stdout, stderr, exitCode });
-  if (rawOutputPath) store.saveRunRawOutputPath(runId, rawOutputPath);
 
   if (failedRuns.length > 0) log("skipped failed application research runners", failedRuns.map(failedRunDetails));
   if (failedRuns.length > 0 && normalized.researches.length === 0) {
-    const rawOutput = rawOutputPath ? ` Raw output: ${rawOutputPath}` : ` Run ${runId}; inspect agent_runs.stdout/stderr in SQLite.`;
+    const rawOutput = lastRawOutputPath ? ` Raw output: ${lastRawOutputPath}` : ` Run ${lastRunId}; inspect agent_runs.stdout/stderr in SQLite.`;
     throw new Error(`All application research runners failed; first failure: ${failedRunSummary(failedRuns[0])}.${rawOutput}`);
   }
 
-  store.saveApplicationResearch(runId, normalized.researches);
-  log("saved application research", {
-    runId,
-    researches: normalized.researches.length,
-    failedCandidates: failedRuns.length,
-    rejectedResearches: normalized.rejected
-  });
+  if (runs.length === 0) {
+    const saved = await persistAgentRun(store, { rawDir: options.rawDir, outputPath: options.rawOutputPath }, {
+      runner: options.runner,
+      promptVersion: linkedInApplicationResearchPrompt.version,
+      prompt: linkedInApplicationResearchPrompt.template,
+      stdout: JSON.stringify({ researches: [] }),
+      stderr: "",
+      exitCode: 0,
+      rawOutputPath: null
+    });
+    lastRunId = saved.runId;
+    lastRawOutputPath = saved.rawOutputPath;
+  }
 
   return {
-    runId,
-    rawOutputPath,
+    runId: lastRunId,
+    rawOutputPath: lastRawOutputPath,
     requestedCount: candidatesToResearch.length,
     researchedCount: normalized.researches.length,
     failedCandidates: failedRuns.length,
@@ -122,6 +137,7 @@ function normalizeApplicationResearch(raw: unknown, fallbackCandidateId: string)
     company,
     applyUrl,
     applyUrlSource,
+    screeningNotes: stringList(raw.screeningNotes),
     questions: normalizeApplicationQuestions(raw.questions, candidateId)
   };
 }
