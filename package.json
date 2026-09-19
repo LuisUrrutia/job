@@ -13,7 +13,7 @@
     "@huggingface/transformers": "^3.0.0",
     "@stackone/defender": "^0.7.1",
     "fasttext.wasm": "^1.0.0",
-    "onnxruntime-node": ">=1.16.0"
+    "onnxruntime-node": ">=1.30.0"
   },
   "trustedDependencies": [
     "onnxruntime-node",
